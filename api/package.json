@@ -1,7 +1,7 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "description": "",
+  "description": "1. clone .env.template and create .env\r 2. Run the command ```docker compose up -d```",
   "main": "index.js",
   "scripts": {
     "dev": "tsnd --respawn --clear src/app.ts",

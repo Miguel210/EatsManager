@@ -14,3 +14,237 @@ datasource db {
 }
 
 
+model module {
+  id String @id @default(uuid())
+  name String @db.VarChar(50)
+  createAt DateTime @default(now())
+  isActive Boolean @default(true)
+}
+
+model operation {
+  id String @id @default(uuid())
+  name String @db.VarChar(50)
+  createAt DateTime @default(now())
+  isActive Boolean @default(true)
+  profile profileOperation[]
+}
+
+model profileOperation {
+  id String @id @default(uuid())
+  profileId String
+  operationId String
+  createAt DateTime @default(now())
+  isActive Boolean @default(true)
+
+  operation operation @relation(fields: [operationId], references: [id])
+  profile profile @relation(fields: [profileId], references: [id])
+
+}
+
+model profile {
+  id String @id @default(uuid())
+  name String
+  createAt DateTime @default(now())
+  isActive Boolean @default(true)
+
+  operation profileOperation[]
+  user user[]
+}
+
+model gender {
+  id String @id @default(uuid())
+  name String
+  createAt DateTime @default(now())
+  isActive Boolean @default(true)
+
+  person person[]
+
+}
+model person {
+  id String @id @default(uuid())
+  fullname String
+  phoneNumber String
+  address String
+  genderId String
+  birthDate DateTime
+
+  gender gender @relation(fields: [genderId], references: [id])
+  employee employee[]
+}
+
+model employee {
+  id String @id @default(uuid())
+  personId String @unique
+  hireDate DateTime
+
+  person person @relation(fields: [personId], references: [id])
+  employeeHistory employeeHistory[]
+  attendance attendance[]
+  evaluation evaluation[]
+  user user[]
+}
+
+model employeeHistory {
+  id String @id @default(uuid())
+  employeeId String
+  checkin DateTime
+  departure DateTime
+  salaty Decimal @db.Decimal(10,2)
+
+  employee employee @relation(fields: [employeeId], references: [id])
+}
+
+model statusAttendance {
+  id String @id @default(uuid())
+  name String 
+
+  attendance attendance[]
+}
+model attendance {
+  id String @id @default(uuid())
+  employeeId String 
+  statusAttendaceId String
+  time DateTime
+
+  employee employee @relation(fields: [employeeId], references: [id])
+  statusAttendance statusAttendance @relation(fields: [statusAttendaceId], references: [id])
+}
+
+model evaluation {
+  id String @id @default(uuid())
+  employeeId String
+  date DateTime
+  result String @db.Text
+
+  employee employee @relation(fields: [employeeId], references: [id])
+}
+
+model user {
+  id String @id @default(uuid())
+  profileId String
+  employeeId String @unique
+  username String @unique
+  password String
+  lastLogin DateTime
+
+  profile profile @relation(fields: [profileId],references: [id])
+  employee employee @relation(fields: [employeeId], references: [id])
+}
+//* CREATION SUPPLIER
+model supplier {
+  id String @id @default(uuid())
+  fullname String
+  phoneNumber String
+  contact String
+  address String
+
+  supplierOrder supplierOrder[]
+  paymentSupplier paymentSupplier[]
+}
+
+model statusSupplierOrder {
+  id String @id @default(uuid())
+  name String
+
+  supplierOrder supplierOrder[]
+}
+model supplierOrder {
+  id String @id @default(uuid())
+  supplierId String
+  statusId String
+  date DateTime
+  totalAmount Decimal @db.Decimal(10,2)
+
+  supplier supplier @relation(fields: [supplierId], references: [id])
+  statusSupplierOrder statusSupplierOrder @relation(fields: [statusId],references: [id])
+  paymentSupplier paymentSupplier[]
+  supplierOrderDetails supplierOrderDetails[]
+}
+
+model statuspaymentSupplier {
+  id String @id @default(uuid())
+  name String
+
+  paymentSupplier paymentSupplier[]
+}
+model paymentSupplier {
+  id String @id @default(uuid())
+  supplierId String
+  supplierOrderId String
+  statusId String
+  payDate DateTime
+  amount Decimal @db.Decimal(10,2)
+
+  supplier supplier @relation(fields: [supplierId], references: [id])
+  supplierOrder supplierOrder @relation(fields: [supplierOrderId], references: [id])
+  statuspaymentSupplier statuspaymentSupplier @relation(fields: [statusId], references: [id])
+}
+
+model statusSupplierOrderDetail {
+  id String @id @default(uuid())
+  name String
+
+  supplierOrderDetails supplierOrderDetails[]
+}
+model supplierOrderDetails {
+  id String @id @default(uuid())
+  supplierOrderId String
+  productId String
+  statusId String
+  quantity Int
+  costPiece Decimal @db.Decimal(10,2)
+  subtotal Decimal @db.Decimal(10,2)
+  note String @db.Text
+
+  supplierOrder supplierOrder @relation(fields: [supplierOrderId], references: [id])
+  product  product @relation(fields: [productId], references: [id])
+  statusSupplierOrderDetail statusSupplierOrderDetail @relation(fields: [statusId], references: [id])
+}
+
+model product {
+  id String @id @default(uuid())
+  categoryId String
+  unitHeasureId String
+  name String
+  description String
+  purchasePrice Decimal @db.Decimal(10,2)
+  salePrice Decimal @db.Decimal(10,2)
+  minStock Int
+  stock Int 
+  image String
+
+  categoryProduct categoryProduct @relation( fields: [categoryId], references: [id])
+  unitMeasure unitMeasure @relation( fields: [unitHeasureId], references: [id])
+  supplierOrderDetails supplierOrderDetails[]
+  inventoryMovement inventoryMovement[]
+}
+
+model categoryProduct {
+  id String @id @default(uuid())
+  name String
+
+  product product[]
+}
+
+model unitMeasure {
+  id String @id @default(uuid())
+  name String
+
+product product[]
+}
+ model statusInventoryMovement {
+  id String @id @default(uuid())
+  name String
+
+  inventoryMovement inventoryMovement[]
+ }
+model inventoryMovement {
+  id String @id @default(uuid())
+  productId String
+  statusId String
+  quantity Decimal @db.Decimal(10,2)
+  date DateTime
+
+  product product @relation(fields: [productId], references: [id])
+  statusInventoryMovement statusInventoryMovement @relation(fields: [statusId], references: [id])
+}
