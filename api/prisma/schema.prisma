@@ -327,22 +327,22 @@ model table {
 
   statusTable statusTable @relation(fields: [statusId],references: [id])
   
-   combinateTableMain combinateTable[] @relation("CombinateTableMain")
-  combinateTableSecond combinateTable? @relation("CombinateTableSecond")
-
+//  combinateTables combinateTable[] @relation("CombinateTables")
+//  combinateTable combinateTable? @relation("CombinateTable")
+  mainTables combinateTable[] @relation("MainTables")
+  SecondTables combinateTable[] @relation("SecondTables")
+  
   clientOrder clientOrder[]
-
 }
-//! Modific this table in relation
 model combinateTable {
   id String @id @default(uuid())
   clientOrderId String
-  tableMainId String
-  tableSecondId String? @unique
-
-  tableMain table @relation("CombinateTableMain",fields: [tableMainId], references: [id])
-  tableSecond table? @relation("CombinateTableSecond",fields: [tableSecondId], references: [id])
-
+  mainTableId String
+  secondTableId String
+//  mainTable table @relation("CombinateTables",fields: [tableMainId], references: [id])
+//  table2 table? @relation("CombinateTable",fields: [tableSecondId], references: [id])
+  mainTable table @relation("MainTables", fields: [mainTableId], references: [id])
+  secondTable table @relation("SecondTables", fields: [secondTableId], references: [id])
 }
 //* ORDER
 model statusClientOrder {
