@@ -129,6 +129,7 @@ model user {
 
   profile profile @relation(fields: [profileId],references: [id])
   employee employee @relation(fields: [employeeId], references: [id])
+  clientOrder clientOrder[]
 }
 //* CREATION SUPPLIER
 model supplier {
@@ -200,7 +201,7 @@ model supplierOrderDetails {
   product  product @relation(fields: [productId], references: [id])
   statusSupplierOrderDetail statusSupplierOrderDetail @relation(fields: [statusId], references: [id])
 }
-
+//* PRODUCT
 model product {
   id String @id @default(uuid())
   categoryId String
@@ -217,6 +218,7 @@ model product {
   unitMeasure unitMeasure @relation( fields: [unitHeasureId], references: [id])
   supplierOrderDetails supplierOrderDetails[]
   inventoryMovement inventoryMovement[]
+  productToDish productToDish[]
 }
 
 model categoryProduct {
@@ -230,7 +232,9 @@ model unitMeasure {
   id String @id @default(uuid())
   name String
 
-product product[]
+  product product[]
+  productToDish productToDish[]
+  garrision garrision[]
 }
  model statusInventoryMovement {
   id String @id @default(uuid())
@@ -247,4 +251,191 @@ model inventoryMovement {
 
   product product @relation(fields: [productId], references: [id])
   statusInventoryMovement statusInventoryMovement @relation(fields: [statusId], references: [id])
+}
+
+model productToDish {
+  id String @id @default(uuid())
+  dishId String
+  productId String
+  unitMeasureId String
+  quantity Decimal
+
+  product product @relation(fields: [productId], references: [id])
+  unitMeasure unitMeasure @relation(fields: [unitMeasureId], references: [id])
+  dish dish @relation(fields: [dishId], references: [id])
+}
+
+model dish {
+  id String @id @default(uuid())
+  categoryDishId String
+  name String
+  description String
+  price Decimal
+
+  categortyDish categoryDish @relation(fields: [categoryDishId], references:[id])
+  productToDish productToDish[]
+  detailPromo detailPromo[]
+  dishgarrision dishgarrision[]
+
+}
+
+model categoryDish {
+  id String @id @default(uuid())
+  name String
+
+  dish dish[]
+}
+
+model detailPromo {
+  id String @id @default(uuid())
+  dishId String
+  promotionId String
+
+  dish dish @relation(fields: [dishId], references: [id])
+  promotion promotion @relation(fields: [promotionId], references: [id])
+}
+
+model discountTypePromotion {
+  id String @id @default(uuid())
+  name String
+
+  promotion promotion[]
+}
+model promotion {
+  id String @id @default(uuid())
+  name String
+  description String
+  discountTypeId String
+  discountValue Decimal
+  startDate DateTime
+  finishDate DateTime
+
+  discountTypePromotion discountTypePromotion @relation(fields: [discountTypeId], references: [id])
+  detailPromo detailPromo[]
+}
+ model statusTable {
+  id String @id @default(uuid())
+  name String
+
+  table table[]
+ }
+model table {
+  id String @id @default(uuid())
+  tableNumber Int
+  statusId String
+  combinate Boolean
+
+  statusTable statusTable @relation(fields: [statusId],references: [id])
+  
+   combinateTableMain combinateTable[] @relation("CombinateTableMain")
+  combinateTableSecond combinateTable? @relation("CombinateTableSecond")
+
+  clientOrder clientOrder[]
+
+}
+//! Modific this table in relation
+model combinateTable {
+  id String @id @default(uuid())
+  clientOrderId String
+  tableMainId String
+  tableSecondId String? @unique
+
+  tableMain table @relation("CombinateTableMain",fields: [tableMainId], references: [id])
+  tableSecond table? @relation("CombinateTableSecond",fields: [tableSecondId], references: [id])
+
+}
+//* ORDER
+model statusClientOrder {
+  id String @id @default(uuid())
+  name String
+
+  clientOrder clientOrder[]
+}
+
+model orderMethod {
+  id String @id @default(uuid())
+  name String
+
+  clientOrder clientOrder[]
+}
+model clientOrder {
+  id String @id @default(uuid())
+  userId String
+  tableId String
+  statusId String
+  orderMethodId String
+  date DateTime
+  clientName String
+
+  user user @relation(fields: [userId], references: [id])
+  table table @relation(fields: [tableId], references: [id])
+  statusClientOrder statusClientOrder @relation(fields: [statusId], references: [id])
+  orderMethod orderMethod @relation(fields: [orderMethodId], references: [id])
+  account account[]
+}
+
+model clientOrderDetail {
+  id String @id @default(uuid())
+  clientOrderId String
+  dishId String
+  quantity Int
+  price Decimal
+  subtotal Decimal
+  personalization String @db.Text
+
+  accountDetail accountDetail[]
+  detailOrderGarrision detailOrderGarrision[]
+}
+
+model account {
+  id String @id @default(uuid())
+  clientOrderId String
+  total Decimal
+  paid Boolean
+
+  clientOrder clientOrder @relation(fields: [clientOrderId], references: [id])
+  accountDetail accountDetail[]
+}
+
+model accountDetail {
+  id String @id @default(uuid())
+  accountId String
+  orderClientDetailId String
+  total Decimal
+
+  clientOrderDetail clientOrderDetail @relation(fields: [orderClientDetailId], references: [id])
+  account account @relation(fields: [accountId], references: [id])
+}
+
+//*GUARNICION
+model dishgarrision {
+  id String @id @default(uuid())
+  dishId String
+  garrisionId String
+
+  dish dish @relation(fields: [dishId], references: [id])
+  garrision garrision @relation(fields: [garrisionId], references: [id])
+
+}
+
+model garrision {
+  id String @id @default(uuid())
+  unitMeasureId String
+  name String
+  description String
+  quantity Decimal
+
+  unitMeasure unitMeasure @relation(fields: [unitMeasureId], references: [id])
+  dishgarrision dishgarrision[]
+  detailOrderGarrision detailOrderGarrision[]
+}
+
+model detailOrderGarrision {
+  id String @id @default(uuid())
+  clientOrderDetailId String
+  garrisionId String
+
+  clientOrderDetail clientOrderDetail @relation(fields: [clientOrderDetailId], references: [id])
+  garrision garrision @relation(fields: [garrisionId], references: [id])
+
 }
