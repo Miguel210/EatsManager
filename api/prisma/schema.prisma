@@ -71,6 +71,7 @@ model typeperson {
 
   person person[]
 }
+//todo MAIN TABLE
 model person {
   id String @id @default(uuid())
   genderId String
@@ -78,16 +79,20 @@ model person {
   typePersonId String
   fullname String
   username String
-  address String
+  password String
   isActive Boolean @default(true)
 
   gender gender @relation(fields: [genderId], references: [id])
   profile profile @relation(fields: [profileId], references: [id])
   typeperson typeperson @relation(fields: [typePersonId], references: [id])
-
+  address address[]
   employee employee[]
+  movement movement[]
+  costumer costumer[]
+  supplier supplier[]
 }
 
+//todo SECOND TABLE
 model employee {
   id String @id @default(uuid())
   personId String @unique
@@ -99,15 +104,276 @@ model employee {
 
   person person @relation(fields: [personId], references: [id])
   attendance attendance[]
+  evaluation evaluation[]
 }
 
+model evaluation {
+  id String @id @default(uuid())
+  employeeId String
+  date DateTime
+  result String
+  isActive Boolean @default(true)
+
+  empoyee employee @relation(fields: [employeeId], references: [id])
+}
 model attendance {
   id String @id @default(uuid())
   employeeId String
   date DateTime
   hour DateTime
   document String
+  isActive Boolean @default(true)
 
   employee employee @relation(fields: [employeeId], references: [id])
 }
+//todo SECOND TABLE
+model address {
+  id String @id @default(uuid())
+  personId String
+  calle1 String
+  calle2 String
+  cp String
+  reference String
+  isActive Boolean @default(true)
 
+  person person @relation(fields: [personId], references: [id])
+}
+
+//todo SECOND TABLE
+model costumer {
+  id String @id @default(uuid())
+  personId String
+  isActive Boolean @default(true)
+
+
+  person person @relation(fields: [personId], references: [id])
+
+}
+
+//todo SECOND TABLE
+model supplier {
+  id String @id @default(uuid())
+  personId String
+  isActive Boolean @default(true)
+
+  person person @relation(fields: [personId], references: [id])
+
+}
+
+//todo SECOND TABLE
+model movement {
+  id String @id @default(uuid())
+  date DateTime
+  personId String 
+  documentId String
+  elaborateId String
+  amount Decimal @db.Decimal(10,2)
+  referenceId String?   //* movemenet to movement
+  status String //! QUESTION
+  isActive Boolean @default(true)
+
+
+  document document @relation(fields: [documentId], references: [id])
+  person person @relation(fields: [personId], references: [id])
+  mevements movement[] @relation("ReferenceMovement")
+  movement movement? @relation("ReferenceMovement",fields: [referenceId], references: [id])
+  movementDetail movementDetail[]
+  inventory inventory[]
+  clientOrder clientOrder[]
+  orderPayment orderPayment[]
+  supplierOrder supplierOrder[]
+  devolutionClient devolutionClient[]
+  devolutionSupplier devolutionSupplier[]
+}
+
+model document {
+  id String @id @default(uuid())
+  isActive Boolean @default(true)
+  movement movement[]
+}
+
+model movementDetail {
+  id String @id @default(uuid())
+  movementId String
+  quantity Int
+  productId String
+  priceUnit Decimal @db.Decimal(10,2)
+  subTotal Decimal @db.Decimal(10,2)
+  tax Decimal @db.Decimal(10,2)
+  total Decimal @db.Decimal(10,2)
+  costUnit Decimal @db.Decimal(10,2)
+  promotionId String
+  isActive Boolean @default(true)
+
+
+  movement movement @relation(fields: [movementId], references: [id])
+  product product @relation(fields: [productId], references: [id])
+  promorion promotion @relation(fields: [promotionId], references: [id])
+}
+
+model productType {
+  id String @id @default(uuid())
+  description String
+  isActive Boolean @default(true)
+
+  product product[]
+}
+model product {
+  id String @id @default(uuid())
+  code String
+  description String
+  existence Int
+  price Decimal @db.Decimal(10,2)
+  productTypeId String
+  category String
+  isActive Boolean @default(true)
+
+  productType productType @relation(fields: [productTypeId], references: [id])
+  garrisonMainDish garrison[] @relation("GarrisonMainDish")
+  garrisonDish garrison[] @relation("GarrisonDish")
+
+  inventory inventory[]
+  movementDetail movementDetail[]
+  promotion promotion[]
+}
+
+model inventory {
+  id String @id @default(uuid())
+  movementId String
+  productId String
+  quantity Int
+  isActive Boolean @default(true)
+
+  movement movement @relation(fields: [movementId], references: [id])
+  product product @relation(fields: [productId], references: [id])
+}
+
+model promotion {
+  id String @id @default(uuid())
+  productId String
+  price Decimal @db.Decimal(10,2)
+  from DateTime
+  until DateTime
+  isActive Boolean @default(true)
+
+  product product @relation(fields: [productId], references: [id])
+  movementDetail movementDetail[]
+}
+
+model garrison {
+  id String @id @default(uuid())
+  dishId String
+  garrisonId String
+  isActive Boolean @default(true)
+ 
+  garrisonMainDish product @relation("GarrisonMainDish", fields: [dishId], references: [id])
+  garrisonDish product @relation("GarrisonDish", fields: [garrisonId], references: [id])
+  clientOrderDetail clientOrderDetail[]
+}
+
+model clientOrder {
+  id String @id @default(uuid())
+  movementId String
+  invoiceFolio String
+  tableId String
+  paymentDate DateTime
+  status String
+  isActive Boolean @default(true)
+
+  table table @relation(fields: [tableId], references: [id])
+  movement movement @relation(fields: [movementId], references: [id])
+  clientOrderDetail clientOrderDetail[]
+
+}
+
+model table {
+  id String @id @default(uuid())
+  description String
+  status String
+  mainTableId String? //* table to table
+  isActive Boolean @default(true)
+
+  tables table[] @relation("ReferenceTable")
+  tabless table? @relation("ReferenceTable",fields: [mainTableId], references: [id])
+
+  clientOrder clientOrder[]
+}
+
+model clientOrderDetail {
+  id String @id @default(uuid())
+  clientOrderId String
+  garrisonId String
+  isActive Boolean @default(true)
+
+  clientOrder clientOrder @relation(fields: [clientOrderId], references: [id])
+  garrison garrison @relation(fields: [garrisonId], references: [id])
+
+}
+//todo SECOND TABLE
+
+model orderPayment {
+  id String @id @default(uuid())
+  movementId String
+  amount Decimal @db.Decimal(10,2)
+  status String
+  isActive Boolean @default(true)
+
+  movement movement @relation(fields: [movementId], references: [id])
+  payment payment[]
+}
+
+model payment {
+  id String @id @default(uuid())
+  orderPaymentId String
+  amount Decimal @db.Decimal(10,2)
+  typePaymentId String
+  isActive Boolean @default(true)
+
+  orderPayment orderPayment @relation(fields: [orderPaymentId], references: [id])
+  typePayment typePayment @relation(fields: [typePaymentId], references: [id])
+}
+
+model typePayment {
+  id String @id @default(uuid())
+  description String
+  isActive Boolean @default(true)
+
+  payment payment[]
+}
+//todo SECOND TABLE
+
+model supplierOrder {
+  id String @id @default(uuid())
+  movementId String
+  invoiceFolio String
+  paymentDate DateTime
+  status String
+  isActive Boolean @default(true)
+
+  movement movement @relation(fields: [movementId], references: [id])
+}
+//todo SECOND TABLE
+
+model devolutionClient {
+  id String @id @default(uuid())
+  movementId String
+  invoiceFolio String
+  paymentDate DateTime
+  status String
+  isActive Boolean @default(true)
+
+  movement movement @relation(fields: [movementId], references: [id])
+}
+//todo SECOND TABLE
+
+model devolutionSupplier {
+  id String @id @default(uuid())
+  movementId String
+  invoiceFolio String
+  paymentDate DateTime
+  status String
+  isActive Boolean @default(true)
+
+
+  movement movement @relation(fields: [movementId], references: [id])
+}
