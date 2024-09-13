@@ -17,15 +17,18 @@ datasource db {
 model module {
   id String @id @default(uuid())
   name String @db.VarChar(50)
-  createAt DateTime @default(now())
   isActive Boolean @default(true)
+
+  operation operation[]
 }
 
 model operation {
   id String @id @default(uuid())
+  moduleId String
   name String @db.VarChar(50)
-  createAt DateTime @default(now())
   isActive Boolean @default(true)
+
+  module module @relation(fields: [moduleId], references: [id])
   profile profileOperation[]
 }
 
@@ -48,7 +51,7 @@ model profile {
   isActive Boolean @default(true)
 
   operation profileOperation[]
-  user user[]
+  person person[]
 }
 
 model gender {
@@ -60,382 +63,317 @@ model gender {
   person person[]
 
 }
+
+model typeperson {
+  id String @id @default(uuid())
+  description String
+  isActive Boolean @default(true)
+
+  person person[]
+}
+//todo MAIN TABLE
 model person {
   id String @id @default(uuid())
-  fullname String
-  phoneNumber String
-  address String
   genderId String
-  birthDate DateTime
+  profileId String
+  typePersonId String
+  fullname String
+  username String
+  password String
+  isActive Boolean @default(true)
 
   gender gender @relation(fields: [genderId], references: [id])
+  profile profile @relation(fields: [profileId], references: [id])
+  typeperson typeperson @relation(fields: [typePersonId], references: [id])
+  address address[]
   employee employee[]
+  movement movement[]
+  costumer costumer[]
+  supplier supplier[]
 }
 
+//todo SECOND TABLE
 model employee {
   id String @id @default(uuid())
   personId String @unique
   hireDate DateTime
+  input DateTime
+  output DateTime
+  salary Decimal @db.Decimal(10,2)
+  isActive Boolean @default(true)
 
   person person @relation(fields: [personId], references: [id])
-  employeeHistory employeeHistory[]
   attendance attendance[]
   evaluation evaluation[]
-  user user[]
-}
-
-model employeeHistory {
-  id String @id @default(uuid())
-  employeeId String
-  checkin DateTime
-  departure DateTime
-  salaty Decimal @db.Decimal(10,2)
-
-  employee employee @relation(fields: [employeeId], references: [id])
-}
-
-model statusAttendance {
-  id String @id @default(uuid())
-  name String 
-
-  attendance attendance[]
-}
-model attendance {
-  id String @id @default(uuid())
-  employeeId String 
-  statusAttendaceId String
-  time DateTime
-
-  employee employee @relation(fields: [employeeId], references: [id])
-  statusAttendance statusAttendance @relation(fields: [statusAttendaceId], references: [id])
 }
 
 model evaluation {
   id String @id @default(uuid())
   employeeId String
   date DateTime
-  result String @db.Text
+  result String
+  isActive Boolean @default(true)
 
-  employee employee @relation(fields: [employeeId], references: [id])
+  empoyee employee @relation(fields: [employeeId], references: [id])
 }
-
-model user {
+model attendance {
   id String @id @default(uuid())
-  profileId String
-  employeeId String @unique
-  username String @unique
-  password String
-  lastLogin DateTime
+  employeeId String
+  date DateTime
+  hour DateTime
+  document String
+  isActive Boolean @default(true)
 
-  profile profile @relation(fields: [profileId],references: [id])
   employee employee @relation(fields: [employeeId], references: [id])
-  clientOrder clientOrder[]
 }
-//* CREATION SUPPLIER
+//todo SECOND TABLE
+model address {
+  id String @id @default(uuid())
+  personId String
+  calle1 String
+  calle2 String
+  cp String
+  reference String
+  isActive Boolean @default(true)
+
+  person person @relation(fields: [personId], references: [id])
+}
+
+//todo SECOND TABLE
+model costumer {
+  id String @id @default(uuid())
+  personId String
+  isActive Boolean @default(true)
+
+
+  person person @relation(fields: [personId], references: [id])
+
+}
+
+//todo SECOND TABLE
 model supplier {
   id String @id @default(uuid())
-  fullname String
-  phoneNumber String
-  contact String
-  address String
+  personId String
+  isActive Boolean @default(true)
 
-  supplierOrder supplierOrder[]
-  paymentSupplier paymentSupplier[]
+  person person @relation(fields: [personId], references: [id])
+
 }
 
-model statusSupplierOrder {
+//todo SECOND TABLE
+model movement {
   id String @id @default(uuid())
-  name String
-
-  supplierOrder supplierOrder[]
-}
-model supplierOrder {
-  id String @id @default(uuid())
-  supplierId String
-  statusId String
   date DateTime
-  totalAmount Decimal @db.Decimal(10,2)
-
-  supplier supplier @relation(fields: [supplierId], references: [id])
-  statusSupplierOrder statusSupplierOrder @relation(fields: [statusId],references: [id])
-  paymentSupplier paymentSupplier[]
-  supplierOrderDetails supplierOrderDetails[]
-}
-
-model statuspaymentSupplier {
-  id String @id @default(uuid())
-  name String
-
-  paymentSupplier paymentSupplier[]
-}
-model paymentSupplier {
-  id String @id @default(uuid())
-  supplierId String
-  supplierOrderId String
-  statusId String
-  payDate DateTime
+  personId String 
+  documentId String
+  elaborateId String
   amount Decimal @db.Decimal(10,2)
+  referenceId String?   //* movemenet to movement
+  status String //! QUESTION
+  isActive Boolean @default(true)
 
-  supplier supplier @relation(fields: [supplierId], references: [id])
-  supplierOrder supplierOrder @relation(fields: [supplierOrderId], references: [id])
-  statuspaymentSupplier statuspaymentSupplier @relation(fields: [statusId], references: [id])
+
+  document document @relation(fields: [documentId], references: [id])
+  person person @relation(fields: [personId], references: [id])
+  mevements movement[] @relation("ReferenceMovement")
+  movement movement? @relation("ReferenceMovement",fields: [referenceId], references: [id])
+  movementDetail movementDetail[]
+  inventory inventory[]
+  clientOrder clientOrder[]
+  orderPayment orderPayment[]
+  supplierOrder supplierOrder[]
+  devolutionClient devolutionClient[]
+  devolutionSupplier devolutionSupplier[]
 }
 
-model statusSupplierOrderDetail {
+model document {
   id String @id @default(uuid())
-  name String
-
-  supplierOrderDetails supplierOrderDetails[]
+  isActive Boolean @default(true)
+  movement movement[]
 }
-model supplierOrderDetails {
+
+model movementDetail {
   id String @id @default(uuid())
-  supplierOrderId String
-  productId String
-  statusId String
+  movementId String
   quantity Int
-  costPiece Decimal @db.Decimal(10,2)
-  subtotal Decimal @db.Decimal(10,2)
-  note String @db.Text
+  productId String
+  priceUnit Decimal @db.Decimal(10,2)
+  subTotal Decimal @db.Decimal(10,2)
+  tax Decimal @db.Decimal(10,2)
+  total Decimal @db.Decimal(10,2)
+  costUnit Decimal @db.Decimal(10,2)
+  promotionId String
+  isActive Boolean @default(true)
 
-  supplierOrder supplierOrder @relation(fields: [supplierOrderId], references: [id])
-  product  product @relation(fields: [productId], references: [id])
-  statusSupplierOrderDetail statusSupplierOrderDetail @relation(fields: [statusId], references: [id])
+
+  movement movement @relation(fields: [movementId], references: [id])
+  product product @relation(fields: [productId], references: [id])
+  promorion promotion @relation(fields: [promotionId], references: [id])
 }
-//* PRODUCT
+
+model productType {
+  id String @id @default(uuid())
+  description String
+  isActive Boolean @default(true)
+
+  product product[]
+}
 model product {
   id String @id @default(uuid())
-  categoryId String
-  unitHeasureId String
-  name String
+  code String
   description String
-  purchasePrice Decimal @db.Decimal(10,2)
-  salePrice Decimal @db.Decimal(10,2)
-  minStock Int
-  stock Int 
-  image String
+  existence Int
+  price Decimal @db.Decimal(10,2)
+  productTypeId String
+  category String
+  isActive Boolean @default(true)
 
-  categoryProduct categoryProduct @relation( fields: [categoryId], references: [id])
-  unitMeasure unitMeasure @relation( fields: [unitHeasureId], references: [id])
-  supplierOrderDetails supplierOrderDetails[]
-  inventoryMovement inventoryMovement[]
-  productToDish productToDish[]
-}
+  productType productType @relation(fields: [productTypeId], references: [id])
+  garrisonMainDish garrison[] @relation("GarrisonMainDish")
+  garrisonDish garrison[] @relation("GarrisonDish")
 
-model categoryProduct {
-  id String @id @default(uuid())
-  name String
-
-  product product[]
-}
-
-model unitMeasure {
-  id String @id @default(uuid())
-  name String
-
-  product product[]
-  productToDish productToDish[]
-  garrision garrision[]
-}
- model statusInventoryMovement {
-  id String @id @default(uuid())
-  name String
-
-  inventoryMovement inventoryMovement[]
- }
-model inventoryMovement {
-  id String @id @default(uuid())
-  productId String
-  statusId String
-  quantity Decimal @db.Decimal(10,2)
-  date DateTime
-
-  product product @relation(fields: [productId], references: [id])
-  statusInventoryMovement statusInventoryMovement @relation(fields: [statusId], references: [id])
-}
-
-model productToDish {
-  id String @id @default(uuid())
-  dishId String
-  productId String
-  unitMeasureId String
-  quantity Decimal
-
-  product product @relation(fields: [productId], references: [id])
-  unitMeasure unitMeasure @relation(fields: [unitMeasureId], references: [id])
-  dish dish @relation(fields: [dishId], references: [id])
-}
-
-model dish {
-  id String @id @default(uuid())
-  categoryDishId String
-  name String
-  description String
-  price Decimal
-
-  categortyDish categoryDish @relation(fields: [categoryDishId], references:[id])
-  productToDish productToDish[]
-  detailPromo detailPromo[]
-  dishgarrision dishgarrision[]
-
-}
-
-model categoryDish {
-  id String @id @default(uuid())
-  name String
-
-  dish dish[]
-}
-
-model detailPromo {
-  id String @id @default(uuid())
-  dishId String
-  promotionId String
-
-  dish dish @relation(fields: [dishId], references: [id])
-  promotion promotion @relation(fields: [promotionId], references: [id])
-}
-
-model discountTypePromotion {
-  id String @id @default(uuid())
-  name String
-
+  inventory inventory[]
+  movementDetail movementDetail[]
   promotion promotion[]
 }
+
+model inventory {
+  id String @id @default(uuid())
+  movementId String
+  productId String
+  quantity Int
+  isActive Boolean @default(true)
+
+  movement movement @relation(fields: [movementId], references: [id])
+  product product @relation(fields: [productId], references: [id])
+}
+
 model promotion {
   id String @id @default(uuid())
-  name String
-  description String
-  discountTypeId String
-  discountValue Decimal
-  startDate DateTime
-  finishDate DateTime
+  productId String
+  price Decimal @db.Decimal(10,2)
+  from DateTime
+  until DateTime
+  isActive Boolean @default(true)
 
-  discountTypePromotion discountTypePromotion @relation(fields: [discountTypeId], references: [id])
-  detailPromo detailPromo[]
-}
- model statusTable {
-  id String @id @default(uuid())
-  name String
-
-  table table[]
- }
-model table {
-  id String @id @default(uuid())
-  tableNumber Int
-  statusId String
-  combinate Boolean
-
-  statusTable statusTable @relation(fields: [statusId],references: [id])
-  
-   combinateTableMain combinateTable[] @relation("CombinateTableMain")
-  combinateTableSecond combinateTable? @relation("CombinateTableSecond")
-
-  clientOrder clientOrder[]
-
-}
-//! Modific this table in relation
-model combinateTable {
-  id String @id @default(uuid())
-  clientOrderId String
-  tableMainId String
-  tableSecondId String? @unique
-
-  tableMain table @relation("CombinateTableMain",fields: [tableMainId], references: [id])
-  tableSecond table? @relation("CombinateTableSecond",fields: [tableSecondId], references: [id])
-
-}
-//* ORDER
-model statusClientOrder {
-  id String @id @default(uuid())
-  name String
-
-  clientOrder clientOrder[]
+  product product @relation(fields: [productId], references: [id])
+  movementDetail movementDetail[]
 }
 
-model orderMethod {
+model garrison {
   id String @id @default(uuid())
-  name String
-
-  clientOrder clientOrder[]
+  dishId String
+  garrisonId String
+  isActive Boolean @default(true)
+ 
+  garrisonMainDish product @relation("GarrisonMainDish", fields: [dishId], references: [id])
+  garrisonDish product @relation("GarrisonDish", fields: [garrisonId], references: [id])
+  clientOrderDetail clientOrderDetail[]
 }
+
 model clientOrder {
   id String @id @default(uuid())
-  userId String
+  movementId String
+  invoiceFolio String
   tableId String
-  statusId String
-  orderMethodId String
-  date DateTime
-  clientName String
+  paymentDate DateTime
+  status String
+  isActive Boolean @default(true)
 
-  user user @relation(fields: [userId], references: [id])
   table table @relation(fields: [tableId], references: [id])
-  statusClientOrder statusClientOrder @relation(fields: [statusId], references: [id])
-  orderMethod orderMethod @relation(fields: [orderMethodId], references: [id])
-  account account[]
+  movement movement @relation(fields: [movementId], references: [id])
+  clientOrderDetail clientOrderDetail[]
+
+}
+
+model table {
+  id String @id @default(uuid())
+  description String
+  status String
+  mainTableId String? //* table to table
+  isActive Boolean @default(true)
+
+  tables table[] @relation("ReferenceTable")
+  tabless table? @relation("ReferenceTable",fields: [mainTableId], references: [id])
+
+  clientOrder clientOrder[]
 }
 
 model clientOrderDetail {
   id String @id @default(uuid())
   clientOrderId String
-  dishId String
-  quantity Int
-  price Decimal
-  subtotal Decimal
-  personalization String @db.Text
-
-  accountDetail accountDetail[]
-  detailOrderGarrision detailOrderGarrision[]
-}
-
-model account {
-  id String @id @default(uuid())
-  clientOrderId String
-  total Decimal
-  paid Boolean
+  garrisonId String
+  isActive Boolean @default(true)
 
   clientOrder clientOrder @relation(fields: [clientOrderId], references: [id])
-  accountDetail accountDetail[]
-}
-
-model accountDetail {
-  id String @id @default(uuid())
-  accountId String
-  orderClientDetailId String
-  total Decimal
-
-  clientOrderDetail clientOrderDetail @relation(fields: [orderClientDetailId], references: [id])
-  account account @relation(fields: [accountId], references: [id])
-}
-
-//*GUARNICION
-model dishgarrision {
-  id String @id @default(uuid())
-  dishId String
-  garrisionId String
-
-  dish dish @relation(fields: [dishId], references: [id])
-  garrision garrision @relation(fields: [garrisionId], references: [id])
+  garrison garrison @relation(fields: [garrisonId], references: [id])
 
 }
+//todo SECOND TABLE
 
-model garrision {
+model orderPayment {
   id String @id @default(uuid())
-  unitMeasureId String
-  name String
+  movementId String
+  amount Decimal @db.Decimal(10,2)
+  status String
+  isActive Boolean @default(true)
+
+  movement movement @relation(fields: [movementId], references: [id])
+  payment payment[]
+}
+
+model payment {
+  id String @id @default(uuid())
+  orderPaymentId String
+  amount Decimal @db.Decimal(10,2)
+  typePaymentId String
+  isActive Boolean @default(true)
+
+  orderPayment orderPayment @relation(fields: [orderPaymentId], references: [id])
+  typePayment typePayment @relation(fields: [typePaymentId], references: [id])
+}
+
+model typePayment {
+  id String @id @default(uuid())
   description String
-  quantity Decimal
+  isActive Boolean @default(true)
 
-  unitMeasure unitMeasure @relation(fields: [unitMeasureId], references: [id])
-  dishgarrision dishgarrision[]
-  detailOrderGarrision detailOrderGarrision[]
+  payment payment[]
 }
+//todo SECOND TABLE
 
-model detailOrderGarrision {
+model supplierOrder {
   id String @id @default(uuid())
-  clientOrderDetailId String
-  garrisionId String
+  movementId String
+  invoiceFolio String
+  paymentDate DateTime
+  status String
+  isActive Boolean @default(true)
 
-  clientOrderDetail clientOrderDetail @relation(fields: [clientOrderDetailId], references: [id])
-  garrision garrision @relation(fields: [garrisionId], references: [id])
+  movement movement @relation(fields: [movementId], references: [id])
+}
+//todo SECOND TABLE
 
+model devolutionClient {
+  id String @id @default(uuid())
+  movementId String
+  invoiceFolio String
+  paymentDate DateTime
+  status String
+  isActive Boolean @default(true)
+
+  movement movement @relation(fields: [movementId], references: [id])
+}
+//todo SECOND TABLE
+
+model devolutionSupplier {
+  id String @id @default(uuid())
+  movementId String
+  invoiceFolio String
+  paymentDate DateTime
+  status String
+  isActive Boolean @default(true)
+
+
+  movement movement @relation(fields: [movementId], references: [id])
 }
