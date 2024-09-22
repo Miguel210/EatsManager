@@ -28,10 +28,10 @@ export class Server {
         this.app.use( express.json() )
         this.app.use( express.urlencoded( {extended: true} ) );
 
-        // this.app.get('*',(req, res)=> {
-        //     const indexPath= path.join(__dirname + `'../../../${this.publicPath}/index.html`);
-        //     res.sendFile(indexPath);
-        // })
+        this.app.get('*',(req, res)=> {
+            const indexPath= path.join(__dirname + `'../../../${this.publicPath}/index.html`);
+            res.sendFile(indexPath);
+        })
 
     }
 

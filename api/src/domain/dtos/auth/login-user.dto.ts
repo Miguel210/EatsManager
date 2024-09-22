@@ -9,7 +9,7 @@ export class LoginUserDto {
     ){}
 
     static login(object: {[key: string]: any}):[string?, LoginUserDto?] {
-
+        
         const {username, password} = object;
 
         if( !username ) return ['Missing username']

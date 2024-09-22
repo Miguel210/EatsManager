@@ -6,6 +6,41 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div>
+        <form action="#" method="post">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username">
+            <label for="password">Contraseña</label>
+            <input type="password" name="password" id="password">
+
+            <input type="button" id="login" value="Ingresar">
+        </form>
+    </div>
 </body>
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script>
+    $('#login').click(function(){
+        let username = $('#username').val()
+        let password = $('#password').val()
+        const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({username, password})
+        };
+
+        fetch('/api/auth/login',options)
+        .then( response => {
+            if(response.status == 200){
+                window.location.replace("dashboard.html");//http://www.google.com
+            }
+        })
+        .catch(err => {
+            console.error("ERROR: ", err.message)
+        });
+
+    })
+</script>
 </html>
