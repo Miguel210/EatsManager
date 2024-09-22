@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
 </head>
 <body>
     <div>
@@ -23,15 +23,14 @@
     $('#login').click(function(){
         let username = $('#username').val()
         let password = $('#password').val()
-        const options = {
+
+        fetch('/api/auth/login',{
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({username, password})
-        };
-
-        fetch('/api/auth/login',options)
+        })
         .then( response => {
             if(response.status == 200){
                 window.location.replace("dashboard.html");//http://www.google.com
