@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
 import { CustomError } from "../../domain";
-import { AuthService } from "../services/auth.service";
 import { LoginUserDto } from '../../domain/dtos/auth/login-user.dto';
+import { AuthService } from '../services/auth.service';
 
 
 
 export class AuthController {
     constructor(
-        private readonly authService: AuthService
+        private readonly authservice: AuthService
     ){}
 
     private handleEror = (error: unknown, res: Response) => {
@@ -21,11 +21,13 @@ export class AuthController {
 
     loginUser = (req: Request, res: Response) => {
 
+
         const [error, loginUserDto] = LoginUserDto.login(req.body)
         if(error) throw res.status(400).json({error})
 
-        this.authService.loginUser(loginUserDto!)
-            .then((user) => res.json(user) )
-            .catch( error => this.handleEror(error, res))
+
+        this.authservice.loginUser(loginUserDto!)
+        .then(user => res.json(user))
+        .catch(error => this.handleEror(error,res))
     }
 }

@@ -9,25 +9,29 @@ export class  UserEntity {
         public fullname: string,
         public username: string,
         public password: string,
-        // public profile: string,
-        // public typeperson: string,
+        public isActive: boolean,
+        public profile: string,
+
+        public typeperson: string,
     ){}
 
 
     static fromObject(object: {[key:string]:any}){
-        const { id , _id, fullname, username, password} = object;
+        const { id , fullname, username, password = '3333',profile, typeperson, isActive} = object;
+
         // , profile, typeperson
-        if( !_id && !id){
-            throw CustomError.badRequest('Missing id');
-        }
+        if( !id ){
+                throw CustomError.badRequest('Missing id');
+            }
 
-        if( !fullname) throw CustomError.badRequest('Missing name');
-        if( !username) throw CustomError.badRequest('Missing username');
-        if( !password) throw CustomError.badRequest('Missing password');
-        // if( !profile === undefined) throw CustomError.badRequest('Missing profile');
-        // if( !typeperson) throw CustomError.badRequest('Missing type Person');
+            if( !fullname) throw CustomError.badRequest('Missing fullname');
+            if( !username) throw CustomError.badRequest('Missing username!!!');
+            if( !password) throw CustomError.badRequest('Missing password');
+            if( !profile === undefined) throw CustomError.badRequest('Missing profile');
+            if( !typeperson) throw CustomError.badRequest('Missing type Person');
+            if( isActive == false) throw CustomError.badRequest('Missing Exist');
 
-        return new UserEntity(_id || id, fullname, username, password);
+        return new UserEntity( id, fullname, username, password ,isActive,profile, typeperson);
         // , profile,typeperson
     }
 }
