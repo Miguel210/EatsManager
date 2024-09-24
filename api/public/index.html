@@ -32,12 +32,13 @@
         body: JSON.stringify({username, password})
         })
         .then( response => {
-            if(response.status == 200){
-                window.location.replace("dashboard.html");//http://www.google.com
-            }
+            // if(response.status == 200){
+            //     window.location.replace("http://www.google.com");//http://www.google.com
+            // }
+            console.log(response);
         })
         .catch(err => {
-            console.error("ERROR: ", err.message)
+            console.error( err.message)
         });
 
     })

@@ -17,7 +17,7 @@ export class  UserEntity {
 
 
     static fromObject(object: {[key:string]:any}){
-        const { id , fullname, username, password = '3333',profile, typeperson, isActive} = object;
+        const { id , fullname, username, password ,profile, typeperson, isActive} = object;
 
         // , profile, typeperson
         if( !id ){
