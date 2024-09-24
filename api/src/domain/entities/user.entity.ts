@@ -10,14 +10,14 @@ export class  UserEntity {
         public username: string,
         public password: string,
         public isActive: boolean,
-        public profile: string,
+        public profileId: string,
 
         public typeperson: string,
     ){}
 
 
     static fromObject(object: {[key:string]:any}){
-        const { id , fullname, username, password ,profile, typeperson, isActive} = object;
+        const { id , fullname, username, password ,profileId, typeperson, isActive} = object;
 
         // , profile, typeperson
         if( !id ){
@@ -27,11 +27,11 @@ export class  UserEntity {
             if( !fullname) throw CustomError.badRequest('Missing fullname');
             if( !username) throw CustomError.badRequest('Missing username!!!');
             if( !password) throw CustomError.badRequest('Missing password');
-            if( !profile === undefined) throw CustomError.badRequest('Missing profile');
+            if( !profileId === undefined) throw CustomError.badRequest('Missing profile');
             if( !typeperson) throw CustomError.badRequest('Missing type Person');
             if( isActive == false) throw CustomError.badRequest('Missing Exist');
 
-        return new UserEntity( id, fullname, username, password ,isActive,profile, typeperson);
+        return new UserEntity( id, fullname, username, password ,isActive,profileId, typeperson);
         // , profile,typeperson
     }
 }

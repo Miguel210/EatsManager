@@ -3,9 +3,18 @@ import { seedData } from './data';
 
 
 (async() => {
-    await main();
+    await main()
 })
 
  async function main() {
-    const modules = prisma.module.createMany()
+
+    const module = await prisma.module.createMany({
+        data: seedData.module
+    })
+    .catch(error => console.log(error));
+    
+
+    
+    console.log('SEEED');
+    
 }

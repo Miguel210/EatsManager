@@ -29,7 +29,7 @@ model operation {
   isActive Boolean @default(true)
 
   module module @relation(fields: [moduleId], references: [id])
-  profile profileOperation[]
+  profiles profileOperation[]
 }
 
 model profileOperation {
@@ -50,8 +50,8 @@ model profile {
   createAt DateTime @default(now())
   isActive Boolean @default(true)
 
-  operation profileOperation[]
-  person person[]
+  operations profileOperation[]
+  persons person[]
 }
 
 model gender {

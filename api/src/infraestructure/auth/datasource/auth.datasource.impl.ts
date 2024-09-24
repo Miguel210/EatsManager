@@ -23,6 +23,7 @@ export class AuthDatasourceImpl implements AuthDatasource {
                 }
             }
         })
+        
         if( !user ) throw `Todo with id ${username} not found`;
         return UserEntity.fromObject(user)
     }
