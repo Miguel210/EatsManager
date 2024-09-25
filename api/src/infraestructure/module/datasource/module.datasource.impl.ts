@@ -12,7 +12,7 @@ export class ModuleDatasourceImpl implements ModuleDatasource {
         const module = await prisma.module.findMany({
             
             include: {
-                operation: {
+                operations: {
                     where: {
                         profiles: {
                             some: {

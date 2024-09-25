@@ -19,7 +19,7 @@ model module {
   name String @db.VarChar(50)
   isActive Boolean @default(true)
 
-  operation operation[]
+  operations operation[]
 }
 
 model operation {
@@ -60,7 +60,7 @@ model gender {
   createAt DateTime @default(now())
   isActive Boolean @default(true)
 
-  person person[]
+  persons person[]
 
 }
 
@@ -69,7 +69,7 @@ model typeperson {
   description String
   isActive Boolean @default(true)
 
-  person person[]
+  persons person[]
 }
 //todo MAIN TABLE
 model person {
@@ -86,10 +86,10 @@ model person {
   profile profile @relation(fields: [profileId], references: [id])
   typeperson typeperson @relation(fields: [typePersonId], references: [id])
   address address[]
-  employee employee[]
-  movement movement[]
-  costumer costumer[]
-  supplier supplier[]
+  employees employee[]
+  movements movement[]
+  costumers costumer[]
+  suppliers supplier[]
 }
 
 //todo SECOND TABLE
@@ -103,8 +103,8 @@ model employee {
   isActive Boolean @default(true)
 
   person person @relation(fields: [personId], references: [id])
-  attendance attendance[]
-  evaluation evaluation[]
+  attendances attendance[]
+  evaluations evaluation[]
 }
 
 model evaluation {
@@ -178,18 +178,18 @@ model movement {
   mevements movement[] @relation("ReferenceMovement")
   movement movement? @relation("ReferenceMovement",fields: [referenceId], references: [id])
   movementDetail movementDetail[]
-  inventory inventory[]
-  clientOrder clientOrder[]
-  orderPayment orderPayment[]
-  supplierOrder supplierOrder[]
-  devolutionClient devolutionClient[]
-  devolutionSupplier devolutionSupplier[]
+  inventories inventory[]
+  clientOrders clientOrder[]
+  orderPayments orderPayment[]
+  supplierOrders supplierOrder[]
+  devolutionClients devolutionClient[]
+  devolutionSuppliers devolutionSupplier[]
 }
 
 model document {
   id String @id @default(uuid())
   isActive Boolean @default(true)
-  movement movement[]
+  movements movement[]
 }
 
 model movementDetail {
@@ -216,7 +216,7 @@ model productType {
   description String
   isActive Boolean @default(true)
 
-  product product[]
+  products product[]
 }
 model product {
   id String @id @default(uuid())
@@ -232,9 +232,9 @@ model product {
   garrisonMainDish garrison[] @relation("GarrisonMainDish")
   garrisonDish garrison[] @relation("GarrisonDish")
 
-  inventory inventory[]
-  movementDetail movementDetail[]
-  promotion promotion[]
+  inventories inventory[]
+  movementDetails movementDetail[]
+  promotions promotion[]
 }
 
 model inventory {
@@ -257,7 +257,7 @@ model promotion {
   isActive Boolean @default(true)
 
   product product @relation(fields: [productId], references: [id])
-  movementDetail movementDetail[]
+  movementDetails movementDetail[]
 }
 
 model garrison {
@@ -268,7 +268,7 @@ model garrison {
  
   garrisonMainDish product @relation("GarrisonMainDish", fields: [dishId], references: [id])
   garrisonDish product @relation("GarrisonDish", fields: [garrisonId], references: [id])
-  clientOrderDetail clientOrderDetail[]
+  clientOrderDetails clientOrderDetail[]
 }
 
 model clientOrder {
@@ -282,7 +282,7 @@ model clientOrder {
 
   table table @relation(fields: [tableId], references: [id])
   movement movement @relation(fields: [movementId], references: [id])
-  clientOrderDetail clientOrderDetail[]
+  clientOrderDetails clientOrderDetail[]
 
 }
 
@@ -319,7 +319,7 @@ model orderPayment {
   isActive Boolean @default(true)
 
   movement movement @relation(fields: [movementId], references: [id])
-  payment payment[]
+  payments payment[]
 }
 
 model payment {
@@ -338,7 +338,7 @@ model typePayment {
   description String
   isActive Boolean @default(true)
 
-  payment payment[]
+  payments payment[]
 }
 //todo SECOND TABLE
 
