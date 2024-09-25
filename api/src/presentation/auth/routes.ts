@@ -25,7 +25,7 @@ export class AuthRoutes {
         const controller = new AuthController(authservice)
 
         router.post('/login', controller.loginUser )
-        router.get('/menu',[AuthMiddlewares.validateJWT], controller.loginUser )
+        router.get('/menu',[AuthMiddlewares.validateJWT], controller.inicio )
 
 
 

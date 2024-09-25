@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { CustomError } from "../../domain";
 import { LoginUserDto } from '../../domain/dtos/auth/login-user.dto';
 import { AuthService } from '../services/auth.service';
+import { ModulesDto } from "../../domain/dtos/module/create-module.dto";
 
 
 
@@ -30,5 +31,12 @@ export class AuthController {
         this.authservice.loginUser(loginUserDto!)
         .then(user => res.json(user))
         .catch(error => this.handleEror(error,res))
+    }
+
+    inicio = (req: Request, res: Response) => {
+        console.log(req.body.user);
+    
+
+        res.send({ok: 'init ok'})
     }
 }
