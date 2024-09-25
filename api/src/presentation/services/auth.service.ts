@@ -2,6 +2,7 @@ import { JwtAdapter } from '../../config/jwt.adapter';
 import { CustomError } from '../../domain';
 import { LoginUserDto } from '../../domain/dtos/auth/login-user.dto';
 import { ModulesDto } from '../../domain/dtos/module/create-module.dto';
+import { ModuleEntity } from '../../domain/entities/module.enity';
 import { UserEntity } from '../../domain/entities/user.entity';
 import { GetAuth } from '../../domain/use-cases/auth/get-auth';
 import { GetsModule } from '../../domain/use-cases/module/get-module';
@@ -19,8 +20,7 @@ export class AuthService {
     ){}
 
     public async loginUser( loginUserDto: LoginUserDto) {
-        console.log(loginUserDto.username);
-
+        
         const user = await new GetAuth(this.authrepository).execute(loginUserDto.username)
         .then(user => user)
         .catch(error => error)
@@ -39,12 +39,18 @@ export class AuthService {
 
         const {password, ...userEntity} = UserEntity.fromObject(user)
 
-        // const mod = new ModulesDto(userEntity.profile);
-        // const modules = await new GetsModule(this.moduleRepository).execute(mod.id)
+     
+        
+        const [error, moduleDto] =  ModulesDto.modules(userEntity);
+        if(error) throw CustomError.badRequest(error)
 
-        // console.log(modules);
+        const modullos = this.modulesUser(moduleDto!)
+        
+        const {...moduloEntity} = ModuleEntity.fromObject(modullos!)
+        
+        //console.log(moduloEntity);
+        
 
-        console.log(userEntity);
         return {
             user: userEntity,
             module: 'modules',
@@ -52,8 +58,10 @@ export class AuthService {
         }
     }
 
-    public async modulesUser(){
-        
+    public async modulesUser(moduleDto: ModulesDto){
+        new GetsModule(this.moduleRepository).execute(moduleDto.id)
+        .then(module => module)
+        .catch( error => error)
     }
 
     public async operationsModule(){

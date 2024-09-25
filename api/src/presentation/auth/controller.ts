@@ -21,9 +21,10 @@ export class AuthController {
 
     loginUser = (req: Request, res: Response) => {
 
-
         const [error, loginUserDto] = LoginUserDto.login(req.body)
         if(error) throw res.status(400).json({error})
+        
+        
 
 
         this.authservice.loginUser(loginUserDto!)
