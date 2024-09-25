@@ -5,7 +5,7 @@ import { prisma } from "../../../data";
 
 export class AuthDatasourceImpl implements AuthDatasource {
 
-    async findById(username: string): Promise<UserEntity> {
+    async findByUsername(username: string): Promise<UserEntity> {
         const user = await prisma.person.findFirst({
             where: {
                 username: username
@@ -24,8 +24,33 @@ export class AuthDatasourceImpl implements AuthDatasource {
             }
         })
         
-        if( !user ) throw `Todo with id ${username} not found`;
+        if( !user ) throw `Todo with Username ${username} not found`;
         return UserEntity.fromObject(user)
+    }
+
+    async findById(id: string): Promise<UserEntity> {
+
+        const user = await prisma.person.findFirst({
+            where: {
+                id: id
+            },
+            include: {
+                profile: {
+                    select: {
+                        id: true
+                    }
+                },
+                typeperson: {
+                    select: {
+                        description: true
+                    }
+                }
+            }
+        })
+        
+        if( !user ) throw `Todo with id ${user} not found`;
+
+        return UserEntity.fromObject(user);
     }
 
 }

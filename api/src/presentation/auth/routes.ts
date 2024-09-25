@@ -5,6 +5,7 @@ import { AuthRepositoryImpl } from "../../infraestructure/auth/repositories/auth
 import { AuthService } from '../services/auth.service';
 import { ModuleDatasourceImpl } from '../../infraestructure/module/datasource/module.datasource.impl';
 import { ModelRepositoryImpl } from "../../infraestructure/module/repositories/module.repository.impl";
+import { AuthMiddlewares } from "../middlewares/authMiddlewares";
 
 
 
@@ -24,6 +25,8 @@ export class AuthRoutes {
         const controller = new AuthController(authservice)
 
         router.post('/login', controller.loginUser )
+        router.get('/menu',[AuthMiddlewares.validateJWT], controller.loginUser )
+
 
 
         return router;

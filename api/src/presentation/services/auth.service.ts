@@ -48,7 +48,6 @@ export class AuthService {
 
         return {
             user: userEntity,
-            module: moduloEntity,
             token: token,
         }
     }

@@ -4,15 +4,15 @@ import { AuthRepository } from '../../repositories/auth/auth.repository';
 
 
 export interface GetAuthUseCase {
-    execute(username: string): Promise<UserEntity>;
+    execute(id: string): Promise<UserEntity>;
 }
 
-export class GetAuth implements GetAuthUseCase {
+export class GetAuthId implements GetAuthUseCase {
 
     constructor(
         private readonly repository: AuthRepository
     ){}
-    execute(username: string): Promise<UserEntity> {
-        return this.repository.findByUsername(username)
+    execute(id: string): Promise<UserEntity> {
+        return this.repository.findById(id)
     }
 }
