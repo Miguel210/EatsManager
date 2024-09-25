@@ -6,34 +6,38 @@ import { prisma } from "../../../data";
 
 
 export class ModuleDatasourceImpl implements ModuleDatasource {
-    async findById(id: string): Promise<ModuleEntity> {
+    async findById(id: string): Promise<ModuleEntity[]> {
         const ids = id
-        
-        const module = await prisma.module.findMany({
-            
-            include: {
+
+        const module = await prisma.module.groupBy({
+            // include: {
+            //     operations: {
+            //         where: {
+            //             profiles: {
+            //                 some: {
+            //                     profileId: ids,
+            //                 },
+            //             },
+            //         },
+            //     },
+            // }
+            by:['id','name'],
+            where: {
                 operations: {
-                    where: {
+                    some: {
                         profiles: {
                             some: {
-                                profileId: ids,
-                            },
-                            
-                        },
-                        
+                                profileId: ids
+                            }
+                        }
                     }
                 }
             }
-            
-
 
 
         })
-        console.log(module);
-        
-        
         if( !module ) throw `Todo with id ${id} not found`;
-        return ModuleEntity.fromObject(module)
+        return module.map(module => ModuleEntity.fromObject(module))
     }
 
 }

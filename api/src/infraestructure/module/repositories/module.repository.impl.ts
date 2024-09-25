@@ -10,7 +10,7 @@ export class ModelRepositoryImpl implements ModuleRepository {
         private readonly datasource: ModuleDatasource
     ){}
 
-    findById(id: string): Promise<ModuleEntity> {
+    findById(id: string): Promise<ModuleEntity[]> {
         return this.datasource.findById(id)
     }
 

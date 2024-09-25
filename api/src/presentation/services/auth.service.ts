@@ -39,27 +39,22 @@ export class AuthService {
 
         const {password, ...userEntity} = UserEntity.fromObject(user)
 
-     
-        
         const [error, moduleDto] =  ModulesDto.modules(userEntity);
         if(error) throw CustomError.badRequest(error)
 
-        const modullos = this.modulesUser(moduleDto!)
-        
-        const {...moduloEntity} = ModuleEntity.fromObject(modullos!)
-        
-        //console.log(moduloEntity);
-        
+        const modulos = await this.modulesUser(moduleDto!)
+        //! Repair this map | any type modulo
+        const moduloEntity = modulos.map((modulo: any) => ModuleEntity.fromObject(modulo!))
 
         return {
             user: userEntity,
-            module: 'modules',
+            module: moduloEntity,
             token: token,
         }
     }
 
     public async modulesUser(moduleDto: ModulesDto){
-        new GetsModule(this.moduleRepository).execute(moduleDto.id)
+        return await new GetsModule(this.moduleRepository).execute(moduleDto.id)
         .then(module => module)
         .catch( error => error)
     }

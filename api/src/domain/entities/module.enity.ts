@@ -10,10 +10,8 @@ export class ModuleEntity {
     ){}
 
     static fromObject(object: {[key: string]: any}) {
-
-        
         const {id, name} = object;
-        
+
         if( !id ){
             throw CustomError.badRequest('Missing id Module');
         }
