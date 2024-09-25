@@ -13,7 +13,7 @@ export class DashboardRoutes {
 
         const controller = new DashboardController();
 
-        router.get('/menu',[AuthMiddlewares.validateJWT], controller.inicio )
+        router.get('/dashboard',[AuthMiddlewares.validateJWT], controller.inicio )
 
         return router;
     }

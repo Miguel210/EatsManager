@@ -17,6 +17,7 @@ datasource db {
 model module {
   id String @id @default(uuid())
   name String @db.VarChar(50)
+  identifier Int? 
   isActive Boolean @default(true)
 
   operations operation[]
