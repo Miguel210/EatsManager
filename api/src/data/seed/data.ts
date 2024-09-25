@@ -4,11 +4,11 @@ import { Uuid } from "../../config"
 export const seedData = {
 
     module: [
-        {id: Uuid.uuid(), name: 'movements', isActive: true},
-        {id: Uuid.uuid(), name: 'dashboardAdm', isActive: true},
-        {id: Uuid.uuid(), name: 'dashboardSup', isActive: true},
-        {id: Uuid.uuid(), name: 'dashboardEmp', isActive: true},
-        {id: Uuid.uuid(), name: 'inventory', isActive: true},
+        {id: Uuid.uuid(), name: 'movements', identifier: 10, isActive: true},
+        {id: Uuid.uuid(), name: 'dashboardAdm', identifier: 1, isActive: true},
+        {id: Uuid.uuid(), name: 'dashboardSup', identifier: 2, isActive: true},
+        {id: Uuid.uuid(), name: 'dashboardEmp', identifier: 3, isActive: true},
+        {id: Uuid.uuid(), name: 'inventory', identifier: 20, isActive: true},
 
     ],
 
