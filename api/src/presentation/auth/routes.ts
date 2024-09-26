@@ -16,12 +16,10 @@ export class AuthRoutes {
         const router = Router();
 
         const authDatasource= new AuthDatasourceImpl();
-        const moduleDatasource = new ModuleDatasourceImpl()
 
-        const moduleRepository = new ModelRepositoryImpl(moduleDatasource)
         const authRepository = new AuthRepositoryImpl(authDatasource);
 
-        const authservice = new AuthService(authRepository,moduleRepository);
+        const authservice = new AuthService(authRepository);
         const controller = new AuthController(authservice)
 
         router.post('/login', controller.loginUser )

@@ -19,8 +19,8 @@ export class MenuController {
     }
 
     menu = (req: Request, res: Response) => {
-
-        res.send({menu: `Welcome ${req.body.user}`})
+        
+        res.send({menu: `Welcome ${req.body.user['fullname']}`})
     }
 
 }

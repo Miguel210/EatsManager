@@ -2,12 +2,9 @@ import { JwtAdapter } from '../../config/jwt.adapter';
 import { CustomError } from '../../domain';
 import { LoginUserDto } from '../../domain/dtos/auth/login-user.dto';
 import { ModulesDto } from '../../domain/dtos/module/create-module.dto';
-import { ModuleEntity } from '../../domain/entities/module.enity';
 import { UserEntity } from '../../domain/entities/user.entity';
 import { GetAuth } from '../../domain/use-cases/auth/get-auth';
-import { GetsModule } from '../../domain/use-cases/module/get-module';
 import { AuthRepositoryImpl } from '../../infraestructure/auth/repositories/auth.repository.impl';
-import { ModelRepositoryImpl } from "../../infraestructure/module/repositories/module.repository.impl";
 
 
 
@@ -16,7 +13,6 @@ export class AuthService {
 
     constructor(
         readonly authrepository: AuthRepositoryImpl,
-        readonly moduleRepository: ModelRepositoryImpl
     ){}
 
     public async loginUser( loginUserDto: LoginUserDto) {
@@ -42,9 +38,9 @@ export class AuthService {
         const [error, moduleDto] =  ModulesDto.modules(userEntity);
         if(error) throw CustomError.badRequest(error)
 
-        const modulos = await this.modulesUser(moduleDto!)
+        //const modulos = await this.modulesUser(moduleDto!)
         //! Repair this map | any type modulo
-        const moduloEntity = modulos.map((modulo: any) => ModuleEntity.fromObject(modulo!))
+       // const moduloEntity = modulos.map((modulo: any) => ModuleEntity.fromObject(modulo!))
 
         return {
             user: userEntity,
@@ -52,11 +48,11 @@ export class AuthService {
         }
     }
 
-    public async modulesUser(moduleDto: ModulesDto){
+    /*public async modulesUser(moduleDto: ModulesDto){
         return await new GetsModule(this.moduleRepository).execute(moduleDto.id)
         .then(module => module)
         .catch( error => error)
-    }
+    }*/
 
     public async operationsModule(){
 
