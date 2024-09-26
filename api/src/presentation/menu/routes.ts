@@ -1,6 +1,9 @@
 import { Router } from "express";
 import { AuthMiddlewares } from "../middlewares/authMiddlewares";
 import { MenuController } from "./controller";
+import { ModuleService } from "../services/module.service";
+import { ModuleDatasourceImpl } from "../../infraestructure/module/datasource/module.datasource.impl";
+import { ModelRepositoryImpl } from "../../infraestructure/module/repositories/module.repository.impl";
 
 
 
@@ -10,7 +13,11 @@ export class MenuRoutes {
 
         const router = Router();
 
-        const controller = new MenuController();
+        const moduleDatasourceImpl = new ModuleDatasourceImpl();
+        const moduleRepository = new ModelRepositoryImpl(moduleDatasourceImpl);
+        const moduleService = new ModuleService(moduleRepository);
+        const controller = new MenuController(moduleService);
+        
         router.get('/',[AuthMiddlewares.validateJWT], controller.menu )
 
         return router;

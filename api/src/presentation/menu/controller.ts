@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import { CustomError } from "../../domain";
+import { ModuleService } from "../services/module.service";
+import { ModulesDto } from "../../domain/dtos/module/create-module.dto";
 
 
 
@@ -7,10 +9,10 @@ import { CustomError } from "../../domain";
 export class MenuController {
 
     constructor(
-
+        private readonly moduleService: ModuleService
     ){}
 
-    private HandleError = (error: unknown, res: Response) => {
+    private handleError = (error: unknown, res: Response) => {
         if(error instanceof(CustomError)) {
             return res.status(error.statusCode).json({error: error.message})
         }
@@ -19,8 +21,13 @@ export class MenuController {
     }
 
     menu = (req: Request, res: Response) => {
-        
-        res.send({menu: `Welcome ${req.body.user['fullname']}`})
+        const [error, moduleEntity] = ModulesDto.modules(req.body.user)
+        if( error ) throw res.status(400).json({error})
+
+        this.moduleService.modules(moduleEntity!)
+        .then( dashboard => res.json(dashboard))
+        .catch( error => this.handleError(error,res))
+
     }
 
 }

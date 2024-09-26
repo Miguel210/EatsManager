@@ -13,7 +13,7 @@ export class ModuleService {
     ) {}
 
 
-    public async ModulesDto(modulesDto: ModulesDto){
+    public async modules(modulesDto: ModulesDto){
 
         const modules = await new GetsModule(this.moduleRepository).execute(modulesDto.id)
         .then(module => module )
