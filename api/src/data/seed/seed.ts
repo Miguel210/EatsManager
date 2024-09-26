@@ -16,43 +16,66 @@ main().catch(e => {
 
 async function main() {
     
+    await prisma.profileOperation.deleteMany(),
+    await prisma.product.deleteMany(),
+    await prisma.operation.deleteMany(),
+    await prisma.attendance.deleteMany(),
+    await prisma.employee.deleteMany(),
+    await prisma.supplier.deleteMany(),
+    await prisma.person.deleteMany(),
+    await prisma.profile.deleteMany(),
+    await prisma.typeperson.deleteMany(),
+    await prisma.gender.deleteMany(),
+    await prisma.module.deleteMany(),
+    await prisma.productType.deleteMany(),
+    
 
-    const modules = await prisma.module.createMany({
+    await prisma.module.createMany({
         data: seedData.module,
     });
 
-    let data1 = await prisma.module.findMany();
-    
-    const operationsData = seedData.operation;
-    for(let operation of operationsData){
-        await prisma.operation.create({
-            data: {
-                id: operation.id,
-                name: operation.name,
-                moduleId: data1[randomBetween0andX(modules.count)].id,
-                isActive: true
-            }
-        })
-    }
+    await prisma.operation.createMany({
+        data: seedData.operation
+    });
 
-    const profiles = await prisma.profile.createMany({
+    await prisma.profile.createMany({
         data: seedData.profile
+    });
+
+    await prisma.profileOperation.createMany({
+        data: seedData.profileoperation
+    });
+
+    await prisma.typeperson.createMany({
+        data: seedData.typopersona
+    });
+
+    await prisma.gender.createMany({
+        data: seedData.gender
     })
+    await prisma.person.createMany({
+        data: seedData.person
+    });
 
-    const data2 = await prisma.profile.findMany();
-    const data3 = await prisma.operation.findMany();
-    for(let profileOpr of seedData.profileoperation){
-        await prisma.profileOperation.create({
-            data: {
-                id: profileOpr.id,
-                profileId: data2[randomBetween0andX(profiles.count)].id,
-                operationId: data3[randomBetween0andX(10)].id,
-                createAt: profileOpr.createAt,
-                isActive: profileOpr.isActive
+    await prisma.employee.createMany({
+        data: seedData.employee
+    });
 
-            }
-        })
-    }
+    await prisma.attendance.createMany({
+        data: seedData.attendance
+    });
+
+    await prisma.supplier.createMany({
+        data: seedData.supplier
+    });
+
+    await prisma.productType.createMany({
+        data: seedData.typeProduct
+    });
+
+    await prisma.product.createMany({
+        data: seedData.product
+    })
 }
 
 const randomBetween0andX = (x: number) => {

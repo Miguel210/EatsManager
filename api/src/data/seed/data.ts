@@ -53,35 +53,40 @@ export const seedData = {
         { id: '682155b3-a3da-43ec-845d-024a1e0b8a70', description: 'Proveedor', isActive: true },
         { id: '35c890e4-d191-4f93-97de-d3ea6984423f', description: 'Cliente', isActive: true },
     ],
+    gender: [
+        {id: 'f83dac87-cae3-433e-909f-89b7cb865ff1', name: 'Masculino', createAt: new Date(), isActive: true  },
+        {id: '2ffbc2df-7f6f-4c7a-bf4c-88eee010644f', name: 'Femenino', createAt: new Date(), isActive: true  },
+        {id: 'a674eeeb-cd0f-4794-a35b-e321b33344a0', name: 'Otro', createAt: new Date(), isActive: true  },
 
+    ],
     person: [
-        { id: 'bf9c6739-8612-4149-a552-5f280720cfe6', fullname: 'Miguel Angel',    username: 'migueloz',   password: '12345',  profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', typePersonId: '6cb4ec14-8564-4d6f-80c8-eeaacbfe88a4' },
-        { id: '6541e329-809c-48f6-8f9d-234b5d17cfbf', fullname: 'Daniela Rocha',   username: '',           password: '',       profileId: '17dc3357-85b3-403d-840d-fed63b1c5171', typePersonId: '35c890e4-d191-4f93-97de-d3ea6984423f' },
-        { id: '013d069d-744d-4eca-b041-890aaec92c3d', fullname: 'Juan Perez',      username: 'juanp01',    password: '12345',  profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', typePersonId: '6cb4ec14-8564-4d6f-80c8-eeaacbfe88a4' },
-        { id: 'b805d571-14ed-4c3e-a92b-b896ca35daeb', fullname: 'Edgar Martinez',  username: 'edgnez',     password: '12345',  profileId: '14588c57-ee54-4c01-bc7f-8c445e643ee5', typePersonId: '6cb4ec14-8564-4d6f-80c8-eeaacbfe88a4' },
-        { id: '593fc874-9839-4e08-8cb0-670f93c34520', fullname: 'Joseline Hrz',    username: '',           password: '',       profileId: '0402cc9c-0992-4ad8-ab70-142522d2815f', typePersonId: '682155b3-a3da-43ec-845d-024a1e0b8a70' },
-        { id: 'c8fb89c7-e8a7-463a-9167-872de0cc6575', fullname: 'Maria Jose',      username: 'mariaJ05',   password: '12345',  profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', typePersonId: '6cb4ec14-8564-4d6f-80c8-eeaacbfe88a4' },
-        { id: '71809129-dae7-419c-bf61-bb3b95167330', fullname: 'Oscar Manuel',    username: '',           password: '',       profileId: '0402cc9c-0992-4ad8-ab70-142522d2815f', typePersonId: '682155b3-a3da-43ec-845d-024a1e0b8a70' },
+        { id: 'bf9c6739-8612-4149-a552-5f280720cfe6', genderId: 'f83dac87-cae3-433e-909f-89b7cb865ff1', fullname: 'Miguel Angel',    username: 'migueloz',   password: '12345',  profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', typePersonId: '6cb4ec14-8564-4d6f-80c8-eeaacbfe88a4', isActive: true  },
+        { id: '6541e329-809c-48f6-8f9d-234b5d17cfbf', genderId: '2ffbc2df-7f6f-4c7a-bf4c-88eee010644f', fullname: 'Daniela Rocha',   username: '',           password: '',       profileId: '17dc3357-85b3-403d-840d-fed63b1c5171', typePersonId: '35c890e4-d191-4f93-97de-d3ea6984423f', isActive: true  },
+        { id: '013d069d-744d-4eca-b041-890aaec92c3d', genderId: 'a674eeeb-cd0f-4794-a35b-e321b33344a0', fullname: 'Juan Perez',      username: 'juanp01',    password: '12345',  profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', typePersonId: '6cb4ec14-8564-4d6f-80c8-eeaacbfe88a4', isActive: true  },
+        { id: 'b805d571-14ed-4c3e-a92b-b896ca35daeb', genderId: 'f83dac87-cae3-433e-909f-89b7cb865ff1', fullname: 'Edgar Martinez',  username: 'edgnez',     password: '12345',  profileId: '14588c57-ee54-4c01-bc7f-8c445e643ee5', typePersonId: '6cb4ec14-8564-4d6f-80c8-eeaacbfe88a4', isActive: true  },
+        { id: '593fc874-9839-4e08-8cb0-670f93c34520', genderId: '2ffbc2df-7f6f-4c7a-bf4c-88eee010644f', fullname: 'Joseline Hrz',    username: '',           password: '',       profileId: '0402cc9c-0992-4ad8-ab70-142522d2815f', typePersonId: '682155b3-a3da-43ec-845d-024a1e0b8a70', isActive: true  },
+        { id: 'c8fb89c7-e8a7-463a-9167-872de0cc6575', genderId: '2ffbc2df-7f6f-4c7a-bf4c-88eee010644f', fullname: 'Maria Jose',      username: 'mariaJ05',   password: '12345',  profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', typePersonId: '6cb4ec14-8564-4d6f-80c8-eeaacbfe88a4', isActive: true  },
+        { id: '71809129-dae7-419c-bf61-bb3b95167330', genderId: 'a674eeeb-cd0f-4794-a35b-e321b33344a0', fullname: 'Oscar Manuel',    username: '',           password: '',       profileId: '0402cc9c-0992-4ad8-ab70-142522d2815f', typePersonId: '682155b3-a3da-43ec-845d-024a1e0b8a70', isActive: true  },
     ],
 
     employee: [
-        { id: '46c20549-5cb1-4152-8728-dd480595bd3b', personId: 'bf9c6739-8612-4149-a552-5f280720cfe6', hireDate: new Date(), entrada: new Date('12:00:00'), salida: new Date('08:00:00'), sueldo: 1700, isActive: true },
-        { id: 'ecb6c6e2-2ea4-4722-a1fd-87ad162ab024', personId: '013d069d-744d-4eca-b041-890aaec92c3d', hireDate: new Date(), entrada: new Date('12:00:00'), salida: new Date('08:00:00'), sueldo: 1200, isActive: true },
-        { id: '9d260add-9eb9-4d5a-9b0c-7b6b0fbbee24', personId: 'b805d571-14ed-4c3e-a92b-b896ca35daeb', hireDate: new Date(), entrada: new Date('12:00:00'), salida: new Date('08:00:00'), sueldo: 1500, isActive: true },
-        { id: '6c01cdf0-4c2b-4c9a-9d22-b3e28dd863f1', personId: 'c8fb89c7-e8a7-463a-9167-872de0cc6575', hireDate: new Date(), entrada: new Date('12:00:00'), salida: new Date('08:00:00'), sueldo: 1500, isActive: true },
+        { id: '46c20549-5cb1-4152-8728-dd480595bd3b', personId: 'bf9c6739-8612-4149-a552-5f280720cfe6', hireDate: new Date(), input: new Date(), output: new Date(), salary: 1700, isActive: true },
+        { id: 'ecb6c6e2-2ea4-4722-a1fd-87ad162ab024', personId: '013d069d-744d-4eca-b041-890aaec92c3d', hireDate: new Date(), input: new Date(), output: new Date(), salary: 1200, isActive: true },
+        { id: '9d260add-9eb9-4d5a-9b0c-7b6b0fbbee24', personId: 'b805d571-14ed-4c3e-a92b-b896ca35daeb', hireDate: new Date(), input: new Date(), output: new Date(), salary: 1500, isActive: true },
+        { id: '6c01cdf0-4c2b-4c9a-9d22-b3e28dd863f1', personId: 'c8fb89c7-e8a7-463a-9167-872de0cc6575', hireDate: new Date(), input: new Date(), output: new Date(), salary: 1500, isActive: true },
 
     ],
     attendance: [
-        {id: '27f8329c-0985-4a3e-b37a-70d03b640bec', employeeId: 'ecb6c6e2-2ea4-4722-a1fd-87ad162ab024', date: new Date().getTime, hour: new Date().getHours, documentId: ''},
-        {id: 'ffe4cfb7-eb2d-4c2a-a820-d17c46272dcb', employeeId: '9d260add-9eb9-4d5a-9b0c-7b6b0fbbee24', date: new Date().getTime, hour: new Date().getHours, documentId: ''},
-        {id: '50ff74dc-bc1d-49e8-b6cc-24f2cd41771c', employeeId: 'ecb6c6e2-2ea4-4722-a1fd-87ad162ab024', date: new Date().getTime, hour: new Date().getHours, documentId: ''},
-        {id: '74041273-a47c-403b-a034-9bff4d5cd93d', employeeId: '9d260add-9eb9-4d5a-9b0c-7b6b0fbbee24', date: new Date().getTime, hour: new Date().getHours, documentId: ''},
+        {id: '27f8329c-0985-4a3e-b37a-70d03b640bec', employeeId: 'ecb6c6e2-2ea4-4722-a1fd-87ad162ab024', date: new Date(), hour: new Date(), document: 'Entrada', isActive: true },
+        {id: 'ffe4cfb7-eb2d-4c2a-a820-d17c46272dcb', employeeId: '9d260add-9eb9-4d5a-9b0c-7b6b0fbbee24', date: new Date(), hour: new Date(), document: 'Entrada', isActive: true },
+        {id: '50ff74dc-bc1d-49e8-b6cc-24f2cd41771c', employeeId: 'ecb6c6e2-2ea4-4722-a1fd-87ad162ab024', date: new Date(), hour: new Date(), document: 'Salida', isActive: true },
+        {id: '74041273-a47c-403b-a034-9bff4d5cd93d', employeeId: '9d260add-9eb9-4d5a-9b0c-7b6b0fbbee24', date: new Date(), hour: new Date(), document: 'Salida', isActive: true },
     ],
     evaluation: [
-        {id: '', employeeId: '', date: new Date().getTime, result: ''},
-        {id: '', employeeId: '', date: new Date().getTime, result: ''},
-        {id: '', employeeId: '', date: new Date().getTime, result: ''},
-        {id: '', employeeId: '', date: new Date().getTime, result: ''},
+        {id: '', employeeId: '', date: new Date(), result: ''},
+        {id: '', employeeId: '', date: new Date(), result: ''},
+        {id: '', employeeId: '', date: new Date(), result: ''},
+        {id: '', employeeId: '', date: new Date(), result: ''},
     ],
     client: [
         { id: 'ce6d55ff-a541-48ba-8a9d-d5896981078c', personId: '6541e329-809c-48f6-8f9d-234b5d17cfbf', isActive: true },
@@ -94,10 +99,10 @@ export const seedData = {
 
     ],
     typeProduct: [
-        { id: '5c930724-9e5c-44ad-8507-04365a647a72', description: 'Servicio',             useStock: false },
-        { id: 'e282b267-07b7-458c-b828-c4faf1b71159', description: 'Concepto',             useStock: false },
-        { id: 'e9b02730-7dab-4d68-b660-44357697c17d', description: 'Producto Terminado',   useStock: true },
-        { id: '2aaec104-dc80-4a92-b748-a40a052e9ce6', description: 'Insumo',               useStock: true }
+        { id: '5c930724-9e5c-44ad-8507-04365a647a72', description: 'Servicio',             isActive: false }, //*UseStockz
+        { id: 'e282b267-07b7-458c-b828-c4faf1b71159', description: 'Concepto',             isActive: false },
+        { id: 'e9b02730-7dab-4d68-b660-44357697c17d', description: 'Producto Terminado',   isActive: true },
+        { id: '2aaec104-dc80-4a92-b748-a40a052e9ce6', description: 'Insumo',               isActive: true }
     ],
     /*categoryProduct: [
         { id: 'a53f9e6d-9f3d-47e1-8f48-697bd57928b1', description: 'Elaboración de alimentos', isActive: true },
@@ -111,26 +116,26 @@ export const seedData = {
 
     ],*/
     product: [
-        { id: 'dbc7ba01-bb96-4e8b-8436-b0c1d2723236', code: 'DC',       description: 'Devolucion de compra',        isActive: true, typeProductId: 'e282b267-07b7-458c-b828-c4faf1b71159', category: 'Sistema',                   price: 0, existence: 0 },
-        { id: '1a3f49bd-3c1e-4fcf-b636-9c1df7d8aaae', code: 'INS-0001', description: 'Salsa de Tomate',             isActive: true, typeProductId: '2aaec104-dc80-4a92-b748-a40a052e9ce6', category: 'Insumo de Alimento',        price: 20, existence: 0 },
-        { id: '5c80dddf-3496-4338-86b3-f239d1e061a5', code: 'INS-0002', description: 'Masa para pizza',             isActive: true, typeProductId: '2aaec104-dc80-4a92-b748-a40a052e9ce6', category: 'Insumo de Alimento',        price: 10, existence: 0 },
-        { id: 'c31aeb8f-b690-4866-82f1-d5093e52e145', code: 'INS-0100', description: 'Caja de carton para pizza',   isActive: true, typeProductId: '2aaec104-dc80-4a92-b748-a40a052e9ce6', category: 'Empacado',                  price: 0, existence: 0 },
-        { id: 'd917a3cd-1109-431a-ab73-029bdacd3279', code: 'INS-0101', description: 'Servilleta de papel',         isActive: true, typeProductId: '2aaec104-dc80-4a92-b748-a40a052e9ce6', category: 'Accesorios',                price: 0, existence: 0 },
-        { id: '7a2d1977-47ec-4279-a5f0-7c8d74ce4f39', code: 'PLT-001',  description: 'Pizza de Peperoni',           isActive: true, typeProductId: 'e9b02730-7dab-4d68-b660-44357697c17d', category: 'Platillos',                 price: 20, existence: 0 },
-        { id: '837d3ac7-8517-4b34-abe6-30ebb91b50c9', code: 'BBD-001',  description: 'Bebida Pepsi de 2LTS',        isActive: true, typeProductId: 'e9b02730-7dab-4d68-b660-44357697c17d', category: 'Bebidas',                   price: 20, existence: 0 },
-        { id: 'b29c17bc-ed67-429e-ba4d-dfac5629a454', code: 'PLT-002',  description: 'Pizza Hawaiana ',             isActive: false, typeProductId: 'e9b02730-7dab-4d68-b660-44357697c17d', category: 'Platillos',                price: 12, existence: 109 },
-        { id: '3f1386ea-276a-4797-967f-20277286a420', code: 'PLT-003',  description: 'Papas Fransesas',             isActive: true, typeProductId: 'e9b02730-7dab-4d68-b660-44357697c17d', category: 'Platillos',                 price: 2, existence: 80 },
-        { id: '9f88aac4-d514-4e3b-b2fb-312239cf8c75', code: 'PLT-004',  description: 'Dedos de Queso',              isActive: true, typeProductId: 'e9b02730-7dab-4d68-b660-44357697c17d', category: 'Platillos',                 price: 10, existence: 80 },
-        { id: '20b0ea8b-40d1-4c00-80d0-d6ffd35ea6d2', code: 'PLT-005',  description: 'Alitas BQ',                   isActive: true, typeProductId: 'e9b02730-7dab-4d68-b660-44357697c17d', category: 'Platillos',                 price: 20, existence: 120 },
-        { id: '2b6bd085-d1f3-45d5-afd5-ee5b9f57da6b', code: 'PLT-006',  description: 'Pure de Papa',                isActive: false, typeProductId: 'e9b02730-7dab-4d68-b660-44357697c17d', category: 'Platillos',                price: 20, existence: 30 },
-        { id: '6536a9ba-ddb4-4a17-94cc-a1790cae129a', code: 'PLT-007',  description: 'Ensalada',                    isActive: true, typeProductId: 'e9b02730-7dab-4d68-b660-44357697c17d', category: 'Platillos',                 price: 20, existence: 30 },
-        { id: '2a4eb471-d1b7-4c06-a89d-1e7fc51c47ec', code: 'PLT-008',  description: 'Hamburgesa Pollo ',           isActive: true, typeProductId: 'e9b02730-7dab-4d68-b660-44357697c17d', category: 'Platillos',                 price: 8, existence: 150 },
-        { id: 'e0a01cab-504f-48b5-a032-91b06b53f0d1', code: 'ING-001',  description: 'Pan de Hamburgesa',           isActive: true, typeProductId: '2aaec104-dc80-4a92-b748-a40a052e9ce6', category: 'Ingrediente',               price: 1, existence: 0 },
-        { id: '30400ed2-8bfc-486e-b441-de5fa3fe6760', code: 'ING-002',  description: 'Jitomate',                    isActive: true, typeProductId: '2aaec104-dc80-4a92-b748-a40a052e9ce6', category: 'Ingrediente',               price: 1, existence: 0 },
-        { id: 'ccb72b09-c3c4-4d25-865e-dae7999ef955', code: 'ING-003',  description: 'Cebolla',                     isActive: true, typeProductId: '2aaec104-dc80-4a92-b748-a40a052e9ce6', category: 'Ingrediente',               price: 1, existence: 0 },
-        { id: '386f4d1d-09eb-41bc-a6f0-b8f7b514dfe3', code: 'ING-004',  description: 'Lechuga',                     isActive: true, typeProductId: '2aaec104-dc80-4a92-b748-a40a052e9ce6', category: 'Ingrediente',               price: 1, existence: 0 },
-        { id: '32b25783-b599-4cac-8b03-5fa665b81994', code: 'ING-005',  description: 'Pepinillos',                  isActive: true, typeProductId: '2aaec104-dc80-4a92-b748-a40a052e9ce6', category: 'Ingrediente',               price: 1, existence: 0 },
-        { id: 'cb9e5b5f-a864-4a4b-8a0f-9d99af85ba3e', code: 'ING-006',  description: 'Carne de Pollo (Hamburgesa)', isActive: true, typeProductId: '2aaec104-dc80-4a92-b748-a40a052e9ce6', category: 'Ingrediente',               price: 1, existence: 0 },
+        { id: 'dbc7ba01-bb96-4e8b-8436-b0c1d2723236', code: 'DC',       description: 'Devolucion de compra',        isActive: true, productTypeId: 'e282b267-07b7-458c-b828-c4faf1b71159', category: 'Sistema',                   price: 0.00, existence: 0 },
+        { id: '1a3f49bd-3c1e-4fcf-b636-9c1df7d8aaae', code: 'INS-0001', description: 'Salsa de Tomate',             isActive: true, productTypeId: '2aaec104-dc80-4a92-b748-a40a052e9ce6', category: 'Insumo de Alimento',        price: 20.00, existence: 0 },
+        { id: '5c80dddf-3496-4338-86b3-f239d1e061a5', code: 'INS-0002', description: 'Masa para pizza',             isActive: true, productTypeId: '2aaec104-dc80-4a92-b748-a40a052e9ce6', category: 'Insumo de Alimento',        price: 10.00, existence: 0 },
+        { id: 'c31aeb8f-b690-4866-82f1-d5093e52e145', code: 'INS-0100', description: 'Caja de carton para pizza',   isActive: true, productTypeId: '2aaec104-dc80-4a92-b748-a40a052e9ce6', category: 'Empacado',                  price: 0.00, existence: 0 },
+        { id: 'd917a3cd-1109-431a-ab73-029bdacd3279', code: 'INS-0101', description: 'Servilleta de papel',         isActive: true, productTypeId: '2aaec104-dc80-4a92-b748-a40a052e9ce6', category: 'Accesorios',                price: 0.00, existence: 0 },
+        { id: '7a2d1977-47ec-4279-a5f0-7c8d74ce4f39', code: 'PLT-001',  description: 'Pizza de Peperoni',           isActive: true, productTypeId: 'e9b02730-7dab-4d68-b660-44357697c17d', category: 'Platillos',                 price: 20.00, existence: 0 },
+        { id: '837d3ac7-8517-4b34-abe6-30ebb91b50c9', code: 'BBD-001',  description: 'Bebida Pepsi de 2LTS',        isActive: true, productTypeId: 'e9b02730-7dab-4d68-b660-44357697c17d', category: 'Bebidas',                   price: 20.00, existence: 0 },
+        { id: 'b29c17bc-ed67-429e-ba4d-dfac5629a454', code: 'PLT-002',  description: 'Pizza Hawaiana ',             isActive: false, productTypeId: 'e9b02730-7dab-4d68-b660-44357697c17d', category: 'Platillos',                price: 12.00, existence: 109 },
+        { id: '3f1386ea-276a-4797-967f-20277286a420', code: 'PLT-003',  description: 'Papas Fransesas',             isActive: true, productTypeId: 'e9b02730-7dab-4d68-b660-44357697c17d', category: 'Platillos',                 price: 2.00, existence: 80 },
+        { id: '9f88aac4-d514-4e3b-b2fb-312239cf8c75', code: 'PLT-004',  description: 'Dedos de Queso',              isActive: true, productTypeId: 'e9b02730-7dab-4d68-b660-44357697c17d', category: 'Platillos',                 price: 10.00, existence: 80 },
+        { id: '20b0ea8b-40d1-4c00-80d0-d6ffd35ea6d2', code: 'PLT-005',  description: 'Alitas BQ',                   isActive: true, productTypeId: 'e9b02730-7dab-4d68-b660-44357697c17d', category: 'Platillos',                 price: 20.00, existence: 120 },
+        { id: '2b6bd085-d1f3-45d5-afd5-ee5b9f57da6b', code: 'PLT-006',  description: 'Pure de Papa',                isActive: false, productTypeId: 'e9b02730-7dab-4d68-b660-44357697c17d', category: 'Platillos',                price: 20.00, existence: 30 },
+        { id: '6536a9ba-ddb4-4a17-94cc-a1790cae129a', code: 'PLT-007',  description: 'Ensalada',                    isActive: true, productTypeId: 'e9b02730-7dab-4d68-b660-44357697c17d', category: 'Platillos',                 price: 20.00, existence: 30 },
+        { id: '2a4eb471-d1b7-4c06-a89d-1e7fc51c47ec', code: 'PLT-008',  description: 'Hamburgesa Pollo ',           isActive: true, productTypeId: 'e9b02730-7dab-4d68-b660-44357697c17d', category: 'Platillos',                 price: 8.00, existence: 150 },
+        { id: 'e0a01cab-504f-48b5-a032-91b06b53f0d1', code: 'ING-001',  description: 'Pan de Hamburgesa',           isActive: true, productTypeId: '2aaec104-dc80-4a92-b748-a40a052e9ce6', category: 'Ingrediente',               price: 1.00, existence: 0 },
+        { id: '30400ed2-8bfc-486e-b441-de5fa3fe6760', code: 'ING-002',  description: 'Jitomate',                    isActive: true, productTypeId: '2aaec104-dc80-4a92-b748-a40a052e9ce6', category: 'Ingrediente',               price: 1.00, existence: 0 },
+        { id: 'ccb72b09-c3c4-4d25-865e-dae7999ef955', code: 'ING-003',  description: 'Cebolla',                     isActive: true, productTypeId: '2aaec104-dc80-4a92-b748-a40a052e9ce6', category: 'Ingrediente',               price: 1.00, existence: 0 },
+        { id: '386f4d1d-09eb-41bc-a6f0-b8f7b514dfe3', code: 'ING-004',  description: 'Lechuga',                     isActive: true, productTypeId: '2aaec104-dc80-4a92-b748-a40a052e9ce6', category: 'Ingrediente',               price: 10.00, existence: 0 },
+        { id: '32b25783-b599-4cac-8b03-5fa665b81994', code: 'ING-005',  description: 'Pepinillos',                  isActive: true, productTypeId: '2aaec104-dc80-4a92-b748-a40a052e9ce6', category: 'Ingrediente',               price: 1.00, existence: 0 },
+        { id: 'cb9e5b5f-a864-4a4b-8a0f-9d99af85ba3e', code: 'ING-006',  description: 'Carne de Pollo (Hamburgesa)', isActive: true, productTypeId: '2aaec104-dc80-4a92-b748-a40a052e9ce6', category: 'Ingrediente',               price: 12.00, existence: 0 },
     ],
 
     document: [
@@ -201,18 +206,18 @@ export const seedData = {
         {id: 'e4b06416-f38c-4e03-a415-a9a9a87365d4', productId: '', price: 100, from: new Date(), until: new Date(), isActive: true},
     ],
     supplierOrder: [
-        {id: '5c87d0ca-f310-4a37-bd6b-22942b54b487', movementId: '', folio: 'F-215', datePay: new Date().getTime, status: 'pagado'},
-        {id: 'f8aeee41-7147-408a-991e-f450f5d564a2', movementId: '', folio: 'F-216', datePay: new Date().getTime, status: 'pendiente'},
-        {id: 'ecb025b6-e966-4a1c-b312-c3261b9530bc', movementId: '', folio: 'F-217', datePay: new Date().getTime, status: 'pagado'},
-        {id: '6a782760-cf4d-4c69-abdb-ac803723c0f8', movementId: '', folio: 'F-218', datePay: new Date().getTime, status: 'proceso'},
+        {id: '5c87d0ca-f310-4a37-bd6b-22942b54b487', movementId: '', folio: 'F-215', datePay: new Date(), status: 'pagado'},
+        {id: 'f8aeee41-7147-408a-991e-f450f5d564a2', movementId: '', folio: 'F-216', datePay: new Date(), status: 'pendiente'},
+        {id: 'ecb025b6-e966-4a1c-b312-c3261b9530bc', movementId: '', folio: 'F-217', datePay: new Date(), status: 'pagado'},
+        {id: '6a782760-cf4d-4c69-abdb-ac803723c0f8', movementId: '', folio: 'F-218', datePay: new Date(), status: 'proceso'},
 
     ],
     clientOrder: [
-        {id: '8c02597d-63d9-4e38-a9f3-7e1ca00b4353', movementId: '', folio: 'F-219', datePay: new Date().getTime, status: 'proceso', tableId: ''},
-        {id: '35249cf0-39b9-4518-9dfe-9d14080c61e8', movementId: '', folio: 'F-220', datePay: new Date().getTime, status: 'proceso', tableId: ''},
-        {id: '62aaa1d9-0c01-4927-ba38-f1b640714cd3', movementId: '', folio: 'F-221', datePay: new Date().getTime, status: 'proceso', tableId: ''},
-        {id: '569928c4-5bc4-4968-a7aa-838126a300d9', movementId: '', folio: 'F-222', datePay: new Date().getTime, status: 'proceso', tableId: ''},
-        {id: '06359828-81fd-45ac-880b-9776fcd96d1e', movementId: '', folio: 'F-223', datePay: new Date().getTime, status: 'proceso', tableId: ''},
+        {id: '8c02597d-63d9-4e38-a9f3-7e1ca00b4353', movementId: '', folio: 'F-219', datePay: new Date(), status: 'proceso', tableId: ''},
+        {id: '35249cf0-39b9-4518-9dfe-9d14080c61e8', movementId: '', folio: 'F-220', datePay: new Date(), status: 'proceso', tableId: ''},
+        {id: '62aaa1d9-0c01-4927-ba38-f1b640714cd3', movementId: '', folio: 'F-221', datePay: new Date(), status: 'proceso', tableId: ''},
+        {id: '569928c4-5bc4-4968-a7aa-838126a300d9', movementId: '', folio: 'F-222', datePay: new Date(), status: 'proceso', tableId: ''},
+        {id: '06359828-81fd-45ac-880b-9776fcd96d1e', movementId: '', folio: 'F-223', datePay: new Date(), status: 'proceso', tableId: ''},
 
     ],
     clientOrderDetail: [
@@ -246,14 +251,14 @@ export const seedData = {
         {id: '2d00224b-974a-471a-8529-ca4cb413bcd2', orderPaymentId: '', monto: 1, typePay: ''},
     ],
     devolutionBuy: [
-        {id: '162938aa-9a40-4f40-a90d-dc395d34fbca', movementId: '', folio: 'F-122', datePay: new Date().getTime, status: 'Pagado'},
-        {id: '0743e82d-6c3c-435c-bf3c-42023bfb9c64', movementId: '', folio: 'F-124', datePay: new Date().getTime, status: 'Pendiente'},
-        {id: '1c7b08fc-a718-4e21-843f-0cbca954210e', movementId: '', folio: 'F-125', datePay: new Date().getTime, status: 'Pagado'},
+        {id: '162938aa-9a40-4f40-a90d-dc395d34fbca', movementId: '', folio: 'F-122', datePay: new Date(), status: 'Pagado'},
+        {id: '0743e82d-6c3c-435c-bf3c-42023bfb9c64', movementId: '', folio: 'F-124', datePay: new Date(), status: 'Pendiente'},
+        {id: '1c7b08fc-a718-4e21-843f-0cbca954210e', movementId: '', folio: 'F-125', datePay: new Date(), status: 'Pagado'},
     ],
     devolutionSell: [
-        {id: '793fc4b8-b3d7-4bde-8833-4587c96da762', movementId: '', folio: 'F-125', datePay: new Date().getTime, status: 'Pagado'},
-        {id: '9a2e45b7-d113-48a6-ac3f-cfe6739cf6aa', movementId: '', folio: 'F-125', datePay: new Date().getTime, status: 'Pagado'},
-        {id: 'f9b3fc9a-648e-4a80-a57a-38f0ebcf7326', movementId: '', folio: 'F-125', datePay: new Date().getTime, status: 'Pagado'},
+        {id: '793fc4b8-b3d7-4bde-8833-4587c96da762', movementId: '', folio: 'F-125', datePay: new Date(), status: 'Pagado'},
+        {id: '9a2e45b7-d113-48a6-ac3f-cfe6739cf6aa', movementId: '', folio: 'F-125', datePay: new Date(), status: 'Pagado'},
+        {id: 'f9b3fc9a-648e-4a80-a57a-38f0ebcf7326', movementId: '', folio: 'F-125', datePay: new Date(), status: 'Pagado'},
 
     ]
 
