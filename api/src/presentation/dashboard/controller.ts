@@ -21,6 +21,7 @@ export class DashboardController {
     }
 
     inicio = (req: Request, res: Response) => {
+        console.log(req.params.module);
         
         const [error, moduleEntity] = ModulesDto.modules(req.body.user)
         if( error ) throw res.status(400).json({error})

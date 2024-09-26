@@ -21,7 +21,7 @@ export class DashboardRoutes {
         const dashboardService = new DashboardService(moduleService);
         const controller = new DashboardController(dashboardService);
 
-        router.get('/',[AuthMiddlewares.validateJWT], controller.inicio )
+        router.get('/:module',[AuthMiddlewares.validateJWT], controller.inicio )
 
         return router;
     }
