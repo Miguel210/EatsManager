@@ -10,7 +10,7 @@ import { UserEntity } from "../../domain/entities/user.entity";
 export class AuthMiddlewares {
 
     static async validateJWT(req: Request, res: Response, next: NextFunction) {
-        
+        const module: string = req.params.module || '';
         const authorization = req.header('Authorization');
         if( !authorization ) return res.status(401).json({error: 'No token provided'});
         if( !authorization.startsWith('Bearer') ) return res.status(401).json({error: 'Invalid Bearer token'});
@@ -26,6 +26,9 @@ export class AuthMiddlewares {
             
             const {password, ...userEntity} = UserEntity.fromObject(user);
             req.body.user = userEntity
+            req.body._meta={
+                userOperatios: xxx.getProfileOperations(userEntity.profileId, module)
+            }
             next()
             
         }catch( error ){
