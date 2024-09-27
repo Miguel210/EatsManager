@@ -22,9 +22,14 @@ export class DashboardController {
 
     inicio = (req: Request, res: Response) => {
         console.log(req.params.module);
+        console.log(req.body.user);
+        
         
         const [error, moduleEntity] = ModulesDto.modules(req.body.user)
         if( error ) throw res.status(400).json({error})
+
+            console.log(moduleEntity);
+            
 
         this.dashboardService.charge(moduleEntity!)
         .then( dashboard => res.json(dashboard))
