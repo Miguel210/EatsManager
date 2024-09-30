@@ -3,7 +3,7 @@ import { CustomError } from "../errors/custom.error";
 
 
 
-export class ProfileOperation {
+export class ProfileOperationEntity {
 
     constructor(
         public id: String,
@@ -24,7 +24,7 @@ export class ProfileOperation {
         if( !operationId ) {
             throw CustomError.badRequest('Missing id operationId');
         }
-        
-        return new ProfileOperation(id, profileId, operationId)
+
+        return new ProfileOperationEntity(id, profileId, operationId)
     }
 }
