@@ -13,7 +13,5 @@ export class AuthRepositoryImpl implements AuthRepository {
     findByUsername(username: string): Promise<UserEntity> {
         return this.datasource.findByUsername(username);
     }
-    findById(id: string): Promise<UserEntity> {
-        return this.datasource.findById(id);
-    }
+
 }
