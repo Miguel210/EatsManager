@@ -21,7 +21,7 @@ export class MenuController {
     }
 
     menu = (req: Request, res: Response) => {
-        console.log(req.body);
+       // console.log(req.body.met[0]);
         res.send(req.body)
         /*const [error, moduleEntity] = ModulesDto.modules(req.body.user)
         if( error ) throw res.status(400).json({error})

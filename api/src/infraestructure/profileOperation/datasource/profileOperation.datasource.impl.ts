@@ -34,7 +34,7 @@ export class ProfileOperationDatasourceImpl implements ProfileOperationDatasourc
 
         if( !profileoperation ) throw `Todo with id ${moduleId} not found`;
         //console.log(JSON.stringify(profileoperation));
-        console.log(profileoperation);
+        //console.log(profileoperation);
         
         return profileoperation.map(profileoperation => ProfileOperationEntity.fromObject(profileoperation))
         //return ProfileOperationEntity.fromObject(profileoperation)
