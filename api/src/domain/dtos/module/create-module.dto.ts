@@ -6,17 +6,22 @@
 export class ModulesDto {
 
     constructor(
-        public id: string
+        public id: string,
+        public name: string,
+        public identifier: number
     ){}
 
     static modules(object: {[key: string]: any}): [string?, ModulesDto?] {
         
-        const {profileId} = object;
+        const {id, name, identifier} = object;
         
         
-        if( !profileId ) return ['Missing Id Module ']
+        if( !id ) return ['Missing Id Module ']
+
+        if( !name ) return ['Missing name Module']
+        if( !Number(identifier) ) ['Missing Identifier']
         
 
-        return [ undefined, new ModulesDto(profileId)]
+        return [ undefined, new ModulesDto(id, name, identifier)]
     }
 }
