@@ -7,7 +7,6 @@ export class OperationDto {
         id: string,
         moduleId: string,
         name: string,
-        isActive: boolean
     ){}
 
     static operation(object: {[key: string]: any}): [string?, OperationDto?] {
@@ -20,6 +19,6 @@ export class OperationDto {
         if( isActive===false ) return ['Isnt active']
 
 
-        return [undefined, new OperationDto(id, moduleId, name, isActive)]
+        return [undefined, new OperationDto(id, moduleId, name)]
     }
 }
