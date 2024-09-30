@@ -17,7 +17,7 @@ export class OperationDto {
 
         if( !moduleId ) return ['Missing Id moduleId']
         if( !name ) return ['Missing Id moduleId']
-        if( isActive===true ) return ['Isnt active']
+        if( isActive===false ) return ['Isnt active']
 
 
         return [undefined, new OperationDto(id, moduleId, name, isActive)]
