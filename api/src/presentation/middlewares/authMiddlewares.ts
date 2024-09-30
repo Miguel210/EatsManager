@@ -3,6 +3,7 @@ import { JwtAdapter } from "../../config/jwt.adapter";
 import { AuthDatasourceImpl } from "../../infraestructure/auth/datasource/auth.datasource.impl";
 import { UserEntity } from "../../domain/entities/user.entity";
 import { ModuleDatasourceImpl } from "../../infraestructure/module/datasource/module.datasource.impl";
+import { ProfileOperationDatasourceImpl } from "../../infraestructure/profileOperation/datasource/profileOperation.datasource.impl";
 
 
 
@@ -32,8 +33,9 @@ export class AuthMiddlewares {
 
             const module = await new ModuleDatasourceImpl().findById(userEntity.profileId)
             console.log(module);
-            
-            
+         
+            const operation = await new ProfileOperationDatasourceImpl().find(userEntity.profileId, req.params.module)
+            console.log(operation);
             
             req.body._meta={
                 //userOperatios: xxx.getProfileOperations(userEntity.profileId, module)
