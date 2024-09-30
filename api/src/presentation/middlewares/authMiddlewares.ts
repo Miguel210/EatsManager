@@ -26,9 +26,9 @@ export class AuthMiddlewares {
             
             const {password, ...userEntity} = UserEntity.fromObject(user);
             req.body.user = userEntity
-            req.body._meta={
+            /*req.body._meta={
                 userOperatios: xxx.getProfileOperations(userEntity.profileId, module)
-            }
+            }*/
             next()
             
         }catch( error ){
