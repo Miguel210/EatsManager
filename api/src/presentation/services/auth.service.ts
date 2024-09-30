@@ -35,8 +35,8 @@ export class AuthService {
 
         const {password, ...userEntity} = UserEntity.fromObject(user)
 
-        const [error, moduleDto] =  ModulesDto.modules(userEntity);
-        if(error) throw CustomError.badRequest(error)
+        /*const [error, moduleDto] =  ModulesDto.modules(userEntity);
+        if(error) throw CustomError.badRequest(error)*/
 
         //const modulos = await this.modulesUser(moduleDto!)
         //! Repair this map | any type modulo

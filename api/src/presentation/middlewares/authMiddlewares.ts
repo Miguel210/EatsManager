@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { JwtAdapter } from "../../config/jwt.adapter";
 import { AuthDatasourceImpl } from "../../infraestructure/auth/datasource/auth.datasource.impl";
 import { UserEntity } from "../../domain/entities/user.entity";
+import { ModuleDatasourceImpl } from "../../infraestructure/module/datasource/module.datasource.impl";
 
 
 
@@ -26,9 +27,17 @@ export class AuthMiddlewares {
             
             const {password, ...userEntity} = UserEntity.fromObject(user);
             req.body.user = userEntity
-            /*req.body._meta={
-                userOperatios: xxx.getProfileOperations(userEntity.profileId, module)
-            }*/
+
+            console.log(req.body.user);
+
+            const module = await new ModuleDatasourceImpl().findById(userEntity.profileId)
+            console.log(module);
+            
+            
+            
+            req.body._meta={
+                //userOperatios: xxx.getProfileOperations(userEntity.profileId, module)
+            }
             next()
             
         }catch( error ){

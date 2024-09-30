@@ -21,12 +21,12 @@ export class MenuController {
     }
 
     menu = (req: Request, res: Response) => {
-        const [error, moduleEntity] = ModulesDto.modules(req.body.user)
+        /*const [error, moduleEntity] = ModulesDto.modules(req.body.user)
         if( error ) throw res.status(400).json({error})
 
         this.moduleService.modules(moduleEntity!)
         .then( dashboard => res.json(dashboard))
-        .catch( error => this.handleError(error,res))
+        .catch( error => this.handleError(error,res))*/
 
     }
 

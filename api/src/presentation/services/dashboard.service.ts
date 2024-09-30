@@ -11,7 +11,9 @@ export class DashboardService {
 
     public async charge(){
         
-        //return this.moduleService.modules(moduelDto)
+        return {
+            h: 'moduleService'
+        }
 
     }
 }
