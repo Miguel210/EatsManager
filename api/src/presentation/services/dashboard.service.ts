@@ -9,9 +9,9 @@ export class DashboardService {
         readonly moduleService: ModuleService
     ){}
 
-    public async charge(moduelDto: ModulesDto){
+    public async charge(){
         
-        return this.moduleService.modules(moduelDto)
+        //return this.moduleService.modules(moduelDto)
 
     }
 }

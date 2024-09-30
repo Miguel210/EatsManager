@@ -24,14 +24,14 @@ export class DashboardController {
         //console.log(req.params.module);
         console.log(req.body.operation);
         
-        
+        /*
         const [error, moduleEntity] = ModulesDto.modules(req.body.user)
         if( error ) throw res.status(400).json({error})
 
           //  console.log(moduleEntity);
-            
+            */
 
-        this.dashboardService.charge(moduleEntity!)
+        this.dashboardService.charge()
         .then( dashboard => res.json(dashboard))
         .catch( error => this.handleEror(error,res))
 

@@ -14,7 +14,7 @@ export class ModuleService {
 
 
     public async modules(modulesDto: ModulesDto){
-
+/*
         const modules = await new GetsModule(this.moduleRepository).execute(modulesDto.id)
         .then(module => module )
         .catch( error => error )
@@ -24,6 +24,6 @@ export class ModuleService {
         return {
             modules: modules
         }
-
+*/
     }
 }
