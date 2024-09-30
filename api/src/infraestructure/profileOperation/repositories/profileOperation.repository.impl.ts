@@ -9,8 +9,8 @@ export class ProfileOperationImpl implements ProfileOperationRepository {
         private readonly datasource: ProfileOperationDatasource
     ){}
 
-    find(moduleId: string, profileId: string): Promise<ProfileOperationEntity[]> {
-        return this.datasource.find(moduleId, profileId)
+    find(moduleName: string, profileId: string): Promise<ProfileOperationEntity[]> {
+        return this.datasource.find(moduleName, profileId)
     }
 
 }

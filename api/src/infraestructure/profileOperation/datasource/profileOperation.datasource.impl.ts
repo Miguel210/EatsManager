@@ -8,7 +8,7 @@ import { ProfileOperationEntity } from "../../../domain/entities/profileOperatio
 export class ProfileOperationDatasourceImpl implements ProfileOperationDatasource {
     
     
-    async find(moduleId: string, profileId: string): Promise<ProfileOperationEntity[]> {
+    async find(moduleName: string, profileId: string): Promise<ProfileOperationEntity[]> {
 
         const profileoperation = await prisma.profileOperation.findMany({
             where: {
@@ -32,7 +32,7 @@ export class ProfileOperationDatasourceImpl implements ProfileOperationDatasourc
 
         })
 
-        if( !profileoperation ) throw `Todo with id ${moduleId} not found`;
+        if( !profileoperation ) throw `Todo with id ${moduleName} not found`;
         //console.log(JSON.stringify(profileoperation));
         //console.log(profileoperation);
         
