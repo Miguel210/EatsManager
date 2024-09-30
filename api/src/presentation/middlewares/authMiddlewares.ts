@@ -30,6 +30,7 @@ export class AuthMiddlewares {
             req.body.user = userEntity
 
             //console.log(req.body.user);
+            
 
             const module = await new ModuleDatasourceImpl().findById(userEntity.profileId)
             //console.log(module);

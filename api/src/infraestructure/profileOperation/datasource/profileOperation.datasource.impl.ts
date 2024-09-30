@@ -15,7 +15,7 @@ export class ProfileOperationDatasourceImpl implements ProfileOperationDatasourc
                 profileId: profileId,
                 operation: {
                     module: {
-                        name: 'Proveedor'
+                        name: moduleName
                     }
                 }
             },
