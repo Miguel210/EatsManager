@@ -29,17 +29,16 @@ export class AuthMiddlewares {
             const {password, ...userEntity} = UserEntity.fromObject(user);
             req.body.user = userEntity
 
-            console.log(req.body.user);
+            //console.log(req.body.user);
 
             const module = await new ModuleDatasourceImpl().findById(userEntity.profileId)
-            console.log(module);
+            //console.log(module);
          
             const operation = await new ProfileOperationDatasourceImpl().find(userEntity.profileId, req.params.module)
-            console.log(operation);
+            //console.log(operation);
             
-            req.body._meta={
-                //userOperatios: xxx.getProfileOperations(userEntity.profileId, module)
-            }
+            req.body.met= operation
+            
             next()
             
         }catch( error ){
