@@ -5,7 +5,6 @@ import { DashboardService } from "../services/dashboard.service";
 import { ModuleService } from "../services/module.service";
 import { ModelRepositoryImpl } from "../../infraestructure/module/repositories/module.repository.impl";
 import { ModuleDatasourceImpl } from "../../infraestructure/module/datasource/module.datasource.impl";
-import { OperationMiddlewares } from "../middlewares/operationMiddlewares";
 
 
 
@@ -22,7 +21,7 @@ export class DashboardRoutes {
         const dashboardService = new DashboardService(moduleService);
         const controller = new DashboardController(dashboardService);
 
-        router.get('/:module',[AuthMiddlewares.validateJWT, OperationMiddlewares.validateOperation], controller.inicio )
+        router.get('/:module',[AuthMiddlewares.validateJWT], controller.inicio )
 
         return router;
     }
