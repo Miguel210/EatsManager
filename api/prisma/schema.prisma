@@ -31,8 +31,17 @@ model operation {
 
   module module @relation(fields: [moduleId], references: [id])
   profiles profileOperation[]
+  metrics metric[]
 }
+model metric {
+  id String @id @default(uuid())
+  operationId String
+  name String
+  sentence String
+  isActive Boolean @default(true)
 
+  operation operation @relation(fields: [operationId], references: [id])
+}
 model profileOperation {
   id String @id @default(uuid())
   profileId String
