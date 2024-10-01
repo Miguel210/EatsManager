@@ -33,9 +33,9 @@ export class AuthMiddlewares {
             
 
             const module = await new ModuleDatasourceImpl().findById(userEntity.profileId)
-            //console.log(module);
+            //console.log(req.params.module);
          
-            const operation = await new ProfileOperationDatasourceImpl().find(userEntity.profileId, req.params.module)
+            const operation = await new ProfileOperationDatasourceImpl().find(req.params.module,userEntity.profileId)
             //console.log(operation);
             
             req.body._meta= {
