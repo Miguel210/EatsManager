@@ -28,11 +28,11 @@ export const seedData = {
         { id: '5a363600-97e2-42f9-b3c2-1e9b0387e51d', name: 'Ordenes',              moduleId: '2e0f70d3-2e01-4fe6-bfac-bc9ba14268e9', isActive: true },
         { id: '4a222609-b953-4dab-b8a4-2e22b082a131', name: 'Ordenes Pendientes',   moduleId: '2e0f70d3-2e01-4fe6-bfac-bc9ba14268e9', isActive: true },
         { id: '8b54718e-b270-419c-a248-d2986e35c64c', name: 'Ventas Empleado',      moduleId: '2e0f70d3-2e01-4fe6-bfac-bc9ba14268e9', isActive: true },
-        { id: 'cd3d3fad-a3d0-402f-a976-2e800aac43df', name: 'create',   moduleId: 'a7d6025c-780b-47c2-81f2-a922554baabd', isActive: true },//proveedor
+        /*{ id: 'cd3d3fad-a3d0-402f-a976-2e800aac43df', name: 'create',   moduleId: 'a7d6025c-780b-47c2-81f2-a922554baabd', isActive: true },//proveedor
         { id: '80a52512-0415-4d01-8e09-53e94c9e2ccc', name: 'read',     moduleId: 'a7d6025c-780b-47c2-81f2-a922554baabd', isActive: true },
         { id: '518508fc-c3a5-4bff-b11e-9843c809c735', name: 'update',   moduleId: 'a7d6025c-780b-47c2-81f2-a922554baabd', isActive: true },
         { id: '1874d8b8-7afd-4d3f-84af-e0feab740e18', name: 'delete',   moduleId: 'a7d6025c-780b-47c2-81f2-a922554baabd', isActive: true },
-        { id: '2235fa7c-3e9b-4739-820b-5ff2afa11c87', name: 'read',     moduleId: '76ba91f0-9140-4c70-85e9-59d7520ee145', isActive: true },//inventario
+        { id: '2235fa7c-3e9b-4739-820b-5ff2afa11c87', name: 'read',     moduleId: '76ba91f0-9140-4c70-85e9-59d7520ee145', isActive: true },//inventario*/
 
     ],
 
@@ -54,16 +54,22 @@ export const seedData = {
     ],
 
     profileoperation: [
-        { id: 'd9a794e9-264e-4514-a82c-2562e5dae0b0', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '303922e9-2ae2-4b4f-85ed-872093b0b949', createAt: new Date(), isActive: true },
-        { id: '137cf1d7-a7b7-4ce5-9be1-d0bcb0f6af63', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'cd3d3fad-a3d0-402f-a976-2e800aac43df', createAt: new Date(), isActive: true },
-        { id: 'a6f16aad-7766-4d9a-8899-b15e7a26a772', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '80a52512-0415-4d01-8e09-53e94c9e2ccc', createAt: new Date(), isActive: true },
-        { id: '01a96b8e-22dc-4bc8-8516-3db36a2977fe', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '518508fc-c3a5-4bff-b11e-9843c809c735', createAt: new Date(), isActive: true },
-        { id: '31af2073-8499-4152-9ebc-b78d4f281109', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '1874d8b8-7afd-4d3f-84af-e0feab740e18', createAt: new Date(), isActive: true },
-        { id: 'b5b04752-069e-4eb7-86d5-138901f91f57', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '2235fa7c-3e9b-4739-820b-5ff2afa11c87', createAt: new Date(), isActive: true },
-        { id: '98f6dba4-9698-4d52-95b6-b264401694fd', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: '254d8c92-9070-47df-afca-93c80f3d2abc', createAt: new Date(), isActive: true },
-        { id: '85bd143d-6548-4103-8fe1-a9b12ac2f4bb', profileId: '14588c57-ee54-4c01-bc7f-8c445e643ee5', operationId: '72d01a82-cac7-4d65-ad9c-80afd37e1c3b', createAt: new Date(), isActive: true },
-        { id: 'b3bb1190-dd33-4584-b207-bbea2b99c083', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '80a52512-0415-4d01-8e09-53e94c9e2ccc', createAt: new Date(), isActive: true },
-        { id: '1fccd180-4977-4589-9df1-8e79eda06a00', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '2235fa7c-3e9b-4739-820b-5ff2afa11c87', createAt: new Date(), isActive: true },
+        { id: 'd9a794e9-264e-4514-a82c-2562e5dae0b0', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '74b60331-4ade-4177-96a0-6f536c6fb5b1', createAt: new Date(), isActive: true },
+        { id: '137cf1d7-a7b7-4ce5-9be1-d0bcb0f6af63', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '7ec22367-9e62-4f25-b774-5ec2cd2cecfc', createAt: new Date(), isActive: true },
+        { id: 'a6f16aad-7766-4d9a-8899-b15e7a26a772', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'b71aade3-6038-413d-b3dd-5bd845febba5', createAt: new Date(), isActive: true },
+        { id: '01a96b8e-22dc-4bc8-8516-3db36a2977fe', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '87fea175-12c4-47ce-aa88-545aac981f6b', createAt: new Date(), isActive: true },
+        { id: '31af2073-8499-4152-9ebc-b78d4f281109', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'a0c61028-c9a8-45dd-be50-bf38edf0faf5', createAt: new Date(), isActive: true },
+        { id: 'b5b04752-069e-4eb7-86d5-138901f91f57', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '310e91b7-d7ad-4fa4-9d02-67a6da055079', createAt: new Date(), isActive: true },
+        //{ id: 'b3bb1190-dd33-4584-b207-bbea2b99c083', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '80a52512-0415-4d01-8e09-53e94c9e2ccc', createAt: new Date(), isActive: true },
+        { id: '1f06fe5b-d97d-4210-b899-259ddde92b01', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: 'b4868909-5189-4711-b6cc-6b373e28a269', createAt: new Date(), isActive: true },
+        { id: 'af47dde7-dfa3-4784-9a08-a996f2621b8d', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: '2c6692b3-55a6-4c89-b001-f1760249ad4d', createAt: new Date(), isActive: true },
+        { id: 'c3259e15-24da-43bb-bf81-9eb3cabb60a8', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: '55440f27-9dd3-4c80-8825-96e4c921312b', createAt: new Date(), isActive: true },
+        { id: 'c1bca939-7626-4548-a0dc-ee14a328e863', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: 'c129fa82-b940-4422-acf6-696f54ffb5f4', createAt: new Date(), isActive: true },
+        { id: 'ddbcd767-fe9d-4614-ac33-e8914b1ea53b', profileId: '14588c57-ee54-4c01-bc7f-8c445e643ee5', operationId: '5a363600-97e2-42f9-b3c2-1e9b0387e51d', createAt: new Date(), isActive: true },
+        { id: '234b364d-4e94-49b2-93fb-eb47f14952f0', profileId: '14588c57-ee54-4c01-bc7f-8c445e643ee5', operationId: '4a222609-b953-4dab-b8a4-2e22b082a131', createAt: new Date(), isActive: true },
+        { id: '190a8736-414a-4744-b8c9-f2a7b153e630', profileId: '14588c57-ee54-4c01-bc7f-8c445e643ee5', operationId: '8b54718e-b270-419c-a248-d2986e35c64c', createAt: new Date(), isActive: true },
+
+//        { id: '', profileId: '', operationId: '', createAt: new Date(), isActive: true },
     ],
 
     profile: [

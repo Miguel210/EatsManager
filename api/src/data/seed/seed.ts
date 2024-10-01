@@ -18,6 +18,7 @@ async function main() {
     
     await prisma.profileOperation.deleteMany(),
     await prisma.product.deleteMany(),
+    await prisma.metric.deleteMany(),
     await prisma.operation.deleteMany(),
     await prisma.attendance.deleteMany(),
     await prisma.employee.deleteMany(),
@@ -28,7 +29,6 @@ async function main() {
     await prisma.gender.deleteMany(),
     await prisma.module.deleteMany(),
     await prisma.productType.deleteMany(),
-    
 
     await prisma.module.createMany({
         data: seedData.module,
@@ -42,9 +42,13 @@ async function main() {
         data: seedData.profile
     });
 
+    await prisma.metric.createMany({
+        data: seedData.metric
+    })
     await prisma.profileOperation.createMany({
         data: seedData.profileoperation
     });
+
 
     await prisma.typeperson.createMany({
         data: seedData.typopersona
