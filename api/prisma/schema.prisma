@@ -173,20 +173,23 @@ model supplier {
 //todo SECOND TABLE
 model movement {
   id String @id @default(uuid())
-  date DateTime
+  date DateTime @db.Date @default(now())
   personId String 
   documentId String
-  elaborateId String
+  elaborateId String?
   amount Decimal @db.Decimal(10,2)
-  referenceId String?   //* movemenet to movement
+  //referenceId movement[] @relation("Movements")  //* movemenet to movement
+  //reference movement[] @relation("Movements")  //* movemenet to movement
+  referenceId String?
   status String //! QUESTION
   isActive Boolean @default(true)
 
 
   document document @relation(fields: [documentId], references: [id])
   person person @relation(fields: [personId], references: [id])
-  mevements movement[] @relation("ReferenceMovement")
-  movement movement? @relation("ReferenceMovement",fields: [referenceId], references: [id])
+  movement movement? @relation("ReferenceMovements",fields: [referenceId], references: [id])
+  movements movement[] @relation("ReferenceMovements") 
+  
   movementDetail movementDetail[]
   inventories inventory[]
   clientOrders clientOrder[]
@@ -213,13 +216,13 @@ model movementDetail {
   tax Decimal @db.Decimal(10,2)
   total Decimal @db.Decimal(10,2)
   costUnit Decimal @db.Decimal(10,2)
-  promotionId String
+  promotionId String? 
   isActive Boolean @default(true)
 
 
   movement movement @relation(fields: [movementId], references: [id])
   product product @relation(fields: [productId], references: [id])
-  promorion promotion @relation(fields: [promotionId], references: [id])
+  promotion promotion? @relation(fields: [promotionId], references: [id])
 }
 
 model productType {

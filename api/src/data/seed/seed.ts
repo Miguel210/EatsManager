@@ -16,25 +16,25 @@ main().catch(e => {
 
 async function main() {
     
-    await prisma.product.deleteMany(),
     await prisma.profileOperation.deleteMany(),
     await prisma.metric.deleteMany(),
     await prisma.operation.deleteMany(),
     await prisma.attendance.deleteMany(),
     await prisma.employee.deleteMany(),
     await prisma.supplier.deleteMany(),
+    await prisma.promotion.deleteMany(),
+    await prisma.garrison.deleteMany(),
+    await prisma.movementDetail.deleteMany(),
+    await prisma.inventory.deleteMany(),
+    await prisma.product.deleteMany(),
+    await prisma.movement.deleteMany(),
     await prisma.person.deleteMany(),
+    await prisma.document.deleteMany(),
     await prisma.profile.deleteMany(),
     await prisma.typeperson.deleteMany(),
     await prisma.gender.deleteMany(),
     await prisma.module.deleteMany(),
     await prisma.productType.deleteMany(),
-    await prisma.promotion.deleteMany(),
-    await prisma.garrison.deleteMany(),
-    await prisma.inventory.deleteMany(),
-    await prisma.movementDetail.deleteMany(),
-    await prisma.movement.deleteMany(),
-    await prisma.document.deleteMany(),
 
     await prisma.module.createMany({
         data: seedData.module,
