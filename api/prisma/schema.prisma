@@ -198,6 +198,7 @@ model movement {
 
 model document {
   id String @id @default(uuid())
+  description String
   isActive Boolean @default(true)
   movements movement[]
 }
