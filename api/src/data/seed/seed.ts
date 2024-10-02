@@ -16,8 +16,8 @@ main().catch(e => {
 
 async function main() {
     
-    await prisma.profileOperation.deleteMany(),
     await prisma.product.deleteMany(),
+    await prisma.profileOperation.deleteMany(),
     await prisma.metric.deleteMany(),
     await prisma.operation.deleteMany(),
     await prisma.attendance.deleteMany(),
@@ -29,6 +29,12 @@ async function main() {
     await prisma.gender.deleteMany(),
     await prisma.module.deleteMany(),
     await prisma.productType.deleteMany(),
+    await prisma.promotion.deleteMany(),
+    await prisma.garrison.deleteMany(),
+    await prisma.inventory.deleteMany(),
+    await prisma.movementDetail.deleteMany(),
+    await prisma.movement.deleteMany(),
+    await prisma.document.deleteMany(),
 
     await prisma.module.createMany({
         data: seedData.module,
@@ -79,6 +85,30 @@ async function main() {
 
     await prisma.product.createMany({
         data: seedData.product
+    })
+
+    await prisma.document.createMany({
+        data: seedData.document
+    })
+
+    await prisma.movement.createMany({
+        data: seedData.moviment
+    })
+
+    await prisma.movementDetail.createMany({
+        data: seedData.movementDetail
+    })
+
+    await prisma.inventory.createMany({
+        data: seedData.inventory
+    })
+
+    await prisma.garrison.createMany({
+        data: seedData.garrision
+    })
+
+    await prisma.promotion.createMany({
+        data: seedData.promotion
     })
 }
 
