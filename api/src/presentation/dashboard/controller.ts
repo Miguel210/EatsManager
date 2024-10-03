@@ -22,7 +22,20 @@ export class DashboardController {
 
     inicio = (req: Request, res: Response) => {
         //console.log(req.params.module);
-        console.log(req.body.operation);
+        const data = req.body._meta;
+
+        console.log(data);
+        let a:  string[] = [];
+        for (let index = 0; index < data.operation.length; index++) {
+            const element = data.operation[index].operation.name;
+            a.push(element) ;
+            
+        }
+
+        console.log(a);
+        
+        //const ops = data.f
+        
         
         /*
         const [error, moduleEntity] = ModulesDto.modules(req.body.user)
@@ -31,7 +44,7 @@ export class DashboardController {
           //  console.log(moduleEntity);
             */
 
-        this.dashboardService.charge()
+        this.dashboardService.charge(a)
         .then( dashboard => res.json(dashboard))
         .catch( error => this.handleEror(error,res))
 
