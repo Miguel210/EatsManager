@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { CustomError } from "../../domain";
-import { ModulesDto } from "../../domain/dtos/module/create-module.dto";
 import { DashboardService } from "../services/dashboard.service";
 
 
@@ -22,27 +21,15 @@ export class DashboardController {
 
     inicio = (req: Request, res: Response) => {
         //console.log(req.params.module);
-        const data = req.body._meta;
+        const data = req.body._meta //.operation[0].operationId;
 
-        console.log(data);
+        //console.log(data);
         let a:  string[] = [];
         for (let index = 0; index < data.operation.length; index++) {
-            const element = data.operation[index].operation.name;
-            a.push(element) ;
+            const element = data.operation[index].operationId;//.name
+            a.push(element) ;//`{name: ${element}}`
             
         }
-
-        console.log(a);
-        
-        //const ops = data.f
-        
-        
-        /*
-        const [error, moduleEntity] = ModulesDto.modules(req.body.user)
-        if( error ) throw res.status(400).json({error})
-
-          //  console.log(moduleEntity);
-            */
 
         this.dashboardService.charge(a)
         .then( dashboard => res.json(dashboard))
