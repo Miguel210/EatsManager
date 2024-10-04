@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { CustomError } from "../../domain";
 import { SupplierService } from "../services/supplier.service";
+import { CreateSupplierDto } from "../../domain/dtos/supplier/create-supplier.dto";
 
 
 
@@ -23,7 +24,12 @@ export class SupplierController {
 
     dsds = (req: Request, res: Response) => {
 
-        this.supplierService.init()
+        const [error, supplierDto] = CreateSupplierDto.create(req.body)
+        if(error) throw res.status(400).json({error});
+           
+        
+
+        this.supplierService.init(supplierDto!)
         .then( init => res.json(init))
         .catch(error => this.handleError(error,res))
     }

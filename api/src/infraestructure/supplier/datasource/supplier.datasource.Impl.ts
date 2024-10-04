@@ -10,10 +10,25 @@ import { SupplierEntity } from "../../../domain/entities/supplier.entity";
 export class SupplierDatasoruceImpl implements SupplierDatasource {
 
     async create(createSupplierDto: CreateSupplierDto): Promise<SupplierEntity> {
+        const id = Uuid.uuid()
         const supplier = await prisma.supplier.create({
             data: {
-                id: Uuid.uuid.toString(),
-                personId: createSupplierDto.personId!
+                id: id,
+                person: {
+                    create: {
+                        id: Uuid.uuid(),
+                        genderId: createSupplierDto.createPersonDto.genderId,
+                        profileId: createSupplierDto.createPersonDto.profileId,
+                        typePersonId: createSupplierDto.createPersonDto.typePersonId,
+                        fullname: createSupplierDto.createPersonDto.fullname,
+                        username: createSupplierDto.createPersonDto.username,
+                        password: createSupplierDto.createPersonDto.password,
+                    }
+
+                }
+            },
+            include: {
+                person: true
             }
         })
 
