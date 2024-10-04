@@ -59,4 +59,24 @@ export class SupplierController {
         .then( supplier => res.json(supplier))
         .catch(error => this.handleError(error, res))
     }
+
+
+    deletedSupplier = (req: Request, res: Response) => {
+
+
+        this.supplierService.delete(req.body.id)
+        .then(suplier => res.json(suplier))
+        .catch(error => this.handleError(error,res))
+
+    }
+
+
+    updateSupplier = (req: Request, res: Response) => {
+
+        
+
+        this.supplierService.updateSupplier()
+        .then(supplier => res.json(supplier))
+        .catch(error => this.handleError(error,res))
+    }
 }

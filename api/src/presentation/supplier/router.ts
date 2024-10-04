@@ -22,6 +22,7 @@ export class SupplierRouter {
         router.get('/:module/getAll',[AuthMiddlewares.validateJWT], controller.getAll)
         router.get('/:module/getSupplier',[AuthMiddlewares.validateJWT], controller.getSupplier)
         router.post('/:module',[AuthMiddlewares.validateJWT], controller.create)
+        router.delete('/:module/Deleted',[AuthMiddlewares.validateJWT], controller.deletedSupplier)
 
 
 

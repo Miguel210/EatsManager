@@ -111,6 +111,8 @@ export class SupplierDatasoruceImpl implements SupplierDatasource {
         const deleted = await prisma.supplier.delete({
             where: {id}
         });
+        console.log(deleted);
+        
 
         return SupplierEntity.fromObj(deleted);
     }
