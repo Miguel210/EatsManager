@@ -38,7 +38,10 @@ export class SupplierDatasoruceImpl implements SupplierDatasource {
 
     async getAll(): Promise<SupplierEntity[]> {
         const suppliers = await prisma.supplier.findMany({
-            include: {
+            
+            select: {
+                id: true,
+                personId: true,
                 person: {
                     select: {
                         fullname: true,
@@ -48,8 +51,9 @@ export class SupplierDatasoruceImpl implements SupplierDatasource {
                             }
                         },
                         isActive: true
-                    }
+                    }                    
                 },
+                isActive: true
             }
         });
 
@@ -57,13 +61,34 @@ export class SupplierDatasoruceImpl implements SupplierDatasource {
     }
 
     async findbyId(id: string): Promise<SupplierEntity> {
+
+        
         const supplier = await prisma.supplier.findFirst({
             where: {
                 id: id
+            },
+            select: {
+                id: true,
+                personId: true,
+                person: {
+                    select: {
+                        fullname: true,
+                        typeperson: {
+                            select: {
+                                description: true
+                            }
+                        },
+                        isActive: true
+                    }                    
+                },
+                isActive: true
             }
         });
 
         if( !supplier ) throw `Supplier with id ${id} not found`;
+
+        console.log(supplier);
+        
         return SupplierEntity.fromObj(supplier);
     }
 

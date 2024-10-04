@@ -1,5 +1,6 @@
 import { CreateSupplierDto } from "../../domain/dtos/supplier/create-supplier.dto";
 import { CreateSupplier } from "../../domain/use-cases/supplier/create-supplier";
+import { GetSupplier } from "../../domain/use-cases/supplier/get-supplier";
 import { GetSuppliers } from "../../domain/use-cases/supplier/get-suppliers";
 import { SupplierRepositoryImpl } from "../../infraestructure/supplier/repository/supplier.repository.Impl";
 
@@ -36,11 +37,16 @@ export class SupplierService {
         }
     }
 
-    public async getSupplier() {
+    public async getSupplier(id: string) {
 
+        const supplier = await new GetSupplier(this.repository).execute(id)
+        .then( supplier => supplier)
+        .catch( error => console.log({error}))
+        
+        console.log(supplier);
         
         return {
-            data: "GetSupplier Service"
+            data: supplier
         }
     }
 

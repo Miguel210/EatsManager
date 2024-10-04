@@ -46,4 +46,17 @@ export class SupplierController {
         .catch(error => this.handleError(error,res))
 
     }
+
+    getSupplier = (req: Request, res: Response) => {
+
+        const id = req.body.id
+        console.log(id);
+        
+
+        if( !id ) throw res.status(400).json('Error Id')
+
+        this.supplierService.getSupplier(id)
+        .then( supplier => res.json(supplier))
+        .catch(error => this.handleError(error, res))
+    }
 }

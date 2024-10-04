@@ -12,13 +12,13 @@ export class SupplierEntity {
 
     static fromObj(object: {[key: string]: any}) {
 
-        const {id, person, isActive} = object;
+        const {id, person, personId, isActive} = object;
 
         if( !id ) throw CustomError.badRequest('Missing id');
 
-        if( !person ) throw CustomError.badRequest('Missing personId');
+        if( !personId && person ) throw CustomError.badRequest('Missing personId or person');
         if( isActive===false ) throw CustomError.badRequest('Not exist');
 
-        return new SupplierEntity(id, person);
+        return new SupplierEntity(id, person || personId);
     }
 }
