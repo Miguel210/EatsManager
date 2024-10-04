@@ -8,6 +8,14 @@ export class UpdateSupplierDto {
         public readonly IsActive: boolean
     ) {}
 
+    get values() {
+        const returnObj: {[key: string]: any} = {};
+
+        if( this.personId ) returnObj.personId = this.personId;
+        if( this.IsActive ) returnObj.isActive = this.IsActive;
+
+        return returnObj;
+    }
 
     static create(props: {[key: string]: any}):  [string?, UpdateSupplierDto?] {
 
