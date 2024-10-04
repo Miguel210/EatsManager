@@ -22,15 +22,28 @@ export class SupplierController {
         return res.status(500).json({error: 'Internal server error'})
     }
 
-    dsds = (req: Request, res: Response) => {
+    init = (req: Request, res: Response ) => {
+        
+    }
+
+    create = (req: Request, res: Response) => {
 
         const [error, supplierDto] = CreateSupplierDto.create(req.body)
         if(error) throw res.status(400).json({error});
            
         
 
-        this.supplierService.init(supplierDto!)
+        this.supplierService.createSupplier(supplierDto!)
         .then( init => res.json(init))
         .catch(error => this.handleError(error,res))
+    }
+
+
+    getAll = (req: Request, res: Response) => {
+
+        this.supplierService.getAll()
+        .then(supplier => res.json(supplier))
+        .catch(error => this.handleError(error,res))
+
     }
 }

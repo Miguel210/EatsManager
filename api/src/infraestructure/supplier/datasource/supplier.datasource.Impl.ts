@@ -37,7 +37,21 @@ export class SupplierDatasoruceImpl implements SupplierDatasource {
     }
 
     async getAll(): Promise<SupplierEntity[]> {
-        const suppliers = await prisma.supplier.findMany();
+        const suppliers = await prisma.supplier.findMany({
+            include: {
+                person: {
+                    select: {
+                        fullname: true,
+                        typeperson: {
+                            select: {
+                                description: true
+                            }
+                        },
+                        isActive: true
+                    }
+                },
+            }
+        });
 
         return suppliers.map(supplier => SupplierEntity.fromObj(supplier));
     }
