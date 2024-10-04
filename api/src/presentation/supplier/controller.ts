@@ -23,7 +23,8 @@ export class SupplierController {
 
     dsds = (req: Request, res: Response) => {
 
-        
-        
+        this.supplierService.init()
+        .then( init => res.json(init))
+        .catch(error => this.handleError(error,res))
     }
 }

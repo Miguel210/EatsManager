@@ -17,7 +17,7 @@ export class SupplierRouter {
         const repository = new SupplierRepositoryImpl(datasource);
         const service = new SupplierService(repository);
         const controller = new SupplierController(service);
-        router.get('/',[AuthMiddlewares.validateJWT], controller.dsds)
+        router.get('/:module',[AuthMiddlewares.validateJWT], controller.dsds)
 
 
         return router;
