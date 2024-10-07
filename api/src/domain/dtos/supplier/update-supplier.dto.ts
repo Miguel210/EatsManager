@@ -1,3 +1,5 @@
+import { UserEntity } from "../../entities/user.entity";
+import { UpdatePersonDto } from "../person/update-person.dto";
 
 
 export class UpdateSupplierDto {
@@ -5,7 +7,8 @@ export class UpdateSupplierDto {
     private constructor(
         public readonly id: string,
         public readonly personId: string,
-        public readonly IsActive: boolean
+        public readonly IsActive: boolean,
+        public readonly person: UpdatePersonDto
     ) {}
 
     get values() {
@@ -19,7 +22,7 @@ export class UpdateSupplierDto {
 
     static create(props: {[key: string]: any}):  [string?, UpdateSupplierDto?] {
 
-        const {id, personId, isActive} = props;
+        const {id, personId, isActive, fullname, username, password, genderId ,profileId, typePersonId} = props;
 
         if( !id ) {
             return ['id is requerid'];
@@ -30,8 +33,11 @@ export class UpdateSupplierDto {
         if( isActive===false ) {
             return ['isActive must be validate']
         }
+        //todo this part is person
+        const [error, updatePersonDto] = UpdatePersonDto.create({genderId ,profileId, typePersonId, fullname, username, password})
+        if( error )return [error]
 
 
-        return [undefined, new UpdateSupplierDto(id, personId, isActive)]
+        return [undefined, new UpdateSupplierDto(id, personId, isActive, updatePersonDto!)]
     }
 }

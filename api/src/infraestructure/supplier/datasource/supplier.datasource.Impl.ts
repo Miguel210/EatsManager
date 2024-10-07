@@ -95,11 +95,26 @@ export class SupplierDatasoruceImpl implements SupplierDatasource {
     async updateById(updateSupplierDto: UpdateSupplierDto): Promise<SupplierEntity> {
         await this.findbyId( updateSupplierDto.id);
 
+        console.log(updateSupplierDto);
+        
+
         const updateSupplier = await prisma.supplier.update({
             where: {
                 id: updateSupplierDto.id
             },
-            data: updateSupplierDto!.values
+            data: {
+                id: updateSupplierDto.id,
+                isActive: updateSupplierDto.IsActive,
+                person: {
+                    update: {
+                        genderId: updateSupplierDto.person.genderId,
+                        fullname: updateSupplierDto.person.fullname
+                    }
+                }
+            },
+            include: {
+                person: true
+            }
         })
 
         return SupplierEntity.fromObj(updateSupplier)

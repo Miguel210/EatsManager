@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { CustomError } from "../../domain";
 import { SupplierService } from "../services/supplier.service";
 import { CreateSupplierDto } from "../../domain/dtos/supplier/create-supplier.dto";
+import { UpdateSupplierDto } from "../../domain/dtos/supplier/update-supplier.dto";
 
 
 
@@ -73,9 +74,14 @@ export class SupplierController {
 
     updateSupplier = (req: Request, res: Response) => {
 
-        
+        const id = req.body.id;
 
-        this.supplierService.updateSupplier()
+
+        const [error, updateSupplierDto] = UpdateSupplierDto.create({...req.body,id})
+        if( error )return res.status(400).json({error})
+
+
+        this.supplierService.updateSupplier(updateSupplierDto!)
         .then(supplier => res.json(supplier))
         .catch(error => this.handleError(error,res))
     }
