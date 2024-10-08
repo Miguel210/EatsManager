@@ -13,7 +13,7 @@ export class InventoryDatasourceImpl implements InventoryDatasource {
             data: {
                 id: Uuid.uuid(),
                 movementId: createInventoryDto.movementId,
-                productId: createInventoryDto.productId,
+                productId: createInventoryDto.product,
                 quantity: createInventoryDto.quantity
             }
         })
@@ -23,7 +23,30 @@ export class InventoryDatasourceImpl implements InventoryDatasource {
     }
     async getAll(): Promise<InventoryEntity[]> {
 
-        const inventories = prisma.inventory.findMany();
+        const inventories = prisma.inventory.findMany({
+            where: {
+                product: {
+                    productType: {
+                        isActive: true
+                    }
+                }
+            },
+            include: {
+                product: {
+                    select: {
+                        description: true,
+                        code: true,
+                        price: true,
+                    }
+                },
+                movement: {
+                    
+                }
+            }
+        });
+
+        
+//        console.log((await inventories).map(e => e));
 
         return (await inventories).map( inventory => InventoryEntity.fromObject(inventory));
     }
