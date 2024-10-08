@@ -132,10 +132,10 @@ export const seedData = {
 
     ],
     typeProduct: [
-        { id: '5c930724-9e5c-44ad-8507-04365a647a72', description: 'Servicio',             isActive: false }, //*UseStockz
-        { id: 'e282b267-07b7-458c-b828-c4faf1b71159', description: 'Concepto',             isActive: false },
-        { id: 'e9b02730-7dab-4d68-b660-44357697c17d', description: 'Producto Terminado',   isActive: true },
-        { id: '2aaec104-dc80-4a92-b748-a40a052e9ce6', description: 'Insumo',               isActive: true }
+        { id: '5c930724-9e5c-44ad-8507-04365a647a72', description: 'Servicio',             isActive: false, useStock: false}, //*UseStockz
+        { id: 'e282b267-07b7-458c-b828-c4faf1b71159', description: 'Concepto',             isActive: false, useStock: false},
+        { id: 'e9b02730-7dab-4d68-b660-44357697c17d', description: 'Producto Terminado',   isActive: true,  useStock: true },
+        { id: '2aaec104-dc80-4a92-b748-a40a052e9ce6', description: 'Insumo',               isActive: true,  useStock: true }
     ],
     /*categoryProduct: [
         { id: 'a53f9e6d-9f3d-47e1-8f48-697bd57928b1', description: 'Elaboración de alimentos', isActive: true },

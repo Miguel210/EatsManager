@@ -1,3 +1,4 @@
+import { isBooleanObject } from "util/types";
 import { Uuid } from "../../../config";
 import { prisma } from "../../../data";
 import { InventoryDatasource } from "../../../domain/datasource/inventory/inventory.datasource";
@@ -23,11 +24,14 @@ export class InventoryDatasourceImpl implements InventoryDatasource {
     }
     async getAll(): Promise<InventoryEntity[]> {
 
+    const form: [boolean?,string?] = [true,"code"];
+        console.log(form[0]);
+        
         const inventories = prisma.inventory.findMany({
             where: {
                 product: {
-                    productType: {
-                        isActive: true
+                    productType:{
+                        isActive: form[0] //form[0]
                     }
                 }
             },
@@ -36,7 +40,6 @@ export class InventoryDatasourceImpl implements InventoryDatasource {
                     select: {
                         description: true,
                         code: true,
-                        price: true,
                     }
                 },
                 movement: {
