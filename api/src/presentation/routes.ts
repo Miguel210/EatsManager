@@ -3,6 +3,7 @@ import { AuthRoutes } from "./auth/routes";
 import { DashboardRoutes } from "./dashboard/routes";
 import { MenuRoutes } from "./menu/routes";
 import { SupplierRouter } from "./supplier/router";
+import { InventoryRouter } from "./inventory/router";
 
 
 
@@ -15,6 +16,7 @@ export class AppRoutes {
         router.use('/api/dashboard', DashboardRoutes.routes);
         router.use('/api/menu', MenuRoutes.routes);
         router.use('/api/supplier', SupplierRouter.routes)
+        router.use('/api/inventory', InventoryRouter.routes);
 
 
 

@@ -23,7 +23,7 @@ export class DashboardController {
         //console.log(req.params.module);
         const data = req.body._meta //.operation[0].operationId;
 
-        //console.log(data);
+        console.log(data);
         let a:  string[] = [];
         for (let index = 0; index < data.operation.length; index++) {
             const element = data.operation[index].operationId;//.name
