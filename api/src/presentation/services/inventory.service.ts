@@ -1,3 +1,4 @@
+import { prisma } from "../../data";
 import { CreateInventoryDto } from "../../domain/dtos/inventory/create-inventory.dto";
 import { CreateInventory } from "../../domain/use-cases/inventory/create-inventory";
 import { GetAllInventory } from "../../domain/use-cases/inventory/get-inventories";
@@ -13,6 +14,28 @@ export class InventoryService {
 
 
 
+    public async init() {
+
+        const product: any = await prisma.$queryRawUnsafe("select * from product")
+            .then(product => product)
+            .catch(error => console.log(error)
+        )
+        console.log(product.length) ;
+        
+        
+        let dictionery: {[key: string]: string} = {};
+
+        for (let index: number = 0; index < product.length; index++) {
+            let id: string = product[index].id ;
+
+            dictionery[id] =  product[index].description
+
+        }
+        
+        return {
+            data: dictionery
+        }
+    }
     public async getAll() {
 
         const inventory = await new GetAllInventory(this.repository).execute()

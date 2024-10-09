@@ -19,6 +19,7 @@ export class InventoryRouter {
         const service = new InventoryService(repository);
         const controller = new InventoryController(service);
 
+        router.get('/:module',[AuthMiddlewares.validateJWT], controller.init)
         router.get('/:module/getall',[AuthMiddlewares.validateJWT], controller.getAll)
         router.post('/:module/deleted',[AuthMiddlewares.validateJWT], controller.createInv)
 

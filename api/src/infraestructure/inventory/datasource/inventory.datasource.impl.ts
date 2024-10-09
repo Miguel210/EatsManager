@@ -23,15 +23,22 @@ export class InventoryDatasourceImpl implements InventoryDatasource {
         return InventoryEntity.fromObject(inventory);
     }
     async getAll(): Promise<InventoryEntity[]> {
-
-    const form: [boolean?,string?] = [true,"code"];
-        console.log(form[0]);
+        const obj = {
+            isActive: true,
+            code: ['PLT','ING'],
+            description: ['ddsads','dsdsads']
+        }   
+        const {isActive = true, } = obj;
         
         const inventories = prisma.inventory.findMany({
+            
             where: {
                 product: {
+                    category: {
+                        in: ['Platillos' ]
+                    },
                     productType:{
-                        isActive: form[0] //form[0]
+                        isActive: isActive
                     }
                 }
             },

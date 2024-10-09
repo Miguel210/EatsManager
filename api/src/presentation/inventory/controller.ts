@@ -19,8 +19,18 @@ export class InventoryController {
         return res.status(500).json({error: 'Internal server error'})
     }
 
+    init = (req: Request, res: Response ) => {
+
+
+        this.inventoryService.init()
+        .then( init => res.json(init))
+        .catch( error => this.HandleError(error, res))
+    }
+
     getAll = (req: Request, res: Response) => {
 
+        console.log(req.body);
+        
         this.inventoryService.getAll()
         .then(inventory => res.json(inventory))
         .catch(error => this.HandleError(error, res))
