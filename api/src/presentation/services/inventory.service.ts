@@ -36,9 +36,10 @@ export class InventoryService {
             data: dictionery
         }
     }
-    public async getAll() {
+    public async getAll(data: object) {
 
-        const inventory = await new GetAllInventory(this.repository).execute()
+        
+        const inventory = await new GetAllInventory(this.repository).execute(data)
         .then( inventory => inventory)
         .catch(error => console.log(error))
 

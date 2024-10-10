@@ -29,9 +29,16 @@ export class InventoryController {
 
     getAll = (req: Request, res: Response) => {
 
-        console.log(req.body);
-        
-        this.inventoryService.getAll()
+         const data:object = {
+            description: req.body.description,
+            code: req.body.code,
+            productType: req.body.productType,
+            category: req.body.category,
+            date: req.body.date,
+            isActive: req.body.isActive
+         }
+
+        this.inventoryService.getAll(data)
         .then(inventory => res.json(inventory))
         .catch(error => this.HandleError(error, res))
     }

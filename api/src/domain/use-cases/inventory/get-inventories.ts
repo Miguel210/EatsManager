@@ -3,7 +3,7 @@ import { InventoryRepository } from "../../repositories/inventory/inventory.repo
 
 
 export interface GetAllInventoryUseCase {
-    execute(): Promise<InventoryEntity[]>;
+    execute(obj: object): Promise<InventoryEntity[]>;
 }
 
 
@@ -14,7 +14,7 @@ export class GetAllInventory implements GetAllInventoryUseCase {
         private readonly repository: InventoryRepository
     ) {}
 
-    execute(): Promise<InventoryEntity[]> {
-        return this.repository.getAll()
+    execute(obj: object): Promise<InventoryEntity[]> {
+        return this.repository.getAll(obj)
     }
 }

@@ -1,4 +1,3 @@
-import { isBooleanObject } from "util/types";
 import { Uuid } from "../../../config";
 import { prisma } from "../../../data";
 import { InventoryDatasource } from "../../../domain/datasource/inventory/inventory.datasource";
@@ -22,23 +21,31 @@ export class InventoryDatasourceImpl implements InventoryDatasource {
         if( !inventory ) throw `Inventory no created`;
         return InventoryEntity.fromObject(inventory);
     }
-    async getAll(): Promise<InventoryEntity[]> {
-        const obj = {
-            isActive: true,
-            code: ['PLT','ING'],
-            description: ['ddsads','dsdsads']
-        }   
-        const {isActive = true, } = obj;
+
+
+    async getAll(obj: any): Promise<InventoryEntity[]> {
+        const date: Date[] = [new Date(obj.date)]
         
         const inventories = prisma.inventory.findMany({
             
             where: {
                 product: {
                     category: {
-                        in: ['Platillos' ]
+                        in: obj.category || undefined
                     },
-                    productType:{
-                        isActive: isActive
+                    code: {
+                        in: obj.code || undefined
+                    },
+                    productTypeId: { 
+                        in: obj.productTypen || undefined
+                    },
+                    description: {
+                        in: obj.description || undefined
+                    },
+                },
+                movement: {
+                    date: {
+                        in: date
                     }
                 }
             },
@@ -47,16 +54,21 @@ export class InventoryDatasourceImpl implements InventoryDatasource {
                     select: {
                         description: true,
                         code: true,
+                        category: true,
+                        productType: {
+                            select: {
+                                description: true
+                            }
+                        }
                     }
                 },
                 movement: {
-                    
+                    select: {
+                        date: true,
+                    }
                 }
             }
         });
-
-        
-//        console.log((await inventories).map(e => e));
 
         return (await inventories).map( inventory => InventoryEntity.fromObject(inventory));
     }

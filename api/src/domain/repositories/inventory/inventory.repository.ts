@@ -7,5 +7,5 @@ export abstract class InventoryRepository {
 
     abstract create(createInventoryDto: CreateInventoryDto): Promise<InventoryEntity>;
 
-    abstract getAll(): Promise<InventoryEntity[]>;
+    abstract getAll(obj: object): Promise<InventoryEntity[]>;
 }

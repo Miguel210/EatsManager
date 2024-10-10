@@ -13,7 +13,7 @@ export class InventoryRepositoryImpl implements InventoryRepository {
     create(createInventoryDto: CreateInventoryDto): Promise<InventoryEntity> {
         throw new Error("Method not implemented.");
     }
-    getAll(): Promise<InventoryEntity[]> {
-        return this.datasource.getAll();
+    getAll(obj: object): Promise<InventoryEntity[]> {
+        return this.datasource.getAll(obj);
     }
 }
