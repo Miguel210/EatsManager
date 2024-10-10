@@ -38,6 +38,7 @@ export class InventoryService {
     }
     public async getAll(data: object) {
 
+        console.log(data);
         
         const inventory = await new GetAllInventory(this.repository).execute(data)
         .then( inventory => inventory)

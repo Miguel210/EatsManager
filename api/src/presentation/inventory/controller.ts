@@ -28,13 +28,18 @@ export class InventoryController {
     }
 
     getAll = (req: Request, res: Response) => {
-
+        let date: Date | any;
+        date = new Date(req.body.date)
+        if( !req.body.date) {
+            date = undefined;
+        }
+        
          const data:object = {
             description: req.body.description,
             code: req.body.code,
-            productType: req.body.productType,
+            productType: req.body.productType ,
             category: req.body.category,
-            date: req.body.date,
+            date: date ,
             isActive: req.body.isActive
          }
 

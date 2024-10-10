@@ -24,7 +24,8 @@ export class InventoryDatasourceImpl implements InventoryDatasource {
 
 
     async getAll(obj: any): Promise<InventoryEntity[]> {
-        const date: Date[] = [new Date(obj.date)]
+
+        //const date: Date[] = [new Date(obj.date)] 
         
         const inventories = prisma.inventory.findMany({
             
@@ -37,16 +38,14 @@ export class InventoryDatasourceImpl implements InventoryDatasource {
                         in: obj.code || undefined
                     },
                     productTypeId: { 
-                        in: obj.productTypen || undefined
+                        in: obj.productType || undefined
                     },
                     description: {
                         in: obj.description || undefined
                     },
                 },
                 movement: {
-                    date: {
-                        in: date
-                    }
+                    date: obj.date || undefined
                 }
             },
             include: {
