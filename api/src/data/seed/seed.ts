@@ -35,6 +35,7 @@ async function main() {
     await prisma.gender.deleteMany(),
     await prisma.module.deleteMany(),
     await prisma.productType.deleteMany(),
+    await prisma.categoryProduct.deleteMany(),
 
     await prisma.module.createMany({
         data: seedData.module,
@@ -83,7 +84,12 @@ async function main() {
         data: seedData.typeProduct
     });
 
-    await prisma.product.createMany({
+    
+    await prisma.categoryProduct.createMany({
+        data: seedData.categoryProduct
+    })
+
+     await prisma.product.createMany({
         data: seedData.product
     })
 

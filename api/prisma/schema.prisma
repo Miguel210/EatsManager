@@ -228,8 +228,16 @@ model movementDetail {
 model productType {
   id String @id @default(uuid())
   description String
+  useStock Boolean @default(true)
   isActive Boolean @default(true)
 
+  products product[]
+}
+model categoryProduct {
+  id String @id @default(uuid())
+  categoryName String
+  isActive Boolean @default(true)
+  
   products product[]
 }
 model product {
@@ -239,10 +247,11 @@ model product {
   existence Int
   price Decimal @db.Decimal(10,2)
   productTypeId String
-  category String
+  categoryId String
   isActive Boolean @default(true)
 
   productType productType @relation(fields: [productTypeId], references: [id])
+  category categoryProduct @relation(fields: [categoryId],references: [id])
   garrisonMainDish garrison[] @relation("GarrisonMainDish")
   garrisonDish garrison[] @relation("GarrisonDish")
 
