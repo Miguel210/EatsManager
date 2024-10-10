@@ -31,7 +31,7 @@ export class InventoryDatasourceImpl implements InventoryDatasource {
             
             where: {
                 product: {
-                    category: {
+                    categoryId: {
                         in: obj.category || undefined
                     },
                     code: {
