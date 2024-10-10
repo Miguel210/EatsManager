@@ -21,7 +21,7 @@ export class InventoryRouter {
 
         router.get('/:module',[AuthMiddlewares.validateJWT], controller.init)
         router.get('/:module/getall',[AuthMiddlewares.validateJWT], controller.getAll)
-        router.post('/:module/deleted',[AuthMiddlewares.validateJWT], controller.createInv)
+        router.post('/:module/create',[AuthMiddlewares.validateJWT], controller.createInv)
 
         return router;
     }
