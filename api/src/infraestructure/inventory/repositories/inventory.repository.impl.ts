@@ -11,7 +11,7 @@ export class InventoryRepositoryImpl implements InventoryRepository {
         private readonly datasource: InventoryDatasource
     ) {}
     create(createInventoryDto: CreateInventoryDto): Promise<InventoryEntity> {
-        throw new Error("Method not implemented.");
+        return this.datasource.create(createInventoryDto)
     }
     getAll(obj: object): Promise<InventoryEntity[]> {
         return this.datasource.getAll(obj);

@@ -9,7 +9,7 @@ export class CreateInventoryDto {
         public quantity: number
     ) {}
 
-    static create(props: {[key: string]: any}) {
+    static create(props: {[key: string]: any}): [string?, CreateInventoryDto?] {
 
         const {movementId, product, quantity} = props;
 

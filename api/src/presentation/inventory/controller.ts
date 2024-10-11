@@ -51,15 +51,15 @@ export class InventoryController {
 
     createInv = (req: Request, res: Response) => {
 
-        const [error, inventoryDto] = CreateInventoryDto.create(req.body)
-        if ( error ) throw res.status(400).json({error})
+        const [error, inventoryDto]= CreateInventoryDto.create(req.body)
+        if ( error ) throw res.status(400).json({error});
 
-            console.log(inventoryDto);
-            res.json(inventoryDto)       
-/*  r
+            //console.log(inventoryDto);
+            //res.json(inventoryDto)
+
         this.inventoryService.create(inventoryDto!)
-        .then( init => res.json(init))
-        .catch(error => this.HandleError(error,res))*/
+        .then(inv => res.json(inv))
+        .catch(error => this.HandleError(error, res))
     }
 
 }

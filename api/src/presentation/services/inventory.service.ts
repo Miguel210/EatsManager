@@ -1,8 +1,9 @@
 import { prisma } from "../../data";
-import { CreateInventoryDto } from "../../domain/dtos/inventory/create-inventory.dto";
 import { CreateInventory } from "../../domain/use-cases/inventory/create-inventory";
 import { GetAllInventory } from "../../domain/use-cases/inventory/get-inventories";
 import { InventoryRepositoryImpl } from "../../infraestructure/inventory/repositories/inventory.repository.impl";
+import { CreateInventoryDto } from "../../domain/dtos/inventory/create-inventory.dto";
+
 
 
 
@@ -39,7 +40,7 @@ export class InventoryService {
     public async getAll(data: object) {
 
         console.log(data);
-        
+
         const inventory = await new GetAllInventory(this.repository).execute(data)
         .then( inventory => inventory)
         .catch(error => console.log(error))
@@ -55,7 +56,6 @@ export class InventoryService {
         const inventory = await new CreateInventory(this.repository).execute(dto)
         .then( inventory => inventory)
         .catch(error => console.log({error}))
-
 
         return {
             data: inventory

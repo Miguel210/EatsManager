@@ -9,6 +9,8 @@ import { InventoryEntity } from "../../../domain/entities/inventory.entity";
 export class InventoryDatasourceImpl implements InventoryDatasource {
     
     async create(createInventoryDto: CreateInventoryDto): Promise<InventoryEntity> {
+
+        
         const inventory = await prisma.inventory.create({
             data: {
                 id: Uuid.uuid(),
@@ -19,6 +21,7 @@ export class InventoryDatasourceImpl implements InventoryDatasource {
         })
 
         if( !inventory ) throw `Inventory no created`;
+        
         return InventoryEntity.fromObject(inventory);
     }
 
