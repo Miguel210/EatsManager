@@ -15,7 +15,7 @@ export class AppRoutes {
 
         router.use('/api/auth', AuthRoutes.routes);
         router.use('/api/dashboard', DashboardRoutes.routes);
-        router.use('/api/menu', MenuRoutes.routes);
+        router.use('/api/product', MenuRoutes.routes);
         router.use('/api/supplier', SupplierRouter.routes)
         router.use('/api/inventory', InventoryRouter.routes);
         router.use('/api/utils', UtilRouter.routes)

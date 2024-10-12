@@ -18,7 +18,7 @@ export class MenuRoutes {
         const moduleService = new ModuleService(moduleRepository);
         const controller = new MenuController(moduleService);
         
-        router.get('/',[AuthMiddlewares.validateJWT], controller.menu )
+        router.get('/:module/',[AuthMiddlewares.validateJWT], controller.menu )
 
         return router;
     }
