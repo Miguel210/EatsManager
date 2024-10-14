@@ -14,7 +14,8 @@ export class ProductDatasourceImpl implements ProductDatasource {
         
         const products = await prisma.product.findMany();
 
-
+        console.log(products);
+        
         return products.map(product => ProductEntity.fromObject(product));
     }
     async findById(id: string): Promise<ProductEntity> {

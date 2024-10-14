@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { AuthMiddlewares } from "../middlewares/authMiddlewares";
 import { ProductController } from "./controller";
-import { ModuleService } from "../services/module.service";
-import { ModuleDatasourceImpl } from "../../infraestructure/module/datasource/module.datasource.impl";
-import { ModelRepositoryImpl } from "../../infraestructure/module/repositories/module.repository.impl";
+import { ProductDatasourceImpl } from "../../infraestructure/product/datasource/product.datasource.impl";
+import { ProductService } from "../services/product.service";
+import { ProductRepositoryImpl } from "../../infraestructure/product/repositories/product.repository.impl";
 
 
 
@@ -13,10 +13,10 @@ export class ProductRoutes {
 
         const router = Router();
 
-        const moduleDatasourceImpl = new ModuleDatasourceImpl();
-        const moduleRepository = new ModelRepositoryImpl(moduleDatasourceImpl);
-        const moduleService = new ModuleService(moduleRepository);
-        const controller = new ProductController(moduleService);
+        const productDatasourceImpl = new ProductDatasourceImpl();
+        const productRepository = new ProductRepositoryImpl(productDatasourceImpl);
+        const productService = new ProductService(productRepository);
+        const controller = new ProductController(productService);
         
         router.get('/',[AuthMiddlewares.validateJWT], controller.menu )
 
