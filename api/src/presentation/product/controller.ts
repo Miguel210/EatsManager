@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { CustomError } from "../../domain";
 import { ProductService } from "../services/product.service";
+import { UpdateProductDto } from "../../domain/dtos/product/update-product.dto";
 
 
 
@@ -49,6 +50,19 @@ export class ProductController {
         .then( product => res.json(product))
         .catch(error => this.handleError(error, res))
 
+
+    }
+
+
+    update = (req: Request, res: Response) => {
+        const id = req.body.id;
+
+        const [error, updateProductDto] =  UpdateProductDto.create({...req.body,id})
+        if( error )return res.status(400).json({error})
+        
+        this.productService.update(updateProductDto!)
+        .then(product => res.json(product))
+        .catch(error => this.handleError(error, res))
 
     }
 

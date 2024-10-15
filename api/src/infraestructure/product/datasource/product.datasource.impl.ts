@@ -77,8 +77,18 @@ export class ProductDatasourceImpl implements ProductDatasource {
         
         return ProductEntity.fromObject(product);
     }
-    updateById(updateProductDto: UpdateProductDto): Promise<ProductEntity> {
-        throw new Error("Method not implemented.");
+    async updateById(updateProductDto: UpdateProductDto): Promise<ProductEntity> {
+
+        const product = await prisma.product.update({
+            where: {
+                id: updateProductDto.id
+            },
+            data: updateProductDto 
+        })
+
+        console.log(product);
+        
+        return ProductEntity.fromObject(product)
     }
     deleteById(id: string): Promise<ProductEntity> {
         throw new Error("Method not implemented.");
