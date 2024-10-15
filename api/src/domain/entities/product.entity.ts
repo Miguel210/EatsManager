@@ -21,9 +21,8 @@ export class ProductEntity {
 
     static fromObject(object: {[key: string]: any}) {
 
-
         const {id, code, description, existence, price, productTypeId, categoryId, viewMenu, isActive, image, deleteAt, isDelete } = object
-        
+
         if( !id ) throw CustomError.badRequest('Missig id product');
 
         if( !code ) throw CustomError.badRequest('Missig code');
@@ -31,13 +30,11 @@ export class ProductEntity {
         if( !existence ) throw CustomError.badRequest('Missig existence');
         if( !price ) throw CustomError.badRequest('Missig price');
         if( !productTypeId ) throw CustomError.badRequest('Missig productTypeId');
-
         if( !categoryId ) throw CustomError.badRequest('Missig category');
         if( !viewMenu === undefined ) throw CustomError.badRequest('Missing viewMenu')
         if( !isActive === undefined ) throw CustomError.badRequest('Missing isActive')
 
         //if(isDelete === false) throw CustomError.badRequest('No exist')
-
 
         return new ProductEntity(id, code, description, existence, price, productTypeId, categoryId, viewMenu, isActive, image, deleteAt, isDelete)
     }
