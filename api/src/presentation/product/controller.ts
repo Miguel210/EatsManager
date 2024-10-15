@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { CustomError } from "../../domain";
 import { ProductService } from "../services/product.service";
 import { UpdateProductDto } from "../../domain/dtos/product/update-product.dto";
+import { CreateProductDto } from "../../domain/dtos/product/create-product.dto";
 
 
 
@@ -20,7 +21,17 @@ export class ProductController {
         return res.status(500).json({error: 'Internal server error'})
     }
 
-    menu = (req: Request, res: Response) => {
+    createp = (req: Request, res: Response) => {
+
+        const [error, createProductDto] = CreateProductDto.create(req.body)
+        if( error )return res.status(400).json({error})
+
+        this.productService.create(createProductDto!)
+        .then(product => res.json(product))
+        .catch(error => this.handleError(error, res))
+    }
+
+    getAllp = (req: Request, res: Response) => {
        
         const form = {
             description: req.body.description,

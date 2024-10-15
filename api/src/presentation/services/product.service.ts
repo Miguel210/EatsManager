@@ -1,4 +1,6 @@
+import { CreateProductDto } from "../../domain/dtos/product/create-product.dto";
 import { UpdateProductDto } from "../../domain/dtos/product/update-product.dto";
+import { CreateProduct } from "../../domain/use-cases/product/create-product";
 import { DeleteProduct } from "../../domain/use-cases/product/delete-product";
 import { GetProduct } from "../../domain/use-cases/product/get-product";
 import { GetProducts } from "../../domain/use-cases/product/get-products";
@@ -12,6 +14,22 @@ export class ProductService {
     constructor(
         readonly repository: ProductRepositoryImpl
     ) {}
+
+    public async create(dto: CreateProductDto){
+        
+
+        const product = await new CreateProduct(this.repository).execute(dto)
+        .then(product => product)
+        .catch(error => console.log({error}));
+
+
+        return {
+            data: {
+                product
+            }
+        }
+    }
+
 
     public async getAll(form: any) {
 

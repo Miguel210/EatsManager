@@ -1,3 +1,4 @@
+import { Uuid } from "../../../config";
 import { prisma } from "../../../data";
 import { ProductDatasource } from "../../../domain/datasource/product/product.datasource";
 import { CreateProductDto } from "../../../domain/dtos/product/create-product.dto";
@@ -7,8 +8,25 @@ import { ProductEntity } from "../../../domain/entities/product.entity";
 
 
 export class ProductDatasourceImpl implements ProductDatasource {
-    create(createProductDto: CreateProductDto): Promise<ProductEntity> {
-        throw new Error("Method not implemented.");
+    async create(createProductDto: CreateProductDto): Promise<ProductEntity> {
+        
+        const product = await prisma.product.create({
+            data: {
+                id: Uuid.uuid(),
+                code: createProductDto.code,
+                description: createProductDto.description,
+                existence: createProductDto.existence,
+                price: createProductDto.price,
+                productTypeId: createProductDto.productTypeId,
+                categoryId: createProductDto.categoryId,
+                viewMenu: createProductDto.viewMenu,
+                isActive: createProductDto.isActive,
+                image: createProductDto.image
+            }
+        });
+
+        if( !product ) throw `Product with the datas: ${product} not create`;
+        return ProductEntity.fromObject(product)
     }
     async getAll(form: any): Promise<ProductEntity[]> {
         
