@@ -54,7 +54,8 @@ export class ProductDatasourceImpl implements ProductDatasource {
         
         const product = await prisma.product.findFirst({
             where: {
-                id: id  
+                id: id,
+                isDelete: false  
             },
             include: {
                 productType:{
@@ -79,6 +80,9 @@ export class ProductDatasourceImpl implements ProductDatasource {
     }
     async updateById(updateProductDto: UpdateProductDto): Promise<ProductEntity> {
 
+        await this.findById(updateProductDto.id)
+
+
         const product = await prisma.product.update({
             where: {
                 id: updateProductDto.id
@@ -90,8 +94,21 @@ export class ProductDatasourceImpl implements ProductDatasource {
         
         return ProductEntity.fromObject(product)
     }
-    deleteById(id: string): Promise<ProductEntity> {
-        throw new Error("Method not implemented.");
+    async deleteById(id: string): Promise<ProductEntity> {
+        
+        await this.findById(id)
+        
+        const product = await prisma.product.update({
+            where: {
+                id: id
+            },
+            data: {
+                isDelete: true,
+                deleteAt: new Date()
+            }
+        })
+
+        return ProductEntity.fromObject(product)
     }
 
 }

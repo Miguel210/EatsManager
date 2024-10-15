@@ -66,4 +66,16 @@ export class ProductController {
 
     }
 
+
+    delete = (req: Request, res: Response) => {
+
+        const id = req.body.id
+
+        if( !id ) return this.handleError('Not id', res);
+
+        this.productService.delete(id)
+        .then(product => res.json(product))
+        .catch(error => this.handleError(error, res))
+    }
+
 }
