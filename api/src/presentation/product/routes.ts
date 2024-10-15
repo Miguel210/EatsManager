@@ -19,6 +19,8 @@ export class ProductRoutes {
         const controller = new ProductController(productService);
         
         router.get('/',[AuthMiddlewares.validateJWT], controller.menu )
+        router.post('/get/',[AuthMiddlewares.validateJWT], controller.getProduct )
+
 
         return router;
     }

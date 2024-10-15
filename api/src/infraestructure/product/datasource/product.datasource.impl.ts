@@ -54,11 +54,27 @@ export class ProductDatasourceImpl implements ProductDatasource {
         
         const product = await prisma.product.findFirst({
             where: {
-                id: id
+                id: id  
+            },
+            include: {
+                productType:{
+                    select: {
+                        id: true,
+                        description: true
+                    }
+                },
+                category: {
+                    select: {
+                        id: true,
+                        categoryName: true
+                    }
+                }
             }
         });
         if( !product ) throw `Supplier with id ${id} not found`;
 
+        console.log(product);
+        
         return ProductEntity.fromObject(product);
     }
     updateById(updateProductDto: UpdateProductDto): Promise<ProductEntity> {

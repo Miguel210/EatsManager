@@ -36,4 +36,20 @@ export class ProductController {
 
     }
 
+    getProduct = (req: Request, res: Response) => {
+
+        const { id } = req.body
+
+        console.log(id);
+        
+
+        if( !id ) this.handleError('No Id',res);
+
+        this.productService.get(id)
+        .then( product => res.json(product))
+        .catch(error => this.handleError(error, res))
+
+
+    }
+
 }
