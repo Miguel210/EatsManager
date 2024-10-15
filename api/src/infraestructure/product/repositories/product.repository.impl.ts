@@ -15,8 +15,8 @@ export class ProductRepositoryImpl implements ProductRepository {
     create(createProductDto: CreateProductDto): Promise<ProductEntity> {
         return this.datasource.create(createProductDto)
     }
-    getAll(): Promise<ProductEntity[]> {
-        return this.datasource.getAll();
+    getAll(form: any): Promise<ProductEntity[]> {
+        return this.datasource.getAll(form);
     }
     findById(id: string): Promise<ProductEntity> {
         return this.datasource.findById(id);

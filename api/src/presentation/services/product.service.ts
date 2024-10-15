@@ -9,9 +9,10 @@ export class ProductService {
         readonly repository: ProductRepositoryImpl
     ) {}
 
-    public async getAll() {
+    public async getAll(form: any) {
 
-        const products = await new GetProducts(this.repository).execute()
+        
+        const products = await new GetProducts(this.repository).execute(form)
             .then(product => product)
             .catch(error => console.log({error}));
         

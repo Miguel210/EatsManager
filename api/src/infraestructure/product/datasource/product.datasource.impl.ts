@@ -10,11 +10,43 @@ export class ProductDatasourceImpl implements ProductDatasource {
     create(createProductDto: CreateProductDto): Promise<ProductEntity> {
         throw new Error("Method not implemented.");
     }
-    async getAll(): Promise<ProductEntity[]> {
+    async getAll(form: any): Promise<ProductEntity[]> {
         
-        const products = await prisma.product.findMany();
-
-        console.log(products);
+        console.log(form);
+        
+        const products = await prisma.product.findMany({
+            where: {
+                isDelete: false,
+                
+                categoryId: {
+                    in: form.category || undefined
+                },
+                code: {
+                    in: form.code || undefined
+                },
+                productTypeId: { 
+                    in: form.productType || undefined
+                },
+                description: {
+                    in: form.description || undefined
+                },
+                isActive: form.isActive,
+                viewMenu: form.viewMenu
+            },
+            include: {
+                productType:{
+                    select: {
+                        description: true
+                    }
+                },
+                category: {
+                    select: {
+                        categoryName: true
+                    }
+                }
+            }
+        });
+        //console.log(products);
         
         return products.map(product => ProductEntity.fromObject(product));
     }

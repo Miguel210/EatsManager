@@ -20,9 +20,17 @@ export class ProductController {
     }
 
     menu = (req: Request, res: Response) => {
-       // console.log(req.body.met[0]);
+       
+        const form = {
+            description: req.body.description,
+            code: req.body.code,
+            productType: req.body.productType ,
+            category: req.body.category,
+            isActive: req.body.isActive,
+            viewMenu: req.body.viewMenu
+        }
 
-        this.productService.getAll()
+        this.productService.getAll(form)
         .then( product => res.json(product))
         .catch( error => this.handleError(error,res))
 
