@@ -245,12 +245,15 @@ model product {
   code String
   description String
   existence Int
-  image String
   price Decimal @db.Decimal(10,2)
   productTypeId String
   categoryId String
   isActive Boolean @default(true)
   viewMenu Boolean @default(false)
+  image String?
+
+  deleteAt DateTime?
+  isDelete Boolean @default(false)
 
   productType productType @relation(fields: [productTypeId], references: [id])
   category categoryProduct @relation(fields: [categoryId],references: [id])
