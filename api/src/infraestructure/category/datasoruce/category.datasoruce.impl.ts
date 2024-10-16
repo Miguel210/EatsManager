@@ -16,7 +16,7 @@ export class CategoryDatasourceImpl implements CategoryDatasource {
         const categories = await prisma.categoryProduct.findMany({
             where: {
                 categoryName: {
-                    in: [form.categoryName] || undefined
+                    in: form.categoryName || undefined
                 },
                 isActive: form.isActive,
                 isDelete: false
@@ -27,7 +27,17 @@ export class CategoryDatasourceImpl implements CategoryDatasource {
         return categories.map(categories => CategoryEntity.fromObject(categories))
     }
     async get(id: string): Promise<CategoryEntity> {
-        throw new Error("Method not implemented.");
+        
+        const category = await prisma.categoryProduct.findFirst({
+            where: {
+                id: id,
+                isDelete: false
+            }
+        })
+
+        if( !category) throw `Category with id ${id} not found`;
+
+        return CategoryEntity.fromObject(category);
     }
     async update(updateCategoryDto: UpdateCategoryDto): Promise<CategoryEntity> {
         throw new Error("Method not implemented.");

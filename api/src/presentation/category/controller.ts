@@ -31,4 +31,16 @@ export class CategoryController {
         .catch(error => this.handleError(error, res))
     }
 
+    getCategory = (req: Request, res: Response) => {
+
+        const id = req.body.id
+
+        if( !id ) this.handleError('No id', res);
+
+        this.service.get(id)
+        .then(category => res.json(category))
+        .catch(error => this.handleError(error, res));
+
+    }
+
 }

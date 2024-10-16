@@ -19,6 +19,8 @@ export class CategoryRouter {
         
         
         router.get('/', controller.getAllc)
+        router.post('/get/', controller.getCategory)
+
 
 
         return router;

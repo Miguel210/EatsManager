@@ -8,7 +8,7 @@ export interface UpdateCategoryUseCase {
     execute(dto: UpdateCategoryDto): Promise<CategoryEntity>;
 }
 
-export class CreateCategory implements UpdateCategoryUseCase {
+export class UpdateCategory implements UpdateCategoryUseCase {
 
     constructor(
         private readonly repository: CategoryRepository

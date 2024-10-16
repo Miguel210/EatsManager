@@ -90,7 +90,7 @@ export class ProductDatasourceImpl implements ProductDatasource {
                 }
             }
         });
-        if( !product ) throw `Supplier with id ${id} not found`;
+        if( !product ) throw `Product with id ${id} not found`;
 
         console.log(product);
         

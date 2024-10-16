@@ -8,7 +8,7 @@ export interface DeleteCategoryUseCase {
     execute(id: string): Promise<CategoryEntity>;
 }
 
-export class GetCategory implements DeleteCategoryUseCase {
+export class DeleteCategory implements DeleteCategoryUseCase {
 
     constructor(
         private readonly repository: CategoryRepository
