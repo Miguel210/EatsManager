@@ -1,3 +1,4 @@
+import { prisma } from "../../../data";
 import { CategoryDatasource } from "../../../domain/datasource/category/category.datasource";
 import { CreateCategoryDto } from "../../../domain/dtos/category/create-category.dto";
 import { UpdateCategoryDto } from "../../../domain/dtos/category/update-category.dto";
@@ -11,7 +12,19 @@ export class CategoryDatasourceImpl implements CategoryDatasource {
         throw new Error("Method not implemented.");
     }
     async getAll(form: any): Promise<CategoryEntity[]> {
-        throw new Error("Method not implemented.");
+        
+        const categories = await prisma.categoryProduct.findMany({
+            where: {
+                categoryName: {
+                    in: [form.categoryName] || undefined
+                },
+                isActive: form.isActive,
+                isDelete: false
+            }
+        });
+
+        
+        return categories.map(categories => CategoryEntity.fromObject(categories))
     }
     async get(id: string): Promise<CategoryEntity> {
         throw new Error("Method not implemented.");
