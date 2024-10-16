@@ -2,6 +2,7 @@ import { CategoryService } from "../services/category.service";
 import { Response, Request } from "express";
 import { CustomError } from "../../domain";
 import { CreateCategoryDto } from "../../domain/dtos/category/create-category.dto";
+import { UpdateCategoryDto } from "../../domain/dtos/category/update-category.dto";
 
 
 
@@ -51,6 +52,17 @@ export class CategoryController {
         if( !id ) this.handleError('No id', res);
 
         this.service.get(id)
+        .then(category => res.json(category))
+        .catch(error => this.handleError(error, res));
+
+    }
+
+    update = (req: Request, res: Response) => {
+
+        const [error, updateCategoryDto] = UpdateCategoryDto.create(req.body)
+        if( error ) return res.status(400).json({error});
+        
+        this.service.update(updateCategoryDto!)
         .then(category => res.json(category))
         .catch(error => this.handleError(error, res));
 

@@ -51,7 +51,22 @@ export class CategoryDatasourceImpl implements CategoryDatasource {
         return CategoryEntity.fromObject(category);
     }
     async update(updateCategoryDto: UpdateCategoryDto): Promise<CategoryEntity> {
-        throw new Error("Method not implemented.");
+        await this.get(updateCategoryDto.id)
+
+        const category = await prisma.categoryProduct.update({
+            where: {
+                id: updateCategoryDto.id
+            },
+            data: {
+                categoryName: updateCategoryDto.categoryName,
+                isActive: updateCategoryDto.isActive
+            }
+        });
+
+        if( !category) throw `Category with id ${updateCategoryDto} not found`;
+
+        return CategoryEntity.fromObject(category);
+    
     }
     async delete(id: string): Promise<CategoryEntity> {
         throw new Error("Method not implemented.");

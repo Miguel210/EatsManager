@@ -4,9 +4,9 @@
 export class UpdateCategoryDto {
 
     private constructor(
-        private readonly id: string,
-        private readonly categoryName: string,
-        private readonly isActive: boolean
+        public readonly id: string,
+        public readonly categoryName: string,
+        public readonly isActive: boolean
     ) {}
 
     get values(){

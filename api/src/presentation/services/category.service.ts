@@ -1,7 +1,9 @@
 import { CreateCategoryDto } from "../../domain/dtos/category/create-category.dto";
+import { UpdateCategoryDto } from "../../domain/dtos/category/update-category.dto";
 import { CreateCategory } from "../../domain/use-cases/category/create-category";
 import { GetCategories } from "../../domain/use-cases/category/get-categories";
 import { GetCategory } from "../../domain/use-cases/category/get-category";
+import { UpdateCategory } from "../../domain/use-cases/category/update-category";
 import { CategoryRepositoryImpl } from "../../infraestructure/category/repositories/category.datasource.impl";
 
 
@@ -48,14 +50,31 @@ export class CategoryService {
     public async get (id: string) {
 
         const category = await new GetCategory(this.categoryRepository).execute(id)
-        .then(category => category)
-        .catch(error => console.log({error})
-    );
+            .then(category => category)
+            .catch(error => console.log({error})
+        );
 
         return {
             data: {
                 category
             }
         }
+    }
+
+    public async update(updateCategoryDto: UpdateCategoryDto) {
+
+        console.log(updateCategoryDto);
+        
+        const category = await new UpdateCategory(this.categoryRepository).execute(updateCategoryDto)
+            .then(category => category)
+            .catch(error => console.log({error})
+        );
+
+        return {
+            data: {
+                category
+            }
+        }
+    
     }
 }
