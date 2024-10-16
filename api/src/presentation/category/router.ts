@@ -19,9 +19,10 @@ export class CategoryRouter {
         
         
         router.get('/', controller.getAllc)
-        router.post('/create/', controller.create)
         router.post('/get/', controller.getCategory)
+        router.post('/create/', controller.create)
         router.post('/update/', controller.update)
+        router.post('/delete/', controller.delete)
 
 
 

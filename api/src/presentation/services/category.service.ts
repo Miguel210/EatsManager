@@ -1,6 +1,7 @@
 import { CreateCategoryDto } from "../../domain/dtos/category/create-category.dto";
 import { UpdateCategoryDto } from "../../domain/dtos/category/update-category.dto";
 import { CreateCategory } from "../../domain/use-cases/category/create-category";
+import { DeleteCategory } from "../../domain/use-cases/category/delete-category";
 import { GetCategories } from "../../domain/use-cases/category/get-categories";
 import { GetCategory } from "../../domain/use-cases/category/get-category";
 import { UpdateCategory } from "../../domain/use-cases/category/update-category";
@@ -76,5 +77,21 @@ export class CategoryService {
             }
         }
     
+    }
+
+    public async delete(id: string) {
+
+        const category = await new DeleteCategory(this.categoryRepository).execute(id)
+            .then(category => category)
+            .catch(error => console.log({error})
+        );
+
+        return {
+            data: {
+                category
+            }
+        }
+
+
     }
 }

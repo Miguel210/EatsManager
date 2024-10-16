@@ -68,4 +68,14 @@ export class CategoryController {
 
     }
 
+    delete = (req: Request, res: Response) => {
+
+        const id = req.body.id
+        if( !id ) throw res.status(400).json('No id')
+        
+        this.service.delete(id)
+        .then(category => res.json(category))
+        .catch(error => this.handleError(error, res));
+
+    }
 }

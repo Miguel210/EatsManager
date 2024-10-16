@@ -69,7 +69,19 @@ export class CategoryDatasourceImpl implements CategoryDatasource {
     
     }
     async delete(id: string): Promise<CategoryEntity> {
-        throw new Error("Method not implemented.");
+        await this.get(id)
+
+        const category = await prisma.categoryProduct.update({
+            where: {
+                id: id
+            },
+            data: {
+                isDelete: true,
+                deleteAt: new Date()
+            }
+        })
+
+        return CategoryEntity.fromObject(category);
     }
 
 }
