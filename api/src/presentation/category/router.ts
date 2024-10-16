@@ -19,7 +19,9 @@ export class CategoryRouter {
         
         
         router.get('/', controller.getAllc)
+        router.post('/create/', controller.create)
         router.post('/get/', controller.getCategory)
+
 
 
 

@@ -1,3 +1,5 @@
+import { CreateCategoryDto } from "../../domain/dtos/category/create-category.dto";
+import { CreateCategory } from "../../domain/use-cases/category/create-category";
 import { GetCategories } from "../../domain/use-cases/category/get-categories";
 import { GetCategory } from "../../domain/use-cases/category/get-category";
 import { CategoryRepositoryImpl } from "../../infraestructure/category/repositories/category.datasource.impl";
@@ -11,6 +13,22 @@ export class CategoryService {
         readonly categoryRepository: CategoryRepositoryImpl
     ) {}
 
+
+    public async create(createCategoryDto: CreateCategoryDto) {
+
+
+        const category = await new CreateCategory(this.categoryRepository).execute(createCategoryDto)
+        .then(category => category)
+        .catch(error => console.log({error})
+        );
+
+        return {
+            data: {
+                category
+            }
+        }
+
+    }
     public async getAll(form: any) {
 
         const categories = await new GetCategories(this.categoryRepository).execute(form)

@@ -1,3 +1,4 @@
+import { Uuid } from "../../../config";
 import { prisma } from "../../../data";
 import { CategoryDatasource } from "../../../domain/datasource/category/category.datasource";
 import { CreateCategoryDto } from "../../../domain/dtos/category/create-category.dto";
@@ -9,17 +10,27 @@ import { CategoryEntity } from "../../../domain/entities/category.entity";
 export class CategoryDatasourceImpl implements CategoryDatasource {
     
     async create(createCategoryDto: CreateCategoryDto): Promise<CategoryEntity> {
-        throw new Error("Method not implemented.");
+        
+        const category = await prisma.categoryProduct.create( {
+            data: {
+                id: Uuid.uuid(),
+                categoryName: createCategoryDto.categoryName,
+                isActive: createCategoryDto.isActive
+            }
+        });
+
+        if( !category ) throw `Category with the datas: ${category} not create`;
+        return CategoryEntity.fromObject(category)
     }
     async getAll(form: any): Promise<CategoryEntity[]> {
         
         const categories = await prisma.categoryProduct.findMany({
             where: {
+                isDelete: false,
                 categoryName: {
                     in: form.categoryName || undefined
                 },
                 isActive: form.isActive,
-                isDelete: false
             }
         });
 

@@ -1,6 +1,7 @@
 import { CategoryService } from "../services/category.service";
 import { Response, Request } from "express";
 import { CustomError } from "../../domain";
+import { CreateCategoryDto } from "../../domain/dtos/category/create-category.dto";
 
 
 
@@ -17,6 +18,18 @@ export class CategoryController {
         }
         console.log(`${error}`);
         return res.status(500).json({error: 'Internal server error'})
+    }
+
+    create = (req: Request, res: Response) => {
+
+        const [error, createCategoryDto] = CreateCategoryDto.create(req.body);
+        if( error ) return res.status(400).json({error});
+
+        this.service.create(createCategoryDto!)
+        .then(category => res.json(category))
+        .catch(error => this.handleError(error, res));
+
+        
     }
 
     getAllc = (req: Request, res: Response ) => {
