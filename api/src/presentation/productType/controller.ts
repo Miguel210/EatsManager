@@ -1,4 +1,4 @@
-import { Response } from "express";
+import { Request, Response } from "express";
 import { ProductTypeService } from "../services/productType.service";
 import { CustomError } from "../../domain";
 
@@ -16,5 +16,17 @@ export class ProductTypeController {
         }
         console.log(`${error}`);
         return res.status(500).json({error: 'Internal server error'})
+    }
+
+    getAll = (req: Request, res: Response) => {
+
+        const form = {
+
+        }
+
+        this.service.getAll(form)
+        .then(types => res.json(types))
+        .catch(error => this.handleError(error, res))
+
     }
 }

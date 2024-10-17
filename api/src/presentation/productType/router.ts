@@ -16,6 +16,8 @@ export class ProductTypeRouter {
         const service = new ProductTypeService(repository);
         const controller = new ProductTypeController(service);
 
+        router.get('/', controller.getAll);
+
         return router;
     }
 }

@@ -6,6 +6,7 @@ import { SupplierRouter } from "./supplier/router";
 import { InventoryRouter } from "./inventory/router";
 import { UtilRouter } from "./utils/router";
 import { CategoryRouter } from "./category/router";
+import { ProductTypeRouter } from "./productType/router";
 
 
 
@@ -18,6 +19,7 @@ export class AppRoutes {
         router.use('/api/dashboard', DashboardRoutes.routes);
         router.use('/api/product', ProductRoutes.routes);
         router.use('/api/category', CategoryRouter.routes)
+        router.use('/api/producttype', ProductTypeRouter.routes)
         router.use('/api/supplier', SupplierRouter.routes)
         router.use('/api/inventory', InventoryRouter.routes);
         router.use('/api/utils', UtilRouter.routes)
