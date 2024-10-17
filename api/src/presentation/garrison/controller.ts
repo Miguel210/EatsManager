@@ -32,6 +32,12 @@ export class GarrisonController {
 
     get = (req: Request, res: Response) => {
         
+        const id = req.body.id;
+        if( !id ) throw res.status(400).json('Requerid id');
+
+        this.service.get(id)
+        .then(garrison => res.json(garrison))
+        .catch(error => this.handleError(error, res));
     }
 
     getAll = (req: Request, res: Response) => {

@@ -31,7 +31,17 @@ export class GarrisonDatasoruceImpl implements GarrisonDatasource {
         throw new Error("Method not implemented.");
     }
     async getById(id: string): Promise<GarrisonEntity> {
-        throw new Error("Method not implemented.");
+        
+        const garrison = await prisma.garrison.findFirst({
+            where: {
+                id: id,
+                isDelete: false
+            }
+        })
+
+        if( !garrison ) throw `Garrison with id ${id} not found`;
+
+        return GarrisonEntity.fromObject(garrison);
     }
     async update(dto: UpdateGarrisonDto): Promise<GarrisonEntity> {
         throw new Error("Method not implemented.");
