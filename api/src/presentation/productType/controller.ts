@@ -28,7 +28,7 @@ export class ProductTypeController {
         .then(type => res.json(type))
         .catch(error => this.handleError(error, res ))
     }   
-    
+
     getAll = (req: Request, res: Response) => {
 
         const form = {
@@ -39,5 +39,13 @@ export class ProductTypeController {
         .then(types => res.json(types))
         .catch(error => this.handleError(error, res))
 
+    }
+
+    get = (req: Request, res: Response) => {
+
+
+        this.service.get(req.body.id)
+        .then(type => res.json(type))
+        .catch(error => this.handleError(error, res))
     }
 }

@@ -36,7 +36,17 @@ export class ProductTypeDatasourceImpl implements ProductTypeDatasource {
         return types.map( types => ProductTypeEntity.fromObject(types))
     }
     async findById(id: string): Promise<ProductTypeEntity> {
-        throw new Error("Method not implemented.");
+        
+        const type = await prisma.productType.findFirst({
+            where: {
+                id: id,
+                isDelete: false
+            }
+        });
+
+        if( !type ) throw `ProductType with ${id} not found`;
+        return ProductTypeEntity.fromObject(type);
+
     }
     async updatebyId(dto: UpdateproductTypeDto): Promise<ProductTypeEntity> {
         throw new Error("Method not implemented.");
