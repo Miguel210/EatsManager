@@ -68,7 +68,19 @@ export class ProductTypeDatasourceImpl implements ProductTypeDatasource {
 
     }
     async deletebyId(id: string): Promise<ProductTypeEntity> {
-        throw new Error("Method not implemented.");
+        
+        const type = await prisma.productType.update({
+            where: {
+                id: id
+            },
+            data: {
+                isDelete: true,
+                deleteAt: new Date()
+            }
+        });
+
+        if( !type ) throw `ProductType with ${id} not found`;
+        return ProductTypeEntity.fromObject(type);
     }
 
 }

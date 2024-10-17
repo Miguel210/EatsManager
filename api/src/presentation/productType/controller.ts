@@ -59,4 +59,12 @@ export class ProductTypeController {
         .then(type => res.json(type))
         .catch(error => this.handleError(error, res))
     }
+
+    delete = (req: Request, res: Response) => {
+
+        this.service.delete(req.body.id)
+        .then(type => res.json(type))
+        .catch(error => this.handleError(error, res))
+    }
+
 }

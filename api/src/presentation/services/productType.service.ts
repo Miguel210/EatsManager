@@ -1,6 +1,7 @@
 import { CreateproductTypeDto } from "../../domain/dtos/productType/create-productType.dto";
 import { UpdateproductTypeDto } from "../../domain/dtos/productType/update-productType.dto";
 import { CreateProductType } from "../../domain/use-cases/productType/create-productType";
+import { DeleteProductType } from "../../domain/use-cases/productType/delete-productType";
 import { GetAllProductType } from "../../domain/use-cases/productType/get-productsType";
 import { GetProductType } from "../../domain/use-cases/productType/get-productType";
 import { UpdateProductType } from "../../domain/use-cases/productType/update-productType";
@@ -70,5 +71,14 @@ export class ProductTypeService {
     
     public async delete(id: string) {
 
+        const type = await new DeleteProductType(this.repository).execute(id)
+        .then(type => type)
+        .catch(error => console.log({error}));
+
+        return {
+            data: {
+                type
+            }
+        }
     }
 }

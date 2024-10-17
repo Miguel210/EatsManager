@@ -20,6 +20,8 @@ export class ProductTypeRouter {
         router.get('/', controller.getAll);
         router.post('/get/', controller.get);
         router.post('/update/', controller.update);
+        router.post('/delete/', controller.delete);
+
 
 
         return router;
