@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { CustomError } from "../../domain";
 import { GarrisonService } from "../services/garrison.service";
+import { CreateGarrisonDto } from "../../domain/dtos/garrison/create-garrison.dto";
 
 
 
@@ -21,6 +22,12 @@ export class GarrisonController {
     
     create = (req: Request, res: Response) => {
 
+        const [error, createGarrisonDto] = CreateGarrisonDto.create(req.body)
+        if ( error ) throw res.status(400).json({error});
+
+        this.service.create(createGarrisonDto!)
+        .then(garrison => res.json(garrison))
+        .catch(error => this.handleError(error, res));
     }
 
     get = (req: Request, res: Response) => {
