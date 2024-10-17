@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { ProductTypeService } from "../services/productType.service";
 import { CustomError } from "../../domain";
+import { CreateproductTypeDto } from "../../domain/dtos/productType/create-productType.dto";
 
 
 
@@ -18,6 +19,16 @@ export class ProductTypeController {
         return res.status(500).json({error: 'Internal server error'})
     }
 
+    create = (req: Request, res: Response) => {
+
+        const [error, productTypeDto] = CreateproductTypeDto.create(req.body)
+        if( error ) return res.status(400).json({error});
+
+        this.service.create(productTypeDto!)
+        .then(type => res.json(type))
+        .catch(error => this.handleError(error, res ))
+    }   
+    
     getAll = (req: Request, res: Response) => {
 
         const form = {

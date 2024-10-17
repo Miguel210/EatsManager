@@ -1,3 +1,4 @@
+import { Uuid } from "../../../config";
 import { prisma } from "../../../data";
 import { ProductTypeDatasource } from "../../../domain/datasource/productType/productType.datasoruce";
 import { CreateproductTypeDto } from "../../../domain/dtos/productType/create-productType.dto";
@@ -8,7 +9,19 @@ import { ProductTypeEntity } from "../../../domain/entities/productType.entity";
 
 export class ProductTypeDatasourceImpl implements ProductTypeDatasource {
     async create(dto: CreateproductTypeDto): Promise<ProductTypeEntity> {
-        throw new Error("Method not implemented.");
+
+        const productType = await prisma.productType.create({
+            data: {
+                id: Uuid.uuid(),
+                description: dto.description,
+                useStock: dto.useStock,
+                isActive: dto.isActive
+            }
+        });
+    
+        if( !productType ) throw `ProductType ${productType} not found`;
+
+        return ProductTypeEntity.fromObject(productType)
     }
     async getAll(form: any): Promise<ProductTypeEntity[]> {
         
