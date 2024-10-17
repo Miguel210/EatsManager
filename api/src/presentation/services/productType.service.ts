@@ -3,6 +3,7 @@ import { UpdateproductTypeDto } from "../../domain/dtos/productType/update-produ
 import { CreateProductType } from "../../domain/use-cases/productType/create-productType";
 import { GetAllProductType } from "../../domain/use-cases/productType/get-productsType";
 import { GetProductType } from "../../domain/use-cases/productType/get-productType";
+import { UpdateProductType } from "../../domain/use-cases/productType/update-productType";
 import { ProductTypeRepositoryImpl } from "../../infraestructure/productType/repository/productType.repository";
 
 
@@ -56,6 +57,15 @@ export class ProductTypeService {
 
     public async update(dto: UpdateproductTypeDto) {
 
+        const type = await new UpdateProductType(this.repository).execute(dto)
+        .then(type => type)
+        .catch(error => console.log({error}));
+
+        return {
+            data: {
+                type
+            }
+        }
     }
     
     public async delete(id: string) {

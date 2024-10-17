@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { ProductTypeService } from "../services/productType.service";
 import { CustomError } from "../../domain";
 import { CreateproductTypeDto } from "../../domain/dtos/productType/create-productType.dto";
+import { UpdateproductTypeDto } from "../../domain/dtos/productType/update-productType.dto";
 
 
 
@@ -45,6 +46,16 @@ export class ProductTypeController {
 
 
         this.service.get(req.body.id)
+        .then(type => res.json(type))
+        .catch(error => this.handleError(error, res))
+    }
+
+    update = (req: Request, res: Response) => {
+
+        const [error, updateProductTypeDto] = UpdateproductTypeDto.create(req.body)
+        if( error ) return res.status(400).json({error});
+
+        this.service.update(updateProductTypeDto!)
         .then(type => res.json(type))
         .catch(error => this.handleError(error, res))
     }

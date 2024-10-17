@@ -19,6 +19,8 @@ export class ProductTypeRouter {
         router.post('/create/', controller.create);
         router.get('/', controller.getAll);
         router.post('/get/', controller.get);
+        router.post('/update/', controller.update);
+
 
         return router;
     }

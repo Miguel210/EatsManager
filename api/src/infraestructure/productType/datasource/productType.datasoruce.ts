@@ -49,7 +49,23 @@ export class ProductTypeDatasourceImpl implements ProductTypeDatasource {
 
     }
     async updatebyId(dto: UpdateproductTypeDto): Promise<ProductTypeEntity> {
-        throw new Error("Method not implemented.");
+        
+        await this.findById(dto.id)
+
+        const type = await prisma.productType.update({
+            where: {
+                id: dto.id
+            },
+            data: {
+                description: dto.description,
+                useStock: dto.useStock,
+                isActive: dto.isActive
+            }
+        })
+
+        if( !type ) throw `ProductType with ${dto.id} not found`;
+        return ProductTypeEntity.fromObject(type);
+
     }
     async deletebyId(id: string): Promise<ProductTypeEntity> {
         throw new Error("Method not implemented.");
