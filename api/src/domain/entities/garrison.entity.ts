@@ -14,16 +14,16 @@ export class GarrisonEntity {
     ) {}
     
     static fromObject(object: {[key: string]: any}) {
-        const { id, dishId, dish, garrisonId, garrison, quantity, identifier, isActive } = object
-
+        const { id, dishId, garrisonMainDish, garrisonId, garrisonDish, quantity, identifier, isActive } = object
+        
         if( !id ) throw CustomError.badRequest('Missing id garrison');
-        if( !dishId && dish ) throw CustomError.badRequest('Missing dish');
-        if( !garrisonId && garrison ) throw CustomError.badRequest('Missing garrisionId');
+        if( !dishId && garrisonMainDish[0] ) throw CustomError.badRequest('Missing dish');
+        if( !garrisonId && garrisonDish[0] ) throw CustomError.badRequest('Missing garrisionId');
         if( !quantity ) throw CustomError.badRequest('Missing quantity');
         if( !identifier ) throw CustomError.badRequest('Missing identifier');
         if( isActive === undefined ) throw CustomError.badRequest('Missing isActive');
 
-        return new GarrisonEntity(id, dishId || dish, garrisonId || garrison, quantity, identifier, isActive)
+        return new GarrisonEntity(id, dishId || garrisonMainDish, garrisonId || garrisonDish, quantity, identifier, isActive)
     }
     
 }

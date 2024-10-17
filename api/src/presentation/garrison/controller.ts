@@ -41,7 +41,12 @@ export class GarrisonController {
     }
 
     getAll = (req: Request, res: Response) => {
-        
+        const dishId = req.body.dishId
+        if( !dishId ) throw res.status(400).json('Requerid dishId');
+
+        this.service.getAll(dishId)
+        .then(garrison => res.json(garrison))
+        .catch(error => this.handleError(error, res));
     }
 
     update = (req: Request, res: Response) => {

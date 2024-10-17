@@ -92,8 +92,6 @@ export class ProductDatasourceImpl implements ProductDatasource {
         });
         if( !product ) throw `Product with id ${id} not found`;
 
-        console.log(product);
-        
         return ProductEntity.fromObject(product);
     }
     async updateById(updateProductDto: UpdateProductDto): Promise<ProductEntity> {

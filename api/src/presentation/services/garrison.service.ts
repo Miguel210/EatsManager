@@ -2,6 +2,7 @@ import { CreateGarrisonDto } from "../../domain/dtos/garrison/create-garrison.dt
 import { UpdateGarrisonDto } from "../../domain/dtos/garrison/update-garrison.dto";
 import { CreateGarrison } from "../../domain/use-cases/garrison/create-garrison";
 import { GetGarrison } from "../../domain/use-cases/garrison/get-garrison";
+import { GetGarrisons } from "../../domain/use-cases/garrison/get-garrisons";
 import { GarrisonRepositoryImpl } from "../../infraestructure/garrison/repositories/garrison.repository.impl";
 
 
@@ -38,7 +39,15 @@ export class GarrisonService {
     }
 
     public async getAll(dishId: string) {
-        
+        const garrison = await new GetGarrisons(this.repository).execute(dishId)
+        .then(garrison => garrison)
+        .catch(error => console.log({error}));
+
+        return {
+            data: {
+                garrison
+            }
+        }   
     }
 
 

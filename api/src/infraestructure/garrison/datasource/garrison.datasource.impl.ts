@@ -4,6 +4,7 @@ import { GarrisonDatasource } from "../../../domain/datasource/garrison/garrison
 import { CreateGarrisonDto } from "../../../domain/dtos/garrison/create-garrison.dto";
 import { UpdateGarrisonDto } from "../../../domain/dtos/garrison/update-garrison.dto";
 import { GarrisonEntity } from "../../../domain/entities/garrison.entity";
+import { ProductDatasourceImpl } from "../../product/datasource/product.datasource.impl";
 
 
 
@@ -28,7 +29,37 @@ export class GarrisonDatasoruceImpl implements GarrisonDatasource {
         return GarrisonEntity.fromObject(garrison);
     }
     async getAll(dishId: string): Promise<GarrisonEntity[]> {
-        throw new Error("Method not implemented.");
+        
+        const product = new ProductDatasourceImpl();
+        await product.findById(dishId);
+
+        const garrison = await prisma.garrison.findMany({
+            where: {
+                dishId: dishId,
+                isDelete: false
+            
+            },
+            select: {
+                id: true,
+                quantity: true,
+                identifier: true,
+                garrisonDish: {
+                    select: {
+                        description: true
+                    }
+                },
+                garrisonMainDish: {
+                    select: {
+                        description: true
+                    }
+                },
+                isActive: true
+            }
+        });
+
+        if( !garrison ) throw `Garrison with data ${garrison} not found`;
+        
+        return garrison.map(garrison => GarrisonEntity.fromObject(garrison));
     }
     async getById(id: string): Promise<GarrisonEntity> {
         
