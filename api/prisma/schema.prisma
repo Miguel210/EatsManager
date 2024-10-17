@@ -271,9 +271,11 @@ model garrison {
   id                 String              @id @default(uuid())
   dishId             String
   garrisonId         String
+  quantity           Decimal?            @db.Decimal(10,2) 
+  identifier         Int?
   isActive           Boolean             @default(true)
-  deleteAt         DateTime?
-  isDelete         Boolean          @default(false)
+  deleteAt           DateTime?
+  isDelete           Boolean             @default(false)
   clientOrderDetails clientOrderDetail[]
   garrisonMainDish   product             @relation("GarrisonMainDish", fields: [dishId], references: [id])
   garrisonDish       product             @relation("GarrisonDish", fields: [garrisonId], references: [id])
