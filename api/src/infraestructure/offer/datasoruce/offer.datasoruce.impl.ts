@@ -14,7 +14,7 @@ export class OfferDatasourceImpl implements OfferDatasource {
     async getOfferbyId(id: string): Promise<OfferEntity> {
         throw new Error("Method not implemented.");
     }
-    async getOffers(): Promise<OfferEntity[]> {
+    async getOffers(form: any): Promise<OfferEntity[]> {
         throw new Error("Method not implemented.");
     }
     async update(dto: UpdateOfferDto): Promise<OfferEntity> {

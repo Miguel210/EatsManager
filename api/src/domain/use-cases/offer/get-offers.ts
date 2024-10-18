@@ -5,7 +5,7 @@ import { OfferRepository } from "../../repositories/offer/offer.repository";
 
 
 export interface GetOffersUseCase {
-    execute(): Promise <OfferEntity[]>;
+    execute(form: any): Promise <OfferEntity[]>;
 }
 
 
@@ -15,7 +15,7 @@ export class GetOffers implements GetOffersUseCase {
         private readonly repository: OfferRepository
     ) {}
 
-    execute(): Promise<OfferEntity[]> {
-        return this.repository.getOffers()
+    execute(form: any): Promise<OfferEntity[]> {
+        return this.repository.getOffers(form)
     }
 }

@@ -8,7 +8,7 @@ export abstract class OfferDatasource {
     abstract create(dto: CreateOfferDto): Promise <OfferEntity>;
 
     abstract getOfferbyId(id: string): Promise <OfferEntity>;
-    abstract getOffers(): Promise <OfferEntity[]>;
+    abstract getOffers(form: any): Promise <OfferEntity[]>;
     abstract update(dto: UpdateOfferDto): Promise <OfferEntity>;
     abstract delete(id: string): Promise <OfferEntity>;
 }

@@ -17,8 +17,8 @@ export class OfferRepositoryImpl implements OfferRepository {
     getOfferbyId(id: string): Promise<OfferEntity> {
         return this.datasoruce.getOfferbyId(id);
     }
-    getOffers(): Promise<OfferEntity[]> {
-        return this.datasoruce.getOffers();
+    getOffers(form: any): Promise<OfferEntity[]> {
+        return this.datasoruce.getOffers(form);
     }
     update(dto: UpdateOfferDto): Promise<OfferEntity> {
         return this.datasoruce.update(dto);
