@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { CustomError } from "../../domain";
 import { OfferService } from "../services/offer.service";
 import { CreateOfferDto } from "../../domain/dtos/offer/create-offer";
+import { error } from "console";
 
 
 
@@ -44,6 +45,15 @@ export class OfferController {
 
     getAll = (req: Request, res: Response) => {
         
+        const form = {
+            productId: req.body.id,
+            from: req.body.from,
+            isActive: req.body.isActive
+        }
+
+        this.service.getAll(form)
+        .then(promotion => res.json(promotion))
+        .catch(error => this.HandleError(error, res) )
     }
 
     update = (req: Request, res: Response) => {

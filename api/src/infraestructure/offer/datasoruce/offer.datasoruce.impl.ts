@@ -54,7 +54,36 @@ export class OfferDatasourceImpl implements OfferDatasource {
         return OfferEntity.fromObject(promotion);
     }
     async getOffers(form: any): Promise<OfferEntity[]> {
-        throw new Error("Method not implemented.");
+        
+        const promotion = await prisma.promotion.findMany({
+            where: {
+                isDelete: false,
+                productId: {
+                    in: form.productId || undefined,
+                },
+                from: form.from,
+                isActive: form.isActive
+            },
+
+            select: {
+                id: true,
+                product: {
+                    select:{
+                        id: true,
+                        description: true
+                    }
+                },
+                price: true,
+                from: true,
+                until: true,
+                isActive: true
+            }
+        })
+
+        if( !promotion ) throw `Garrison with data ${promotion} not found`;
+        console.log(promotion);
+        
+        return promotion.map(promotion => OfferEntity.fromObject(promotion));
     }
     async update(dto: UpdateOfferDto): Promise<OfferEntity> {
         throw new Error("Method not implemented.");

@@ -4,6 +4,7 @@ import { UpdateOfferDto } from "../../domain/dtos/offer/update-offer";
 import { CreateOffer } from "../../domain/use-cases/offer/create-offer";
 import { OfferRepositoryImpl } from "../../infraestructure/offer/repository/offer.repository.impl";
 import { GetOffer } from "../../domain/use-cases/offer/get-offer";
+import { GetOffers } from "../../domain/use-cases/offer/get-offers";
 
 
 
@@ -44,9 +45,14 @@ export class OfferService {
 
     public async getAll(form: any) {
 
+        const promotion = await new GetOffers( this.repository ).execute(form)
+        .then(promotion => promotion)
+        .catch(error => console.log({error})
+    );
+
         return {
             data: {
-                //offer
+                promotion
             }
         }
     }
