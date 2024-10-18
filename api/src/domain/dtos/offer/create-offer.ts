@@ -11,14 +11,13 @@ export class CreateOfferDto{
     static fromObject(props: {[key: string]: any}): [string?, CreateOfferDto?] {
 
         const {productId, price, from, until, isActive} = props
-    
-
+        
         if( !productId ) return ['ProductId is requerid'];
         if( !price ) return ['Price is requerid'];
-        if( !from ) return ['From (date) is requerid'];
-        if( !until ) return ['Until (date) is requerid'];
+        if( from === undefined ) return ['From (date) is requerid'];
+        if( until === undefined ) return ['Until (date) is requerid'];
         if( isActive === undefined ) return ['IsActive is requerid'];
-
-        return [undefined, new CreateOfferDto(productId , price, from, until, isActive)]
+        
+        return [undefined, new CreateOfferDto(productId , price, new Date(from), new Date(until), isActive)]
     }
 }

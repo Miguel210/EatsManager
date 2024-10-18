@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { CustomError } from "../../domain";
 import { OfferService } from "../services/offer.service";
+import { CreateOfferDto } from "../../domain/dtos/offer/create-offer";
 
 
 
@@ -23,6 +24,12 @@ export class OfferController {
 
     create = (req: Request, res: Response) => {
 
+        const [error, dto ] = CreateOfferDto.fromObject(req.body)
+        if( error ) throw res.status(400).json({error});
+        
+        this.service.create(dto!)
+        .then(promotion => res.json(promotion))
+        .catch(error => this.HandleError(error, res))
     }
 
     get = (req: Request, res: Response) => {

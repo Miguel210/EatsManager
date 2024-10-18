@@ -1,3 +1,5 @@
+import { Uuid } from "../../../config";
+import { prisma } from "../../../data";
 import { OfferDatasource } from "../../../domain/datasource/offer/offer.datasoruce";
 import { CreateOfferDto } from "../../../domain/dtos/offer/create-offer";
 import { UpdateOfferDto } from "../../../domain/dtos/offer/update-offer";
@@ -9,7 +11,20 @@ import { OfferEntity } from "../../../domain/entities/offer.entity";
 
 export class OfferDatasourceImpl implements OfferDatasource {
     async create(dto: CreateOfferDto): Promise<OfferEntity> {
-        throw new Error("Method not implemented.");
+        
+        const promotion = await prisma.promotion.create({
+            data: {
+                id: Uuid.uuid(),
+                productId: dto.productId,
+                price: dto.price,
+                from: dto.from,
+                until: dto.until,
+                isActive: dto.isActive
+            }
+        })
+
+        if( !promotion ) throw 'hola'
+        return OfferEntity.fromObject(promotion);
     }
     async getOfferbyId(id: string): Promise<OfferEntity> {
         throw new Error("Method not implemented.");

@@ -1,5 +1,7 @@
+import { error } from "console";
 import { CreateOfferDto } from "../../domain/dtos/offer/create-offer";
 import { UpdateOfferDto } from "../../domain/dtos/offer/update-offer";
+import { CreateOffer } from "../../domain/use-cases/offer/create-offer";
 import { OfferRepositoryImpl } from "../../infraestructure/offer/repository/offer.repository.impl";
 
 
@@ -13,9 +15,14 @@ export class OfferService {
 
     public async create(dto: CreateOfferDto) {
 
+        const promotion = await new CreateOffer( this.repository ).execute(dto)
+        .then( promotion => promotion)
+        .catch(error => console.log(error)
+        );
+        
         return {
             data: {
-                //offer
+                promotion
             }
         }
     }
