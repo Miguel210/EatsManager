@@ -61,6 +61,12 @@ export class GarrisonController {
     }
 
     delete = (req: Request, res: Response) => {
-        
+
+        const id = req.body.id
+        if( !id ) throw res.status(400).json('Requerid id');
+
+        this.service.delete(id)
+        .then(garrison => res.json(garrison))
+        .catch(error => this.handleError(error, res));
     }
 }

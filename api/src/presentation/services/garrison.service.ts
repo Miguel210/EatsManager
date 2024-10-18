@@ -1,6 +1,7 @@
 import { CreateGarrisonDto } from "../../domain/dtos/garrison/create-garrison.dto";
 import { UpdateGarrisonDto } from "../../domain/dtos/garrison/update-garrison.dto";
 import { CreateGarrison } from "../../domain/use-cases/garrison/create-garrison";
+import { DeleteGarrison } from "../../domain/use-cases/garrison/delete-garrison";
 import { GetGarrison } from "../../domain/use-cases/garrison/get-garrison";
 import { GetGarrisons } from "../../domain/use-cases/garrison/get-garrisons";
 import { UpdateGarrison } from "../../domain/use-cases/garrison/update-garrison";
@@ -65,6 +66,15 @@ export class GarrisonService {
     }
 
     public async delete(id: string) {
-        
+
+        const garrison = await new DeleteGarrison(this.repository).execute(id)
+        .then(garrison => garrison)
+        .catch(error => console.log({error}));
+
+        return {
+            data: {
+                garrison
+            }
+        }
     }
 }
