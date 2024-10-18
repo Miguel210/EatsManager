@@ -34,6 +34,12 @@ export class OfferController {
 
     get = (req: Request, res: Response) => {
         
+        const id = req.body.id;
+        if( !id ) throw res.status(400).json('Is requerid id');
+
+        this.service.getById(id)
+        .then(promotion => res.json(promotion))
+        .catch(error => this.HandleError(error, res));
     }
 
     getAll = (req: Request, res: Response) => {

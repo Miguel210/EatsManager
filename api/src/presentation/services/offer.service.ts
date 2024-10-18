@@ -3,6 +3,7 @@ import { CreateOfferDto } from "../../domain/dtos/offer/create-offer";
 import { UpdateOfferDto } from "../../domain/dtos/offer/update-offer";
 import { CreateOffer } from "../../domain/use-cases/offer/create-offer";
 import { OfferRepositoryImpl } from "../../infraestructure/offer/repository/offer.repository.impl";
+import { GetOffer } from "../../domain/use-cases/offer/get-offer";
 
 
 
@@ -19,7 +20,7 @@ export class OfferService {
         .then( promotion => promotion)
         .catch(error => console.log(error)
         );
-        
+
         return {
             data: {
                 promotion
@@ -29,9 +30,14 @@ export class OfferService {
 
     public async getById(id: string) {
 
+        const promotion = await new GetOffer( this.repository ).execute(id)
+            .then(promotion => promotion)
+            .catch(error => console.log({error})
+        );
+
         return {
             data: {
-                //offer
+                promotion
             }
         }
     }
