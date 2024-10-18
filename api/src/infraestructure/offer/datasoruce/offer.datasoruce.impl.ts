@@ -47,7 +47,6 @@ export class OfferDatasourceImpl implements OfferDatasource {
                 isActive: true
             }
         });
-        console.log(promotion);
         
         if( !promotion ) throw `Garrison with data ${promotion} not found`;
 
@@ -81,12 +80,29 @@ export class OfferDatasourceImpl implements OfferDatasource {
         })
 
         if( !promotion ) throw `Garrison with data ${promotion} not found`;
-        console.log(promotion);
         
         return promotion.map(promotion => OfferEntity.fromObject(promotion));
     }
     async update(dto: UpdateOfferDto): Promise<OfferEntity> {
-        throw new Error("Method not implemented.");
+
+        await this.getOfferbyId(dto.id);
+        
+        const promotion = await prisma.promotion.update({
+            where: {
+                id: dto.id
+            },
+            data: {
+                productId: dto.productId,
+                price: dto.price,
+                from: new Date(dto.from),
+                until: new Date(dto.until),
+                isActive: dto.isActive
+            }
+        })
+        
+        if( !promotion ) throw `Garrison with data ${promotion} not found`;
+        
+        return OfferEntity.fromObject(promotion);
     }
     async delete(id: string): Promise<OfferEntity> {
         throw new Error("Method not implemented.");

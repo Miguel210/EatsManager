@@ -5,6 +5,7 @@ import { CreateOffer } from "../../domain/use-cases/offer/create-offer";
 import { OfferRepositoryImpl } from "../../infraestructure/offer/repository/offer.repository.impl";
 import { GetOffer } from "../../domain/use-cases/offer/get-offer";
 import { GetOffers } from "../../domain/use-cases/offer/get-offers";
+import { UpdateOffer } from "../../domain/use-cases/offer/update-offer";
 
 
 
@@ -58,10 +59,15 @@ export class OfferService {
     }
 
     public async update(dto: UpdateOfferDto) {
+    
+        const promotion = await new UpdateOffer( this.repository ).execute(dto)
+            .then(promotion => promotion)
+            .catch(error => console.log({error})
+        );
 
         return {
             data: {
-                //offer
+                promotion
             }
         }
     }

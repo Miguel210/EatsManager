@@ -3,6 +3,7 @@ import { CustomError } from "../../domain";
 import { OfferService } from "../services/offer.service";
 import { CreateOfferDto } from "../../domain/dtos/offer/create-offer";
 import { error } from "console";
+import { UpdateOfferDto } from "../../domain/dtos/offer/update-offer";
 
 
 
@@ -58,6 +59,12 @@ export class OfferController {
 
     update = (req: Request, res: Response) => {
         
+        const [error, dto ] = UpdateOfferDto.fromObject(req.body)
+        if( error ) throw res.status(400).json({error});
+
+        this.service.update(dto!)
+        .then(promotion => res.json(promotion))
+        .catch(error => this.HandleError(error, res) );
     }
 
     delete = (req: Request, res: Response) => {
