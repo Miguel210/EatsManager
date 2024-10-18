@@ -6,6 +6,7 @@ import { OfferRepositoryImpl } from "../../infraestructure/offer/repository/offe
 import { GetOffer } from "../../domain/use-cases/offer/get-offer";
 import { GetOffers } from "../../domain/use-cases/offer/get-offers";
 import { UpdateOffer } from "../../domain/use-cases/offer/update-offer";
+import { DeleteOffer } from "../../domain/use-cases/offer/delete-offer";
 
 
 
@@ -73,10 +74,14 @@ export class OfferService {
     }
 
     public async delete(id: string) {
-
+       
+        const promotion = await new DeleteOffer( this.repository ).execute(id)
+            .then(promotion => promotion)
+            .catch(error => console.log({error})
+        );
         return {
             data: {
-                //offer
+                promotion
             }
         }
     }

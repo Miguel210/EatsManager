@@ -23,7 +23,7 @@ export class OfferDatasourceImpl implements OfferDatasource {
             }
         })
 
-        if( !promotion ) throw `Garrison with data ${promotion} not found`;
+        if( !promotion ) throw `Promotion with data ${dto} not found`;
 
         return OfferEntity.fromObject(promotion);
     }
@@ -48,7 +48,7 @@ export class OfferDatasourceImpl implements OfferDatasource {
             }
         });
         
-        if( !promotion ) throw `Garrison with data ${promotion} not found`;
+        if( !promotion ) throw `Promotion with id ${id} not found`;
 
         return OfferEntity.fromObject(promotion);
     }
@@ -79,7 +79,7 @@ export class OfferDatasourceImpl implements OfferDatasource {
             }
         })
 
-        if( !promotion ) throw `Garrison with data ${promotion} not found`;
+        if( !promotion ) throw `Promotion with data ${form} not found`;
         
         return promotion.map(promotion => OfferEntity.fromObject(promotion));
     }
@@ -100,12 +100,27 @@ export class OfferDatasourceImpl implements OfferDatasource {
             }
         })
         
-        if( !promotion ) throw `Garrison with data ${promotion} not found`;
+        if( !promotion ) throw `Promotion with data ${dto} not found`;
         
         return OfferEntity.fromObject(promotion);
     }
     async delete(id: string): Promise<OfferEntity> {
-        throw new Error("Method not implemented.");
+
+        await this.getOfferbyId(id);
+
+        const promotion = await prisma.promotion.update({
+            where: {
+                id: id
+            },
+            data: {
+                isDelete: true,
+                deleteAt: new Date()
+            }
+        })
+
+        if( !promotion ) throw `Promotion with id ${id} not found`;
+        
+        return OfferEntity.fromObject(promotion)
     }
 
 }
