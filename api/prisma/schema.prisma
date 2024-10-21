@@ -125,6 +125,14 @@ model attendance {
   employee   employee @relation(fields: [employeeId], references: [id])
 }
 
+model docuemntAttendace {
+  id String @id @default(uuid())
+  description String
+  isActive Boolean @default(true)
+  deleteAt         DateTime?
+  isDelete         Boolean          @default(false)
+}
+
 model address {
   id        String  @id @default(uuid())
   personId  String
