@@ -9,6 +9,7 @@ import { CategoryRouter } from "./category/router";
 import { ProductTypeRouter } from "./productType/router";
 import { GarrisonRouter } from "./garrison/routes";
 import { OfferRouter } from "./offer/routes";
+import { EmployeeRoutes } from "./employee/routes";
 
 
 
@@ -25,7 +26,8 @@ export class AppRoutes {
         router.use('/api/garrison', GarrisonRouter.routes)
         router.use('/api/supplier', SupplierRouter.routes)
         router.use('/api/inventory', InventoryRouter.routes);
-        router.use('/api/promotion/', OfferRouter.routes)
+        router.use('/api/promotion', OfferRouter.routes)
+        router.use('/api/employee', EmployeeRoutes.routes)
         router.use('/api/utils', UtilRouter.routes)
 
 

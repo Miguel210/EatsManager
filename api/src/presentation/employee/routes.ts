@@ -12,7 +12,7 @@ import { EmployeeController } from "./controller";
 export class EmployeeRoutes {
 
 
-    static get Routes(): Router {
+    static get routes(): Router {
 
         const routes = Router();
 
@@ -23,7 +23,7 @@ export class EmployeeRoutes {
 
         routes.get("/")
         routes.post("/get/")
-        routes.post("/create/")
+        routes.post("/create/", controller.create)
         routes.post("/update/")
         routes.post("/delete/")
 

@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { CustomError } from "../../domain";
 import { EmployeeService } from "../services/employee.service";
+import { CreateEmployeeDto } from "../../domain/dtos/employee/create-employee.dto";
 
 
 
@@ -21,5 +22,15 @@ export class EmployeeController {
         return res.status(500).json({error: 'Internal server error'})
     }
 
+    create = (req: Request, res: Response) => {
+
+
+        const [error, dto ] = CreateEmployeeDto.create(req.body);
+        if( error ) throw res.status(400).json({error});
+
+        this.service.create(dto!)
+        .then(employee => res.json(employee))
+        .catch(error => this.HandleError(error, res));
+    }
 
 }

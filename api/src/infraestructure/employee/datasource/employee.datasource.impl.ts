@@ -1,3 +1,5 @@
+import { Uuid } from "../../../config";
+import { prisma } from "../../../data";
 import { EmployeeDatasource } from "../../../domain/datasource/employee/employee.datasource";
 import { CreateEmployeeDto } from "../../../domain/dtos/employee/create-employee.dto";
 import { UpdateEmployeeDto } from "../../../domain/dtos/employee/update-employee.dto";
@@ -9,7 +11,22 @@ export class EmployeeDatasourceImpl implements EmployeeDatasource {
     
     
     async create(dto: CreateEmployeeDto): Promise<EmployeeEntity> {
-        throw new Error("Method not implemented.");
+        
+        const employee = await prisma.employee.create({
+            data: {
+                id: Uuid.uuid(),
+                personId: dto.personId,
+                hireDate: new Date(),
+                input: new Date(dto.input),
+                output: new Date(dto.output),
+                salary: dto.salary,
+                isActive: dto.isActive
+            }
+        });
+
+        if( !employee ) throw  `Employee with data ${dto} not found`;
+        
+        return EmployeeEntity.fromObject(employee);
     }
     async getById(id: string): Promise<EmployeeEntity> {
         throw new Error("Method not implemented.");
