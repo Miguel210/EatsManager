@@ -29,7 +29,16 @@ export class EmployeeDatasourceImpl implements EmployeeDatasource {
         return EmployeeEntity.fromObject(employee);
     }
     async getById(id: string): Promise<EmployeeEntity> {
-        throw new Error("Method not implemented.");
+
+        const employee = await prisma.employee.findFirst({
+            where: {
+                id: id
+            }
+        })
+
+        if( !employee ) throw  `Employee with id ${id} not found`;
+        
+        return EmployeeEntity.fromObject(employee);
     }
     async gets(form: any): Promise<EmployeeEntity[]> {
         throw new Error("Method not implemented.");

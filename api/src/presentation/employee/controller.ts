@@ -33,4 +33,14 @@ export class EmployeeController {
         .catch(error => this.HandleError(error, res));
     }
 
+    get = (req: Request, res: Response) => {
+
+        const id = req.body.id;
+        if( !id ) throw res.status(400).json({id});
+
+        this.service.get(id)
+        .then(employee => res.json(employee))
+        .catch(error => this.HandleError(error, res))
+    }
+
 }

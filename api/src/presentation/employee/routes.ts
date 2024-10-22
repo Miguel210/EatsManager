@@ -22,7 +22,7 @@ export class EmployeeRoutes {
         const controller = new EmployeeController(service)
 
         routes.get("/")
-        routes.post("/get/")
+        routes.post("/get/", controller.get)
         routes.post("/create/", controller.create)
         routes.post("/update/")
         routes.post("/delete/")
