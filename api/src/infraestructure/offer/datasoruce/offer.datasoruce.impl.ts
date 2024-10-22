@@ -53,6 +53,12 @@ export class OfferDatasourceImpl implements OfferDatasource {
         return OfferEntity.fromObject(promotion);
     }
     async getOffers(form: any): Promise<OfferEntity[]> {
+        let from: any = form.from;
+        if( !from ){
+            from = undefined;
+        } else {
+            from = new Date(from)
+        }
         
         const promotion = await prisma.promotion.findMany({
             where: {
@@ -60,7 +66,7 @@ export class OfferDatasourceImpl implements OfferDatasource {
                 productId: {
                     in: form.productId || undefined,
                 },
-                from: form.from,
+                from: from,
                 isActive: form.isActive
             },
 
