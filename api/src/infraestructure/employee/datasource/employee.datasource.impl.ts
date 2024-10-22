@@ -32,7 +32,8 @@ export class EmployeeDatasourceImpl implements EmployeeDatasource {
 
         const employee = await prisma.employee.findFirst({
             where: {
-                id: id
+                id: id,
+                isDelete: false
             }
         })
 
@@ -99,7 +100,21 @@ export class EmployeeDatasourceImpl implements EmployeeDatasource {
 
     }
     async delete(id: string): Promise<EmployeeEntity> {
-        throw new Error("Method not implemented.");
+        
+        await this.getById(id);
+
+        const employee = await prisma.employee.update({
+            where: {
+                id: id
+            },
+            data: {
+                isDelete: true,
+                deleteAt: new Date()
+            }
+        });
+        if( ! employee ) throw `Employee with id ${id} not found`;
+
+        return EmployeeEntity.fromObject(employee)
     }
 
 }

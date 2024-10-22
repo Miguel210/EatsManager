@@ -25,7 +25,7 @@ export class EmployeeRoutes {
         routes.post("/get/", controller.get)
         routes.post("/create/", controller.create)
         routes.post("/update/", controller.update)
-        routes.post("/delete/")
+        routes.post("/delete/", controller.delete)
 
 
 

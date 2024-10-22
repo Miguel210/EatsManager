@@ -68,4 +68,14 @@ export class EmployeeController {
         .then(employee => res.json(employee))
         .catch(error => this.HandleError(error, res));
     }
+
+    delete = (req: Request, res: Response ) => {
+        const id = req.body.id
+        if( !id ) throw res.status(400).json({id});
+
+
+        this.service.delete(id)
+        .then(employee => res.json(employee))
+        .catch(error => this.HandleError(error, res))
+    }
 }
