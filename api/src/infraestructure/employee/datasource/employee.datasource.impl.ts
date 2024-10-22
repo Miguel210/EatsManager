@@ -41,7 +41,42 @@ export class EmployeeDatasourceImpl implements EmployeeDatasource {
         return EmployeeEntity.fromObject(employee);
     }
     async gets(form: any): Promise<EmployeeEntity[]> {
-        throw new Error("Method not implemented.");
+        
+        const employees = await prisma.employee.findMany({
+            where: {
+                isActive: form.isActive || true,
+                personId: {
+                    in: form.personId || undefined
+                },
+                person: {
+                    profileId: {
+                        in: form.profileId || undefined
+                    }
+                }
+            },
+            select: {
+                id: true,
+                person: {
+                    select: {
+                        fullname: true,
+                        profile: {
+                            select: {
+                                name: true
+                            }
+                        }
+                    }
+                },
+                hireDate: true,
+                input: true,
+                output: true,
+                salary: true,
+                isActive: true
+            }
+        })
+
+        if( ! employees ) throw `Employee with data ${form} not founds`;
+
+        return employees.map(employee => EmployeeEntity.fromObject(employee))
     }
     async update(dto: UpdateEmployeeDto): Promise<EmployeeEntity> {
         throw new Error("Method not implemented.");

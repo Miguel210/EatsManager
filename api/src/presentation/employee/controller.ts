@@ -43,4 +43,20 @@ export class EmployeeController {
         .catch(error => this.HandleError(error, res))
     }
 
+    gets = (req: Request, res: Response) => {
+
+        const form = {
+            personId: req.body.personId,
+            profileId: req.body.profileId,
+            isActive: req.body.isActive,
+        }
+
+        this.service.gets(form)
+        .then(employee => res.json(employee))
+        .catch(error => this.HandleError(error, res))
+
+
+
+    }
+
 }

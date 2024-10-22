@@ -21,7 +21,7 @@ export class EmployeeRoutes {
         const service = new EmployeeService(repository);
         const controller = new EmployeeController(service)
 
-        routes.get("/")
+        routes.get("/", controller.gets)
         routes.post("/get/", controller.get)
         routes.post("/create/", controller.create)
         routes.post("/update/")
