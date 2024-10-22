@@ -11,5 +11,4 @@ export abstract class AttendanceRepository {
     abstract getById(id: string): Promise<AttendanceEntity>;
     abstract gets(form: any): Promise<AttendanceEntity[]>;
     abstract update(dto: UpdateAttendanceDto): Promise<AttendanceEntity>;
-    abstract delete(id: string): Promise<AttendanceEntity>;
 }
