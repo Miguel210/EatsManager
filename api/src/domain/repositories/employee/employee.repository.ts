@@ -4,7 +4,7 @@ import { EmployeeEntity } from "../../entities/employee.entity";
 
 
 
-export abstract class EmployeeDatasource {
+export abstract class EmployeeRepository {
  
    abstract create(dto: CreateEmployeeDto): Promise<EmployeeEntity>;
 
