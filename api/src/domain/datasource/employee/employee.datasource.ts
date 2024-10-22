@@ -8,9 +8,9 @@ export abstract class EmployeeDatasource {
  
    abstract create(dto: CreateEmployeeDto): Promise<EmployeeEntity>;
 
-   abstract GetById(id: string): Promise<EmployeeEntity>;
-   abstract Gets(form: any): Promise<EmployeeEntity[]>;
-   abstract Update(dto: UpdateEmployeeDto): Promise<EmployeeEntity>;
-   abstract Delete(id: string): Promise<EmployeeEntity>;
+   abstract getById(id: string): Promise<EmployeeEntity>;
+   abstract gets(form: any): Promise<EmployeeEntity[]>;
+   abstract update(dto: UpdateEmployeeDto): Promise<EmployeeEntity>;
+   abstract delete(id: string): Promise<EmployeeEntity>;
 
 }
