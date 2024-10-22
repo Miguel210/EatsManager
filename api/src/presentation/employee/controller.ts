@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { CustomError } from "../../domain";
-import { EmployeeService } from "../services/employee..service";
+import { EmployeeService } from "../services/employee.service";
 
 
 
