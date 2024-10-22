@@ -1,7 +1,9 @@
 import { CreateEmployeeDto } from "../../domain/dtos/employee/create-employee.dto";
+import { UpdateEmployeeDto } from "../../domain/dtos/employee/update-employee.dto";
 import { CreateEmployee } from "../../domain/use-cases/employee/create-employee";
 import { GetEmployee } from "../../domain/use-cases/employee/get-employee";
 import { GetsEmployee } from "../../domain/use-cases/employee/gets-employee";
+import { UpdateEmployee } from "../../domain/use-cases/employee/update-employee";
 import { EmployeeRespositoryImpl } from "../../infraestructure/employee/repository/employee.repository.impl";
 
 
@@ -51,9 +53,22 @@ export class EmployeeService {
         return {
             data: {
                 employee
-            }
+            } 
         }
 
     }
 
+    async update(dto: UpdateEmployeeDto) {
+
+        const employee = await new UpdateEmployee( this.repository).execute(dto)
+        .then(employee => employee)
+        .catch(error => console.log({error}));
+        console.log(employee);
+        
+        return {
+            data: {
+                employee
+            } 
+        }
+    }
 }

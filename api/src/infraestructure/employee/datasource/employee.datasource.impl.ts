@@ -44,7 +44,7 @@ export class EmployeeDatasourceImpl implements EmployeeDatasource {
         
         const employees = await prisma.employee.findMany({
             where: {
-                isActive: form.isActive || true,
+                isActive: form.isActive ,
                 personId: {
                     in: form.personId || undefined
                 },
@@ -79,7 +79,24 @@ export class EmployeeDatasourceImpl implements EmployeeDatasource {
         return employees.map(employee => EmployeeEntity.fromObject(employee))
     }
     async update(dto: UpdateEmployeeDto): Promise<EmployeeEntity> {
-        throw new Error("Method not implemented.");
+
+        await this.getById(dto.id);
+
+        const employee = await prisma.employee.update({
+            where: {
+                id: dto.id
+            },
+            data: {
+                input: new Date(dto.input),
+                output: new Date(dto.output),
+                salary: dto.salary,
+                isActive: dto.isActive
+            }
+        })
+        if( ! employee ) throw `Employee with id ${dto.id} not found`;
+
+        return EmployeeEntity.fromObject(employee)
+
     }
     async delete(id: string): Promise<EmployeeEntity> {
         throw new Error("Method not implemented.");

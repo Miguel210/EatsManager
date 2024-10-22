@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { CustomError } from "../../domain";
 import { EmployeeService } from "../services/employee.service";
 import { CreateEmployeeDto } from "../../domain/dtos/employee/create-employee.dto";
+import { UpdateEmployeeDto } from "../../domain/dtos/employee/update-employee.dto";
 
 
 
@@ -55,8 +56,16 @@ export class EmployeeController {
         .then(employee => res.json(employee))
         .catch(error => this.HandleError(error, res))
 
-
-
     }
 
+    update = (req: Request, res: Response)  => {
+
+        const [error, dto ] = UpdateEmployeeDto.create(req.body)
+        if( error ) res.status(400).json({error});
+
+
+        this.service.update(dto!)
+        .then(employee => res.json(employee))
+        .catch(error => this.HandleError(error, res));
+    }
 }
