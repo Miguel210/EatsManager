@@ -1,8 +1,6 @@
 
 
 
-
-
 export class CreateAttendanceDto {
 
     constructor(
@@ -13,7 +11,7 @@ export class CreateAttendanceDto {
         public isActive: boolean
     ) {}
 
-    static create( props: {[key: string]: any}) {
+    static create( props: {[key: string]: any}): [string?, CreateAttendanceDto?] {
 
         const {employeeId, date, hour, documentId} = props;
         
@@ -22,6 +20,6 @@ export class CreateAttendanceDto {
         if( hour === undefined ) return ['Requerid hour'];
         if( !documentId ) return ['Requerid documentId'];
         const isActive: boolean = true;
-        return [undefined, new CreateAttendanceDto(employeeId, date, hour, documentId, isActive)]
+        return [undefined, new CreateAttendanceDto(employeeId, date, hour, documentId, isActive)];
     }
 }

@@ -11,7 +11,7 @@ import { AttendanceController } from "./cotroller";
 export class AttendanceRoutes {
 
 
-    static routes(): Router {
+    static get routes(): Router {
 
         const routes = Router();
 
@@ -20,11 +20,11 @@ export class AttendanceRoutes {
         const service = new AttendanceService(repository);
         const controller = new AttendanceController(service)
 
-
+        
+        routes.post("/create/", controller.create);
         routes.get("/");
         routes.post("/get/");
         routes.post("/update/");
-        routes.post("/create/");
         
 
         return routes;

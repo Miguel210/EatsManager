@@ -10,6 +10,7 @@ import { ProductTypeRouter } from "./productType/router";
 import { GarrisonRouter } from "./garrison/routes";
 import { OfferRouter } from "./offer/routes";
 import { EmployeeRoutes } from "./employee/routes";
+import { AttendanceRoutes } from "./attendance/routes";
 
 
 
@@ -28,6 +29,7 @@ export class AppRoutes {
         router.use('/api/inventory', InventoryRouter.routes);
         router.use('/api/promotion', OfferRouter.routes)
         router.use('/api/employee', EmployeeRoutes.routes)
+        router.use('/api/attendance', AttendanceRoutes.routes)
         router.use('/api/utils', UtilRouter.routes)
 
 
