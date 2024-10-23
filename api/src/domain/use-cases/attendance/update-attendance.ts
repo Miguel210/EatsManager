@@ -18,6 +18,6 @@ export class UpdateAttendance implements UpdateAttendanceUseCase {
     ) {}
 
     execute(dto: UpdateAttendanceDto): Promise<AttendanceEntity> {
-        return this.repository.create(dto)
+        return this.repository.update(dto)
     }
 }

@@ -90,7 +90,20 @@ export class AttendanceDatasouceImpl implements AttendanceDatasouce {
         return attendance.map( attendance => AttendanceEntity.fromObject(attendance));
     }
     async update(dto: UpdateAttendanceDto): Promise<AttendanceEntity> {
-        throw new Error("Method not implemented.");
+        
+        const attendance = await prisma.attendance.update({
+            where: {
+                id: dto.id
+            },
+            data: {
+                employeeId: dto.employeeId,
+                document: dto.documentId
+            }
+        })
+
+        if( !attendance ) throw `Attendance with id ${dto.id} not found`;
+
+        return AttendanceEntity.fromObject(attendance);
     }
 
 }
