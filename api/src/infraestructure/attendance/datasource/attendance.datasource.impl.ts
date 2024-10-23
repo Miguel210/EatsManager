@@ -19,7 +19,7 @@ export class AttendanceDatasouceImpl implements AttendanceDatasouce {
                 employeeId: dto.employeeId,
                 date: new Date(dto.date),
                 hour: new Date(dto.hour),
-                document: dto.documentId,
+                documentId: dto.documentId,
             }
         });
 
@@ -47,7 +47,11 @@ export class AttendanceDatasouceImpl implements AttendanceDatasouce {
                 },
                 date: true,
                 hour: true,
-                document: true,
+                documents: {
+                    select: {
+                        description: true
+                    }
+                },
                 isActive: true
             }
         })
@@ -64,7 +68,7 @@ export class AttendanceDatasouceImpl implements AttendanceDatasouce {
                     in: form.employeeId || undefined
                 },
                 date : form.date || undefined,
-                document: form.document || undefined
+                documentId: form.document || undefined
             },
             select: {
                 id: true,
@@ -80,7 +84,12 @@ export class AttendanceDatasouceImpl implements AttendanceDatasouce {
                 },
                 date: true,
                 hour: true,
-                document: true,
+                documents: {
+                    select: {
+                        id: true,
+                        description: true
+                    }
+                },
                 isActive: true
             }
         });
@@ -97,7 +106,7 @@ export class AttendanceDatasouceImpl implements AttendanceDatasouce {
             },
             data: {
                 employeeId: dto.employeeId,
-                document: dto.documentId
+                documentId: dto.documentId
             }
         })
 

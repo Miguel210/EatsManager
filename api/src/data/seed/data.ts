@@ -109,11 +109,20 @@ export const seedData = {
         { id: '6c01cdf0-4c2b-4c9a-9d22-b3e28dd863f1', personId: 'c8fb89c7-e8a7-463a-9167-872de0cc6575', hireDate: new Date(), input: new Date(), output: new Date(), salary: 1500, isActive: true },
 
     ],
+    documentAttendance: [
+        {id: '7f27a133-2391-4896-946f-07d0545256e6', description: 'Entrada', isActive: true},
+        {id: '5605ff8d-b6b2-4822-9937-254de77b3045', description: 'Salida', isActive: true},
+        {id: '7d86a30a-4986-4aeb-9acc-b389c760cc3b', description: 'Falta', isActive: true},
+        {id: 'c95c3801-ab84-44a0-842f-3aab888aaf3f', description: 'Retardo', isActive: true},
+        {id: '9f32dea6-8a1d-4093-a873-73365a9b5b91', description: 'Horas extra', isActive: true},
+        {id: 'b8bf6180-ea9d-4233-8a6e-0fa59b9b0275', description: 'Salida antes (permiso)', isActive: true},
+        {id: 'de7ca9a4-8387-4cd0-b2e6-b57c002a9cdc', description: 'Entrada tardia (permiso)', isActive: true},
+    ],
     attendance: [
-        {id: '27f8329c-0985-4a3e-b37a-70d03b640bec', employeeId: 'ecb6c6e2-2ea4-4722-a1fd-87ad162ab024', date: new Date(), hour: new Date(), document: 'Entrada', isActive: true },
-        {id: 'ffe4cfb7-eb2d-4c2a-a820-d17c46272dcb', employeeId: '9d260add-9eb9-4d5a-9b0c-7b6b0fbbee24', date: new Date(), hour: new Date(), document: 'Entrada', isActive: true },
-        {id: '50ff74dc-bc1d-49e8-b6cc-24f2cd41771c', employeeId: 'ecb6c6e2-2ea4-4722-a1fd-87ad162ab024', date: new Date(), hour: new Date(), document: 'Salida', isActive: true },
-        {id: '74041273-a47c-403b-a034-9bff4d5cd93d', employeeId: '9d260add-9eb9-4d5a-9b0c-7b6b0fbbee24', date: new Date(), hour: new Date(), document: 'Salida', isActive: true },
+        {id: '27f8329c-0985-4a3e-b37a-70d03b640bec', employeeId: 'ecb6c6e2-2ea4-4722-a1fd-87ad162ab024', date: new Date(), hour: new Date(), documentId: 'de7ca9a4-8387-4cd0-b2e6-b57c002a9cdc', isActive: true },
+        {id: 'ffe4cfb7-eb2d-4c2a-a820-d17c46272dcb', employeeId: '9d260add-9eb9-4d5a-9b0c-7b6b0fbbee24', date: new Date(), hour: new Date(), documentId: '7f27a133-2391-4896-946f-07d0545256e6', isActive: true },
+        {id: '50ff74dc-bc1d-49e8-b6cc-24f2cd41771c', employeeId: 'ecb6c6e2-2ea4-4722-a1fd-87ad162ab024', date: new Date(), hour: new Date(), documentId: 'b8bf6180-ea9d-4233-8a6e-0fa59b9b0275', isActive: true },
+        {id: '74041273-a47c-403b-a034-9bff4d5cd93d', employeeId: '9d260add-9eb9-4d5a-9b0c-7b6b0fbbee24', date: new Date(), hour: new Date(), documentId: '9f32dea6-8a1d-4093-a873-73365a9b5b91', isActive: true },
     ],
     evaluation: [
         {id: '', employeeId: '', date: new Date(), result: ''},

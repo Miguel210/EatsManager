@@ -118,11 +118,12 @@ model attendance {
   employeeId String
   date       DateTime
   hour       DateTime
-  document   String
+  documentId   String 
   isActive   Boolean  @default(true)
   deleteAt         DateTime?
   isDelete         Boolean          @default(false)
   employee   employee @relation(fields: [employeeId], references: [id])
+  documents docuemntAttendace @relation( fields: [documentId], references: [id])
 }
 
 model docuemntAttendace {
@@ -131,6 +132,7 @@ model docuemntAttendace {
   isActive Boolean @default(true)
   deleteAt         DateTime?
   isDelete         Boolean          @default(false)
+  attendance attendance[]
 }
 
 model address {

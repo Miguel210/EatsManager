@@ -36,6 +36,7 @@ async function main() {
     await prisma.module.deleteMany(),
     await prisma.productType.deleteMany(),
     await prisma.categoryProduct.deleteMany(),
+    await prisma.docuemntAttendace.deleteMany(),
 
     await prisma.module.createMany({
         data: seedData.module,
@@ -71,7 +72,9 @@ async function main() {
     await prisma.employee.createMany({
         data: seedData.employee
     });
-
+    await prisma.docuemntAttendace.createMany({
+        data: seedData.documentAttendance
+    })
     await prisma.attendance.createMany({
         data: seedData.attendance
     });
