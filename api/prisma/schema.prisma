@@ -99,18 +99,28 @@ model employee {
   isDelete         Boolean          @default(false)
   attendances attendance[]
   person      person       @relation(fields: [personId], references: [id])
-  evaluations evaluation[]
+  evaluations evaluation[] @relation("Evaluations")
+  evaluators evaluation[] @relation("Evaluators")
+
 }
 
 model evaluation {
-  id         String   @id @default(uuid())
-  employeeId String
-  date       DateTime
-  result     String
-  isActive   Boolean  @default(true)
-  deleteAt         DateTime?
-  isDelete         Boolean          @default(false)
-  empoyee    employee @relation(fields: [employeeId], references: [id])
+  id          String   @id @default(uuid())
+  employeeId  String
+  evaluatorId String
+  date        DateTime
+  punctuality Int
+  attitude    Int
+  quality     Int
+  efficiency  Int
+  initiative  Int
+  hygiene     Int
+  isActive    Boolean  @default(true)
+  deleteAt    DateTime?
+  isDelete    Boolean          @default(false)
+  empoyee    employee @relation("Evaluations",fields: [employeeId], references: [id])
+  evaluator  employee @relation("Evaluators",fields: [evaluatorId], references: [id])
+
 }
 
 model attendance {
