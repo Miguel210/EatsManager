@@ -22,7 +22,7 @@ export class AttendanceRoutes {
 
         
         routes.post("/create/", controller.create);
-        routes.get("/");
+        routes.get("/", controller.gets);
         routes.post("/get/", controller.get);
         routes.post("/update/");
         

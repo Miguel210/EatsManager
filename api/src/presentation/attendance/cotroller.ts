@@ -39,4 +39,21 @@ export class AttendanceController {
         .catch(error => this.handleError(error, res));
     }
 
+    gets = (req: Request, res: Response) => {
+        let date:any = req.body.date;
+        if( date ){
+            date = new Date(date);
+        }
+        const form = {
+            employeeId: req.body.employeeId,
+            date: date,
+            document: req.body.docuemntId
+        }
+
+        this.service.gets(form)
+            .then(attendance => res.json(attendance))
+            .catch(error => this.handleError(error, res))
+        ;
+    }
+
 }

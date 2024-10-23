@@ -23,7 +23,7 @@ export class AttendanceDatasouceImpl implements AttendanceDatasouce {
             }
         });
 
-        if( !attendance ) throw `Garrison with data ${dto} not found`;
+        if( !attendance ) throw `Attendance with data ${dto} not found`;
 
         return AttendanceEntity.fromObject(attendance);
     }
@@ -52,12 +52,42 @@ export class AttendanceDatasouceImpl implements AttendanceDatasouce {
             }
         })
 
-        if( !attendance ) throw `Garrison with id ${id} not found`;
+        if( !attendance ) throw `Attendance with id ${id} not found`;
 
         return AttendanceEntity.fromObject(attendance);
     }
     async gets(form: any): Promise<AttendanceEntity[]> {
-        throw new Error("Method not implemented.");
+
+        const attendance = await prisma.attendance.findMany({
+            where: {
+                employeeId:{
+                    in: form.employeeId || undefined
+                },
+                date : form.date || undefined,
+                document: form.document || undefined
+            },
+            select: {
+                id: true,
+                employee:{
+                    select: {
+                        id: true,
+                        person: {
+                            select: {
+                                fullname: true
+                            }
+                        }
+                    }
+                },
+                date: true,
+                hour: true,
+                document: true,
+                isActive: true
+            }
+        });
+
+        if( !attendance ) throw `Attendance with data ${form} not found`;
+
+        return attendance.map( attendance => AttendanceEntity.fromObject(attendance));
     }
     async update(dto: UpdateAttendanceDto): Promise<AttendanceEntity> {
         throw new Error("Method not implemented.");
