@@ -1,5 +1,6 @@
 import { CreateAttendanceDto } from "../../domain/dtos/attendance/create-attendance.dto";
 import { CreateAttendance } from "../../domain/use-cases/attendance/create-attendance";
+import { GetAttendance } from "../../domain/use-cases/attendance/get-attendance";
 import { AttendanceRepositoryImpl } from "../../infraestructure/attendance/repository/attendance.repository.impl";
 
 
@@ -14,6 +15,20 @@ export class AttendanceService {
     async create(dto: CreateAttendanceDto) {
         
         const attendance = await new CreateAttendance( this.repository ).execute(dto)
+            .then(attendance => attendance)
+            .catch(error =>console.log({error})
+        );
+
+        return {
+            data: {
+                attendance
+            }
+        }
+    }
+
+    async get(id: string) {
+        
+        const attendance = await new GetAttendance( this.repository ).execute(id)
             .then(attendance => attendance)
             .catch(error =>console.log({error})
         );

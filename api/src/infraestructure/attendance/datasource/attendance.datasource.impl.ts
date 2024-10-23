@@ -28,7 +28,33 @@ export class AttendanceDatasouceImpl implements AttendanceDatasouce {
         return AttendanceEntity.fromObject(attendance);
     }
     async getById(id: string): Promise<AttendanceEntity> {
-        throw new Error("Method not implemented.");
+        
+        const attendance = await prisma.attendance.findFirst({
+            where: {
+                id: id
+            },
+            select: {
+                id: true,
+                employee:{
+                    select: {
+                        id: true,
+                        person: {
+                            select: {
+                                fullname: true
+                            }
+                        }
+                    }
+                },
+                date: true,
+                hour: true,
+                document: true,
+                isActive: true
+            }
+        })
+
+        if( !attendance ) throw `Garrison with id ${id} not found`;
+
+        return AttendanceEntity.fromObject(attendance);
     }
     async gets(form: any): Promise<AttendanceEntity[]> {
         throw new Error("Method not implemented.");

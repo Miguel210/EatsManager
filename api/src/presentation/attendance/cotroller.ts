@@ -29,4 +29,14 @@ export class AttendanceController {
         .catch(error => this.handleError(error, res ))
     }
 
+    get = (req: Request, res: Response) => {
+
+        const id = req.body.id;
+        if( !id ) throw res.status(400).json({error: id});
+
+        this.service.get(id)
+        .then( attendance => res.json(attendance))
+        .catch(error => this.handleError(error, res));
+    }
+
 }
