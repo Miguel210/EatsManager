@@ -12,7 +12,7 @@ import { AttendanceEntity } from "../../../domain/entities/attendance.entity";
 export class AttendanceDatasouceImpl implements AttendanceDatasouce {
     
     async create(dto: CreateAttendanceDto): Promise<AttendanceEntity> {
-
+        
         const attendance = await prisma.attendance.create({
             data: {
                 id: Uuid.uuid(),

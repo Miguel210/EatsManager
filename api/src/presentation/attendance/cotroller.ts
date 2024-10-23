@@ -21,7 +21,6 @@ export class AttendanceController {
 
     create = (req: Request, res: Response) => {
         
-        console.log(req.params);
         const [error, dto] = CreateAttendanceDto.create(req.body);
         if( error ) throw res.status(400).json({error});
         
