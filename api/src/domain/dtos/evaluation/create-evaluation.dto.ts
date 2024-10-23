@@ -1,0 +1,36 @@
+
+
+
+
+
+export class CreateEvaluationDto {
+
+    constructor(
+        public employeeId: string,
+        public evaluatorId: string,
+        public date: Date,
+        public punctuality: number,
+        public attitude:    number,
+        public quality:     number,
+        public efficiency:  number,
+        public initiative:  number,
+        public hygiene:     number
+    ) {}
+
+    static create(props: {[key: string]: any}): [string?, CreateEvaluationDto?] {
+
+        const {employeeId, evaluatorId, date, punctuality, attitude, quality, efficiency, initiative, hygiene} = props;
+
+        if( !employeeId ) return ['id is requerid'];
+        if( !evaluatorId ) return ['id is requerid'];
+        if( date === undefined ) return ['date is requerid'];
+        if( !punctuality ) return ['punctuality is requerid'];
+        if( !attitude ) return ['attitude is requerid'];
+        if( !quality ) return ['quality is requerid'];
+        if( !efficiency ) return ['efficiency is requerid'];
+        if( !initiative ) return ['initiative is requerid'];
+        if( !hygiene ) return ['hygiene is requerid'];
+
+        return [undefined, new CreateEvaluationDto(employeeId, evaluatorId, date, punctuality, attitude, quality, efficiency, initiative, hygiene)];
+    }
+}
