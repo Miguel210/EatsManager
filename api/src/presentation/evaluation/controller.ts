@@ -19,4 +19,19 @@ export class EvaluationController {
         return res.status(500).json({error: 'Internal server error'})
     }
 
+    create = (req: Request, res: Response) => {
+
+    }
+
+    getById = (req: Request, res: Response) => {
+        
+    }
+
+    gets = (req: Request, res: Response) => {
+        
+    }
+
+    update = (req: Request, res: Response) => {
+        
+    }
 }
