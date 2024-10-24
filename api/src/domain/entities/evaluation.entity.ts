@@ -19,20 +19,22 @@ export class EvaluationEntity {
 
     static fromObject(object: {[key: string]: any}) {
 
-        const {id, employeeId, employee, evaluatorId, evaluators, date, punctuality,attitude,quality,efficiency, initiative, hygiene, isActive} = object;
-
+        const {id, employeeId, empoyee, evaluatorId, evaluator, date, punctuality,attitude,quality,efficiency, initiative, hygiene, isActive} = object;
+        
+        console.log(object);
+        
         if( !id ) throw CustomError.badRequest('Missing id');
-        if( !employeeId && !employee ) throw CustomError.badRequest('Missing id');
-        if( !evaluatorId && evaluators ) throw CustomError.badRequest('Missing id');
-        if( date === undefined ) throw CustomError.badRequest('Missing id');
-        if( !punctuality ) throw CustomError.badRequest('Missing id');
-        if( !attitude ) throw CustomError.badRequest('Missing id');
-        if( !quality ) throw CustomError.badRequest('Missing id');
-        if( !efficiency ) throw CustomError.badRequest('Missing id');
-        if( !initiative ) throw CustomError.badRequest('Missing id');
-        if( !hygiene ) throw CustomError.badRequest('Missing id');
-        if( !isActive ) throw CustomError.badRequest('Missing id');
+        if( !employeeId && !empoyee ) throw CustomError.badRequest('Missing employee');
+        if( !evaluatorId && !evaluator ) throw CustomError.badRequest('Missing evaluator');
+        if( date === undefined ) throw CustomError.badRequest('Missing date');
+        if( !punctuality ) throw CustomError.badRequest('Missing punctuality');
+        if( !attitude ) throw CustomError.badRequest('Missing attitude');
+        if( !quality ) throw CustomError.badRequest('Missing quality');
+        if( !efficiency ) throw CustomError.badRequest('Missing efficiency');
+        if( !initiative ) throw CustomError.badRequest('Missing initiative');
+        if( !hygiene ) throw CustomError.badRequest('Missing hygiene');
+        if( !isActive ) throw CustomError.badRequest('Missing isActive');
 
-        return new EvaluationEntity(id, employeeId || employee, evaluatorId || evaluators, date, punctuality,attitude,quality,efficiency, initiative, hygiene, isActive);
+        return new EvaluationEntity(id, employeeId || empoyee, evaluatorId || evaluator, date, punctuality,attitude,quality,efficiency, initiative, hygiene, isActive);
     }   
 }

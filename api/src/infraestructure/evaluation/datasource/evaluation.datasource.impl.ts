@@ -26,12 +26,52 @@ export class EvaluationDatasourceImpl implements EvaluationDatasource {
             }
         })
 
-        if( !evaluation ) throw `Evaluation with id ${dto} not found`;
+        if( !evaluation ) throw `Evaluation with data ${dto} not found`;
 
         return EvaluationEntity.fromObject(evaluation);
     }
     async getById(id: string): Promise<EvaluationEntity> {
-        throw new Error("Method not implemented.");
+
+        const evaluation = await prisma.evaluation.findFirst({
+            where: {
+                id: id
+            },
+            select: {
+                id: true,
+                empoyee: {
+                    select: {
+                        id: true,
+                        person: {
+                            select: {
+                                fullname: true
+                            }
+                        }
+                    }
+                },
+                evaluator: {
+                    select:{
+                        id: true,
+                        person:{
+                            select: {
+                                fullname: true
+                            }
+                        }
+                    }
+                },
+                date: true,
+                punctuality: true,
+                attitude: true,
+                quality: true,
+                efficiency: true,
+                initiative: true,
+                hygiene: true,
+                isActive: true
+            }
+        })
+        
+        if( !evaluation ) throw `Evaluation with id ${id} not found`;
+
+        return EvaluationEntity.fromObject(evaluation);
     }
     async gets(form: any): Promise<EvaluationEntity[]> {
         throw new Error("Method not implemented.");

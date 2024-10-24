@@ -20,7 +20,7 @@ export class EvaluationRouter {
 
         routes.post("/create/", controller.create)
         routes.get("/")
-        routes.post("/get/")
+        routes.post("/get/", controller.getById)
         routes.post("/update/")
 
         return routes;

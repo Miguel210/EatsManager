@@ -32,6 +32,12 @@ export class EvaluationController {
 
     getById = (req: Request, res: Response) => {
         
+        const id = req.body.id;
+        if( !id ) throw res.status(400).json({error: `Requerid id` });
+
+        this.service.getById(id)
+        .then( evaluation => res.json(evaluation) )
+        .catch( error => this.handleError(error, res) );
     }
 
     gets = (req: Request, res: Response) => {
