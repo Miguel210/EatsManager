@@ -1,6 +1,7 @@
 import { CreateEvaluationDto } from "../../domain/dtos/evaluation/create-evaluation.dto";
 import { CreateEvaluation } from "../../domain/use-cases/evaluation/create-evaluation";
 import { GetEvaluation } from "../../domain/use-cases/evaluation/get-evaluation";
+import { GetsEvaluation } from "../../domain/use-cases/evaluation/gets-evaluation";
 import { EvaluationRepositoryImpl } from "../../infraestructure/evaluation/repository/evaluation.repository.impl";
 
 
@@ -37,8 +38,18 @@ export class EvaluationService {
         }
     }
 
-    public async get(dto: CreateEvaluationDto){
+    public async getAll(form: any){
 
+        const evaluation = await new GetsEvaluation( this.repository ).execute(form)
+        .then( evaluation => evaluation )
+        .catch( error => console.log(error) );
+
+        return {
+            data: {
+                evaluation
+            }
+        }
+        
     }
 
     public async update(dto: CreateEvaluationDto){

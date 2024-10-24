@@ -74,7 +74,29 @@ export class EvaluationDatasourceImpl implements EvaluationDatasource {
         return EvaluationEntity.fromObject(evaluation);
     }
     async gets(form: any): Promise<EvaluationEntity[]> {
-        throw new Error("Method not implemented.");
+
+        let date: any = form.date;
+        if( date ) {
+            date = new Date(date)
+        } 
+        console.log(date);
+        
+        const evaluation = await prisma.evaluation.findMany({
+            where: {
+                employeeId: {
+                    in: form.employeeId || undefined
+                },
+                evaluatorId: {
+                    in: form.evaluatorId || undefined
+                },
+                date: date || undefined,
+                isActive: form.isActive
+            }
+        })
+        
+        if( !evaluation ) throw `Evaluation with form ${form} not found`;
+
+        return evaluation.map( evaluation => EvaluationEntity.fromObject(evaluation));
     }
     async update(dto: UpdateEvaluationDto): Promise<EvaluationEntity> {
         throw new Error("Method not implemented.");

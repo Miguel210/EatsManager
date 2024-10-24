@@ -40,8 +40,18 @@ export class EvaluationController {
         .catch( error => this.handleError(error, res) );
     }
 
-    gets = (req: Request, res: Response) => {
+    getAll = (req: Request, res: Response) => {
         
+       const form = {
+        employeeId: req.body.employeeId,
+        evaluatorId: req.body.evaluatorId,
+        date: req.body.date,
+        isActive: req.body.isActive
+       }
+       
+       this.service.getAll(form)
+       .then( evaluation => res.json(evaluation) )
+       .catch(error => this.handleError(error, res) )
     }
 
     update = (req: Request, res: Response) => {

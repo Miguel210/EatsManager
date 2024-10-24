@@ -19,7 +19,7 @@ export class EvaluationRouter {
         const controller = new EvaluationController(service )
 
         routes.post("/create/", controller.create)
-        routes.get("/")
+        routes.get("/", controller.getAll)
         routes.post("/get/", controller.getById)
         routes.post("/update/")
 
