@@ -16,7 +16,12 @@ export class EvaluationRouter {
         const datasoruce = new EvaluationDatasourceImpl();
         const repository = new EvaluationRepositoryImpl(datasoruce);
         const service = new EvaluationService(repository);
-        const controller = new EvaluationController(service)
+        const controller = new EvaluationController(service )
+
+        routes.post("/create/")
+        routes.get("/")
+        routes.post("/get/")
+        routes.post("/update/")
 
         return routes;
     }

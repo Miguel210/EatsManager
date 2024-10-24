@@ -11,6 +11,7 @@ import { GarrisonRouter } from "./garrison/routes";
 import { OfferRouter } from "./offer/routes";
 import { EmployeeRoutes } from "./employee/routes";
 import { AttendanceRoutes } from "./attendance/routes";
+import { EvaluationRouter } from "./evaluation/routes";
 
 
 
@@ -30,6 +31,7 @@ export class AppRoutes {
         router.use('/api/promotion', OfferRouter.routes)
         router.use('/api/employee', EmployeeRoutes.routes)
         router.use('/api/attendance', AttendanceRoutes.routes)
+        router.use('/api/evaluation', EvaluationRouter.routes)
         router.use('/api/utils', UtilRouter.routes)
 
 
