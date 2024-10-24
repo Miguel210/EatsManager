@@ -99,7 +99,27 @@ export class EvaluationDatasourceImpl implements EvaluationDatasource {
         return evaluation.map( evaluation => EvaluationEntity.fromObject(evaluation));
     }
     async update(dto: UpdateEvaluationDto): Promise<EvaluationEntity> {
-        throw new Error("Method not implemented.");
+
+        await this.getById(dto.id);
+        
+        const evaluation = await prisma.evaluation.update({
+            where: {
+                id: dto.id
+            },
+            data: {
+                punctuality: dto.punctuality,
+                attitude: dto.attitude,
+                quality: dto.quality,
+                efficiency: dto.efficiency,
+                initiative: dto.initiative,
+                hygiene: dto.hygiene
+            }
+        })
+        
+        if( !evaluation ) throw `Evaluation with id ${dto.id} not found`;
+
+        return EvaluationEntity.fromObject(evaluation);
+
     }
 
 }

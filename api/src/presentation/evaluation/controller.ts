@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { CustomError } from "../../domain";
 import { EvaluationService } from "../services/evaluation.service";
 import { CreateEvaluationDto } from "../../domain/dtos/evaluation/create-evaluation.dto";
+import { UpdateEvaluationDto } from "../../domain/dtos/evaluation/update-evaluation.dto";
 
 
 
@@ -12,7 +13,7 @@ export class EvaluationController {
         private readonly service: EvaluationService
     ) {}
 
-    private handleError = (error: unknown, res: Response) => {
+    private HandleError = (error: unknown, res: Response) => {
         if(error instanceof(CustomError)) {
             return res.status(error.statusCode).json({error: error.message})
         }
@@ -27,7 +28,7 @@ export class EvaluationController {
 
         this.service.create( dto! )
         .then( evaluation => res.json(evaluation) )
-        .catch( error => this.handleError(error, res) );
+        .catch( error => this.HandleError(error, res) );
     }
 
     getById = (req: Request, res: Response) => {
@@ -37,7 +38,7 @@ export class EvaluationController {
 
         this.service.getById(id)
         .then( evaluation => res.json(evaluation) )
-        .catch( error => this.handleError(error, res) );
+        .catch( error => this.HandleError(error, res) );
     }
 
     getAll = (req: Request, res: Response) => {
@@ -51,10 +52,16 @@ export class EvaluationController {
        
        this.service.getAll(form)
        .then( evaluation => res.json(evaluation) )
-       .catch(error => this.handleError(error, res) )
+       .catch(error => this.HandleError(error, res) )
     }
 
     update = (req: Request, res: Response) => {
         
+        const [error, dto] = UpdateEvaluationDto.create(req.body);
+        if( error ) throw res.status(400).json({error});
+
+        this.service.update(dto!)
+        .then( evaluation => res.json(evaluation))
+        .catch(error => this.HandleError(error, res))
     }
 }
