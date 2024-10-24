@@ -18,7 +18,7 @@ export class EvaluationRouter {
         const service = new EvaluationService(repository);
         const controller = new EvaluationController(service )
 
-        routes.post("/create/")
+        routes.post("/create/", controller.create)
         routes.get("/")
         routes.post("/get/")
         routes.post("/update/")

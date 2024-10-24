@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { CustomError } from "../../domain";
 import { EvaluationService } from "../services/evaluation.service";
+import { CreateEvaluationDto } from "../../domain/dtos/evaluation/create-evaluation.dto";
 
 
 
@@ -21,6 +22,12 @@ export class EvaluationController {
 
     create = (req: Request, res: Response) => {
 
+        const [ error, dto ] = CreateEvaluationDto.create(req.body);
+        if( error ) throw res.status(400).json({error});
+
+        this.service.create( dto! )
+        .then( evaluation => res.json(evaluation) )
+        .catch( error => this.handleError(error, res) );
     }
 
     getById = (req: Request, res: Response) => {
