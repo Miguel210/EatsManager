@@ -11,17 +11,16 @@ export class MovementRepositoryImpl implements MovementDatasource {
         private readonly datasource: MovementDatasource
     ) {}
     create(dto: CreateMovementDto): Promise<MovementEntity> {
-        throw new Error("Method not implemented.");
+        return this.datasource.create(dto);
     }
     getById(id: string): Promise<MovementEntity> {
-        throw new Error("Method not implemented.");
+        return this.datasource.getById(id);
     }
     getAll(form: any): Promise<MovementEntity[]> {
-        throw new Error("Method not implemented.");
+        return this.datasource.getAll(form);
     }
     update(dto: UpdateMovementDto): Promise<MovementEntity> {
-        throw new Error("Method not implemented.");
+        return this.datasource.update(dto);
     }
 
-    
 }
