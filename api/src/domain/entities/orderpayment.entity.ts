@@ -20,7 +20,7 @@ export class OrderpaymentEntity {
         if( !movementId && movement ) throw CustomError.badRequest('Misssing movementId');
         if( !amount ) throw CustomError.badRequest('Misssing amount');
         if( !status ) throw CustomError.badRequest('Misssing status');
-        if( !isActive ) throw CustomError.badRequest('Misssing isActive');
+        if( isActive === undefined ) throw CustomError.badRequest('Misssing isActive');
 
         return new OrderpaymentEntity(id, movementId || movement, amount, status, isActive);
     }

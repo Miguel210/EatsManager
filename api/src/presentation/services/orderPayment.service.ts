@@ -3,6 +3,7 @@ import { UpdateOrderpaymentDto } from "../../domain/dtos/orderPayment/update-ord
 import { CreateOrderPayment } from "../../domain/use-cases/orderPayment/create-orderpayment";
 import { GetOrderPayment } from "../../domain/use-cases/orderPayment/get-orderpayment";
 import { GetAllOrderPayment } from "../../domain/use-cases/orderPayment/getAll-orderpayment";
+import { UpdateOrderPayment } from "../../domain/use-cases/orderPayment/update-orderpayment";
 import { OrderPaymentRepositoryImpl } from "../../infraestructure/orderPayment/repository/orderPayment.repository.impl";
 
 
@@ -55,6 +56,15 @@ export class OrderPaymentService {
 
     public async update(dto: UpdateOrderpaymentDto) {
 
+        const orderPayment = await new UpdateOrderPayment( this.repository ).execute(dto)
+        .then(order => order)
+        .catch(error => console.log({error}))
+        
+        return {
+            data: {
+                orderPayment
+            }
+        }
     }
 
     public async delete(id: string) {

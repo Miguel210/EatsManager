@@ -32,6 +32,7 @@ export class OrderPaymentDatasourceImpl implements OrderPaymentDatasource {
         })
 
         if( !order ) throw `Todo with id ${id} not found`;
+        
         return OrderpaymentEntity.fromObject(order);
 
     }
@@ -42,14 +43,28 @@ export class OrderPaymentDatasourceImpl implements OrderPaymentDatasource {
                 isActive: form.isActive
             }
         })
-        console.log(order);
         
         if( !order ) throw `Todo with form ${form} not found`;
         return order.map(order => OrderpaymentEntity.fromObject(order));
         
     }
-    update(dto: UpdateOrderpaymentDto): Promise<OrderpaymentEntity> {
-        throw new Error("Method not implemented.");
+    async update(dto: UpdateOrderpaymentDto): Promise<OrderpaymentEntity> {
+        await this.get(dto.id);
+
+        
+        const order = await prisma.orderPayment.update({
+            where: {
+                id: dto.id
+            },
+            data: {
+                isActive: dto.isActive,
+                amount: dto.amount,
+                status: dto.status
+            }
+        })
+
+        if( !order ) throw `Todo with id ${dto.id} not found`;
+        return OrderpaymentEntity.fromObject(order);
     }
     delete(id: string): Promise<OrderpaymentEntity> {
         throw new Error("Method not implemented.");
