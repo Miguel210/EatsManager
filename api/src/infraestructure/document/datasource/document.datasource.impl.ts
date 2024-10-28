@@ -46,8 +46,23 @@ export class DocuemntDatasourceImpl  implements DocumentDatasource {
 
         return document.map(document => DocumentEntity.fromObject(document));
     }
-    update(dto: UpdateDocumentDto): Promise<DocumentEntity> {
-        throw new Error("Method not implemented.");
+    async update(dto: UpdateDocumentDto): Promise<DocumentEntity> {
+        await this.get(dto.id);
+        
+        const document = await prisma.document.update({
+            where: {
+                id: dto.id
+            },
+            data: {
+                description: dto.description,
+                isActive: dto.isActive
+            }
+        })
+
+        if( !document ) throw `Document with id ${dto.id} not found`;
+
+        return DocumentEntity.fromObject(document);
+
     }
     delete(id: string): Promise<DocumentEntity> {
         throw new Error("Method not implemented.");

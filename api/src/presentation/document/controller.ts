@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { DocumentService } from "../services/document.service";
 import { CustomError } from "../../domain";
 import { CreateDocumentDto } from "../../domain/dtos/document/create-document.dto";
+import { UpdateDocumentDto } from "../../domain/dtos/document/update-document.dto";
 
 
 
@@ -52,6 +53,13 @@ export class DocumentController {
 
     update = (req: Request, res: Response) => {
         
+        const [error, dto ] = UpdateDocumentDto.create(req.body)
+        if( error ) throw res.status(400).json({error});
+        
+        this.service.update(dto!)
+        .then(doc => res.json(doc))
+        .catch(error => this.HandleError(error, res))
+
     }
 
     delete = (req: Request, res: Response) => {
