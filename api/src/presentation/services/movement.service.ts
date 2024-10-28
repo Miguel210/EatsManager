@@ -3,6 +3,7 @@ import { UpdateMovementDto } from "../../domain/dtos/movement/update-movement.dt
 import { CreateMovement } from "../../domain/use-cases/movement/create-movement";
 import { GetMovement } from "../../domain/use-cases/movement/get-movement";
 import { GetAllMovement } from "../../domain/use-cases/movement/getAll-movement";
+import { UpdateMovement } from "../../domain/use-cases/movement/update-movement";
 import { MovementRepositoryImpl } from "../../infraestructure/movement/repository/movement.repository.impl";
 
 
@@ -55,5 +56,15 @@ export class MovementService {
 
     public async update(dto: UpdateMovementDto) {
         
+        
+        const movement = await new UpdateMovement( this.repository ).execute(dto)
+        .then( mov => mov)
+        .catch(error => console.log({error}))
+
+        return {
+            data: {
+                movement
+            }
+        }
     }
 }

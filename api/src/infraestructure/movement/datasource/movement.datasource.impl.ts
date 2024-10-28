@@ -91,7 +91,23 @@ export class MovementDatasourceImpl implements MovementDatasource {
 
     }
     async update(dto: UpdateMovementDto): Promise<MovementEntity> {
-        throw new Error("Method not implemented.");
+        await this.getById(dto.id);
+
+        const movement = await prisma.movement.update({
+            where: {
+                id: dto.id
+            },
+            data: {
+                documentId: dto.documentId,
+                amount: dto.amout,
+                status: dto.status,
+                isActive: dto.isActive
+            }
+        })
+
+        if( !movement ) throw `Movements with id ${dto.id} not found`;
+        return MovementEntity.fromObject(movement);
+
     }
 
 }

@@ -2,6 +2,7 @@ import { Response, Request} from 'express'
 import { CustomError } from "../../domain";
 import { MovementService } from "../services/movement.service";
 import { CreateMovementDto } from '../../domain/dtos/movement/create-movement.dto';
+import { UpdateMovementDto } from '../../domain/dtos/movement/update-movement.dto';
 
 
 
@@ -60,6 +61,13 @@ export class MovementController {
         .catch(error => this.HandleError(error, res))
     }
     update = (req: Request, res: Response) => {
-        
+       
+        const [error, dto ] = UpdateMovementDto.create(req.body)
+        if( error ) throw res.json(400).json({error});
+
+        this.service.update(dto!)
+        .then(movement => res.json(movement))
+        .catch(error => this.HandleError(error, res))
+
     }
 }
