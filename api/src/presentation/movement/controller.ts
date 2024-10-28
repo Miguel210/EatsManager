@@ -31,6 +31,12 @@ export class MovementController {
     }
     getById = (req: Request, res: Response) => {
         
+        const id = req.body.id;
+        if( !id ) throw res.json(400).json({error: 'id is requerid'});
+
+        this.service.getById(id)
+        .then(movement => res.json(movement))
+        .catch(error => this.HandleError(error, res))
     }
     getAll = (req: Request, res: Response) => {
         

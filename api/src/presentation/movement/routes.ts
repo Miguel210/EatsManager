@@ -17,8 +17,8 @@ export class MovementRouter {
         const controller = new MovementController(service);
 
         routes.post('/create/', controller.creatre);
-        routes.post('/', controller.getAll);
-        routes.get('/get/', controller.getById);
+        routes.get('/', controller.getAll);
+        routes.post('/get/', controller.getById);
         routes.post('/update/', controller.update);
 
 

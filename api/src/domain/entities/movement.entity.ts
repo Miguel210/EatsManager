@@ -24,11 +24,11 @@ export class MovementEntity {
         if( !id ) throw CustomError.badRequest('Missing id');
         if( !personId && !person ) throw CustomError.badRequest('Missing personId');
         if( !documentId && !document ) throw CustomError.badRequest('Missing documentId');
-        //if( !elaborateId || !elaborate ) throw CustomError.badRequest('Missing ');
+        if( !elaborateId && !elaborate && undefined ) throw CustomError.badRequest('Missing elaborateId');
         if( !amount ) throw CustomError.badRequest('Missing amount');
         if( !status ) throw CustomError.badRequest('Missing status');
         if( isActive === undefined ) throw CustomError.badRequest('Missing isActive');
-        //if( !referenceId || reference) throw CustomError.badRequest('Missing referenceId');
+        if( !referenceId && !reference && undefined) throw CustomError.badRequest('Missing referenceId');
         if( date === undefined ) throw CustomError.badRequest('Missing date');
 
         return new MovementEntity(id, personId || person, documentId || document, elaborateId || elaborate, amount, status, isActive, referenceId || reference, date);
