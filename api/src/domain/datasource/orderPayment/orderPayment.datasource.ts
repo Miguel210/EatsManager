@@ -4,7 +4,7 @@ import { OrderpaymentEntity } from "../../entities/orderpayment.entity";
 
 
 
-export abstract class OrderPaymentDatasoruce {
+export abstract class OrderPaymentDatasource {
 
     abstract create(dto: CreateOrderpaymentDto): Promise<OrderpaymentEntity>;
     abstract get(id: string): Promise<OrderpaymentEntity>;
