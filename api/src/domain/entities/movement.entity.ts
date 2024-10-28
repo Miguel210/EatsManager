@@ -20,10 +20,10 @@ export class MovementEntity {
     static fromObject(object: {[key: string]: any}) {
 
         const {id, personId, person, documentId, document, elaborateId, elaborate, amount, status, isActive, referenceId, reference, date} = object
-
+        
         if( !id ) throw CustomError.badRequest('Missing id');
-        if( !personId || !person ) throw CustomError.badRequest('Missing personId');
-        if( !documentId || !document ) throw CustomError.badRequest('Missing documentId');
+        if( !personId && !person ) throw CustomError.badRequest('Missing personId');
+        if( !documentId && !document ) throw CustomError.badRequest('Missing documentId');
         //if( !elaborateId || !elaborate ) throw CustomError.badRequest('Missing ');
         if( !amount ) throw CustomError.badRequest('Missing amount');
         if( !status ) throw CustomError.badRequest('Missing status');

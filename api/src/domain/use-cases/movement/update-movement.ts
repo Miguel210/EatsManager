@@ -9,7 +9,7 @@ export interface UpdateMovementUseCase {
 }
 
 
-export class CreateMovement implements UpdateMovementUseCase {
+export class UpdateMovement implements UpdateMovementUseCase {
 
     constructor(
         private readonly repository: MovementRepository 

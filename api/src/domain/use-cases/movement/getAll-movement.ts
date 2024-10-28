@@ -8,7 +8,7 @@ export interface GetAllMovementUseCase {
 }
 
 
-export class CreateMovement implements GetAllMovementUseCase {
+export class GetAllMovement implements GetAllMovementUseCase {
 
     constructor(
         private readonly repository: MovementRepository 

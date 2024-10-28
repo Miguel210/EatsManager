@@ -1,6 +1,7 @@
 import { Response, Request} from 'express'
 import { CustomError } from "../../domain";
 import { MovementService } from "../services/movement.service";
+import { CreateMovementDto } from '../../domain/dtos/movement/create-movement.dto';
 
 
 
@@ -21,6 +22,12 @@ export class MovementController {
 
     creatre = (req: Request, res: Response) => {
 
+        const [error, dto] = CreateMovementDto.create(req.body)
+        if( error ) throw res.status(400).json({error});
+    
+        this.service.create(dto!)
+        .then(movement => res.json(movement))
+        .catch(error => this.HandleError(error, res))
     }
     getById = (req: Request, res: Response) => {
         
