@@ -12,6 +12,11 @@ import { OfferRouter } from "./offer/routes";
 import { EmployeeRoutes } from "./employee/routes";
 import { AttendanceRoutes } from "./attendance/routes";
 import { EvaluationRouter } from "./evaluation/routes";
+import { MovementRouter } from "./movement/routes";
+import { DocumentRoutes } from "./document/routes";
+import { MovementDetailRouter } from "./movementDetail/routes";
+import { OrderPaymentRoutes } from "./orderPayment/routes";
+import { PaymentRoutes } from "./payment/routes";
 
 
 
@@ -32,6 +37,11 @@ export class AppRoutes {
         router.use('/api/employee', EmployeeRoutes.routes)
         router.use('/api/attendance', AttendanceRoutes.routes)
         router.use('/api/evaluation', EvaluationRouter.routes)
+        router.use('/api/movement', MovementRouter.routes)
+        router.use('/api/document', DocumentRoutes.routes)
+        router.use('/api/movementDetail', MovementDetailRouter.routes)
+        router.use('/api/orderPayment', OrderPaymentRoutes.routes)
+        router.use('/api/payment', PaymentRoutes.routes)
         router.use('/api/utils', UtilRouter.routes)
 
 
