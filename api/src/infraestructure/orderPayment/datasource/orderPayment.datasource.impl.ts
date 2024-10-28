@@ -23,8 +23,17 @@ export class OrderPaymentDatasourceImpl implements OrderPaymentDatasource {
         if( !order ) throw `Todo with data ${dto} not found`;
         return OrderpaymentEntity.fromObject(order);
     }
-    get(id: string): Promise<OrderpaymentEntity> {
-        throw new Error("Method not implemented.");
+    async get(id: string): Promise<OrderpaymentEntity> {
+
+        const order = await prisma.orderPayment.findFirst({
+            where: {
+                id: id
+            }
+        })
+
+        if( !order ) throw `Todo with id ${id} not found`;
+        return OrderpaymentEntity.fromObject(order);
+
     }
     getAll(form: any): Promise<OrderpaymentEntity[]> {
         throw new Error("Method not implemented.");

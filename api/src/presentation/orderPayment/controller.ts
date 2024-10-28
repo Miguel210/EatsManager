@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { OrderPaymentService } from "../services/orderPayment.service";
 import { CustomError } from "../../domain";
 import { CreateOrderpaymentDto } from "../../domain/dtos/orderPayment/create-orderPayment.dto";
+import { error } from "console";
 
 
 
@@ -34,6 +35,12 @@ export class OrderPaymentController {
 
     get = (req: Request, res: Response) => {
 
+        const id = req.body.id;
+        if( !id ) throw res.status(400).json({error: 'id is requerid'});
+
+        this.serice.get(id)
+        .then(order => res.json(order))
+        .catch(error => this.HandleError(error, res));
     }
 
     getAll = (req: Request, res: Response) => {
