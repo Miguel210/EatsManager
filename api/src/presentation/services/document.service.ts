@@ -3,6 +3,7 @@ import { CreateDocumentDto } from "../../domain/dtos/document/create-document.dt
 import { UpdateDocumentDto } from "../../domain/dtos/document/update-document.dto";
 import { CreateDocument } from "../../domain/use-cases/document/create-document";
 import { DocuemntDatasourceImpl } from "../../infraestructure/document/datasource/document.datasource.impl";
+import { GetDocument } from "../../domain/use-cases/document/get-document";
 
 
 
@@ -26,7 +27,16 @@ export class DocumentService {
     }
 
     public async get(id: string) {
+        
+        const document = await new GetDocument( this.repository ).execute(id)
+        .then(doc => doc)
+        .catch(error => console.log({error}))
 
+        return {
+            data: {
+                document
+            }
+        }
     }
 
     public async getAll(form: any) {

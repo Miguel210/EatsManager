@@ -19,12 +19,21 @@ export class DocuemntDatasourceImpl  implements DocumentDatasource {
             }
         })
         
-        if( !document ) throw `Evaluation with data ${dto} not found`;
+        if( !document ) throw `Document with data ${dto} not found`;
 
         return DocumentEntity.fromObject(document);
     }
-    get(id: string): Promise<DocumentEntity> {
-        throw new Error("Method not implemented.");
+    async get(id: string): Promise<DocumentEntity> {
+
+        const document = await prisma.document.findFirst({
+            where: {
+                id: id,
+            }
+        });
+        
+        if( !document ) throw `Document with id ${id} not found`;
+
+        return DocumentEntity.fromObject(document);
     }
     getAll(form: any): Promise<DocumentEntity[]> {
         throw new Error("Method not implemented.");

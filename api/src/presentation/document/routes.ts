@@ -18,8 +18,8 @@ export class DocumentRoutes {
         const controller = new DocumentController(service);
 
         routes.post('/create/', controller.create);
-        routes.get('/get/', controller.get);
-        routes.post('/', controller.getAll);
+        routes.post('/get/', controller.get);
+        routes.get('/', controller.getAll);
         routes.post('/update/', controller.update);
         routes.post('/delete/', controller.delete);
 
