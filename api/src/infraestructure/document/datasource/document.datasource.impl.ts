@@ -35,8 +35,16 @@ export class DocuemntDatasourceImpl  implements DocumentDatasource {
 
         return DocumentEntity.fromObject(document);
     }
-    getAll(form: any): Promise<DocumentEntity[]> {
-        throw new Error("Method not implemented.");
+    async getAll(form: any): Promise<DocumentEntity[]> {
+
+        const document = await prisma.document.findMany({
+            where: {
+                isActive: form.isActive
+            }
+        })
+        if( !document ) throw `Document with form ${form} not found`;
+
+        return document.map(document => DocumentEntity.fromObject(document));
     }
     update(dto: UpdateDocumentDto): Promise<DocumentEntity> {
         throw new Error("Method not implemented.");

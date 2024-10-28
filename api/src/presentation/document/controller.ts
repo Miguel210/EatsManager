@@ -41,6 +41,13 @@ export class DocumentController {
 
     getAll = (req: Request, res: Response) => {
         
+        const form = {
+            isActive: req.body.isActive
+        }
+
+        this.service.getAll(form)
+        .then(doc => res.json(doc))
+        .catch(error => this.HandleError(error, res))
     }
 
     update = (req: Request, res: Response) => {
