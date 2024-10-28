@@ -35,8 +35,18 @@ export class OrderPaymentDatasourceImpl implements OrderPaymentDatasource {
         return OrderpaymentEntity.fromObject(order);
 
     }
-    getAll(form: any): Promise<OrderpaymentEntity[]> {
-        throw new Error("Method not implemented.");
+    async getAll(form: any): Promise<OrderpaymentEntity[]> {
+
+        const order = await prisma.orderPayment.findMany({
+            where: {
+                isActive: form.isActive
+            }
+        })
+        console.log(order);
+        
+        if( !order ) throw `Todo with form ${form} not found`;
+        return order.map(order => OrderpaymentEntity.fromObject(order));
+        
     }
     update(dto: UpdateOrderpaymentDto): Promise<OrderpaymentEntity> {
         throw new Error("Method not implemented.");

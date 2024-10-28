@@ -2,6 +2,7 @@ import { CreateOrderpaymentDto } from "../../domain/dtos/orderPayment/create-ord
 import { UpdateOrderpaymentDto } from "../../domain/dtos/orderPayment/update-orderPayment.dto";
 import { CreateOrderPayment } from "../../domain/use-cases/orderPayment/create-orderpayment";
 import { GetOrderPayment } from "../../domain/use-cases/orderPayment/get-orderpayment";
+import { GetAllOrderPayment } from "../../domain/use-cases/orderPayment/getAll-orderpayment";
 import { OrderPaymentRepositoryImpl } from "../../infraestructure/orderPayment/repository/orderPayment.repository.impl";
 
 
@@ -41,6 +42,15 @@ export class OrderPaymentService {
 
     public async getAll(form: any) {
 
+        const orderPayment = await new GetAllOrderPayment( this.repository ).execute(form)
+        .then(order => order)
+        .catch(error => console.log({error}))
+        
+        return {
+            data: {
+                orderPayment
+            }
+        }
     }
 
     public async update(dto: UpdateOrderpaymentDto) {

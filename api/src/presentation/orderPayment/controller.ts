@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { OrderPaymentService } from "../services/orderPayment.service";
 import { CustomError } from "../../domain";
 import { CreateOrderpaymentDto } from "../../domain/dtos/orderPayment/create-orderPayment.dto";
-import { error } from "console";
 
 
 
@@ -45,6 +44,13 @@ export class OrderPaymentController {
 
     getAll = (req: Request, res: Response) => {
 
+        const form = {
+            isActive: req.body.isActive
+        }
+        
+        this.serice.getAll(form)
+        .then(order => res.json(order))
+        .catch(error => this.HandleError(error, res));
     }
 
     update = (req: Request, res: Response) => {
