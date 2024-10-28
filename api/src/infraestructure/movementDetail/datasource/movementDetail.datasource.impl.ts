@@ -1,22 +1,25 @@
-import { MovementDatasource } from "../../../domain/datasource/movement/movement.datasource";
-import { CreateMovementDto } from "../../../domain/dtos/movement/create-movement.dto";
-import { UpdateMovementDto } from "../../../domain/dtos/movement/update-movement.dto";
-import { MovementEntity } from "../../../domain/entities/movement.entity";
+import { MovemenetDetailDatasource } from "../../../domain/datasource/movementDetail/movementDetail.datasource";
+import { CreateMovementDetailDto } from "../../../domain/dtos/movementDetail/create-movementDetail";
+import { UpdateMovementDetailDto } from "../../../domain/dtos/movementDetail/update-movementDetail";
+import { MovementDetailEntity } from "../../../domain/entities/movementDetail.entity";
 
 
 
-export class MovementDetailDatasourceImpl implements MovementDatasource {
-
-    create(dto: CreateMovementDto): Promise<MovementEntity> {
+export class MovementDetailDatasourceImpl implements MovemenetDetailDatasource {
+    
+    create(dto: CreateMovementDetailDto): Promise<MovementDetailEntity> {
         throw new Error("Method not implemented.");
     }
-    getById(id: string): Promise<MovementEntity> {
+    get(id: string): Promise<MovementDetailEntity> {
         throw new Error("Method not implemented.");
     }
-    getAll(form: any): Promise<MovementEntity[]> {
+    getAll(form: any): Promise<MovementDetailEntity[]> {
         throw new Error("Method not implemented.");
     }
-    update(dto: UpdateMovementDto): Promise<MovementEntity> {
+    update(dto: UpdateMovementDetailDto): Promise<MovementDetailEntity> {
+        throw new Error("Method not implemented.");
+    }
+    delete(id: string): Promise<MovementDetailEntity> {
         throw new Error("Method not implemented.");
     }
 

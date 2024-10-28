@@ -2,10 +2,11 @@ import { MovemenetDetailDatasource } from "../../../domain/datasource/movementDe
 import { CreateMovementDetailDto } from "../../../domain/dtos/movementDetail/create-movementDetail";
 import { UpdateMovementDetailDto } from "../../../domain/dtos/movementDetail/update-movementDetail";
 import { MovementDetailEntity } from "../../../domain/entities/movementDetail.entity";
+import { MovemenetDetailRepository } from "../../../domain/repositories/movementDetail/movementDetail.repository";
 
 
 
-export class MovementDetailRepositoryImpl implements MovemenetDetailDatasource {
+export class MovementDetailRepositoryImpl implements MovemenetDetailRepository {
 
     constructor(
         private readonly datasource: MovemenetDetailDatasource
