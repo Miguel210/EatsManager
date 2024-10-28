@@ -5,6 +5,7 @@ import { DocuemntDatasourceImpl } from "../../infraestructure/document/datasourc
 import { GetDocument } from "../../domain/use-cases/document/get-document";
 import { GetAllDocument } from "../../domain/use-cases/document/getAll-document";
 import { UpdateDocument } from "../../domain/use-cases/document/update-document";
+import { DeleteDocument } from "../../domain/use-cases/document/delete-document";
 
 
 
@@ -67,6 +68,15 @@ export class DocumentService {
     }
 
     public async delete(id: string) {
+        
+        const document = await new DeleteDocument( this.repository ).execute(id)
+        .then(doc => doc)
+        .catch(error => console.log({error}))
 
+        return {
+            data: {
+                document
+            }
+        }
     }
 }

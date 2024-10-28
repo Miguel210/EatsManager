@@ -64,5 +64,13 @@ export class DocumentController {
 
     delete = (req: Request, res: Response) => {
         
+        const id = req.body.id;
+        
+        if( !id ) throw res.status(400).json({error: 'id is requerid'});
+        
+        this.service.delete(id)
+        .then(doc => res.json(doc))
+        .catch(error => this.HandleError(error, res))
+        
     }
 }

@@ -64,8 +64,26 @@ export class DocuemntDatasourceImpl  implements DocumentDatasource {
         return DocumentEntity.fromObject(document);
 
     }
-    delete(id: string): Promise<DocumentEntity> {
-        throw new Error("Method not implemented.");
+    async delete(id: string): Promise<DocumentEntity> {
+        console.log(id);
+        
+        await this.get(id);
+        const document = await prisma.document.update({
+            where: {
+                id: id
+            },
+            data: {
+                /*
+                isDelete: true,
+                deleteAt: new Date()
+            */
+            }
+        })
+
+        if( !document ) throw `Document with id ${id} not found`;
+
+        return DocumentEntity.fromObject(document);
+
     }
 
 }
