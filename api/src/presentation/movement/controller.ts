@@ -39,7 +39,25 @@ export class MovementController {
         .catch(error => this.HandleError(error, res))
     }
     getAll = (req: Request, res: Response) => {
-        
+
+        let date: Date | any;
+        date = new Date(req.body.date)
+        if( !req.body.date) {
+            date = undefined;
+        }
+
+        const form = {
+            personId: req.body.personId,
+            documentId: req.body.documentId,
+            elaborateId: req.body.elaborateId,
+            status: req.body.status,
+            isActive: req.body.isActive,
+            date: date
+        }
+
+        this.service.getAll(form)
+        .then(movement => res.json(movement))
+        .catch(error => this.HandleError(error, res))
     }
     update = (req: Request, res: Response) => {
         
