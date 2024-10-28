@@ -1,5 +1,7 @@
+import { error } from "console";
 import { CreateDocumentDto } from "../../domain/dtos/document/create-document.dto";
 import { UpdateDocumentDto } from "../../domain/dtos/document/update-document.dto";
+import { CreateDocument } from "../../domain/use-cases/document/create-document";
 import { DocuemntDatasourceImpl } from "../../infraestructure/document/datasource/document.datasource.impl";
 
 
@@ -12,6 +14,15 @@ export class DocumentService {
 
     public async create(dto: CreateDocumentDto){
 
+        const document = await new CreateDocument( this.repository ).execute(dto)
+        .then(doc => doc)
+        .catch(error => console.log({error}))
+
+        return {
+            data: {
+                document
+            }
+        }
     }
 
     public async get(id: string) {
