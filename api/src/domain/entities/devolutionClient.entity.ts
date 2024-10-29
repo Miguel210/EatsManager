@@ -15,7 +15,7 @@ export class DevolutionClientEntity{
         public isActive: boolean
     ) {}
 
-    static create(object: {[key: string]: any}) {
+    static fromObject(object: {[key: string]: any}) {
 
         const {id, movementId, movement, invoiceFolio, paymentDate, status, isActive} = object;
     
