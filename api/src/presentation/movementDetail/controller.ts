@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { MovementsDetailService } from "../services/movementDetail.service";
 import { CustomError } from "../../domain";
 import { CreateMovementDetailDto } from '../../domain/dtos/movementDetail/create-movementDetail';
+import { error } from "console";
 
 
 
@@ -32,6 +33,12 @@ export class MovementDetailController {
 
     get = (req: Request, res: Response) => {
         
+        const id = req.body.id;
+        if( !id ) throw res.status(400).json({error: 'id is requerid'});
+
+        this.service.get(id)
+        .then(movement => res.json(movement))
+        .catch(error => this.HandleError(error, res));
     }
 
     getAll = (req: Request, res: Response) => {

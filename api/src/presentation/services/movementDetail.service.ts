@@ -1,6 +1,7 @@
 import { CreateMovementDetailDto } from "../../domain/dtos/movementDetail/create-movementDetail";
 import { UpdateMovementDetailDto } from "../../domain/dtos/movementDetail/update-movementDetail";
 import { CreateMovementDetail } from "../../domain/use-cases/movementDetail/create-movementDetail";
+import { GetMovementDetail } from "../../domain/use-cases/movementDetail/get-movementDetail";
 import { MovementDetailRepositoryImpl } from "../../infraestructure/movementDetail/repository/movementDetail.repository.impl";
 
 
@@ -27,6 +28,15 @@ export class MovementsDetailService {
 
     public async get(id: string) {
 
+        const movementDet = await new GetMovementDetail( this.repository).execute(id)
+        .then(movement => movement)
+        .catch(error => console.log({error}))
+
+        return {
+            data: {
+                movementDet
+            }
+        }
     }
 
     public async getAll(form: any) {

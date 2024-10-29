@@ -29,8 +29,16 @@ export class MovementDetailDatasourceImpl implements MovemenetDetailDatasource {
         if( !movement ) throw `movementDetail with data ${dto} not found`;
         return MovementDetailEntity.fromObject(movement);
     }
-    get(id: string): Promise<MovementDetailEntity> {
-        throw new Error("Method not implemented.");
+    async get(id: string): Promise<MovementDetailEntity> {
+        const movement = await prisma.movementDetail.findFirst({
+            where: {
+                id: id
+            }
+        })
+
+        if( !movement ) throw `movementDetail with id ${id} not found`;
+
+        return MovementDetailEntity.fromObject(movement)
     }
     getAll(form: any): Promise<MovementDetailEntity[]> {
         throw new Error("Method not implemented.");
