@@ -37,7 +37,6 @@ export class PaymentDatasourceImpl implements PaymentDatasource {
         })
         
         if( !payment ) throw `movementDetail with id ${id} not found`;        
-        console.log(payment);
         
         return PaymentEntity.fromObject(payment)
     }
@@ -52,12 +51,25 @@ export class PaymentDatasourceImpl implements PaymentDatasource {
         })
         
         if( !payment ) throw `movementDetail with form ${form} not found`;        
-        console.log(payment);
         
         return payment.map( payment => PaymentEntity.fromObject(payment))
     }
-    update(dto: UpdatePaymentDto): Promise<PaymentEntity> {
-        throw new Error("Method not implemented.");
+    async update(dto: UpdatePaymentDto): Promise<PaymentEntity> {
+        
+        const payment = await prisma.payment.update({
+            where: {
+                id: dto.id
+            },
+            data: {
+                typePaymentId: dto.typePaymentId,
+                amount: dto.amount,
+                isActive: dto.isActive
+            }
+        })
+
+        if( !payment ) throw `movementDetail with id ${dto.id} not found`;        
+        
+        return PaymentEntity.fromObject(payment)
     }
     delete(id: string): Promise<PaymentEntity> {
         throw new Error("Method not implemented.");

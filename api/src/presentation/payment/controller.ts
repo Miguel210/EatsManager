@@ -3,6 +3,7 @@ import { PaymentService } from "../services/payment.service";
 import { CustomError } from "../../domain";
 import { CreatePaymentDto } from "../../domain/dtos/payment/create-payment.dto";
 import { error } from "console";
+import { UpdatePaymentDto } from "../../domain/dtos/payment/update-payment.dto";
 
 
 
@@ -54,6 +55,12 @@ export class PaymentController {
     
     update = (req: Request, res: Response) => {
 
+        const [error, dto] = UpdatePaymentDto.create(req.body);
+        if( error ) throw res.status(400).json({error});
+    
+        this.service.update(dto!)
+        .then(payment => res.json(payment))
+        .catch(error => this.HandleError(error, res ))
     }
     
     delete = (req: Request, res: Response) => {
