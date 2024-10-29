@@ -9,7 +9,7 @@ export abstract class ClientOrderDetailDatasource {
     abstract create(dto: CreateClientOrderDetailDto): Promise <ClientOrderDetailEntity>;
 
     abstract get(id: string): Promise <ClientOrderDetailEntity>;
-    abstract getAll(form: any): Promise <ClientOrderDetailEntity>;
+    abstract getAll(form: any): Promise <ClientOrderDetailEntity[]>;
     abstract update(dto: UpdateClientOrderDetailDto): Promise <ClientOrderDetailEntity>;
     abstract delete(id: string): Promise <ClientOrderDetailEntity>;
 
