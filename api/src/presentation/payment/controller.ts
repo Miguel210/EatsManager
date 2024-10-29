@@ -65,12 +65,6 @@ export class PaymentController {
     
     delete = (req: Request, res: Response) => {
 
-        const id = req.body.id;
-        if( !id ) throw res.status(400).json({error: 'id is reqierid'});
-    
-        this.service.delete(id)
-        .then(payment => res.json(payment))
-        .catch(error => this.HandleError(error, res ))
     }
     
 }
