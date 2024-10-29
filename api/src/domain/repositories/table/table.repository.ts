@@ -8,7 +8,7 @@ export abstract class TableRepository {
     abstract create(dto: CreateTableDto): Promise <TableEntity>;
 
     abstract get(id: string): Promise <TableEntity>;
-    abstract getAll(form: any): Promise <TableEntity>;
+    abstract getAll(form: any): Promise <TableEntity[]>;
     abstract update(dto: UpdateTableDto): Promise <TableEntity>;
     abstract delete(id: string): Promise <TableEntity>;
 
