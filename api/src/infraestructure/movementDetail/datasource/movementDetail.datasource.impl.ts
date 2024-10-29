@@ -40,8 +40,21 @@ export class MovementDetailDatasourceImpl implements MovemenetDetailDatasource {
 
         return MovementDetailEntity.fromObject(movement)
     }
-    getAll(form: any): Promise<MovementDetailEntity[]> {
-        throw new Error("Method not implemented.");
+    async getAll(form: any): Promise<MovementDetailEntity[]> {
+        
+        const movement = await prisma.movementDetail.findMany({
+            where: {
+                isActive: form.isActive,
+                productId: {
+                    in: form.productId || undefined
+                }
+            }
+        })
+        
+        if( !movement ) throw `movementDetail with form ${form} not found`;
+        
+
+        return movement.map(movement => MovementDetailEntity.fromObject(movement))
     }
     update(dto: UpdateMovementDetailDto): Promise<MovementDetailEntity> {
         throw new Error("Method not implemented.");

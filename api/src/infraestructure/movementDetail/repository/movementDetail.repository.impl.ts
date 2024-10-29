@@ -18,7 +18,7 @@ export class MovementDetailRepositoryImpl implements MovemenetDetailRepository {
         return this.datasource.get(id)
     }
     getAll(form: any): Promise<MovementDetailEntity[]> {
-        return this.getAll(form)
+        return this.datasource.getAll(form)
     }
     update(dto: UpdateMovementDetailDto): Promise<MovementDetailEntity> {
         return this.datasource.update(dto)

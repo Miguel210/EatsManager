@@ -22,7 +22,7 @@ export class MovementDetailEntity {
     static fromObject(object: {[key: string]: any}) {
 
         const {id, movementId, movement, quantity, productId, product, priceUnit, subTotal, tax, total, costUnit, promotionId, promotion, isActive} = object;
-
+        
         if( !id ) throw CustomError.badRequest('Missing id');
         if( !movementId && !movement ) throw CustomError.badRequest('Missing movementId');
         if( !quantity ) throw CustomError.badRequest('Missing quantity');

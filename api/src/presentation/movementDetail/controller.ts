@@ -43,6 +43,14 @@ export class MovementDetailController {
 
     getAll = (req: Request, res: Response) => {
         
+        const form = {
+            isActive: req.body.isActive,
+            productId: req.body.productId
+        }
+
+        this.service.getAll(form)
+        .then(movement => res.json(movement))
+        .catch(error => this.HandleError(error, res));
     }
 
     update = (req: Request, res: Response) => {
