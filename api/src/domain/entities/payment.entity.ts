@@ -14,14 +14,14 @@ export class PaymentEntity {
 
     static fromObject(object: {[key: string]: any}) {
 
-        const {id, OrderpaymentId, Orderpayment, amount, typePaymentId, typePayment, isActive} = object;
+        const {id, orderPaymentId, orderpayment, amount, typePaymentId, typePayment, isActive} = object;
     
         if( !id ) throw CustomError.badRequest('Missing id');
-        if( !OrderpaymentId || !Orderpayment) throw CustomError.badRequest('Missing ');
-        if( !amount ) throw CustomError.badRequest('Missing ');
-        if( !typePaymentId || !typePayment ) throw CustomError.badRequest('Missing ');
-        if( !isActive ) throw CustomError.badRequest('Missing ');
+        if( !orderPaymentId && !orderpayment) throw CustomError.badRequest('Missing OrderpaymentId');
+        if( !amount ) throw CustomError.badRequest('Missing amount ');
+        if( !typePaymentId && !typePayment ) throw CustomError.badRequest('Missing ');
+        if( isActive === undefined ) throw CustomError.badRequest('Missing isActive');
 
-        return new PaymentEntity(id, OrderpaymentId || Orderpayment, amount, typePaymentId || typePayment, isActive);
+        return new PaymentEntity(id, orderPaymentId || orderpayment, amount, typePaymentId || typePayment, isActive);
     }
 }

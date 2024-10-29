@@ -19,7 +19,7 @@ export class PaymentRoutes {
         const service = new PaymentService(repository);
         const controller = new PaymentController(service);
 
-        routes.post('/cretae/', controller.create);
+        routes.post('/create/', controller.create);
         routes.post('/get/', controller.get);
         routes.get('/', controller.getAll);
         routes.post('/update/', controller.update);

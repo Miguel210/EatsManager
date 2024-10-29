@@ -8,7 +8,7 @@ export interface DeletePaymentUseCase {
     execute(id: string): Promise<PaymentEntity>
 }
 
-export class CreatePayment implements DeletePaymentUseCase {
+export class DeleteePayment implements DeletePaymentUseCase {
 
     constructor(
         private readonly repository: PaymentRepository
