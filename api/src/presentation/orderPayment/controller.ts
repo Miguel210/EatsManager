@@ -59,8 +59,6 @@ export class OrderPaymentController {
         const [error, dto ] = UpdateOrderpaymentDto.create(req.body);
         if( error ) throw res.status(400).json({error});
 
-
-        
         this.serice.update(dto!)
         .then(order => res.json(order))
         .catch(error => this.HandleError(error, res));
@@ -68,5 +66,10 @@ export class OrderPaymentController {
 
     delete = (req: Request, res: Response) => {
 
+        const id = req.body.id;
+        if( !id ) throw res.status(400).json({error: 'id is requerid'})
+        this.serice.delete(id)
+        .then(order => res.json(order))
+        .catch(error => this.HandleError(error, res));
     }
 }

@@ -1,6 +1,7 @@
 import { CreateOrderpaymentDto } from "../../domain/dtos/orderPayment/create-orderPayment.dto";
 import { UpdateOrderpaymentDto } from "../../domain/dtos/orderPayment/update-orderPayment.dto";
 import { CreateOrderPayment } from "../../domain/use-cases/orderPayment/create-orderpayment";
+import { DeleteOrderPayment } from "../../domain/use-cases/orderPayment/delete-orderpayment";
 import { GetOrderPayment } from "../../domain/use-cases/orderPayment/get-orderpayment";
 import { GetAllOrderPayment } from "../../domain/use-cases/orderPayment/getAll-orderpayment";
 import { UpdateOrderPayment } from "../../domain/use-cases/orderPayment/update-orderpayment";
@@ -69,5 +70,14 @@ export class OrderPaymentService {
 
     public async delete(id: string) {
 
+        const orderPayment = await new DeleteOrderPayment( this.repository ).execute(id)
+        .then(order => order)
+        .catch(error => console.log({error}))
+        
+        return {
+            data: {
+                orderPayment
+            }
+        }
     }
 }

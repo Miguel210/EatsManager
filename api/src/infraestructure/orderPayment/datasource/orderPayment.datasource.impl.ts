@@ -20,7 +20,7 @@ export class OrderPaymentDatasourceImpl implements OrderPaymentDatasource {
                 status: dto.status
             }
         });
-        if( !order ) throw `Todo with data ${dto} not found`;
+        if( !order ) throw `orderPayment with data ${dto} not found`;
         return OrderpaymentEntity.fromObject(order);
     }
     async get(id: string): Promise<OrderpaymentEntity> {
@@ -31,7 +31,7 @@ export class OrderPaymentDatasourceImpl implements OrderPaymentDatasource {
             }
         })
 
-        if( !order ) throw `Todo with id ${id} not found`;
+        if( !order ) throw `orderPayment with id ${id} not found`;
         
         return OrderpaymentEntity.fromObject(order);
 
@@ -44,7 +44,7 @@ export class OrderPaymentDatasourceImpl implements OrderPaymentDatasource {
             }
         })
         
-        if( !order ) throw `Todo with form ${form} not found`;
+        if( !order ) throw `orderPayment with form ${form} not found`;
         return order.map(order => OrderpaymentEntity.fromObject(order));
         
     }
@@ -63,11 +63,24 @@ export class OrderPaymentDatasourceImpl implements OrderPaymentDatasource {
             }
         })
 
-        if( !order ) throw `Todo with id ${dto.id} not found`;
+        if( !order ) throw `orderPayment with id ${dto.id} not found`;
         return OrderpaymentEntity.fromObject(order);
     }
-    delete(id: string): Promise<OrderpaymentEntity> {
-        throw new Error("Method not implemented.");
+    async delete(id: string): Promise<OrderpaymentEntity> {
+
+        await this.get(id);
+        const order = await prisma.orderPayment.update({
+            where: {
+                id: id
+            },
+            data: {/*
+                isDelete: true,
+                deleteAt: new Date()*/
+            }
+        })
+        if( !order ) throw `orderPayment with id ${id} not found`;
+
+        return OrderpaymentEntity.fromObject(order);
     }
 
 }
