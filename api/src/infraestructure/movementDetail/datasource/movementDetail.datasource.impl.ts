@@ -79,8 +79,21 @@ export class MovementDetailDatasourceImpl implements MovemenetDetailDatasource {
         return MovementDetailEntity.fromObject(movement)
 
     }
-    delete(id: string): Promise<MovementDetailEntity> {
-        throw new Error("Method not implemented.");
+    async delete(id: string): Promise<MovementDetailEntity> {
+
+        const movement = await prisma.movementDetail.update({
+            where: {
+                id: id
+            },
+            data: {
+                /*isDelete: true,
+                deleteAt: new Date()*/
+            }
+        })
+
+        if( !movement ) throw `movementDetail with id ${id} not found`;
+
+        return MovementDetailEntity.fromObject(movement)
     }
 
 }

@@ -1,6 +1,7 @@
 import { CreateMovementDetailDto } from "../../domain/dtos/movementDetail/create-movementDetail";
 import { UpdateMovementDetailDto } from "../../domain/dtos/movementDetail/update-movementDetail";
 import { CreateMovementDetail } from "../../domain/use-cases/movementDetail/create-movementDetail";
+import { DeleteMovementDetail } from "../../domain/use-cases/movementDetail/delete-movementDetail";
 import { GetMovementDetail } from "../../domain/use-cases/movementDetail/get-movementDetail";
 import { GetAllMovementDetail } from "../../domain/use-cases/movementDetail/getAll-movementDetail";
 import { UpdateMovementDetail } from "../../domain/use-cases/movementDetail/update-movementDetail";
@@ -69,5 +70,14 @@ export class MovementsDetailService {
 
     public async delete(id: string) {
 
+        const movementDet = await new DeleteMovementDetail( this.repository ).execute(id)
+        .then(movement => movement)
+        .catch(error => console.log({error}))
+
+        return {
+            data: {
+                movementDet
+            }
+        }
     }
 }
