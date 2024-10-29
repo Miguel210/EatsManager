@@ -26,7 +26,7 @@ export class CreateMovementDetailDto {
         if( !tax) return ['tax is Requerid'];
         if( !total) return ['total is Requerid'];
         if( !costUnit) return ['costUnit is Requerid'];
-        if( !promotionId) return ['promotionId is Requerid'];
+        //if( !promotionId) return ['promotionId is Requerid'];
 
         return[undefined, new CreateMovementDetailDto(movementId, quantity, productId, priceUnit, subtotal, tax, total, costUnit, promotionId)]
     }
