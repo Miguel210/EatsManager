@@ -71,8 +71,21 @@ export class PaymentDatasourceImpl implements PaymentDatasource {
         
         return PaymentEntity.fromObject(payment)
     }
-    delete(id: string): Promise<PaymentEntity> {
-        throw new Error("Method not implemented.");
+    async delete(id: string): Promise<PaymentEntity> {
+    
+        const payment = await prisma.payment.update({
+            where: {
+                id: id
+            },
+            data: {/*
+                isDelete: true,
+                deleteAt: new Date()*/
+            }
+        })
+    
+        if( !payment ) throw `movementDetail with id ${id} not found`;        
+        
+        return PaymentEntity.fromObject(payment)
     }
 
 }
