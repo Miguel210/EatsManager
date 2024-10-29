@@ -2,6 +2,7 @@ import { CreatePaymentDto } from "../../domain/dtos/payment/create-payment.dto";
 import { UpdatePaymentDto } from "../../domain/dtos/payment/update-payment.dto";
 import { CreatePayment } from "../../domain/use-cases/payment/create-payment";
 import { GetPayment } from "../../domain/use-cases/payment/get-payment";
+import { GetAllPayment } from "../../domain/use-cases/payment/getAll-payment";
 import { PaymentRepositoryImpl } from "../../infraestructure/payment/repository/payment.repository.impl";
 
 
@@ -40,6 +41,15 @@ export class PaymentService {
 
     public async getAll(form: any) {
         
+        const payment = await new GetAllPayment( this.repository ).execute(form)
+        .then(pay => pay)
+        .catch(error => console.log({error}))
+        
+        return {
+            data: {
+                payment
+            }
+        }
     }
 
     public async update(dto: UpdatePaymentDto) {

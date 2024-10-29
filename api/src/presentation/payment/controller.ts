@@ -43,6 +43,13 @@ export class PaymentController {
     
     getAll = (req: Request, res: Response) => {
 
+        const form =  {
+            typePaymentId: req.body.typePaymentId
+        }
+
+        this.service.getAll(form)
+        .then(payment => res.json(payment))
+        .catch(error => this.HandleError(error, res ))
     }
     
     update = (req: Request, res: Response) => {
