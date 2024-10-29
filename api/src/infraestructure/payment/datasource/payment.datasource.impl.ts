@@ -28,8 +28,18 @@ export class PaymentDatasourceImpl implements PaymentDatasource {
         
         return PaymentEntity.fromObject(payment)
     }
-    get(id: string): Promise<PaymentEntity> {
-        throw new Error("Method not implemented.");
+    async get(id: string): Promise<PaymentEntity> {
+        
+        const payment = await prisma.payment.findFirst({
+            where: {
+                id: id
+            }
+        })
+        
+        if( !payment ) throw `movementDetail with id ${id} not found`;        
+        console.log(payment);
+        
+        return PaymentEntity.fromObject(payment)
     }
     getAll(form: any): Promise<PaymentEntity[]> {
         throw new Error("Method not implemented.");

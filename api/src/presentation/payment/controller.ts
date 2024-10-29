@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { PaymentService } from "../services/payment.service";
 import { CustomError } from "../../domain";
 import { CreatePaymentDto } from "../../domain/dtos/payment/create-payment.dto";
+import { error } from "console";
 
 
 
@@ -32,6 +33,12 @@ export class PaymentController {
     
     get = (req: Request, res: Response) => {
 
+        const id = req.body.id;
+        if( !id ) throw res.status(400).json({error: 'id is reqierid'});
+    
+        this.service.get(id)
+        .then(payment => res.json(payment))
+        .catch(error => this.HandleError(error, res ));
     }
     
     getAll = (req: Request, res: Response) => {
