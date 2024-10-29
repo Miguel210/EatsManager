@@ -20,7 +20,7 @@ export class UpdateMovementDetailDto {
         const {id, quantity, productId, priceUnit, subtotal, tax, total, costUnit, promotionId, isActive} = props;
     
         if( !id) return ['id is Requerid'];
-        if( isActive === undefined) return ['movementId is Requerid'];
+        if( isActive === undefined) return ['isActive is Requerid'];
         if( !quantity) return ['quantity is Requerid'];
         if( !productId) return ['productId is Requerid'];
         if( !priceUnit) return ['priceUnit is Requerid'];
@@ -28,7 +28,7 @@ export class UpdateMovementDetailDto {
         if( !tax) return ['tax is Requerid'];
         if( !total) return ['total is Requerid'];
         if( !costUnit) return ['costUnit is Requerid'];
-        if( !promotionId) return ['promotionId is Requerid'];
+      //  if( !promotionId) return ['promotionId is Requerid'];
 
         return[undefined, new UpdateMovementDetailDto(id, quantity, productId, priceUnit, subtotal, tax, total, costUnit, promotionId, isActive)]
     }

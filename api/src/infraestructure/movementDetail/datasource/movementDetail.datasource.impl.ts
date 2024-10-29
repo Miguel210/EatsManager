@@ -56,8 +56,28 @@ export class MovementDetailDatasourceImpl implements MovemenetDetailDatasource {
 
         return movement.map(movement => MovementDetailEntity.fromObject(movement))
     }
-    update(dto: UpdateMovementDetailDto): Promise<MovementDetailEntity> {
-        throw new Error("Method not implemented.");
+    async update(dto: UpdateMovementDetailDto): Promise<MovementDetailEntity> {
+
+        await this.get(dto.id)
+
+        const movement = await prisma.movementDetail.update({
+            where: {
+                id: dto.id
+            },
+            data: {
+                quantity: dto.quantity,
+                priceUnit: dto.priceUnit,
+                subTotal: dto.subtotal,
+                tax: dto.tax,
+                total: dto.total,
+                costUnit: dto.costUnit,
+                isActive: dto.isActive
+            }
+        })
+        if( !movement ) throw `movementDetail with id ${dto.id} not found`;        
+
+        return MovementDetailEntity.fromObject(movement)
+
     }
     delete(id: string): Promise<MovementDetailEntity> {
         throw new Error("Method not implemented.");

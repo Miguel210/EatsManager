@@ -3,6 +3,7 @@ import { MovementsDetailService } from "../services/movementDetail.service";
 import { CustomError } from "../../domain";
 import { CreateMovementDetailDto } from '../../domain/dtos/movementDetail/create-movementDetail';
 import { error } from "console";
+import { UpdateMovementDetailDto } from "../../domain/dtos/movementDetail/update-movementDetail";
 
 
 
@@ -55,6 +56,12 @@ export class MovementDetailController {
 
     update = (req: Request, res: Response) => {
         
+        const [error, dto] = UpdateMovementDetailDto.create(req.body);
+        if( error ) throw res.status(400).json({error});
+        
+        this.service.update(dto!)
+        .then(movement => res.json(movement))
+        .catch(error => this.HandleError(error, res ));
     }
 
     delete = (req: Request, res: Response) => {

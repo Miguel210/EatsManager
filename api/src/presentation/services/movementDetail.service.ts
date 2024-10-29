@@ -3,6 +3,7 @@ import { UpdateMovementDetailDto } from "../../domain/dtos/movementDetail/update
 import { CreateMovementDetail } from "../../domain/use-cases/movementDetail/create-movementDetail";
 import { GetMovementDetail } from "../../domain/use-cases/movementDetail/get-movementDetail";
 import { GetAllMovementDetail } from "../../domain/use-cases/movementDetail/getAll-movementDetail";
+import { UpdateMovementDetail } from "../../domain/use-cases/movementDetail/update-movementDetail";
 import { MovementDetailRepositoryImpl } from "../../infraestructure/movementDetail/repository/movementDetail.repository.impl";
 
 
@@ -41,7 +42,6 @@ export class MovementsDetailService {
     }
 
     public async getAll(form: any) {
-        console.log(form);
         
         const movementDet = await new GetAllMovementDetail( this.repository).execute(form)
         .then(movement => movement)
@@ -56,6 +56,15 @@ export class MovementsDetailService {
 
     public async update(dto: UpdateMovementDetailDto) {
 
+        const movementDet = await new UpdateMovementDetail( this.repository ).execute(dto)
+        .then(movement => movement)
+        .catch(error => console.log({error}))
+
+        return {
+            data: {
+                movementDet
+            }
+        }
     }
 
     public async delete(id: string) {
