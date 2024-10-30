@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { CustomError } from "../../domain";
 import { ClientOrderService } from "../services/clientOrder.service";
+import { CreateClientOrderDto } from "../../domain/dtos/clientOrder/create-clientOrder.dto";
 
 
 
@@ -20,6 +21,12 @@ export class ClientOrderController {
 
     create = (req: Request, res: Response) => {
 
+        const [error, dto ] = CreateClientOrderDto.create(req.body);
+        if( error ) throw res.status(400).json({error});
+
+        this.service.create(dto!)
+        .then( order => res.json(order))
+        .catch(error => this.HandleError(error, res))
     }
 
     get = (req: Request, res: Response) => {
