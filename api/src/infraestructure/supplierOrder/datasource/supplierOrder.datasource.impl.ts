@@ -1,3 +1,5 @@
+import { Uuid } from "../../../config";
+import { prisma } from "../../../data";
 import { SupplierOrderDatasource } from "../../../domain/datasource/supplierOrder/supplierOrder.datasource";
 import { CreateSupplierOrderDto } from "../../../domain/dtos/supplierOrder/create-supplierOrder.dto";
 import { UpdateSupplierOrderDto } from "../../../domain/dtos/supplierOrder/update-supplierOrder.dto";
@@ -8,8 +10,20 @@ import { SupplierOrderEntity } from "../../../domain/entities/supplierOrder.enti
 
 export class SupplierOrderDatasourceImpl implements SupplierOrderDatasource {
     
-    create(dto: CreateSupplierOrderDto): Promise<SupplierOrderEntity> {
-        throw new Error("Method not implemented.");
+    async create(dto: CreateSupplierOrderDto): Promise<SupplierOrderEntity> {
+
+        const order = await prisma.supplierOrder.create({
+            data: {
+                id: Uuid.uuid(),
+                movementId: dto.movementId,
+                invoiceFolio: dto.inoiceFolio,
+                paymentDate: dto.paymentDate,
+                status: dto.status,
+                isActive: true
+            }
+        })
+        if( !order ) throw `orderPayment with data ${dto} not found`;
+        return SupplierOrderEntity.fromObject(order);
     }
     get(id: string): Promise<SupplierOrderEntity> {
         throw new Error("Method not implemented.");
