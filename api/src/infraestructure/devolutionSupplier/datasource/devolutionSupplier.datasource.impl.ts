@@ -58,7 +58,17 @@ export class DevolutionSupplierDatasourceImpl implements DevolutionSupplierDatas
         return DevolutionSupplierEntity.fromObject(devolution)
     }
     async delete(id: string): Promise<DevolutionSupplierEntity> {
-        throw new Error("Method not implemented.");
+        const devolution = await prisma.devolutionSupplier.update({
+            where: {
+                id: id
+            },
+            data: {/*
+                isDelete: true,
+                deleteAt: new Date()*/
+            }
+        })
+        if( !devolution ) throw 'devolution is not found';
+        return DevolutionSupplierEntity.fromObject(devolution)
     }
     
 }
