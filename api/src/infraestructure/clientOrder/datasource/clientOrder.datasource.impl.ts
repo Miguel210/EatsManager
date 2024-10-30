@@ -60,7 +60,20 @@ export class ClientOrderDatasourceImpl implements ClientOrderDatasource {
         return ClientOrderEntity.fromObject(order);
     }
     async delete(id: string): Promise<ClientOrderEntity> {
-        throw new Error("Method not implemented.");
+        
+        const order = await prisma.clientOrder.update({
+            where: {
+                id: id
+            },
+            data: {/*
+                isDelete: true,
+                deleteAt: new Date()*/
+            
+            }
+        })
+        
+        if( !order ) throw 'is not found';
+        return ClientOrderEntity.fromObject(order);
     }
 
 }

@@ -1,6 +1,7 @@
 import { CreateClientOrderDto } from "../../domain/dtos/clientOrder/create-clientOrder.dto";
 import { UpdateClientOrderDto } from "../../domain/dtos/clientOrder/update-clientOrder.dto";
 import { CreateClientOrder } from "../../domain/use-cases/clientOrder/create-clientOrder";
+import { DeleteClientOrder } from "../../domain/use-cases/clientOrder/delete-clientOrder";
 import { GetClientOrder } from "../../domain/use-cases/clientOrder/get-clientOrder";
 import { GetAllClientOrder } from "../../domain/use-cases/clientOrder/getAll-clientOrder";
 import { UpdateClientOrder } from "../../domain/use-cases/clientOrder/update-clientOrder";
@@ -66,8 +67,17 @@ export class ClientOrderService {
         }
     }
 
-    public async delete() {
-        
+    public async delete(id: string) {
+
+        const order = await new DeleteClientOrder( this.repository ).execute(id)
+        .then(order => order)
+        .catch(error => console.log({error}))
+
+        return {
+            data: {
+                order
+            }
+        }
     }
 
 }
