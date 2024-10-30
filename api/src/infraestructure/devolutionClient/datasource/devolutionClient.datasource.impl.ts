@@ -1,3 +1,5 @@
+import { Uuid } from "../../../config";
+import { prisma } from "../../../data";
 import { DevolutionClientDatasource } from "../../../domain/datasource/devolutionClient/devolutionClient.datasource";
 import { CreateDevolutionClientDto } from "../../../domain/dtos/devolutionClient/create-devolutionClient.dto";
 import { UpdateDevolutionClientDto } from "../../../domain/dtos/devolutionClient/update-devolutionClient.dto";
@@ -6,8 +8,20 @@ import { DevolutionClientEntity } from "../../../domain/entities/devolutionClien
 
 
 export class DevolutionClientDatasourceImpl implements DevolutionClientDatasource {
-    create(dto: CreateDevolutionClientDto): Promise<DevolutionClientEntity> {
-        throw new Error("Method not implemented.");
+    async create(dto: CreateDevolutionClientDto): Promise<DevolutionClientEntity> {
+
+        const devolution = await prisma.devolutionClient.create({
+            data: {
+                id: Uuid.uuid(),
+                movementId: dto.movementId,
+                paymentDate: dto.paymentDate,
+                status: dto.status,
+                invoiceFolio: 'devolucionClient'                
+            }
+        });
+
+        if( !devolution ) throw 'is not found'
+        return DevolutionClientEntity.fromObject(devolution);
     }
     get(id: string): Promise<DevolutionClientEntity> {
         throw new Error("Method not implemented.");

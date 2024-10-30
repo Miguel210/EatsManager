@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { CustomError } from "../../domain";
 import { DevolutionClientService } from "../services/devolutionClient.service";
+import { CreateDevolutionClientDto } from "../../domain/dtos/devolutionClient/create-devolutionClient.dto";
 
 
 
@@ -20,6 +21,12 @@ export class DevolutionClientController {
 
     create = (req: Request, res: Response) => {
 
+        const [error, dto ] = CreateDevolutionClientDto.create(req.body);
+        if( error ) throw res.status(400).json({error});
+
+        this.service.create(dto!)
+        .then(devo => res.json(devo))
+        .catch(error => this.HandleError(error, res))
     }
 
     get = (req: Request, res: Response) => {
