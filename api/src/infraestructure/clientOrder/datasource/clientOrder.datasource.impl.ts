@@ -25,7 +25,14 @@ export class ClientOrderDatasourceImpl implements ClientOrderDatasource {
         return ClientOrderEntity.fromObject(order);
     }
     async get(id: string): Promise<ClientOrderEntity> {
-        throw new Error("Method not implemented.");
+        const order = await prisma.clientOrder.findFirst({
+            where: {
+                id: id
+            }
+        })
+
+        if( !order ) throw 'is not found';
+        return ClientOrderEntity.fromObject(order);
     }
     async getAll(form: any): Promise<ClientOrderEntity[]> {
         throw new Error("Method not implemented.");

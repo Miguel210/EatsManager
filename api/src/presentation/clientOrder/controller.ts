@@ -31,6 +31,12 @@ export class ClientOrderController {
 
     get = (req: Request, res: Response) => {
         
+        const id = req.body.id;
+        if( !id ) throw res.status(400).json({error: 'id is requerid'});
+        
+        this.service.get(id)
+        .then( order => res.json(order))
+        .catch(error => this.HandleError(error, res))
     }
 
     getAll = (req: Request, res: Response) => {
