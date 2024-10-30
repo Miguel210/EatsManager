@@ -4,6 +4,7 @@
 export class UpdateSupplierOrderDto {
 
     constructor(
+        public readonly id: string,
         public readonly paymentDate: Date,
         public readonly status: string,
         public readonly isActive: boolean
@@ -11,14 +12,15 @@ export class UpdateSupplierOrderDto {
 
     static create(props: {[key: string]: any}): [string?, UpdateSupplierOrderDto?] {
 
-        const { paymentDate, status, isActive} = props;
+        const { id, paymentDate, status, isActive} = props;
 
+        if( !id ) return ['id is requerid']
         if( !paymentDate ) return ['paymentDate is requerid'];
         if( !status ) return ['status is requerid'];
         if( isActive === undefined ) return ['isActive is requerid'];
 
 
-        return [undefined, new UpdateSupplierOrderDto( paymentDate, status, isActive)];
+        return [undefined, new UpdateSupplierOrderDto(id, paymentDate, status, isActive)];
 
     }
 }

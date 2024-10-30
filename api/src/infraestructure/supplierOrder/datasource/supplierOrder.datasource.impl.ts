@@ -42,8 +42,22 @@ export class SupplierOrderDatasourceImpl implements SupplierOrderDatasource {
         if( !order ) throw `supplierOrder with form ${form} not found`;
         return order.map(order => SupplierOrderEntity.fromObject(order));
     }
-    update(dto: UpdateSupplierOrderDto): Promise<SupplierOrderEntity> {
-        throw new Error("Method not implemented.");
+    async update(dto: UpdateSupplierOrderDto): Promise<SupplierOrderEntity> {
+         await this.get(dto.id);
+
+         const order = await prisma.supplierOrder.update({
+            where: {
+                id: dto.id
+            },
+            data: {
+                paymentDate: dto.paymentDate,
+                status: dto.status,
+                isActive: dto.isActive
+            }
+         })
+         
+        if( !order ) throw `supplierOrder with id ${dto.id} not found`;
+        return SupplierOrderEntity.fromObject(order);
     }
     delete(id: string): Promise<SupplierOrderEntity> {
         throw new Error("Method not implemented.");

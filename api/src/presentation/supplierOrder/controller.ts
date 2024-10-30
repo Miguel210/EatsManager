@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { SupplierOrderService } from "../services/supplierOrder.service";
 import { CustomError } from "../../domain";
 import { CreateSupplierOrderDto } from '../../domain/dtos/supplierOrder/create-supplierOrder.dto';
+import { UpdateSupplierOrderDto } from "../../domain/dtos/supplierOrder/update-supplierOrder.dto";
 
 
 
@@ -51,7 +52,13 @@ export class SupplierOrderController {
     }
 
     update = (req: Request, res: Response) => {
-        
+
+        const [error, dto ] = UpdateSupplierOrderDto.create(req.body)
+        if( error ) throw res.status(400).json({error});
+
+        this.service.update(dto!)
+        .then(order => res.json(order))
+        .catch(error => this.HandleError(error, res))
     }
 
     delete = (req: Request, res: Response) => {

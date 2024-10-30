@@ -3,6 +3,7 @@ import { UpdateSupplierOrderDto } from '../../domain/dtos/supplierOrder/update-s
 import { CreateSupplierOrder } from '../../domain/use-cases/supplierOrder/create-supplierOrder';
 import { GetSupplierOrder } from '../../domain/use-cases/supplierOrder/get-supplierOrder';
 import { GetAllSupplierOrder } from '../../domain/use-cases/supplierOrder/getAll-supplierOrder';
+import { UpdateSupplierOrder } from '../../domain/use-cases/supplierOrder/update-supplierOrder';
 import { SupplierOrderRepositoryImpl } from '../../infraestructure/supplierOrder/repository/supplierOrder.repository.impl';
 
 
@@ -54,6 +55,15 @@ export class SupplierOrderService {
 
     public async update(dto: UpdateSupplierOrderDto) {
 
+        const order = await new UpdateSupplierOrder( this.repository ).execute(dto)
+        .then( order => order)
+        .catch(error => console.log({error}))
+
+        return {
+            data: {
+                order
+            }
+        }
     }
 
     public async delete(id: string) {
