@@ -22,11 +22,18 @@ export class SupplierOrderDatasourceImpl implements SupplierOrderDatasource {
                 isActive: true
             }
         })
-        if( !order ) throw `orderPayment with data ${dto} not found`;
+        if( !order ) throw `supplierOrder with data ${dto} not found`;
         return SupplierOrderEntity.fromObject(order);
     }
-    get(id: string): Promise<SupplierOrderEntity> {
-        throw new Error("Method not implemented.");
+    async get(id: string): Promise<SupplierOrderEntity> {
+
+        const order = await prisma.supplierOrder.findFirst({
+            where: {
+                id: id
+            }
+        })
+        if( !order ) throw `supplierOrder with id ${id} not found`;
+        return SupplierOrderEntity.fromObject(order);
     }
     getAll(form: any): Promise<SupplierOrderEntity[]> {
         throw new Error("Method not implemented.");
