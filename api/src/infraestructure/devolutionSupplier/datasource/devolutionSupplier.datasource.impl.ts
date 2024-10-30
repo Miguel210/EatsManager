@@ -35,7 +35,11 @@ export class DevolutionSupplierDatasourceImpl implements DevolutionSupplierDatas
         return DevolutionSupplierEntity.fromObject(devolution)
     }
     async getAll(form: any): Promise<DevolutionSupplierEntity[]> {
-        throw new Error("Method not implemented.");
+
+        const devolution = await prisma.devolutionSupplier.findMany()
+
+        if( !devolution ) throw 'devolution is not found';
+        return devolution.map(devolution => DevolutionSupplierEntity.fromObject(devolution))
     }
     async update(dto: UpdateDevolutionSupplierDto): Promise<DevolutionSupplierEntity> {
         throw new Error("Method not implemented.");

@@ -42,6 +42,13 @@ export class DevolutionSupplierController {
 
     getAll = (req: Request, res: Response) => {
         
+        const form = {
+
+        }
+
+        this.service.getAll(form)
+        .then(devolution => res.json(devolution))
+        .catch(error => this.HandleError(error, res))
     }
 
     update = (req: Request, res: Response) => {
