@@ -56,8 +56,20 @@ export class DevolutionClientDatasourceImpl implements DevolutionClientDatasourc
         if( !devolution ) throw 'is not found'
         return DevolutionClientEntity.fromObject(devolution);
     }
-    delete(id: string): Promise<DevolutionClientEntity> {
-        throw new Error("Method not implemented.");
+    async delete(id: string): Promise<DevolutionClientEntity> {
+
+        const devolution = await prisma.devolutionClient.update({
+            where: {
+                id: id
+            },
+            data: {/*
+                isDelete: true,
+                deleteAt: new Date()*/
+            }
+        })
+        
+        if( !devolution ) throw 'is not found'
+        return DevolutionClientEntity.fromObject(devolution);
     }
 
 }

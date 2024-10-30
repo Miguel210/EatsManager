@@ -1,6 +1,7 @@
 import { CreateDevolutionClientDto } from '../../domain/dtos/devolutionClient/create-devolutionClient.dto';
 import { UpdateDevolutionClientDto } from '../../domain/dtos/devolutionClient/update-devolutionClient.dto';
 import { CreateDevolutionClient } from '../../domain/use-cases/devolutionClient/create-devolutionClient';
+import { DeleteDevolutionClient } from '../../domain/use-cases/devolutionClient/delete-devolutionClient';
 import { GetDevolutionClient } from '../../domain/use-cases/devolutionClient/get-devolutionClient';
 import { GetAllDevolutionClient } from '../../domain/use-cases/devolutionClient/getAll-devolutionClient';
 import { UpdateDevolutionClient } from '../../domain/use-cases/devolutionClient/update-devolutionClient';
@@ -70,8 +71,18 @@ export class DevolutionClientService {
         }   
     }
 
-    public async delete() {
+    public async delete(id: string) {
         
+        const devolution = await new DeleteDevolutionClient( this.repository ).execute(id)
+        .then( devo => devo)
+        .catch(error => console.log({error})
+        )
+
+        return {
+            data: {
+                devolution
+            }
+        }
     }
 
 }
