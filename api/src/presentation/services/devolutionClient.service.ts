@@ -1,6 +1,7 @@
 import { CreateDevolutionClientDto } from '../../domain/dtos/devolutionClient/create-devolutionClient.dto';
 import { CreateDevolutionClient } from '../../domain/use-cases/devolutionClient/create-devolutionClient';
 import { GetDevolutionClient } from '../../domain/use-cases/devolutionClient/get-devolutionClient';
+import { GetAllDevolutionClient } from '../../domain/use-cases/devolutionClient/getAll-devolutionClient';
 import { DevolutionClientRepositoryImpl } from '../../infraestructure/devolutionClient/repository/devolutionClient.repository.impl';
 
 
@@ -39,8 +40,18 @@ export class DevolutionClientService {
         }   
     }
 
-    public async getAll() {
-        
+    public async getAll(form: any) {
+
+        const devolution = await new GetAllDevolutionClient( this.repository ).execute(form)
+        .then( devo => devo)
+        .catch(error => console.log({error})
+        )
+
+        return {
+            data: {
+                devolution
+            }
+        }   
     }
 
     public async update() {

@@ -41,6 +41,13 @@ export class DevolutionClientController {
 
     getAll = (req: Request, res: Response) => {
         
+        const form = {
+
+        }
+        
+        this.service.getAll(form)
+        .then(devo => res.json(devo))
+        .catch(error => this.HandleError(error, res))
     }
 
     update = (req: Request, res: Response) => {
