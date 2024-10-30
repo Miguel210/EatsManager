@@ -41,6 +41,13 @@ export class ClientOrderController {
 
     getAll = (req: Request, res: Response) => {
         
+        const form = {
+
+        }
+        
+        this.service.getAll(form)
+        .then( order => res.json(order))
+        .catch(error => this.HandleError(error, res))
     }
 
     update = (req: Request, res: Response) => {
