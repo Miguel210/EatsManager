@@ -1,6 +1,7 @@
 import { CreateSupplierOrderDto } from '../../domain/dtos/supplierOrder/create-supplierOrder.dto';
 import { UpdateSupplierOrderDto } from '../../domain/dtos/supplierOrder/update-supplierOrder.dto';
 import { CreateSupplierOrder } from '../../domain/use-cases/supplierOrder/create-supplierOrder';
+import { DeleteSupplierOrder } from '../../domain/use-cases/supplierOrder/delete-supplierOrder';
 import { GetSupplierOrder } from '../../domain/use-cases/supplierOrder/get-supplierOrder';
 import { GetAllSupplierOrder } from '../../domain/use-cases/supplierOrder/getAll-supplierOrder';
 import { UpdateSupplierOrder } from '../../domain/use-cases/supplierOrder/update-supplierOrder';
@@ -68,6 +69,15 @@ export class SupplierOrderService {
 
     public async delete(id: string) {
 
+        const order = await new DeleteSupplierOrder( this.repository ).execute(id)
+        .then( order => order)
+        .catch(error => console.log({error}))
+
+        return {
+            data: {
+                order
+            }
+        }
     }
 
 }

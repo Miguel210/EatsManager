@@ -9,7 +9,7 @@ import { SupplierOrderEntity } from "../../../domain/entities/supplierOrder.enti
 
 
 export class SupplierOrderDatasourceImpl implements SupplierOrderDatasource {
-    
+
     async create(dto: CreateSupplierOrderDto): Promise<SupplierOrderEntity> {
 
         const order = await prisma.supplierOrder.create({
@@ -55,12 +55,25 @@ export class SupplierOrderDatasourceImpl implements SupplierOrderDatasource {
                 isActive: dto.isActive
             }
          })
-         
+
         if( !order ) throw `supplierOrder with id ${dto.id} not found`;
         return SupplierOrderEntity.fromObject(order);
     }
-    delete(id: string): Promise<SupplierOrderEntity> {
-        throw new Error("Method not implemented.");
+   async  delete(id: string): Promise<SupplierOrderEntity> {
+        await this.get(id);
+
+        const order = await prisma.supplierOrder.update({
+           where: {
+               id: id
+           },
+           data: {/*
+               isDelete: true,
+               deleteAt: new Date() */
+           }
+        })
+
+       if( !order ) throw `supplierOrder with id ${id} not found`;
+       return SupplierOrderEntity.fromObject(order);
     }
-    
+
 }
