@@ -31,6 +31,12 @@ export class DevolutionClientController {
 
     get = (req: Request, res: Response) => {
         
+        const id = req.body.id;
+        if( !id ) throw res.status(400).json({error: 'id is requerid'});
+
+        this.service.get(id)
+        .then(devo => res.json(devo))
+        .catch(error => this.HandleError(error, res))
     }
 
     getAll = (req: Request, res: Response) => {

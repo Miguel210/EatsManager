@@ -23,8 +23,15 @@ export class DevolutionClientDatasourceImpl implements DevolutionClientDatasourc
         if( !devolution ) throw 'is not found'
         return DevolutionClientEntity.fromObject(devolution);
     }
-    get(id: string): Promise<DevolutionClientEntity> {
-        throw new Error("Method not implemented.");
+    async get(id: string): Promise<DevolutionClientEntity> {
+        const devolution = await prisma.devolutionClient.findFirst({
+            where: {
+                id: id
+            }
+        })
+
+        if( !devolution ) throw 'is not found'
+        return DevolutionClientEntity.fromObject(devolution);
     }
     getAll(form: any): Promise<DevolutionClientEntity[]> {
         throw new Error("Method not implemented.");
