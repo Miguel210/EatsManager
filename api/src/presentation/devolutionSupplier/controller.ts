@@ -3,6 +3,7 @@ import { CustomError } from "../../domain";
 import { DevolutionSupplierService } from "../services/devulutionSupplier.service";
 import { CreateDevolutionSupplierDto } from "../../domain/dtos/devolutionSupplier/create-devolutionSupplier.dto";
 import { error } from "console";
+import { UpdateDevolutionSupplierDto } from "../../domain/dtos/devolutionSupplier/update-devolutionSupplier.dto";
 
 
 
@@ -53,10 +54,22 @@ export class DevolutionSupplierController {
 
     update = (req: Request, res: Response) => {
         
+        const [error, dto] = UpdateDevolutionSupplierDto.create(req.body);
+        if( error ) throw res.status(400).json({error});
+
+        this.service.update(dto!)
+        .then(devolution => res.json(devolution))
+        .catch(error => this.HandleError(error, res))
     }
 
     delete = (req: Request, res: Response) => {
         
+        const id = req.body.id;
+        if( !id ) throw res.status(400).json({error: 'id is requerid'});
+
+        this.service.delete(id)
+        .then(devolution => res.json(devolution))
+        .catch(error => this.HandleError(error, res))
     }
 
 }

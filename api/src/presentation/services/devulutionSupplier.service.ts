@@ -1,6 +1,7 @@
 import { CreateDevolutionSupplierDto } from '../../domain/dtos/devolutionSupplier/create-devolutionSupplier.dto';
 import { UpdateDevolutionSupplierDto } from '../../domain/dtos/devolutionSupplier/update-devolutionSupplier.dto';
 import { CreateDevolutionSupplier } from '../../domain/use-cases/devolutionSupplier/create-devolutionSupplier';
+import { DeleteDevolutionSupplier } from '../../domain/use-cases/devolutionSupplier/delete-devolutionSupplier';
 import { GetDevolutionSupplier } from '../../domain/use-cases/devolutionSupplier/get-devolutionSupplier';
 import { GetAllDevolutionSupplier } from '../../domain/use-cases/devolutionSupplier/getAll-devolutionSupplier';
 import { UpdateDevolutionSupplier } from '../../domain/use-cases/devolutionSupplier/update-devolutionSupplier';
@@ -66,8 +67,17 @@ export class DevolutionSupplierService {
         }
     }
 
-    public async delete() {
+    public async delete(id: string) {
         
+        const devolution = await new DeleteDevolutionSupplier( this.repository ).execute(id)
+        .then( dev => dev)
+        .catch(error => console.log({error}))
+        
+        return {
+            data: {
+                devolution
+            }
+        }
     }
 
 }
