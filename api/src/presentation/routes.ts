@@ -17,6 +17,7 @@ import { DocumentRoutes } from "./document/routes";
 import { MovementDetailRouter } from "./movementDetail/routes";
 import { OrderPaymentRoutes } from "./orderPayment/routes";
 import { PaymentRoutes } from "./payment/routes";
+import { SupplierOrderRoutes } from "./supplierOrder/routes";
 
 
 
@@ -42,6 +43,7 @@ export class AppRoutes {
         router.use('/api/movementDetail', MovementDetailRouter.routes)
         router.use('/api/orderPayment', OrderPaymentRoutes.routes)
         router.use('/api/payment', PaymentRoutes.routes)
+        router.use('/api/SupplierOrder', SupplierOrderRoutes.routes)
         router.use('/api/utils', UtilRouter.routes)
 
 
