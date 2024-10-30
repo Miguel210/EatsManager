@@ -1,6 +1,9 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <button type="button" @click="showAlert">Show Alert</button>
+  <input type="text" v-model="description" name="" id="">
+  <span>{{producto}}</span>
+  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" :elems="elements"/>
 </template>
 
 <script lang="ts">
@@ -9,10 +12,23 @@ import HelloWorld from './components/HelloWorld.vue';
 
 @Options({
   components: {
-    HelloWorld,
+    HelloWorld
   },
+  
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  elements: number[] = [1, 2, 3, 4, 5,123,545,54,54,54,545,656,76];
+  description = '';
+  producto = '';
+  showAlert(): void { 
+    alert('Button clicked!');
+    fetch( 'http://localhost:3000/api/document/'+this.description)
+    .then(prod => prod.json())
+    .then( datos => {
+      this.producto = datos.description
+    })
+   }
+}
 </script>
 
 <style>
