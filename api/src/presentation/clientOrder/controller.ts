@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { CustomError } from "../../domain";
 import { ClientOrderService } from "../services/clientOrder.service";
 import { CreateClientOrderDto } from "../../domain/dtos/clientOrder/create-clientOrder.dto";
+import { UpdateClientOrderDto } from "../../domain/dtos/clientOrder/update-clientOrder.dto";
 
 
 
@@ -52,6 +53,12 @@ export class ClientOrderController {
 
     update = (req: Request, res: Response) => {
         
+        const [error, dto ] = UpdateClientOrderDto.create(req.body);
+        if( error ) throw res.status(400).json({error});
+
+        this.service.update(dto!)
+        .then( order => res.json(order))
+        .catch(error => this.HandleError(error, res))
     }
 
     delete = (req: Request, res: Response) => {

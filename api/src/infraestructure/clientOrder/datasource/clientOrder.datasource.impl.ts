@@ -42,7 +42,22 @@ export class ClientOrderDatasourceImpl implements ClientOrderDatasource {
         return order.map(order => ClientOrderEntity.fromObject(order));
     }
     async update(dto: UpdateClientOrderDto): Promise<ClientOrderEntity> {
-        throw new Error("Method not implemented.");
+
+        const order = await prisma.clientOrder.update({
+            where: {
+                id: dto.id
+            },
+            data: {
+                paymentDate: dto.paymentDate,
+                tableId: dto.tableId,
+                status: dto.status,
+                isActive: dto.isActive
+            
+            }
+        })
+        
+        if( !order ) throw 'is not found';
+        return ClientOrderEntity.fromObject(order);
     }
     async delete(id: string): Promise<ClientOrderEntity> {
         throw new Error("Method not implemented.");
