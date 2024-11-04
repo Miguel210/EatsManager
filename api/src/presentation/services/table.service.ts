@@ -5,6 +5,7 @@ import { CreateTable } from '../../domain/use-cases/table/create-table';
 import { GetTable } from "../../domain/use-cases/table/get-table";
 import { UpdateTable } from "../../domain/use-cases/table/update-table";
 import { DeleteTable } from "../../domain/use-cases/table/delete-table";
+import { GetAllTable } from "../../domain/use-cases/table/getAll-table";
 
 
 
@@ -38,7 +39,7 @@ export class TableService {
 
     public async getAll(form: any) {
 
-        const Tables = await new GetTable(this.repository).execute(form)
+        const Tables = await new GetAllTable(this.repository).execute(form)
         .then( table => table)
         .catch( error => console.log({error}))
 

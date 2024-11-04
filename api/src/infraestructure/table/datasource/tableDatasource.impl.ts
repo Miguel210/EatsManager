@@ -38,7 +38,7 @@ export class TableDatasourceImpl implements TableDatasoruce {
 
             }
         })
-        console.log(table);
+        console.log('table');
 
         if( !table ) throw `Table no created`;
         
