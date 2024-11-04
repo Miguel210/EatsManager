@@ -203,6 +203,7 @@ model document {
   id          String     @id @default(uuid())
   isActive    Boolean    @default(true)
   description String
+  folio       Int        @db.Integer
   movements   movement[]
 }
 

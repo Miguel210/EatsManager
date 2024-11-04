@@ -15,7 +15,8 @@ export class DocuemntDatasourceImpl  implements DocumentDatasource {
             data: {
                 id: Uuid.uuid(),
                 description: dto.description,
-                isActive: dto.isActive
+                isActive: dto.isActive,
+                folio: 1
             }
         })
         
@@ -55,7 +56,8 @@ export class DocuemntDatasourceImpl  implements DocumentDatasource {
             },
             data: {
                 description: dto.description,
-                isActive: dto.isActive
+                isActive: dto.isActive,
+                folio: dto.folio
             }
         })
 

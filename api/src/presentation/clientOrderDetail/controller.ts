@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+<<<<<<< HEAD
 import { SupplierOrderService } from "../services/supplierOrder.service";
 import { CustomError } from "../../domain";
 import { CreateSupplierOrderDto } from '../../domain/dtos/supplierOrder/create-supplierOrder.dto';
@@ -10,6 +11,14 @@ import { UpdateClientOrderDetailDto } from "../../domain/dtos/clientOrderDetail/
 
 
 export class ClientOrderClientController {
+=======
+import { CustomError } from "../../domain";
+import { ClientOrderDetailService } from "../services/clientOrderDetail.service";
+
+
+
+export class ClientOrderDetailController {
+>>>>>>> c25ecbc1c71588473fbd7a76c230fd9f91950d65
 
     constructor(
         private readonly service: ClientOrderDetailService
@@ -25,6 +34,7 @@ export class ClientOrderClientController {
 
     create = (req: Request, res: Response) => {
 
+<<<<<<< HEAD
         const [error, dto] = CreateClientOrderDetailDto.create(req.body)
         if( error ) throw res.status(400).json({error});
 
@@ -73,4 +83,24 @@ export class ClientOrderClientController {
         .then(order => res.json(order))
         .catch(error => this.HandleError(error, res))
     }
+=======
+    }
+
+    get = (req: Request, res: Response) => {
+        
+    }
+
+    getAll = (req: Request, res: Response) => {
+        
+    }
+
+    update = (req: Request, res: Response) => {
+        
+    }
+
+    delete = (req: Request, res: Response) => {
+        
+    }
+
+>>>>>>> c25ecbc1c71588473fbd7a76c230fd9f91950d65
 }

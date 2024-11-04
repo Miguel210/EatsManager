@@ -1,3 +1,5 @@
+import { Uuid } from "../../../config";
+import { prisma } from "../../../data";
 import { DevolutionSupplierDatasource } from "../../../domain/datasource/devolutionSupplier/devolutionSupplier.datasource";
 import { CreateDevolutionSupplierDto } from "../../../domain/dtos/devolutionSupplier/create-devolutionSupplier.dto";
 import { UpdateDevolutionSupplierDto } from "../../../domain/dtos/devolutionSupplier/update-devolutionSupplier.dto";
@@ -7,20 +9,66 @@ import { DevolutionSupplierEntity } from "../../../domain/entities/devolutionSup
 
 export class DevolutionSupplierDatasourceImpl implements DevolutionSupplierDatasource {
 
-    create(dto: CreateDevolutionSupplierDto): Promise<DevolutionSupplierEntity> {
-        throw new Error("Method not implemented.");
+    async create(dto: CreateDevolutionSupplierDto): Promise<DevolutionSupplierEntity> {
+        
+        const devolution = await prisma.devolutionSupplier.create({
+            data: {
+                id: Uuid.uuid(),
+                movementId: dto.movementId,
+                paymentDate: dto.paymentDate,
+                status: dto.status,
+                invoiceFolio: dto.inoiceFolio
+            }
+        })
+        
+        if( !devolution ) throw 'devolution is not found';
+        return DevolutionSupplierEntity.fromObject(devolution)
     }
-    get(id: string): Promise<DevolutionSupplierEntity> {
-        throw new Error("Method not implemented.");
+    async get(id: string): Promise<DevolutionSupplierEntity> {
+
+        const devolution = await prisma.devolutionSupplier.findFirst({
+            where: {
+                id: id
+            }
+        })
+        if( !devolution ) throw 'devolution is not found';
+        return DevolutionSupplierEntity.fromObject(devolution)
     }
-    getAll(form: any): Promise<DevolutionSupplierEntity[]> {
-        throw new Error("Method not implemented.");
+    async getAll(form: any): Promise<DevolutionSupplierEntity[]> {
+
+        const devolution = await prisma.devolutionSupplier.findMany()
+
+        if( !devolution ) throw 'devolution is not found';
+        return devolution.map(devolution => DevolutionSupplierEntity.fromObject(devolution))
     }
-    update(dto: UpdateDevolutionSupplierDto): Promise<DevolutionSupplierEntity> {
-        throw new Error("Method not implemented.");
+    async update(dto: UpdateDevolutionSupplierDto): Promise<DevolutionSupplierEntity> {
+        
+        const devolution = await prisma.devolutionSupplier.update({
+            where: {
+                id: dto.id
+            },
+            data: {
+                paymentDate: dto.paymentDate,
+                status: dto.status,
+                isActive: dto.isActive
+            }
+        })
+
+        if( !devolution ) throw 'devolution is not found';
+        return DevolutionSupplierEntity.fromObject(devolution)
     }
-    delete(id: string): Promise<DevolutionSupplierEntity> {
-        throw new Error("Method not implemented.");
+    async delete(id: string): Promise<DevolutionSupplierEntity> {
+        const devolution = await prisma.devolutionSupplier.update({
+            where: {
+                id: id
+            },
+            data: {/*
+                isDelete: true,
+                deleteAt: new Date()*/
+            }
+        })
+        if( !devolution ) throw 'devolution is not found';
+        return DevolutionSupplierEntity.fromObject(devolution)
     }
     
 }
