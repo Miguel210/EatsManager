@@ -5,7 +5,7 @@ import { ClientOrderDetailRepository } from "../../repositories/clientOrderDetai
 
 
 export interface UpdateClientOrderDetailUseCase {
-    execure(dto: UpdateClientOrderDetailDto): Promise<ClientOrderDetailEntity>
+    execute(dto: UpdateClientOrderDetailDto): Promise<ClientOrderDetailEntity>
 }
 
 export class UpdateClientOrderDetail implements UpdateClientOrderDetailUseCase {
@@ -14,7 +14,7 @@ export class UpdateClientOrderDetail implements UpdateClientOrderDetailUseCase {
         private readonly repository: ClientOrderDetailRepository
     ) {}
     
-    execure(dto: UpdateClientOrderDetailDto): Promise<ClientOrderDetailEntity> {
+    execute(dto: UpdateClientOrderDetailDto): Promise<ClientOrderDetailEntity> {
         return this.repository.update(dto)
     }
 }

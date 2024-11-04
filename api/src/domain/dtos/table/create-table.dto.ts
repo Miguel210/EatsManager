@@ -9,7 +9,7 @@ export class CreateTableDto {
         public mainTable: string,
     ) {}
 
-    static create(props: {[key: string]: any}) {
+    static create(props: {[key: string]: any}): [string?, CreateTableDto?] {
 
         const {description, status, mainTable} = props;
         

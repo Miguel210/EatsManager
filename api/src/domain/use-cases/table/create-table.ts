@@ -9,7 +9,7 @@ export interface CreateTableuseCase {
 }
 
 
-export class Table implements CreateTableuseCase {
+export class CreateTable implements CreateTableuseCase {
 
     constructor(
         private readonly repository: TableRepository

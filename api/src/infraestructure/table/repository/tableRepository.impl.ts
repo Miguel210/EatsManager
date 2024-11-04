@@ -6,7 +6,7 @@ import { TableRepository } from "../../../domain/repositories/table/table.reposi
 
 
 
-export class tableRepositoryImpl implements TableRepository {
+export class TableRepositoryImpl implements TableRepository {
 
     constructor(
         private readonly datasource: TableDatasoruce

@@ -8,7 +8,7 @@ export class CreateClientOrderDetailDto {
         public garrisonId: string,
     ) {}
 
-    static create(props: {[key: string]: any}) {
+    static create(props: {[key: string]: any}): [string?, CreateClientOrderDetailDto?] {
 
         const {clientOrderId, garrisonId} = props;
 

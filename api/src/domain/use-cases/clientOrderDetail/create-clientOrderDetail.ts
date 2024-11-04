@@ -5,16 +5,16 @@ import { ClientOrderDetailRepository } from "../../repositories/clientOrderDetai
 
 
 export interface CreateClientOrderDetailUseCase {
-    execure(dto: CreateClientOrderDetailDto): Promise<ClientOrderDetailEntity>
+    execute(dto: CreateClientOrderDetailDto): Promise<ClientOrderDetailEntity>
 }
 
-export class CretaeClientOrderDetail implements CreateClientOrderDetailUseCase {
+export class CreateClientOrderDetail implements CreateClientOrderDetailUseCase {
 
     constructor(
         private readonly repository: ClientOrderDetailRepository
     ) {}
 
-    execure(dto: CreateClientOrderDetailDto): Promise<ClientOrderDetailEntity> {
+    execute(dto: CreateClientOrderDetailDto): Promise<ClientOrderDetailEntity> {
         return this.repository.create(dto);
     }
 }
