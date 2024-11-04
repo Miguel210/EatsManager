@@ -22,9 +22,11 @@ EatsManager is a comprehensive restaurant management application developed as a 
 * Express
 * TypeScript
 * Prisma
+
 ### Database
 * PostgreSQL
 
 ### Frontend
-* React + Vite
+* Vue + Vite
+* Tailwind
 * TypeScript
