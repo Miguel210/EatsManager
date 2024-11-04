@@ -15,17 +15,27 @@ main().catch(e => {
 });
 
 async function main() {
-    
+
+
+    await prisma.costumer.deleteMany(),
     await prisma.profileOperation.deleteMany(),
+    await prisma.supplierOrder.deleteMany(),
+    await prisma.clientOrder.deleteMany(),
+    await prisma.clientOrderDetail.deleteMany(),
+    await prisma.table.deleteMany(),
     await prisma.metric.deleteMany(),
     await prisma.operation.deleteMany(),
     await prisma.attendance.deleteMany(),
+    await prisma.docuemntAttendace.deleteMany(),
     await prisma.employee.deleteMany(),
     await prisma.supplier.deleteMany(),
     await prisma.promotion.deleteMany(),
     await prisma.garrison.deleteMany(),
     await prisma.movementDetail.deleteMany(),
     await prisma.inventory.deleteMany(),
+    await prisma.typePayment.deleteMany(),
+    await prisma.payment.deleteMany(),
+    await prisma.orderPayment.deleteMany(),
     await prisma.product.deleteMany(),
     await prisma.movement.deleteMany(),
     await prisma.person.deleteMany(),
@@ -36,7 +46,6 @@ async function main() {
     await prisma.module.deleteMany(),
     await prisma.productType.deleteMany(),
     await prisma.categoryProduct.deleteMany(),
-    await prisma.docuemntAttendace.deleteMany(),
 
     await prisma.module.createMany({
         data: seedData.module,
@@ -57,7 +66,9 @@ async function main() {
         data: seedData.profileoperation
     });
 
-
+    await prisma.typePayment.createMany({
+        data: seedData.typePayment
+    })
     await prisma.typeperson.createMany({
         data: seedData.typopersona
     });
@@ -87,7 +98,6 @@ async function main() {
         data: seedData.typeProduct
     });
 
-    
     await prisma.categoryProduct.createMany({
         data: seedData.categoryProduct
     })
@@ -98,6 +108,10 @@ async function main() {
 
     await prisma.document.createMany({
         data: seedData.document
+    })
+
+    await prisma.costumer.createMany({
+        data: seedData.client
     })
 
     await prisma.movement.createMany({
@@ -118,6 +132,10 @@ async function main() {
 
     await prisma.promotion.createMany({
         data: seedData.promotion
+    })
+
+    await prisma.table.createMany({
+        data: seedData.table
     })
 }
 

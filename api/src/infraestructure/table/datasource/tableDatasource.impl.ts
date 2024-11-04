@@ -33,9 +33,16 @@ export class TableDatasourceImpl implements TableDatasoruce {
     }
     async getAll(form: any): Promise<TableEntity[]> {
 
-        const table = await prisma.table.findMany({})
+        const table = await prisma.table.findMany({
+            where: {
+
+            }
+        })
+        console.log(table);
+
         if( !table ) throw `Table no created`;
-        return table.map(table => TableEntity.fromObject(table));
+        
+        return table.map(e => TableEntity.fromObject(e));
     }
     async update(dto: UpdateTableDto): Promise<TableEntity> {
         await this.get(dto.id);

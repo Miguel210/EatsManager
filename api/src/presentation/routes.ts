@@ -18,6 +18,11 @@ import { MovementDetailRouter } from "./movementDetail/routes";
 import { OrderPaymentRoutes } from "./orderPayment/routes";
 import { PaymentRoutes } from "./payment/routes";
 import { SupplierOrderRoutes } from "./supplierOrder/routes";
+import { DevolutionClientRoutes } from "./devolutionClient/routes";
+import { DevolutionSuppliertRoutes } from "./devolutionSupplier/routes";
+import { ClientOrderRoutes } from "./clientOrder/routes";
+import { TableRoutes } from "./table/routes";
+import { ClientOrderDetailRoutes } from './clientOrderDetail/routes';
 
 
 
@@ -44,6 +49,12 @@ export class AppRoutes {
         router.use('/api/orderPayment', OrderPaymentRoutes.routes)
         router.use('/api/payment', PaymentRoutes.routes)
         router.use('/api/SupplierOrder', SupplierOrderRoutes.routes)
+        router.use('/api/devolutionClient', DevolutionClientRoutes.routes)
+        router.use('/api/DevolutionSupplier', DevolutionSuppliertRoutes.routes)
+        router.use('/api/ClientOrder', ClientOrderRoutes.routes)
+        router.use('/api/table', TableRoutes.routes)
+        router.use('/api/ClientOrderDetail', ClientOrderDetailRoutes.routes)
+        
         router.use('/api/utils', UtilRouter.routes)
 
 

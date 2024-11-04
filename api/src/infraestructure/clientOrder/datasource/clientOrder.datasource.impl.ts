@@ -15,7 +15,7 @@ export class ClientOrderDatasourceImpl implements ClientOrderDatasource {
                 id: Uuid.uuid(),
                 movementId: dto.movementId,
                 invoiceFolio: dto.inoiceFolio,
-                paymentDate: dto.paymentDate,
+                paymentDate: new Date(dto.paymentDate),
                 status: dto.status,
                 tableId: dto.tableId
             }
@@ -48,7 +48,7 @@ export class ClientOrderDatasourceImpl implements ClientOrderDatasource {
                 id: dto.id
             },
             data: {
-                paymentDate: dto.paymentDate,
+                paymentDate: new Date(dto.paymentDate),
                 tableId: dto.tableId,
                 status: dto.status,
                 isActive: dto.isActive

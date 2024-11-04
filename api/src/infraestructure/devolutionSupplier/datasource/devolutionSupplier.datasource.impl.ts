@@ -15,7 +15,7 @@ export class DevolutionSupplierDatasourceImpl implements DevolutionSupplierDatas
             data: {
                 id: Uuid.uuid(),
                 movementId: dto.movementId,
-                paymentDate: dto.paymentDate,
+                paymentDate: new Date(dto.paymentDate),
                 status: dto.status,
                 invoiceFolio: dto.inoiceFolio
             }
@@ -48,7 +48,7 @@ export class DevolutionSupplierDatasourceImpl implements DevolutionSupplierDatas
                 id: dto.id
             },
             data: {
-                paymentDate: dto.paymentDate,
+                paymentDate: new Date(dto.paymentDate),
                 status: dto.status,
                 isActive: dto.isActive
             }

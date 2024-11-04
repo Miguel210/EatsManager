@@ -14,9 +14,9 @@ export class DevolutionClientDatasourceImpl implements DevolutionClientDatasourc
             data: {
                 id: Uuid.uuid(),
                 movementId: dto.movementId,
-                paymentDate: dto.paymentDate,
+                paymentDate: new Date( dto.paymentDate),
                 status: dto.status,
-                invoiceFolio: 'devolucionClient'                
+                invoiceFolio: 'devolucionClient'
             }
         });
 
@@ -47,7 +47,7 @@ export class DevolutionClientDatasourceImpl implements DevolutionClientDatasourc
                 id: dto.id
             },
             data: {
-                paymentDate: dto.paymentDate,
+                paymentDate: new Date( dto.paymentDate),
                 status: dto.status,
                 isActive: dto.isActive
             }
