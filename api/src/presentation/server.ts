@@ -1,6 +1,7 @@
 import express, {Router} from 'express';
 import path from 'path';
 import bodyParser = require('body-parser');
+const cors = require('cors')
 
 interface Options {
     port: number;
@@ -28,7 +29,7 @@ export class Server {
         //*Middlewares
         this.app.use( express.json() )
         this.app.use( express.urlencoded( {extended: true} ) );
-    
+        this.app.use( cors() )
 
     }
 
