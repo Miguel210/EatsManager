@@ -1,9 +1,5 @@
 <template>
-
-  <h1 className="text-3xl font-bold underline">
-    Hello world!
-  </h1>
-  <RouterView />
+<RouterView />
 </template>
 
 
@@ -12,4 +8,6 @@ import { RouterView } from 'vue-router'
 </script>
 
 
-<style scoped></style>
+<style scoped>
+
+</style>
