@@ -3,7 +3,10 @@
 
 
 <!-- <h1>hola</h1> -->
-  <RouterView />
+ <div class="mx-20 mt-5" >
+   <RouterView />
+
+ </div>
 
 
 </template>

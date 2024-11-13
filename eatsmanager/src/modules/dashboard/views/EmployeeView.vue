@@ -10,9 +10,7 @@
 
   <div class="flex justify-between">
 
-    <BasicGraphic class="mr-10" />
-    <BasicGraphic />
-
+<!-- DataTable -->
   </div>
 
   </div>
@@ -22,7 +20,6 @@
 <script setup lang="ts">
 
 import StatCard from '@/modules/common/components/StatCard.vue';
-import BasicGraphic from '../components/BasicGraphic.vue';
 
 
 </script>

@@ -17,6 +17,7 @@
     "@primevue/themes": "^4.2.1",
     "@vueuse/core": "^11.2.0",
     "axios": "^1.7.7",
+    "datatables.net-dt": "^2.1.8",
     "pinia": "^2.2.6",
     "primeicons": "^7.0.0",
     "primevue": "^4.2.1",

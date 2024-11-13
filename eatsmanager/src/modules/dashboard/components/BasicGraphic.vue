@@ -1,13 +1,13 @@
 <template>
     <div class="card">
-        <Chart type="bar" :data="chartData" :options="chartOptions" />
+        <Chart type="bar" :data="chartData" :options="chartOptions" class=" w-[40rem] h-[40rem]" />
     </div>
 </template>
 
 <script setup lang="ts">
 import Chart from 'primevue/chart';
 
-import { ref, onMounted } from "vue";
+import { ref, onMounted, type CanvasHTMLAttributes } from "vue";
 
 onMounted(() => {
     chartData.value = setChartData();
@@ -16,6 +16,8 @@ onMounted(() => {
 
 const chartData = ref();
 const chartOptions = ref();
+const size = ref<CanvasHTMLAttributes|undefined>();
+size.value = {width: 100, height: 100};
 
 const setChartData = () => {
     return {
