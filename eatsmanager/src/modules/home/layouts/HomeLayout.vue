@@ -1,17 +1,21 @@
 <template>
-  <div class="flex flex-col">
+  <!-- flex flex-col -->
+  <div class="  text-gray-800">
 
     <!-- Top Menu -->
 
     <TopMenu />
 
+    <div class="flex">
     <!--Side Menu-->
 
-    <SideMenu />
+      <SideMenu />
 
     <!-- RouterView -->
 
-    <RouterView />
+      <RouterView />
+
+    </div>
 
   </div>
 </template>

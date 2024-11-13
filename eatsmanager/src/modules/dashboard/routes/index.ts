@@ -6,11 +6,11 @@ export const dashboardRoutes: RouteRecordRaw = {
   path: '/dashboard',
   name: 'dashboard',
   component: () => import('@/modules/dashboard/layouts/DashboardLayout.vue'),
-  /*children: [
+  children: [
     {
-      path: 'login',
-      name: 'login',
-      component: () => import('@/modules/auth/views/LoginView.vue'),
+      path: 'admin',
+      name: 'admin',
+      component: () => import('@/modules/dashboard/views/AdminView.vue'),
     }
-  ]*/
+  ]
 }
