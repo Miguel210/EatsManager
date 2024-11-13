@@ -1,4 +1,5 @@
 import { authRoutes } from '@/modules/auth/routes'
+import { dashboardRoutes } from '@/modules/dashboard/routes'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -7,7 +8,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: {name: 'auth'},
+      component: () => import('@/modules/home/layouts/HomeLayout.vue'),
     },
     /*{
       path: '/about',
@@ -17,7 +18,8 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       // component: () => import('../views/AboutView.vue'),
     },*/
-    authRoutes
+    authRoutes,
+    dashboardRoutes
   ],
 })
 
