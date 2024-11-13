@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full flex items-center gap-x-1.5 group select-none">
+    <div class="w-full flex items-center gap-x-1.5 group select-none cursor-pointer ">
         <div class="w-1 rounded-xl h-8 bg-transparent transition-colors duration-200 relative overflow-hidden">
             <div class="absolute top-0 left-0 w-full h-[102%] translate-y-full group-hover:translate-y-0 bg-black transition-all duration-300"></div>
         </div>
