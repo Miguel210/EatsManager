@@ -1,14 +1,26 @@
 <template>
   <div class="w-[500px]">
+    <button @click="add">Add</button><br />
+    <!-- <button @click="update">Update</button><br /> -->
+    <button @click="remove">Delete</button>
+
     <DataTable
+      :columns="columns"
       :data="data"
       class="display"
-      :options="{select: true}"
+      width="100%"
+      :options="{ select: true}"
+      ref="table"
+
     >
       <thead>
         <tr>
-          <th>A</th>
-          <th>B</th>
+          <th>Name</th>
+          <th>Position</th>
+          <th>Office</th>
+          <th>Extn.</th>
+          <th>Start date</th>
+          <th>Salary</th>
         </tr>
       </thead>
     </DataTable>
@@ -17,18 +29,65 @@
 
 <script setup lang="ts">
 import DataTable from 'datatables.net-vue3'
-import DataTablesLib from 'datatables.net';
+import DataTablesCore from 'datatables.net';
 import Select from 'datatables.net-select';
+import { onMounted, ref } from 'vue';
 
-DataTable.use(DataTablesLib);
+DataTable.use(DataTablesCore);
 DataTable.use(Select);
+let dt = ref();
+const table = ref();
 
-const data = [
-  [1, 2],
-  [3, 4],
-  [3, 4],
-  [3, 4],
+
+const columns = [
+  { data: 'name' },
+  { data: 'position' },
+  { data: 'office' },
+  { data: 'extn' },
+  { data: 'start_date' },
+  { data: 'salary' }
 ];
+
+const data = ref([
+  {
+    name: 'Tiger Nixon',
+    position: 'System Architect',
+    salary: '$3,120',
+    start_date: '2011/04/25',
+    office: 'Edinburgh',
+    extn: 5421
+  },
+  {
+    name: 'Garrett Winters',
+    position: 'Director',
+    salary: '5300',
+    start_date: '2011/07/25',
+    office: 'Edinburgh',
+    extn: '8422'
+  }
+])
+onMounted(function () {
+  dt.value = table.value.dt;
+
+});
+
+
+function remove() {
+  dt.value.rows({ selected: true }).every(function () {
+    const idx: number = data.value.indexOf(this.data());
+    data.value.splice(idx, 1);
+  });
+}
+function add() {
+  data.value.push( {
+            name: 'Garrett Winters',
+            position: 'Director',
+            salary: '$5,300',
+            start_date: '2011/07/25',
+            office: 'Edinburgh',
+            extn: '8422'
+        } );
+}
 </script>
 
 <style scoped></style>
