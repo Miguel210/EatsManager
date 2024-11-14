@@ -15,6 +15,8 @@
 
   </div>
 
+  <DataTable />
+
   </div>
 
 </template>
@@ -23,6 +25,7 @@
 
 import StatCard from '@/modules/common/components/StatCard.vue';
 import BasicGraphic from '../components/BasicGraphic.vue';
+import DataTable from '@/modules/common/components/DataTableBsic.vue';
 
 
 </script>
