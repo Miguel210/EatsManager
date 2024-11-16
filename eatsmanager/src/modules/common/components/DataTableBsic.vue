@@ -9,7 +9,7 @@
       :data="data"
       class="display"
       width="100%"
-      :options="{ select: true}"
+      :options="{ select: true }"
       ref="table"
 
     >
@@ -31,14 +31,21 @@
 import DataTable from 'datatables.net-vue3'
 import DataTablesCore from 'datatables.net';
 import Select from 'datatables.net-select';
+import Editor from 'datatables.net-editor';
 import { onMounted, ref } from 'vue';
+import { create } from 'datatables.net-editor/types/core/api';
 
 DataTable.use(DataTablesCore);
 DataTable.use(Select);
+DataTable.use(new Editor({
+  ['create']: create
+}));
 let dt = ref();
 const table = ref();
 
-
+// let editor = new Editor({
+//   ['create']: create}
+// );
 const columns = [
   { data: 'name' },
   { data: 'position' },
