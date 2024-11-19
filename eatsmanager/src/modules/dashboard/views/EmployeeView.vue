@@ -20,6 +20,8 @@
 
 <script setup lang="ts">
 import StatCard from '@/modules/common/components/StatCard.vue';
+import DataTable from '@/modules/common/components/DataTableBsic.vue';
+
 </script>
 
 <style scoped></style>
