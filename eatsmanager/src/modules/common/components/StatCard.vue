@@ -8,7 +8,7 @@
       <div class="flex flex-col justify-center px-4 py-4 bg-white border border-gray-300 rounded">
         <div>
           <p class="text-3xl font-semibold text-center text-gray-800"> ${{ 'price' }}</p>
-          <p class="text-lg text-center text-gray-500">{{'Product Name'}}</p>
+          <p class="text-lg text-center text-gray-500">{{ data }}</p>
         </div>
       </div>
 
@@ -18,6 +18,11 @@
 
 <script setup lang="ts">
 
+
+interface Props {
+  data: [ string | number ],
+}
+defineProps<Props>();
 </script>
 
 <style scoped></style>

@@ -33,14 +33,13 @@ import DataTable from 'datatables.net-vue3';
 import DataTablesCore from 'datatables.net';
 import 'datatables.net-select';
 import { ref } from 'vue';
-import type { Data } from '@/modules/dashboard/interfaces/dashboard.interface';
 
 DataTable.use(DataTablesCore);
 interface Props {
   isAdd: boolean,
   isUpdate: boolean,
   isDelete: boolean,
-  data: Data[] | undefined | never[],
+  data:  unknown,
   columns: {
     data: string;
   }[]

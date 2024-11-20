@@ -1,5 +1,5 @@
 import { eatsmanagerApi } from "@/api/eatsmanager.api";
-import type { Dashboard } from "../interfaces/dashboard.interface";
+import type { Data } from "../interfaces/dashboard.interface";
 
 
 
@@ -8,11 +8,11 @@ export const getDashboardsAction = async() => {
 
   try {
 
-    const { data } = await eatsmanagerApi.get<Dashboard[]>(
+    const { data } = await eatsmanagerApi.get<Data>(
       `/dashboard/dashboardEmp`,
     );
 
-    return{ data }
+    return{ ...data }
 
   } catch(error) {
     console.log(error);

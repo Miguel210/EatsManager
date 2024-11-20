@@ -3,7 +3,9 @@
   <div>
     <div class="flex flex-row flex-wrap content-start mb-20">
 
-      <StatCard v-for="n in 4" :key="n" />
+      <StatCard
+      :data="dashboard?.data?.Ordenes_Pendientes"
+      />
 
     </div>
 
@@ -15,7 +17,7 @@
       :is-delete="true"
       :is-update="true"
       :columns="column"
-      :data="dashboard?.data?.data?.Ordenes "
+      :data="dashboard?.data?.Ordenes "
     />
   </div>
 </template>
