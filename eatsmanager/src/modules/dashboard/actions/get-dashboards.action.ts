@@ -4,12 +4,12 @@ import type { Dashboard } from "../interfaces/dashboard.interface";
 
 
 
-export const getDashboardsAction = async(): Promise<Dashboard> => {
+export const getDashboardsAction = async(module: string): Promise<Dashboard> => {
 
   try {
 
     const { data } = await eatsmanagerApi.get<Dashboard>(
-      `/dashboard/dashboardEmp`,
+      `/dashboard/${module}`,
     );
 
     return{ ...data }

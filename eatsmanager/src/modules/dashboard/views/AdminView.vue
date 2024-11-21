@@ -3,7 +3,10 @@
   <div>
 
     <div class="flex flex-row flex-wrap content-start mb-20">
-      <StatCard v-for="n in 4" :key="n" />
+      <StatCard
+      :data="dashboard?.data.Venta_Total"
+      target-name="Total Pedidos"
+      />
 
     </div>
 
@@ -13,7 +16,6 @@
       <BasicGraphic />
 
     </div>
-    <DataTableBsic :is-add="true" :is-delete="false" :is-update="false" :columns="column" :data="data"/>
   </div>
 
 </template>
@@ -21,37 +23,15 @@
 <script setup lang="ts">
 import StatCard from '@/modules/common/components/StatCard.vue';
 import BasicGraphic from '../components/BasicGraphic.vue';
-import DataTableBsic from '@/modules/common/components/DataTableBsic.vue';
-import { ref } from 'vue';
+import { useQuery } from '@tanstack/vue-query';
+import type { Dashboard } from '../interfaces/dashboard.interface';
+import { getDashboardsAction } from '../actions/get-dashboards.action';
 
-
-// const column = [
-//   { data: 'name' },
-//   { data: 'position' },
-//   { data: 'office' },
-//   { data: 'extn' },
-//   { data: 'start_date' },
-//   { data: 'salary' },
-// ];
-
-// const data = ref([
-//   {
-//     name: 'Tiger Nixon',
-//     position: 'System Architect',
-//     salary: '$3,120',
-//     start_date: '2011/04/25',
-//     office: 'Edinburgh',
-//     extn: 5421,
-//   },
-//   {
-//     name: 'Garrett Winters',
-//     position: 'Director',
-//     salary: '5300',
-//     start_date: '2011/07/25',
-//     office: 'Edinburgh',
-//     extn: '8422',
-//   },
-// ]);
+const module = 'dashboardAdm';
+const {data: dashboard } = useQuery<Dashboard>({
+  queryKey: ['dashboards', {module: module}],
+  queryFn: () => getDashboardsAction(module)
+});
 
 // function remove() {
 //   dt.value.rows({ selected: true }).every(function () {

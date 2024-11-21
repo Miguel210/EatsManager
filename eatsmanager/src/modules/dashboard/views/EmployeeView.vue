@@ -36,9 +36,10 @@ import { getDashboardsAction } from '../actions/get-dashboards.action';
 import { useQuery } from '@tanstack/vue-query';
 import type {  Dashboard } from '../interfaces/dashboard.interface';
 
+const module = 'dashboardEmp';
 const {data: dashboard } = useQuery<Dashboard>({
-  queryKey: ['dashboards'],
-  queryFn: () => getDashboardsAction()
+  queryKey: ['dashboards', {module: module}],
+  queryFn: () => getDashboardsAction(module)
 });
 
 const column = [

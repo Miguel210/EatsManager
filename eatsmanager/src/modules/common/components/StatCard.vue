@@ -8,7 +8,7 @@
       <div class="flex flex-col justify-center px-4 py-4 bg-white border border-gray-300 rounded">
         <div>
           <p class="text-3xl font-semibold text-center text-gray-800 m-0"> {{ targetName }}</p>
-          <p class="text-lg text-center text-gray-500">{{ data?.[0].count }}</p>
+          <p class="text-lg text-center text-gray-500">{{ displayValue }}</p>
         </div>
       </div>
 
@@ -17,18 +17,30 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
+
 
 interface Props {
   data: DataObject[] | undefined,
   targetName: string;
 }
 export interface DataObject {
-  count: number | string;
+  count?: number | string;
+  sum?: string
 }
 
-defineProps<Props>();
-// console.log(JSON.stringify(data));
-
+const props = defineProps<Props>();
+const displayValue = computed(() => {
+  if (props.data && props.data.length > 0) {
+    const item = props.data[0];
+    if (item.count !== undefined) {
+      return typeof item.count === 'string' ? item.count : item.count.toLocaleString();
+    } else if (item.sum !== undefined) {
+      return item.sum;
+    }
+  }
+  return 'No data available';
+});
 </script>
 
 <style scoped></style>
