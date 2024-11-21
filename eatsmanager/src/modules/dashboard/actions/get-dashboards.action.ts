@@ -4,7 +4,7 @@ import type { Dashboard } from "../interfaces/dashboard.interface";
 
 
 
-export const getDashboardsAction = async(module: string): Promise<Dashboard> => {
+export const getDashboardsAction = async(module: string) => {
 
   try {
 

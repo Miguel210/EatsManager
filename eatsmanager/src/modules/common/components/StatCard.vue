@@ -24,7 +24,7 @@ interface Props {
   data: DataObject[] | undefined,
   targetName: string;
 }
-export interface DataObject {
+interface DataObject {
   count?: number | string;
   sum?: string
 }

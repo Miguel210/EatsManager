@@ -7,7 +7,7 @@ export interface Data {
   Inventario?:        Inventario[],
   Ordenes_del_Dia?: OrdenesDelDia[],
   Mas_Vendido?:     string[],
-  Compra?:            string[],
+  Compra?:            DataObject[],
   Venta?:             string[],
   Ordenes?:            string[],
   Ordenes_Pendientes?: DataObject[],

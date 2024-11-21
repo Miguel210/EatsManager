@@ -5,15 +5,24 @@
     <div class="flex flex-row flex-wrap content-start mb-20">
       <StatCard
       :data="dashboard?.data.Venta_Total"
-      target-name="Total Pedidos"
+      target-name="Venta Total"
+      />
+      <StatCard
+      :data="dashboard?.data.Inventario"
+      target-name="Inventario"
+      />
+      <StatCard
+      :data="dashboard?.data.Ordenes_del_Dia"
+      target-name="Ordenes del Dia"
       />
 
     </div>
 
     <div class="flex justify-between">
-
-      <BasicGraphic class="mr-10" />
-      <BasicGraphic />
+      <BasicGraphic
+      class="mr-10"
+      :data="dashboard?.data.Compra"
+      />
 
     </div>
   </div>
@@ -26,12 +35,16 @@ import BasicGraphic from '../components/BasicGraphic.vue';
 import { useQuery } from '@tanstack/vue-query';
 import type { Dashboard } from '../interfaces/dashboard.interface';
 import { getDashboardsAction } from '../actions/get-dashboards.action';
+// import { computed } from 'vue';
 
 const module = 'dashboardAdm';
-const {data: dashboard } = useQuery<Dashboard>({
+
+const {  data: dashboard } = useQuery<Dashboard>({
   queryKey: ['dashboards', {module: module}],
-  queryFn: () => getDashboardsAction(module)
+  queryFn: async() => await getDashboardsAction(module)
 });
+
+//  console.log(dashboard.value?.data.Compra);
 
 // function remove() {
 //   dt.value.rows({ selected: true }).every(function () {
