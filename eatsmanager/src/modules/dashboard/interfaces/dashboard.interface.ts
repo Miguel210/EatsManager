@@ -3,15 +3,15 @@ export interface Dashboard {
 }
 
 export interface Data {
-  "Venta_Total"?:     Inventario[];
-  Inventario?:        Inventario[];
-  "Ordenes_del_Dia"?: OrdenesDelDia[];
-  "Mas Vendido"?:     [string | number];
-  Compra?:            [string | number];
-  Venta?:             [string | number];
-  Ordenes?:            [string | number];
-  "Ordenes_Pendientes"?: [string | number];
-  "Ventas_Empleados"?: [string | number];
+  Venta_Total?:     Inventario[],
+  Inventario?:        Inventario[],
+  Ordenes_del_Dia?: OrdenesDelDia[],
+  Mas_Vendido?:     string[],
+  Compra?:            string[],
+  Venta?:             string[],
+  Ordenes?:            string[],
+  Ordenes_Pendientes?: DataObject[],
+  Ventas_Empleados?: DataObject[],
 }
 
 export interface Inventario {
@@ -20,4 +20,7 @@ export interface Inventario {
 
 export interface OrdenesDelDia {
   count: string;
+}
+export interface DataObject {
+  count: number | string;
 }

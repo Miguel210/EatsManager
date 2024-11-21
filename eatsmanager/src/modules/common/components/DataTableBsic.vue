@@ -39,7 +39,7 @@ interface Props {
   isAdd: boolean,
   isUpdate: boolean,
   isDelete: boolean,
-  data:  unknown,
+  data:  string[] | undefined,
   columns: {
     data: string;
   }[]

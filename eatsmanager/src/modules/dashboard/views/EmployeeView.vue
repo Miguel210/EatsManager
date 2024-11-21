@@ -4,7 +4,7 @@
     <div class="flex flex-row flex-wrap content-start mb-20">
 
       <StatCard
-      :data="dashboard?.data?.Ordenes_Pendientes"
+      :data="dashboard?.data.Ordenes_Pendientes"
       />
 
     </div>
@@ -17,8 +17,11 @@
       :is-delete="true"
       :is-update="true"
       :columns="column"
-      :data="dashboard?.data?.Ordenes "
+      :data=" dashboard?.data.Ordenes "
     />
+  </div>
+  <div>
+    {{ dashboard?.data.Ordenes_Pendientes}}
   </div>
 </template>
 
@@ -27,8 +30,9 @@ import StatCard from '@/modules/common/components/StatCard.vue';
 import DataTable from '@/modules/common/components/DataTableBsic.vue';
 import { getDashboardsAction } from '../actions/get-dashboards.action';
 import { useQuery } from '@tanstack/vue-query';
+import type {  Dashboard } from '../interfaces/dashboard.interface';
 
-const {data: dashboard = []} = useQuery({
+const {data: dashboard } = useQuery<Dashboard>({
   queryKey: ['dashboards'],
   queryFn: () => getDashboardsAction()
 });
