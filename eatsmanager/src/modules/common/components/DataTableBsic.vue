@@ -1,5 +1,5 @@
 <template>
-  <div class="w-[500px]">
+  <div :class="`w-[${tableWidth}]`">
     <!-- <button v-if="isAdd" @click="add">Add</button><br />
     <button v-if="isUpdate" @click="update">Update</button><br />
     <button v-if="isDelete" @click="remove">Delete</button> -->
@@ -42,7 +42,11 @@ interface Props {
   data:  string[] | undefined,
   columns: {
     data: string;
-  }[]
+  }[],
+  tableWidth: string | number,
+  //tableWidth: string | number,
+
+
 }
 defineProps<Props>();
 

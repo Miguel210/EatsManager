@@ -5,6 +5,11 @@
 
       <StatCard
       :data="dashboard?.data.Ordenes_Pendientes"
+      target-name="Ordenes Pendientes"
+      />
+      <StatCard
+      :data="dashboard?.data.Ventas_Empleados"
+      target-name="Ventas Empleados"
       />
 
     </div>
@@ -18,11 +23,10 @@
       :is-update="true"
       :columns="column"
       :data=" dashboard?.data.Ordenes "
+      table-width="full"
     />
   </div>
-  <div>
-    {{ dashboard?.data.Ordenes_Pendientes}}
-  </div>
+
 </template>
 
 <script setup lang="ts">
