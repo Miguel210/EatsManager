@@ -8,7 +8,7 @@ export interface Data {
   Ordenes_del_Dia?: OrdenesDelDia[],
   Mas_Vendido?:     string[],
   Compra?:            DataObject[],
-  Venta?:             string[],
+  Venta?:             DataObject[],
   Ordenes?:            string[],
   Ordenes_Pendientes?: DataObject[],
   Ventas_Empleados?: DataObject[],

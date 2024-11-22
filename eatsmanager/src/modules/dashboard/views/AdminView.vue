@@ -22,8 +22,13 @@
       <BasicGraphic
       class="mr-10"
       :data="dashboard?.data.Compra"
+      target="Compras"
       />
-
+      <BasicGraphic
+      class="mr-10"
+      :data="dashboard?.data.Venta"
+      target="Ventas"
+      />
     </div>
   </div>
 

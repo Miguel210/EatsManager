@@ -189,6 +189,8 @@ export const seedData = {
     ],
     moviment: [
         {id: '65d35e71-af8b-4151-b079-3dc03f0e2814', date: new Date(' 2024-11-20'), personId: 'bf9c6739-8612-4149-a552-5f280720cfe6', documentId: '314bc909-4e7d-423c-8c61-6fb712ab48f4', elaborateId: '', amount: 1380, status: 'terminado', referenceId: null},
+        {id: '65d35e71-af8b-4151-b079-3dc03f0e8765', date: new Date(' 2024-11-21'), personId: 'bf9c6739-8612-4149-a552-5f280720cfe6', documentId: '314bc909-4e7d-423c-8c61-6fb712ab48f4', elaborateId: '', amount: 1380, status: 'terminado', referenceId: null},
+        {id: '65d35e71-af8b-4151-b079-3dc03f0e8766', date: new Date(' 2024-11-21'), personId: 'bf9c6739-8612-4149-a552-5f280720cfe6', documentId: '314bc909-4e7d-423c-8c61-6fb712ab48f4', elaborateId: '', amount: 1380, status: 'terminado', referenceId: null},
         {id: '65d35e71-af8b-4151-b079-3dc03f0e8763', date: new Date(' 2024-11-21'), personId: 'bf9c6739-8612-4149-a552-5f280720cfe6', documentId: '314bc909-4e7d-423c-8c61-6fb712ab48f4', elaborateId: '', amount: 1380, status: 'terminado', referenceId: null},
         {id: '65d35e71-af8b-4151-b079-3dc03f0e2000', date: new Date(' 2024-11-22'), personId: 'bf9c6739-8612-4149-a552-5f280720cfe6', documentId: '314bc909-4e7d-423c-8c61-6fb712ab48f4', elaborateId: '', amount: 1380, status: 'terminado', referenceId: null},
         {id: '145c8a51-0e93-4f02-a770-4ee9647f85cd', date: new Date(), personId: '6541e329-809c-48f6-8f9d-234b5d17cfbf', documentId: '4a00ff37-2f05-4042-abcd-62270aaa31bb', elaborateId: 'b805d571-14ed-4c3e-a92b-b896ca35daeb', amount: 368,      status: 'En proceso', referenceId: null},        
