@@ -24,6 +24,8 @@
       :columns="column"
       :data=" dashboard?.data.Ordenes "
       table-width="full"
+      :search="false"
+      :pagination="false"
     />
   </div>
 

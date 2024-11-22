@@ -39,16 +39,18 @@ interface Props {
   isAdd: boolean,
   isUpdate: boolean,
   isDelete: boolean,
-  data:  string[] | undefined,
+  data:  unknown[] | undefined,
   columns: {
     data: string;
   }[],
   tableWidth: string | number,
+  search: boolean,
+  pagination: boolean
   //tableWidth: string | number,
 
 
 }
-defineProps<Props>();
+const props = defineProps<Props>();
 
 // let dt = ref();
 const table = ref();
@@ -61,8 +63,8 @@ const table = ref();
 const optionsDt = {
   select: true,
   buttons: true,
-  searching: false,
-  paging: false,
+  searching: props.search,
+  paging: props.pagination,
 };
 // const localData = ref([...props.data]);
 // function remove() {

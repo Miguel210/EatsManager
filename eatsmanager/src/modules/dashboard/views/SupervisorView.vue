@@ -22,6 +22,8 @@
       :columns="column"
       :data=" dashboard?.data.Ordenes "
       table-width="fit"
+      :search="false"
+      :pagination="false"
     />
       <!-- <DataTable
       :is-add="true"
