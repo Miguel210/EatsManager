@@ -16,6 +16,11 @@ export const dashboardRoutes: RouteRecordRaw = {
       path: 'empleado',
       name: 'empleado',
       component: () => import('@/modules/dashboard/views/EmployeeView.vue'),
+    },
+    {
+      path: 'supervisor',
+      name: 'supervisor',
+      component: () => import('@/modules/dashboard/views//SupervisorView.vue'),
     }
   ]
 }

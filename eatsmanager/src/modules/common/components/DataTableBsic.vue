@@ -1,5 +1,5 @@
 <template>
-  <div :class="`w-[${tableWidth}]`">
+  <div :class="`w-${tableWidth}`">
     <!-- <button v-if="isAdd" @click="add">Add</button><br />
     <button v-if="isUpdate" @click="update">Update</button><br />
     <button v-if="isDelete" @click="remove">Delete</button> -->
