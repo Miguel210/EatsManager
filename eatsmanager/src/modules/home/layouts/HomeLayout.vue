@@ -1,6 +1,6 @@
 <template>
   <!-- flex flex-col -->
-  <div class="  text-gray-800">
+  <div class="  text-gray-800 bg-white">
 
     <!-- Top Menu -->
 

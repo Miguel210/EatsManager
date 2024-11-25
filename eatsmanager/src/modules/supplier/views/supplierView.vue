@@ -1,52 +1,51 @@
 <template>
   <div>
-    <DataTable
-      :is-add="true"
-      :is-delete="true"
-      :is-update="true"
-      :columns="column"
-      :data=" dataTableInfo"
-      table-width="full"
-      :search="true"
-      :pagination="true"
-    />
+        
+    <ButtonCustom @click="visible = true" type-button="success" label-data="Crear" icon-button="pi pi-file-plus" :is-toast="false" ></ButtonCustom>
+    <ButtonCustom @click="visible = true" type-button="warn" label-data="Actualizar" icon-button="pi pi-pencil" :is-toast="false"></ButtonCustom>
+    <ButtonCustom 
+      type-button="danger" 
+      label-data="Eliminar" 
+      icon-button="pi pi-trash"
+      :is-toast="true"
+      toast-severity="error"
+      toast-summary="Producto Eliminado"
+      toast-detail="Se elimino"
+    ></ButtonCustom>
+    
+    <DataTable 
+      :is-add="true" 
+      :is-delete="true" 
+      :is-update="true" 
+      :columns="column" 
+      :data="dataTableInfo"
+      table-width="full" 
+      :search="true" 
+      :pagination="true" 
+      />
     <div>
       {{ supplier?.data }}
       {{ dataDewgloce }}
     </div>
 
-    <ButtonCustom
-      @click="customModalOpen = true"
-      type-button="danger"
-      label-data="Eliminar"
-    >
-  </ButtonCustom>
   </div>
-
-    <CustomModal :open="customModalOpen">
-      <template #header>
-        <h2 class="text-lg font-semibold">Modal Title</h2>
-
-
-      </template>
-
-      <template #body>
-        <P>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorem itaque deleniti ea deserunt maiores voluptas.
-        Expedita iusto sequi consectetur fugit odit libero quam quod id, ad a voluptates quisquam quas!
-      </P>
-      </template>
-
-
-      <template #actions>
-        <div class=" flex justify-end border-t px-4 py-2">
-          <button @click="customModalOpen = false" class="btn mr-4">Close</button>
-          <button @click="customModalOpen = false" class="btn-primary">Aceptar</button>
-
-        </div>
-      </template>
-    </CustomModal>
-
+  <div class="card flex justify-center bg-white">
+      <Dialog v-model:visible="visible" modal header="Edit Profile" :style="{ width: '25rem' }" >
+          <span class="text-surface-500 dark:text-surface-400 block mb-8">Update your information.</span>
+          <div class="flex items-center gap-4 mb-4">
+              <label for="username" class="font-semibold w-24">Username</label>
+              <InputText id="username" class="flex-auto" autocomplete="off" />
+          </div>
+          <div class="flex items-center gap-4 mb-8">
+              <label for="email" class="font-semibold w-24">Email</label>
+              <InputText id="email" class="flex-auto" autocomplete="off" />
+          </div>
+          <div class="flex justify-end gap-2">
+              <ButtonCustom type="button" label-data="Cancel" type-button="danger" @click="visible = false" :is-toast="false"></ButtonCustom>
+              <ButtonCustom type="button" label-data="Save" type-button="success" @click="visible = false"  :is-toast="false"></ButtonCustom>
+          </div>
+      </Dialog>
+  </div>
 
 </template>
 
@@ -57,20 +56,20 @@ import { getSuppliersAction } from '../actions/get-suppliers.action';
 import type { Supplier } from '../interfaces/supplier.interface';
 import { computed, ref } from 'vue';
 import ButtonCustom from '@/modules/common/components/ButtonCustom.vue';
-import CustomModal from '@/modules/common/components/CustomModal.vue';
+import InputText from 'primevue/inputtext';
+import Dialog from 'primevue/dialog';
 
-
-const customModalOpen = ref(false);
+const visible = ref(false);
 const module = 'Proveedor/getAll';
-const {data: supplier } = useQuery<Supplier>({
-  queryKey: ['supplier', {module: module}],
+const { data: supplier } = useQuery<Supplier>({
+  queryKey: ['supplier', { module: module }],
   queryFn: () => getSuppliersAction(module)
 });
-const dataTableInfo = ref<({id:string,fullname: string, description: string, status: boolean}[]| undefined)>([]);
+const dataTableInfo = ref<({ id: string, fullname: string, description: string, status: boolean }[] | undefined)>([]);
 const dataDewgloce = computed(() => {
-  if(supplier.value?.data && supplier.value.data.length > 0) {
+  if (supplier.value?.data && supplier.value.data.length > 0) {
     // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-    dataTableInfo.value = supplier.value.data.map( e => {
+    dataTableInfo.value = supplier.value.data.map(e => {
 
       return {
         id: e.id,
@@ -91,7 +90,4 @@ const column = [
 ];
 
 </script>
-
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -1,37 +1,37 @@
 <template>
-  <!-- Open the modal using ID.showModal() method -->
-  <dialog class="modal" :open="open">
-    <div class="modal-box">
-
-      <div class="bg-indigo-500 text-white px-4 py-2 flex justify-between">
-        <!--Header-->
-        <slot name="header" />
-      </div>
-
-      <div class="ny-5">
-        <slot name="body" />
-      </div>
-
-      <div class="border-5 border-blue-500 pt-2">
-        <slot name="actions" />
-
-      </div>
+ <div class="card flex justify-center">
+        <Button label="Show" @click="visible = true" />
+        <Dialog v-model:visible="visible" modal header="Edit Profile" :style="{ width: '25rem' }">
+            <span class="text-surface-500 dark:text-surface-400 block mb-8">Update your information.</span>
+            <div class="flex items-center gap-4 mb-4">
+                <label for="username" class="font-semibold w-24">Username</label>
+                <InputText id="username" class="flex-auto" autocomplete="off" />
+            </div>
+            <div class="flex items-center gap-4 mb-8">
+                <label for="email" class="font-semibold w-24">Email</label>
+                <InputText id="email" class="flex-auto" autocomplete="off" />
+            </div>
+            <div class="flex justify-end gap-2">
+                <Button type="button" label="Cancel" severity="secondary" @click="visible = false"></Button>
+                <Button type="button" label="Save" @click="visible = false"></Button>
+            </div>
+        </Dialog>
     </div>
-  </dialog>
-
-  <div v-if="open" class="modal-backdrop fixed top-0 left-0 z-10 bg-black opacity-40 w-screen h-screen">s</div>
-
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
+
 
 interface Props {
-  open?: boolean;
+  visible?: boolean;
 }
+const props = defineProps<Props>()
+const visible = ref(props.visible || false);
 
-withDefaults(defineProps<Props>(), {
-  open: false
-})
+// withDefaults(defineProps<Props>(), {
+//   open: false
+// })
 </script>
 
 <style scoped></style>

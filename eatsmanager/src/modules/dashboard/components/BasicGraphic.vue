@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <h3 class="text-2xl	font-bold	">{{ target }}</h3>
-    <Chart v-if="data && data.length > 0" type="bar" :data="chartData" :options="chartOptions" class=" w-[40rem]" />
+    <Chart v-if="data && data.length > 0" type="bar" :data="chartData" :options="chartOptions" class=" w-[30rem]" />
   </div>
   <div class="invisible">
     {{ prueba }}
