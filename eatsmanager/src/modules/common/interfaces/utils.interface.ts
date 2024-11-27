@@ -1,9 +1,9 @@
 
 export interface Main {
-    data: Data;
+    data: Data[];
 }
 
 export interface Data {
-    data: string;
-    
+    id: string;
+    type: string
 }

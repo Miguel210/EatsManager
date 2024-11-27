@@ -23,7 +23,7 @@ export class UtilService {
         }
         
         return {
-            data: dictionary
+            data: data
         }
     }
 }

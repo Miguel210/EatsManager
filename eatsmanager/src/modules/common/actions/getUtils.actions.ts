@@ -8,7 +8,7 @@ export const getUtilsAction = async(module: string) => {
 
   try {
 
-    const { data } = await eatsmanagerApi.post<Main>(
+    const { data } = await eatsmanagerApi.get<Main>(
       `/utils/${module}`,
     );
 
