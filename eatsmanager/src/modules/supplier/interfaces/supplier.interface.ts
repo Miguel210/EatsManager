@@ -1,4 +1,4 @@
-export interface Supplier {
+export interface Obj {
   data: Data[];
 }
 
@@ -15,4 +15,10 @@ export interface Person {
 
 export interface Typeperson {
   description: string;
+}
+
+export interface SupplierModel {
+  id:       string 
+  personId: string
+  isActive: boolean
 }
