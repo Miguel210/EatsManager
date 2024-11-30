@@ -1,8 +1,12 @@
 <template>
   <div>
     <div class="flex flex-row-reverse">
-      <ButtonCustom @click="visible = true" type-button="success" label-data="Crear" icon-button="pi pi-file-plus" :is-toast="false" ></ButtonCustom>
-      <ButtonCustom @click="visible = true" type-button="warn" label-data="Actualizar" icon-button="pi pi-pencil" :is-toast="false"></ButtonCustom>
+      <RouterLink to="/proveedor/proveedores/create">
+        <ButtonCustom @click="visible = true" type-button="success" label-data="Crear" icon-button="pi pi-file-plus" :is-toast="false" ></ButtonCustom>
+      </RouterLink>
+      <RouterLink to="/proveedor/proveedores/6e454d68-6349-4f21-91e4-490cc9de097b" >
+        <ButtonCustom @click="visible = true" type-button="warn" label-data="Actualizar" icon-button="pi pi-pencil" :is-toast="false"></ButtonCustom>
+      </RouterLink>
       <ConfirmDialogCostum
         type-button="danger" 
         label-data="Eliminar" 
@@ -33,8 +37,8 @@
     </div>
 
   </div>
-  <Dialog v-model:visible="visible" modal header="Crear Proveedor" :style="{ width: '25rem'} " >
-    <modalSupplier>
+  <!-- <Dialog v-model:visible="visible" modal header="Crear Proveedor" :style="{ width: '25rem'} " >
+    <modalSupplier >
         
         <template #actions>
           <ButtonCustom label-data="Cancel" type-button="danger" @click="visible = false" :is-toast="false"></ButtonCustom>
@@ -42,7 +46,7 @@
         </template>
           
     </modalSupplier>
-  </Dialog>
+  </Dialog> -->
 
 </template>
 
@@ -52,12 +56,10 @@ import { useQuery } from '@tanstack/vue-query';
 import { getSuppliersAction } from '../actions/get-suppliers.action';
 import type { Obj } from '../interfaces/supplier.interface';
 import { computed, ref } from 'vue';
-import Dialog from 'primevue/dialog';
-// import Select from 'primevue/select';
+// import Dialog from 'primevue/dialog';
 import ButtonCustom from '@/modules/common/components/ButtonCustom.vue';
 import ConfirmDialogCostum from '@/modules/common/components/ConfirmDialogCostum.vue';
-// import '../views/SupplierView';
-import modalSupplier from '../components/modalSupplier.vue';
+// import modalSupplier from './modalSupplier.vue';
 
 const visible = ref(false);
 const module = 'Proveedor/getAll';

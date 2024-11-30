@@ -3,15 +3,21 @@ import type { RouteRecordRaw } from "vue-router";
 
 
 export const supplierRoutes: RouteRecordRaw = {
-  path: '/supplier',
+  path: '/proveedor',
   name: 'supplier',
   component: () => import('@/modules/supplier/layouts/supplierLayout.vue'),
   children: [
     {
       path: '',
       name: 'supplierMenu',
-      component: () => import('@/modules/supplier/views/supplierView.vue'),
+      component: () => import('@/modules/supplier/views/suppliersView.vue'),
     },
+    {
+      path: 'proveedores/:supplierId',
+      name: 'admin-proveedor',
+      props: true,
+      component: () => import('@/modules/supplier/views/modalSupplier.vue')
+    }
     // {
     //   path: 'empleado',
     //   name: 'empleado',

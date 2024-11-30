@@ -1,3 +1,4 @@
+import { CustomError } from "../../domain";
 import { CreateSupplierDto } from "../../domain/dtos/supplier/create-supplier.dto";
 import { UpdateSupplierDto } from "../../domain/dtos/supplier/update-supplier.dto";
 import { CreateSupplier } from "../../domain/use-cases/supplier/create-supplier";
@@ -45,7 +46,8 @@ export class SupplierService {
         .then( supplier => supplier)
         .catch( error => console.log({error}))
         
-        console.log(supplier);
+        if(!supplier) throw CustomError.badRequest('Product already exist');
+        
         
         return {
             data: supplier

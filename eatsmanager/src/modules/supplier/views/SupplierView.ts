@@ -1,143 +1,139 @@
-import { useMutation, useQuery } from "@tanstack/vue-query";
-import { watch, watchEffect, defineComponent } from 'vue';
-import {  useForm } from 'vee-validate';
+import { watchEffect, defineComponent, watch } from 'vue';
 import { useRouter } from 'vue-router';
+import { useMutation, useQuery } from '@tanstack/vue-query';
+import { useForm } from 'vee-validate';
 import * as yup from 'yup';
-import { getSupplierById } from "../actions/get-supplier-by-id.action";
-import { createUpdateSUpplierAction } from "../actions/create-update-supplier.action";
 
+import { getSupplierById } from '../actions/get-supplier-by-id.action';
 
 import InputText from 'primevue/inputtext';
-import CustomSelect from "@/modules/common/components/CustomSelect.vue";
+import { createUpdateSUpplierAction } from '../actions/create-update-supplier.action';
+import type { Main } from '@/modules/common/interfaces/utils.interface';
+import { getUtilsAction } from '@/modules/common/actions/getUtils.actions';
 
-import type { Main } from "@/modules/common/interfaces/utils.interface";
-import { getUtilsAction } from "@/modules/common/actions/getUtils.actions";
+// import type { Data } from "../interfaces/supplier.interface";
 const validationSchema = yup.object({
-    genderId: yup.string().required(),
-    profileId: yup.string().required(),
-    typePerson: yup.string().required(),
-    fullname: yup.string().required(),
-    personId: yup.string().required(),
-    isActive: yup.string().required(),
+  fullname: yup.string(),
+  genderId: yup.string(),
+  profile: yup.string(),
+  typeperson: yup.string(),
+  personId: yup.string(),
+  isActive: yup.string(),
 });
 
-
 export default defineComponent({
-    components: {
-      InputText,
-      CustomSelect,
+  components: {
+    InputText,
+  },
+  props: {
+    supplierId: {
+      type: String,
+      required: true,
     },
-    props: {
-        supplierId: {
-            type: String,
-            requerid: true,
-        },
-    },
-    setup(props) {
-        // initializations
-        const router = useRouter()
-        // const toast = useToast()
+  },
+  setup(props) {
+    // initializations
+    const router = useRouter();
 
+    // ConsultData
+    const {
+      data: supplier,
+      isError,
+      isLoading,
+    } = useQuery({
+      queryKey: ['supplier', props.supplierId],
+      queryFn: () => getSupplierById(props.supplierId),
+      retry: false,
+    });
 
-        // ConsultData 
-        const { data: supplier, isError, isLoading, refetch  } = useQuery({
-            queryKey: ['supplier', props.supplierId ],
-            queryFn: () => getSupplierById( props.supplierId as string ),
-            retry: false
-        });
+    const {
+      isPending,
+      isSuccess: isUpdateSuccess,
+      data: updateSupplier,
+      mutate,
+    } = useMutation({
+      mutationFn: createUpdateSUpplierAction,
+    });
+    const { values, defineField, errors, handleSubmit, resetForm, meta } = useForm({
+      validationSchema,
+      // initialValues: supplier.value
+    });
 
-        //tanck query update
-        const { isPending, isSuccess: isUpdateSuccess, data: updateSupplier, mutate} = useMutation({
-            mutationFn: createUpdateSUpplierAction
-        })
+    const [fullname, fullnameAttrs] = defineField('person.fullname');
+    const [gender, genderAttrs] = defineField('person.gender');
+    const [profile, profileAttrs] = defineField('person.profile');
+    const [typeperson, typePersonAttrs] = defineField('person.typeperson.description');
+    const [isActive, isActiveAttrs] = defineField('person.isActive');
 
-        const { values, defineField, errors, handleSubmit, resetForm, meta} = useForm({
-            validationSchema,
-        })
-
-
-        //
-        const [personId, personIdAttrs ] = defineField('personId');
-        const [isActive, isActiveAttrs ] = defineField('isActive');
-        const [gender, genderAttrs ] = defineField('gender');
-        const [profile, profileAttrs ] = defineField('profile');
-        const [typePerson, typePersonAttrs ] = defineField('typePerson');
-        const [fullname, fullnameAttrs ] = defineField('fullname');
-
-
-        //update data
-        const onSubmit = handleSubmit((values) => {
-            mutate(values)
-        })
-
+    
         //slectOptiosn tanck query 
         const { data: profileDt  } = useQuery<Main>({
-            queryKey: ['profile', { module: 'autocomplete/profile/name' }],
-            queryFn: () => getUtilsAction('autocomplete/profile/name' )
-          });
-          const { data: typeProfileDt } = useQuery<Main>({
-            queryKey: ['typeProfile', { module: 'autocomplete/typeperson/description'  }],
-            queryFn: () => getUtilsAction('autocomplete/typeperson/description' )
-          });
+          queryKey: ['profile', { module: 'autocomplete/profile/name' }],
+          queryFn: () => getUtilsAction('autocomplete/profile/name' )
+        });
+        const { data: typeProfileDt } = useQuery<Main>({
+          queryKey: ['typeProfile', { module: 'autocomplete/typeperson/description'  }],
+          queryFn: () => getUtilsAction('autocomplete/typeperson/description' )
+        });
 
-        watchEffect(() => {
-            if (isError.value && !isLoading.value) {
-                router.replace('/admin/supplier');
-                return;
-            }
-        })
-        watch( supplier, () => {
-            if( !supplier ) return;
+
+    const onSubmit = handleSubmit(async (values) => {
+        mutate(values)
+    });
+
+    watchEffect(() => {
+      if (isError.value && !isLoading.value) {
+        router.replace('/proveedor');
+        return;
+      }
+    });
+    watch(
+      supplier,
+      () => {
+        if (!supplier) return;
+
+        resetForm({
+          values: supplier.value,
+        });
+      },
+      {
+        deep: true,
+        immediate: true,
+      },
+    );
+
+    watch( isUpdateSuccess, (value) => {
+      console.log('isUpdateSuccess');
+
+      if( !value ) return;
+
+      resetForm({
+        values: updateSupplier.value,
+      })
       
-            resetForm({
-              values: supplier.value
-            })
-          },  {
-            deep: true,
-            immediate: true
-          })
-      
-          watch( isUpdateSuccess, (value) => {
-            // console.log();
-            if( !value ) return;
-      
-            // toast.add'Producto actualizado correctamente');
-            router.replace(`/admin/products/${updateSupplier.value?.id}`) //! change route
-      
-            resetForm( {
-              values: updateSupplier.value
-            })
-            
-          })
-      
-          watch( () => props.supplierId, () => {
-            refetch();
-          })
+    })
 
+    return {
+      values,
+      errors,
+      meta,
+      isPending,
 
-          return {
-            values,
-            errors,
-            meta,
+      profileDt,
+      typeProfileDt,
 
-            profileDt,
-            typeProfileDt,
+      isActive,
+      isActiveAttrs,
+      gender,
+      genderAttrs,
+      profile,
+      profileAttrs,
+      typeperson,
+      typePersonAttrs,
+      fullname,
+      fullnameAttrs,
 
-            personId,
-            personIdAttrs,
-            isActive,
-            isActiveAttrs,
-            gender,
-            genderAttrs,
-            profile,
-            profileAttrs,
-            typePerson,
-            typePersonAttrs,
-            fullname,
-            fullnameAttrs,
-            isPending,
-
-            onSubmit,
-          }
-    }
-})
+      onSubmit,
+    };
+  },
+});

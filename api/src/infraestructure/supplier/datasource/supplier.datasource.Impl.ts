@@ -62,10 +62,9 @@ export class SupplierDatasoruceImpl implements SupplierDatasource {
 
     async findbyId(id: string): Promise<SupplierEntity> {
 
-        
         const supplier = await prisma.supplier.findFirst({
             where: {
-                id: id
+                id: id.toString()
             },
             select: {
                 id: true,
@@ -87,8 +86,6 @@ export class SupplierDatasoruceImpl implements SupplierDatasource {
 
         if( !supplier ) throw `Supplier with id ${id} not found`;
 
-        console.log(supplier);
-        
         return SupplierEntity.fromObj(supplier);
     }
 

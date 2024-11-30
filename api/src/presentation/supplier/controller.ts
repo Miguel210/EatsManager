@@ -33,7 +33,8 @@ export class SupplierController {
         if(error) throw res.status(400).json({error});
            
         
-
+        console.log(supplierDto);
+        
         this.supplierService.createSupplier(supplierDto!)
         .then( init => res.json(init))
         .catch(error => this.handleError(error,res))

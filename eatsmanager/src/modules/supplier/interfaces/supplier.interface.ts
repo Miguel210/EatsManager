@@ -18,7 +18,10 @@ export interface Typeperson {
 }
 
 export interface SupplierModel {
-  id:       string 
-  personId: string
-  isActive: boolean
+  data: Data
+}
+
+export interface Dddd {
+  fullname: string,
+  description: string,
 }
