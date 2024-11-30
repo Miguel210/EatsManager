@@ -8,7 +8,7 @@ export const createUpdateSUpplierAction = async(supplier: Partial<Data>) => {
 
     const supplierId = supplier.id;
 
-    console.log('supplierId');
+    console.log(supplier);
     
     if( supplier.id  && supplier.id !== '' ) {
         return await updateSupplier(supplierId!, supplier);
@@ -23,7 +23,11 @@ const updateSupplier = async(supplierId: string, supplier: Partial<Data>) => {
 
     delete supplier.id
     try {
-        const {data} = await eatsmanagerApi.post<Data>(`/supplier/Proveedor/${supplierId}`, supplier)
+        const {data} = await eatsmanagerApi.post<Data>(`/supplier/Proveedor/update`,{
+
+            id: supplierId,
+            supplier
+        })
         return data;
 
     } catch ( error ){

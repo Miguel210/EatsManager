@@ -4,13 +4,15 @@ export interface Obj {
 
 export interface Data {
   id:     string;
+  PersonId: string;
+  isActive:   boolean;
   person: Person;
 }
 
 export interface Person {
   fullname:   string;
   typeperson: Typeperson;
-  isActive:   boolean;
+  genderId: string
 }
 
 export interface Typeperson {

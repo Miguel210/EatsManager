@@ -23,14 +23,15 @@ export class UpdateSupplierDto {
     static create(props: {[key: string]: any}):  [string?, UpdateSupplierDto?] {
 
         const {id, personId, isActive, fullname, username, password, genderId ,profileId, typePersonId} = props;
-
+        console.log(isActive);
+        
         if( !id ) {
             return ['id is requerid'];
         }
         if( !personId ) {
-            return ['PersonId no exist, is requerid']
+            return ['personId no exist, is requerid']
         }
-        if( isActive===false ) {
+        if( isActive === undefined ) {
             return ['isActive must be validate']
         }
         //todo this part is person

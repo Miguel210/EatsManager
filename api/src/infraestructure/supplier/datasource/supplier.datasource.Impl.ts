@@ -69,43 +69,38 @@ export class SupplierDatasoruceImpl implements SupplierDatasource {
             select: {
                 id: true,
                 personId: true,
+                isActive: true,
                 person: {
                     select: {
                         fullname: true,
-                        typeperson: {
-                            select: {
-                                description: true
-                            }
-                        },
-                        isActive: true
+                        genderId: true,
+                        typePersonId: true,
+                        profileId: true,
                     }                    
                 },
-                isActive: true
             }
         });
 
         if( !supplier ) throw `Supplier with id ${id} not found`;
-
+        
         return SupplierEntity.fromObj(supplier);
     }
 
     async updateById(updateSupplierDto: UpdateSupplierDto): Promise<SupplierEntity> {
         await this.findbyId( updateSupplierDto.id);
 
-        console.log(updateSupplierDto);
-        
-
+        const isActive = updateSupplierDto.IsActive;
         const updateSupplier = await prisma.supplier.update({
             where: {
                 id: updateSupplierDto.id
             },
             data: {
-                id: updateSupplierDto.id,
-                isActive: updateSupplierDto.IsActive,
+                isActive: isActive,
                 person: {
                     update: {
                         genderId: updateSupplierDto.person.genderId,
-                        fullname: updateSupplierDto.person.fullname
+                        fullname: updateSupplierDto.person.fullname,
+                        isActive: isActive
                     }
                 }
             },

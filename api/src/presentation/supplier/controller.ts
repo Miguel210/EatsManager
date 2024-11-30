@@ -5,8 +5,6 @@ import { CreateSupplierDto } from "../../domain/dtos/supplier/create-supplier.dt
 import { UpdateSupplierDto } from "../../domain/dtos/supplier/update-supplier.dto";
 
 
-
-
 export class SupplierController {
 
     constructor(
@@ -76,9 +74,11 @@ export class SupplierController {
     updateSupplier = (req: Request, res: Response) => {
 
         const id = req.body.id;
+        const isActive = req.body.supplier.isActive;
 
-
-        const [error, updateSupplierDto] = UpdateSupplierDto.create({...req.body,id})
+        const personId = req.body.supplier.personId;
+        
+        const [error, updateSupplierDto] = UpdateSupplierDto.create({...req.body.supplier.person, id, personId,isActive})
         if( error )return res.status(400).json({error})
 
 

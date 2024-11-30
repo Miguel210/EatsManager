@@ -8,16 +8,13 @@ import { getSupplierById } from '../actions/get-supplier-by-id.action';
 
 import InputText from 'primevue/inputtext';
 import { createUpdateSUpplierAction } from '../actions/create-update-supplier.action';
-import type { Main } from '@/modules/common/interfaces/utils.interface';
-import { getUtilsAction } from '@/modules/common/actions/getUtils.actions';
 
 // import type { Data } from "../interfaces/supplier.interface";
 const validationSchema = yup.object({
   fullname: yup.string(),
   genderId: yup.string(),
-  profile: yup.string(),
-  typeperson: yup.string(),
-  personId: yup.string(),
+  profileId: yup.string(),
+  typePersonId: yup.string(),
   isActive: yup.string(),
 });
 
@@ -60,22 +57,12 @@ export default defineComponent({
     });
 
     const [fullname, fullnameAttrs] = defineField('person.fullname');
-    const [gender, genderAttrs] = defineField('person.gender');
-    const [profile, profileAttrs] = defineField('person.profile');
-    const [typeperson, typePersonAttrs] = defineField('person.typeperson.description');
-    const [isActive, isActiveAttrs] = defineField('person.isActive');
+    const [gender, genderAttrs] = defineField('person.genderId');
+    const [profile, profileAttrs] = defineField('person.profileId');
+    const [typePerson, typePersonAttrs] = defineField('person.typePersonId');
+    const [isActive, isActiveAttrs] = defineField('isActive');
 
-    
-        //slectOptiosn tanck query 
-        const { data: profileDt  } = useQuery<Main>({
-          queryKey: ['profile', { module: 'autocomplete/profile/name' }],
-          queryFn: () => getUtilsAction('autocomplete/profile/name' )
-        });
-        const { data: typeProfileDt } = useQuery<Main>({
-          queryKey: ['typeProfile', { module: 'autocomplete/typeperson/description'  }],
-          queryFn: () => getUtilsAction('autocomplete/typeperson/description' )
-        });
-
+  
 
     const onSubmit = handleSubmit(async (values) => {
         mutate(values)
@@ -119,8 +106,6 @@ export default defineComponent({
       meta,
       isPending,
 
-      profileDt,
-      typeProfileDt,
 
       isActive,
       isActiveAttrs,
@@ -128,7 +113,7 @@ export default defineComponent({
       genderAttrs,
       profile,
       profileAttrs,
-      typeperson,
+      typePerson,
       typePersonAttrs,
       fullname,
       fullnameAttrs,
