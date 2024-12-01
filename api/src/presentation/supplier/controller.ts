@@ -27,11 +27,11 @@ export class SupplierController {
 
     create = (req: Request, res: Response) => {
 
-        const [error, supplierDto] = CreateSupplierDto.create(req.body)
+        const [error, supplierDto] = CreateSupplierDto.create({...req.body.person, isActive: req.body.isActive})
         if(error) throw res.status(400).json({error});
-           
         
         console.log(supplierDto);
+        
         
         this.supplierService.createSupplier(supplierDto!)
         .then( init => res.json(init))

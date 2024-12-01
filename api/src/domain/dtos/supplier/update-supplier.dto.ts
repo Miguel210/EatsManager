@@ -23,7 +23,6 @@ export class UpdateSupplierDto {
     static create(props: {[key: string]: any}):  [string?, UpdateSupplierDto?] {
 
         const {id, personId, isActive, fullname, username, password, genderId ,profileId, typePersonId} = props;
-        console.log(isActive);
         
         if( !id ) {
             return ['id is requerid'];

@@ -6,18 +6,12 @@ import type { SupplierModel } from "../interfaces/supplier.interface";
 
 export const getSupplierById = async(supplierId: string) => {
     
-    // if( supplierId === 'create' ) {
+    if( supplierId === 'create' ) {
         
-    //     return {
-    //         id: '',
-    //         fullname: '',
-    //         genderId: '',
-    //         profileId: '',
-    //         typePerson: '',
-    //         personId: '',
-    //         isActive: true
-    //     }
-    // }
+        return {
+            
+        }
+    }
     
     
     try{

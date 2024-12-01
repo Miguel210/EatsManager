@@ -8,14 +8,11 @@ export const createUpdateSUpplierAction = async(supplier: Partial<Data>) => {
 
     const supplierId = supplier.id;
 
-    console.log(supplier);
-    
     if( supplier.id  && supplier.id !== '' ) {
         return await updateSupplier(supplierId!, supplier);
     }
-
-    // return await createSupplier(supplier);
-    throw new Error('No implementado');
+    
+    return await createSupplier(supplier);
 }
 
 
@@ -37,14 +34,14 @@ const updateSupplier = async(supplierId: string, supplier: Partial<Data>) => {
     }
 }
 
-// const createSupplier = async( supplier: Partial<Dddd>) => {
-//     try {
-//         const {data} = await eatsmanagerApi.post<Dddd>(`/supplier/Proveedor/`, supplier)
-//         return data;
+const createSupplier = async( supplier: Partial<Data>) => {
+    try {
+        const {data} = await eatsmanagerApi.post<Data>(`/supplier/Proveedor/`, supplier)
+        return data;
 
-//     } catch ( error ){
-//         console.log(error);
-//         throw new Error('Error creating Supplier')
+    } catch ( error ){
+        console.log(error);
+        throw new Error('Error creating Supplier')
         
-//     }
-// }
+    }
+}
