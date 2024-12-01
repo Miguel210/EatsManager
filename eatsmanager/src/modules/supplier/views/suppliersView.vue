@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex flex-row-reverse">
+    <!-- <div class="flex flex-row-reverse">
       <RouterLink to="/proveedor/proveedores/create">
         <ButtonCustom @click="visible = true" type-button="success" label-data="Crear" icon-button="pi pi-file-plus" :is-toast="false" ></ButtonCustom>
       </RouterLink>
@@ -20,9 +20,10 @@
         :reject-props= "{ label: 'Cancelar', severity: 'secondary', outlined: true }"
         :acceptProps="{label: 'Eliminar', severity: 'danger'}"
       ></ConfirmDialogCostum>
-    </div>
+    </div> -->
     <DataTable 
-      :is-add="true" 
+      :is-add="true"
+      routerLink="/proveedor/proveedores/" 
       :is-delete="true" 
       :is-update="true" 
       :columns="column" 
@@ -37,17 +38,6 @@
     </div>
 
   </div>
-  <!-- <Dialog v-model:visible="visible" modal header="Crear Proveedor" :style="{ width: '25rem'} " >
-    <modalSupplier >
-        
-        <template #actions>
-          <ButtonCustom label-data="Cancel" type-button="danger" @click="visible = false" :is-toast="false"></ButtonCustom>
-          <ButtonCustom label-data="Save" type-button="success" @click="visible = false"  :is-toast="false"></ButtonCustom>
-        </template>
-          
-    </modalSupplier>
-  </Dialog> -->
-
 </template>
 
 <script setup lang="ts">
@@ -57,11 +47,10 @@ import { getSuppliersAction } from '../actions/get-suppliers.action';
 import type { Obj } from '../interfaces/supplier.interface';
 import { computed, ref } from 'vue';
 // import Dialog from 'primevue/dialog';
-import ButtonCustom from '@/modules/common/components/ButtonCustom.vue';
-import ConfirmDialogCostum from '@/modules/common/components/ConfirmDialogCostum.vue';
+// import ButtonCustom from '@/modules/common/components/ButtonCustom.vue';
+// import ConfirmDialogCostum from '@/modules/common/components/ConfirmDialogCostum.vue';
 // import modalSupplier from './modalSupplier.vue';
 
-const visible = ref(false);
 const module = 'Proveedor/getAll';
 const { data: supplier } = useQuery<Obj>({
   queryKey: ['supplier', { module: module }],
@@ -86,7 +75,7 @@ const dataDewgloce = computed(() => {
 })
 
 const column = [
-  { data: 'id' },
+  // { data: 'id' },
   { data: 'fullname', title: "Nombre" },
   { data: 'description', title: "Tipo" },
   { data: 'status', title: "Estatus" },

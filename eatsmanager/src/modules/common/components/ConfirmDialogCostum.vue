@@ -27,6 +27,8 @@ const toast = useToast();
 const confirm = useConfirm();
 
 interface Props {
+    //click Funcion
+    funcion?: () => void
     // CustomButton
   typeButton: string
   labelData: string
@@ -54,6 +56,9 @@ const confirmDialog = () => {
         acceptProps: props.acceptProps,
         accept: () => {
             toast.add({ severity: 'info', summary: 'Comfirmar', detail: 'Registro eliminado', life: 3000 });
+            if( props.funcion ){
+                props.funcion()
+            }
         },
         reject: () => {
             toast.add({ severity: 'error', summary: 'Cancelar', detail: 'Registro cancelado', life: 3000 });

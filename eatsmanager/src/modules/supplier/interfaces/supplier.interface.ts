@@ -13,6 +13,8 @@ export interface Person {
   fullname:   string;
   typeperson: Typeperson;
   genderId: string
+  isActive:   boolean;
+
 }
 
 export interface Typeperson {
