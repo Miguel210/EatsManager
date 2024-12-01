@@ -56,6 +56,7 @@ interface Props {
   routerLink?: string;
   isUpdate: boolean;
   isDelete: boolean;
+  functionDelete?: (id: string) => void
   //data
   data: string[] | unknown[] | undefined;
   columns: {
@@ -94,8 +95,12 @@ function remove() {
     const rowIndex = this.index();
     const rowData = this.data();
     
-    props.data.splice(rowIndex, 1);
-    dt.value.row(rowIndex).remove().draw(false);
+    if( props.functionDelete ){
+      props.functionDelete(rowData['id'])
+
+      props.data.splice(rowIndex, 1);
+      dt.value.row(rowIndex).remove().draw(false);
+    }
   });
 }
 

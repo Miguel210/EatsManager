@@ -25,6 +25,7 @@
       :is-add="true"
       routerLink="/proveedor/proveedores/" 
       :is-delete="true" 
+      :functionDelete="deleteSupplierById"
       :is-update="true" 
       :columns="column" 
       :data="dataTableInfo"
@@ -46,11 +47,7 @@ import { useQuery } from '@tanstack/vue-query';
 import { getSuppliersAction } from '../actions/get-suppliers.action';
 import type { Obj } from '../interfaces/supplier.interface';
 import { computed, ref } from 'vue';
-// import Dialog from 'primevue/dialog';
-// import ButtonCustom from '@/modules/common/components/ButtonCustom.vue';
-// import ConfirmDialogCostum from '@/modules/common/components/ConfirmDialogCostum.vue';
-// import modalSupplier from './modalSupplier.vue';
-
+import { deleteSupplierById } from '../actions/delete-supplier-by-id.actions';
 const module = 'Proveedor/getAll';
 const { data: supplier } = useQuery<Obj>({
   queryKey: ['supplier', { module: module }],

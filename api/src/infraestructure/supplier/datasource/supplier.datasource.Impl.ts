@@ -114,10 +114,12 @@ export class SupplierDatasoruceImpl implements SupplierDatasource {
 
     async deleteById(id: string): Promise<SupplierEntity> {
         await this.findbyId(id);
-
+        
+        
         const deleted = await prisma.supplier.delete({
             where: {id}
         });
+        console.log('paso por aqui');
         console.log(deleted);
         
 

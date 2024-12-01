@@ -14,12 +14,12 @@ export class SupplierEntity {
 
     static fromObj(object: {[key: string]: any}) {
 
-        const {id, person, personId, isActive} = object;
+        const {id, person = ' ', personId, isActive} = object;
 
         if( !id ) throw CustomError.badRequest('Missing id');
 
-        if( !person ) throw CustomError.badRequest('Missing person or person');
-        if( !personId ) throw CustomError.badRequest('Missing personId or person');
+        if( !person ) throw CustomError.badRequest('Missing  person');
+        if( !personId ) throw CustomError.badRequest('Missing personId');
 
         if( isActive === undefined ) throw CustomError.badRequest('Not exist isActive in supplierEntity');
 

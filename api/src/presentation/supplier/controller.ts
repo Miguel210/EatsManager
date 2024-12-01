@@ -63,7 +63,6 @@ export class SupplierController {
 
     deletedSupplier = (req: Request, res: Response) => {
 
-
         this.supplierService.delete(req.body.id)
         .then(suplier => res.json(suplier))
         .catch(error => this.handleError(error,res))

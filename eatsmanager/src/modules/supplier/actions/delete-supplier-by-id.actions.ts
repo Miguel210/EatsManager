@@ -9,8 +9,8 @@ export const deleteSupplierById = async(supplierId: string) => {
 
     try{
 
-        await eatsmanagerApi.delete(`/supplier/Proveedor/deleted`, {
-            data: supplierId
+        await eatsmanagerApi.post(`/supplier/Proveedor/deleted`, {
+            id: supplierId
         })
 
     } catch( error ) {
