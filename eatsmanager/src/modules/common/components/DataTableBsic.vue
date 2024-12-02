@@ -58,7 +58,7 @@ interface Props {
   isDelete: boolean;
   functionDelete?: (id: string) => void
   //data
-  data: string[] | unknown[] | undefined;
+  data: unknown[] | undefined;
   columns: {
     data: string;
   }[];

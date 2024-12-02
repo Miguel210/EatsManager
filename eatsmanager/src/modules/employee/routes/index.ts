@@ -6,11 +6,11 @@ export const employeeRoutes: RouteRecordRaw = {
     component : () => import('@/modules/employee/layouts/employeeLayout.vue'),
     children: [
 //todo main (/view/employee/employeeMenu | /view/employee/formView)
-        // {
-        //     path: '',
-        //     name: 'employeeMenu',
-        //     component: () => import(''),
-        // },
+        {
+            path: '',
+            name: 'employeeMenu',
+            component: () => import('@/modules/employee/views/employee/employeeMenu.vue'),
+        },
         // {
         //     path: 'empleado/empleados/:empeladoId',
         //     name: '',

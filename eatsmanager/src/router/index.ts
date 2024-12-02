@@ -1,5 +1,6 @@
 import { authRoutes } from '@/modules/auth/routes'
 import { dashboardRoutes } from '@/modules/dashboard/routes'
+import { employeeRoutes } from '@/modules/employee/routes'
 import { supplierRoutes } from '@/modules/supplier/routes'
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -12,7 +13,8 @@ const router = createRouter({
       component: () => import('@/modules/home/layouts/HomeLayout.vue'),
       children: [
         dashboardRoutes,
-        supplierRoutes
+        supplierRoutes,
+        employeeRoutes
       ]
     },
     /*{

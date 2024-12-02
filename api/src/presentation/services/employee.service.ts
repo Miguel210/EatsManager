@@ -1,3 +1,4 @@
+import { CustomError } from "../../domain";
 import { CreateEmployeeDto } from "../../domain/dtos/employee/create-employee.dto";
 import { UpdateEmployeeDto } from "../../domain/dtos/employee/update-employee.dto";
 import { CreateEmployee } from "../../domain/use-cases/employee/create-employee";
@@ -49,12 +50,13 @@ export class EmployeeService {
         const employee = await new GetsEmployee( this.repository).execute(form)
         .then(employee => employee)
         .catch(error => console.log({error}));
-        console.log(employee);
+
+        if(!employee) throw CustomError.badRequest('Employee no exist');
+
         
         return {
-            data: {
-                employee
-            } 
+            data: employee
+            
         }
 
     }

@@ -24,7 +24,7 @@ const home = ref({
     route: '/dashboard'
 });
 const items = ref([
-    { label: 'Empleados', route: '/empleado'  },
+    { label: 'login', route: '/auth'  },
 ]);
 </script>
 <style scoped>
