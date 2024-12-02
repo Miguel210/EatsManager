@@ -10,15 +10,16 @@
     <template v-else>
     
       <DataTable
-        :is-add="true"
-        routerLink="/empleado/empleados/"
-        :is-delete="true"
-        :is-update="true"
-        :data="dataTableInfo"
-        :columns="column"
-        table-width="full"
-        :search="true"
-        :pagination="true"
+      :is-add="true"
+      routerLink="/empleado/"
+      :is-delete="true"
+      :functionDelete="deleteEmployeeById"
+      :is-update="true"
+      :columns="column"
+      :data="dataTableInfo"
+      table-width="full"
+      :search="true"
+      :pagination="true"
       />
       {{ datapaint }}
         
@@ -30,7 +31,7 @@
 <script setup lang="ts">
 import DataTable from '@/modules/common/components/DataTableBsic.vue';
 import { useQuery } from '@tanstack/vue-query';
-import { getEmployeesAction } from '../../actions/get-employees.actions';
+import { getEmployeesAction, deleteEmployeeById } from '../../actions'; 
 import { computed, ref } from 'vue';
 import type { Obj } from '../../interfaces/employuee.interface';
 

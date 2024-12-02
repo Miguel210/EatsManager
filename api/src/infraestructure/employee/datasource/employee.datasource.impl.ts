@@ -29,7 +29,8 @@ export class EmployeeDatasourceImpl implements EmployeeDatasource {
         return EmployeeEntity.fromObject(employee);
     }
     async getById(id: string): Promise<EmployeeEntity> {
-
+        
+        console.log(id);
         const employee = await prisma.employee.findFirst({
             where: {
                 id: id,
@@ -46,6 +47,7 @@ export class EmployeeDatasourceImpl implements EmployeeDatasource {
         const employees = await prisma.employee.findMany({
             where: {
                 isActive: form.isActive ,
+                isDelete: false,
                 personId: {
                     in: form.personId || undefined
                 },
@@ -102,6 +104,8 @@ export class EmployeeDatasourceImpl implements EmployeeDatasource {
     async delete(id: string): Promise<EmployeeEntity> {
         
         await this.getById(id);
+
+        
 
         const employee = await prisma.employee.update({
             where: {
