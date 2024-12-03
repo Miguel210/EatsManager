@@ -1,5 +1,5 @@
 import { eatsmanagerApi } from "@/api/eatsmanager.api";
-import type { Obj } from "../interfaces/employee.interface";
+import type { Obj } from "../../interfaces/employee.interface";
 
 
 

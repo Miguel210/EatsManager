@@ -1,5 +1,5 @@
 import { eatsmanagerApi } from "@/api/eatsmanager.api"
-import type { Main } from "../interfaces/employee.interface";
+import type { Main } from "../../interfaces/employee.interface";
 
 
 

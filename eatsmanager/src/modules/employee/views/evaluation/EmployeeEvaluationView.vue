@@ -11,9 +11,8 @@
     
       <DataTable
       :is-add="true"
-      routerLink="/empleado/empleados/"
-      :is-delete="true"
-      :functionDelete="deleteEmployeeById"
+      routerLink="/evaluacion/evaluaciones/"
+      :is-delete="false"
       :is-update="true"
       :columns="column"
       :data="dataTableInfo"
@@ -31,27 +30,23 @@
 <script setup lang="ts">
 import DataTable from '@/modules/common/components/DataTableBsic.vue';
 import { useQuery } from '@tanstack/vue-query';
-import { getEmployeesAction, deleteEmployeeById } from '../../actions/employee/index'; 
 import { computed, ref } from 'vue';
-import type { Obj } from '../../interfaces/employee.interface';
+import { getEvaluationsAction } from '../../actions/evaluation/get-evaluations.actions';
+import type { DataTableDt } from '../../interfaces/evaluation.interface';
 
 const {
   data: employee,
   isLoading,
   isError,
-} = useQuery<Obj>({
-  queryKey: ['employee'],
-  queryFn: () => getEmployeesAction(),
+} = useQuery<DataTableDt>({
+  queryKey: ['evaluation'],
+  queryFn: () => getEvaluationsAction(),
 });
 const dataTableInfo = ref<
   | {
       id: string;
       fullname: string;
-      profile: string;
-      salary: string;
-      input: string;
-      hireDate: string;
-      isActive: boolean;
+      date: string;
     }[]
   | undefined
 >([]);
@@ -64,12 +59,8 @@ const datapaint = computed(() => {
     dataTableInfo.value = employee.value.data.map((e) => {
       return {
         id: e.id,
-        fullname: e.person.fullname,
-        profile: e.person.profile.name,
-        salary: e.salary,
-        input: e.input.toString(),
-        hireDate: e.hireDate.toString(),
-        isActive: e.isActive,
+        fullname: e.employeeId,
+        date: e.date,
       };
     });
   }
@@ -77,12 +68,10 @@ const datapaint = computed(() => {
 });
 
 const column = [
-  { data: 'fullname', title: 'Nombre' },
-  { data: 'profile', title: 'Perfil' },
-  { data: 'salary', title: 'Salario' },
-  { data: 'input', title: 'Entrada' },
-  { data: 'hireDate', title: 'Fecha de entrada' },
-  { data: 'isActive', title: 'Estatus' },
+    { data: 'fullname', title: 'Nombre' },
+    {data: 'employeeId', title: 'Empleado'},
+    {data: 'date', title: 'Fecha'},
+
 ];
 </script>
 

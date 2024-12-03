@@ -91,6 +91,20 @@ export class EvaluationDatasourceImpl implements EvaluationDatasource {
                 },
                 date: date || undefined,
                 isActive: form.isActive
+            },
+            select: {
+                id: true,
+                employeeId: true,
+                date: true,
+                empoyee :{
+                    select: {
+                        person: {
+                            select: {
+                                fullname: true,
+                            }
+                        }
+                    }
+                },
             }
         })
         

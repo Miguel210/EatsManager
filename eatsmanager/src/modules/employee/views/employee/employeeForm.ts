@@ -5,7 +5,7 @@ import { useForm } from 'vee-validate';
 import * as yup from 'yup';
 
 import InputText from 'primevue/inputtext';
-import { createUpdateEmployeeAction, getEmployeeById } from '../../actions';
+import { createUpdateEmployeeAction, getEmployeeById } from '../../actions/employee/index';
 
 const validationSchema = yup.object({
   fullname: yup.string(),
