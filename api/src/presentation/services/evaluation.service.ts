@@ -47,9 +47,8 @@ export class EvaluationService {
         .catch( error => console.log(error) );
 
         return {
-            data: {
-                evaluation
-            }
+            data: evaluation
+            
         }
         
     }

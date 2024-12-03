@@ -79,8 +79,7 @@ export class EvaluationDatasourceImpl implements EvaluationDatasource {
         if( date ) {
             date = new Date(date)
         } 
-        console.log(date);
-        
+                
         const evaluation = await prisma.evaluation.findMany({
             where: {
                 employeeId: {
@@ -96,20 +95,24 @@ export class EvaluationDatasourceImpl implements EvaluationDatasource {
                 id: true,
                 employeeId: true,
                 date: true,
-                empoyee :{
-                    select: {
-                        person: {
-                            select: {
-                                fullname: true,
-                            }
-                        }
-                    }
-                },
+                evaluatorId: true,
+                punctuality: true,
+                attitude: true,
+                quality: true,
+                efficiency: true,
+                initiative: true,
+                hygiene: true,
+                isActive: true
+
             }
         })
         
         if( !evaluation ) throw `Evaluation with form ${form} not found`;
+        console.log('***********');
+        console.log(evaluation);
+        console.log('***********');
 
+        
         return evaluation.map( evaluation => EvaluationEntity.fromObject(evaluation));
     }
     async update(dto: UpdateEvaluationDto): Promise<EvaluationEntity> {

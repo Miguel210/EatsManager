@@ -11,7 +11,7 @@
     
       <DataTable
       :is-add="true"
-      routerLink="/evaluacion/evaluaciones/"
+      routerLink="/empleado/evaluaciones/"
       :is-delete="false"
       :is-update="true"
       :columns="column"
@@ -45,7 +45,7 @@ const {
 const dataTableInfo = ref<
   | {
       id: string;
-      fullname: string;
+      employeeId: string;
       date: string;
     }[]
   | undefined
@@ -59,7 +59,7 @@ const datapaint = computed(() => {
     dataTableInfo.value = employee.value.data.map((e) => {
       return {
         id: e.id,
-        fullname: e.employeeId,
+        employeeId: e.employeeId,
         date: e.date,
       };
     });
@@ -68,7 +68,7 @@ const datapaint = computed(() => {
 });
 
 const column = [
-    { data: 'fullname', title: 'Nombre' },
+    { data: 'id', title: 'Nombre' },
     {data: 'employeeId', title: 'Empleado'},
     {data: 'date', title: 'Fecha'},
 

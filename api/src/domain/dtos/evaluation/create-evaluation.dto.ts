@@ -20,8 +20,8 @@ export class CreateEvaluationDto {
 
         const {employeeId, evaluatorId, punctuality, attitude, quality, efficiency, initiative, hygiene} = props;
 
-        if( !employeeId ) return ['id is requerid'];
-        if( !evaluatorId ) return ['id is requerid'];
+        if( !employeeId ) return ['employeeid is requerid'];
+        if( !evaluatorId ) return ['evaluatorid is requerid'];
         if( !punctuality ) return ['punctuality is requerid'];
         if( !attitude ) return ['attitude is requerid'];
         if( !quality ) return ['quality is requerid'];

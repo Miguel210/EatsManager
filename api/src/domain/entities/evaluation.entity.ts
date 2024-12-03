@@ -25,7 +25,7 @@ export class EvaluationEntity {
         
         if( !id ) throw CustomError.badRequest('Missing id');
         if( !employeeId && !empoyee ) throw CustomError.badRequest('Missing employee');
-        if( !evaluatorId && !evaluator ) throw CustomError.badRequest('Missing evaluator');
+        if( !evaluatorId && !evaluator ) throw CustomError.badRequest('Missing evaluatorId');
         if( date === undefined ) throw CustomError.badRequest('Missing date');
         if( !punctuality ) throw CustomError.badRequest('Missing punctuality');
         if( !attitude ) throw CustomError.badRequest('Missing attitude');
