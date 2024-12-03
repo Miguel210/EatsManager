@@ -11,7 +11,7 @@
     
       <DataTable
       :is-add="true"
-      routerLink="/empleado/"
+      routerLink="/empleado/empleados/"
       :is-delete="true"
       :functionDelete="deleteEmployeeById"
       :is-update="true"
@@ -33,7 +33,7 @@ import DataTable from '@/modules/common/components/DataTableBsic.vue';
 import { useQuery } from '@tanstack/vue-query';
 import { getEmployeesAction, deleteEmployeeById } from '../../actions'; 
 import { computed, ref } from 'vue';
-import type { Obj } from '../../interfaces/employuee.interface';
+import type { Obj } from '../../interfaces/employee.interface';
 
 const {
   data: employee,
@@ -64,8 +64,8 @@ const datapaint = computed(() => {
     dataTableInfo.value = employee.value.data.map((e) => {
       return {
         id: e.id,
-        fullname: e.personId.fullname,
-        profile: e.personId.profile.name,
+        fullname: e.person.fullname,
+        profile: e.person.profile.name,
         salary: e.salary,
         input: e.input.toString(),
         hireDate: e.hireDate.toString(),

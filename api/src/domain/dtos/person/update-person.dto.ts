@@ -17,6 +17,7 @@ export class UpdatePersonDto {
     static create(props: {[key: string]: any}): [string?, UpdatePersonDto?] {
 
         const { genderId, profileId, typePersonId, fullname, username, password} = props
+        console.log(props);
 
         if( !genderId) return ['genderId is requerid']
         if( !profileId) return ['profileId is requerid']

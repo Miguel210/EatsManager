@@ -8,7 +8,8 @@ export interface Obj {
 
 export interface Data {
     id:       string;
-    personId: PersonID;
+    personId: string;
+    person:   Person;
     hireDate: string;
     input:    string;
     output:   string;
@@ -16,7 +17,7 @@ export interface Data {
     isActive: boolean;
 }
 
-export interface PersonID {
+export interface Person {
     fullname: string;
     profile:  Profile;
 }

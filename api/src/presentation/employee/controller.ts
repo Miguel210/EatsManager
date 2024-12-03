@@ -25,8 +25,9 @@ export class EmployeeController {
 
     create = (req: Request, res: Response) => {
 
-
-        const [error, dto ] = CreateEmployeeDto.create(req.body);
+        console.log(req.body.person);
+        
+        const [error, dto ] = CreateEmployeeDto.create({...req.body, ...req.body.person});
         if( error ) throw res.status(400).json({error});
 
         this.service.create(dto!)
@@ -60,9 +61,8 @@ export class EmployeeController {
 
     update = (req: Request, res: Response)  => {
 
-        const [error, dto ] = UpdateEmployeeDto.create(req.body)
+        const [error, dto ] = UpdateEmployeeDto.create({id: req.body.id,...req.body.employee, ...req.body.employee.person})
         if( error ) res.status(400).json({error});
-
 
         this.service.update(dto!)
         .then(employee => res.json(employee))

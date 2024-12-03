@@ -15,7 +15,17 @@ export class EmployeeDatasourceImpl implements EmployeeDatasource {
         const employee = await prisma.employee.create({
             data: {
                 id: Uuid.uuid(),
-                personId: dto.personId,
+                person: {
+                    create: {
+                        id: Uuid.uuid(),
+                        genderId: dto.person.genderId,
+                        profileId: dto.person.profileId,
+                        typePersonId: dto.person.typePersonId,
+                        fullname: dto.person.fullname,
+                        password: dto.person.password,
+                        username: dto.person.username
+                    }
+                },
                 hireDate: new Date(),
                 input: new Date(dto.input),
                 output: new Date(dto.output),
@@ -35,8 +45,28 @@ export class EmployeeDatasourceImpl implements EmployeeDatasource {
             where: {
                 id: id,
                 isDelete: false
+            },
+            select: {
+                id: true,
+                personId: true,
+                isActive: true,
+                person: {
+                    select: {
+                        fullname: true,
+                        genderId: true,
+                        typePersonId: true,
+                        profileId: true,
+                    }                    
+                },
+                hireDate: true,
+                input: true,
+                output: true,
+                salary: true
             }
         })
+
+        console.log(employee);
+        
 
         if( !employee ) throw  `Employee with id ${id} not found`;
         
@@ -59,6 +89,7 @@ export class EmployeeDatasourceImpl implements EmployeeDatasource {
             },
             select: {
                 id: true,
+                personId: true,
                 person: {
                     select: {
                         fullname: true,
@@ -78,13 +109,14 @@ export class EmployeeDatasourceImpl implements EmployeeDatasource {
         })
 
         if( ! employees ) throw `Employee with data ${form} not founds`;
-
+        
         return employees.map(employee => EmployeeEntity.fromObject(employee))
     }
     async update(dto: UpdateEmployeeDto): Promise<EmployeeEntity> {
+        console.log('kkkkkkkkkkkkkkk');
 
-        await this.getById(dto.id);
-
+        console.log(dto.person);
+        console.log('kkkkkkkkkkk');
         const employee = await prisma.employee.update({
             where: {
                 id: dto.id
@@ -93,7 +125,15 @@ export class EmployeeDatasourceImpl implements EmployeeDatasource {
                 input: new Date(dto.input),
                 output: new Date(dto.output),
                 salary: dto.salary,
-                isActive: dto.isActive
+                isActive: dto.isActive,
+                person: {
+                    update: {
+                        genderId: dto.person.genderId,
+                        profileId: dto.person.profileId,
+                        typePersonId: dto.person.typePersonId,
+                        fullname: dto.person.fullname
+                    }
+                }
             }
         })
         if( ! employee ) throw `Employee with id ${dto.id} not found`;

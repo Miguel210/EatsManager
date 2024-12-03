@@ -11,12 +11,12 @@ export const employeeRoutes: RouteRecordRaw = {
             name: 'employeeMenu',
             component: () => import('@/modules/employee/views/employee/employeeMenu.vue'),
         },
-        // {
-        //     path: 'empleado/empleados/:empeladoId',
-        //     name: '',
-        //     props: true,
-        //     component: () => import(''),
-        // },
+        {
+            path: 'empleados/:employeeId',
+            name: 'empleadoForm',
+            props: true,
+            component: () => import('@/modules/employee/views/employee/formEmplView.vue'),
+        },
 //todo attendance (/view/attendance/attendanceView | /view/attendance/formView)
         //{
         //     path: 'empleado/asistencia',

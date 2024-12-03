@@ -36,12 +36,12 @@ export class EmployeeService {
         const employee = await new GetEmployee( this.repository).execute(id)
         .then(employee => employee)
         .catch(error => console.log({error}));
-        console.log(employee);
+
+        if(!employee) throw CustomError.badRequest('Employee no exist');
+
         
         return {
-            data: {
-                employee
-            }
+            data: employee
         }
     }
 
@@ -51,7 +51,7 @@ export class EmployeeService {
         .then(employee => employee)
         .catch(error => console.log({error}));
 
-        if(!employee) throw CustomError.badRequest('Employee no exist');
+        if(!employee) throw CustomError.badRequest('Employees no exists');
 
         
         return {
