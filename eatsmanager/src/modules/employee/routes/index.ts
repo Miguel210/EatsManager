@@ -8,8 +8,8 @@ export const employeeRoutes: RouteRecordRaw = {
 //todo main (/view/employee/employeeMenu | /view/employee/formView)
         {
             path: '',
-            name: 'employeeMenu',
-            component: () => import('@/modules/employee/views/employee/employeeMenu.vue'),
+            name: 'employee',
+            component: () => import('@/modules/employee/views/employeeVIew.vue'),
         },
         {
             path: 'empleados/:employeeId',
