@@ -98,6 +98,7 @@ model employee {
   deleteAt         DateTime?
   isDelete         Boolean          @default(false)
   attendances attendance[]
+  movements  movement[]
   person      person       @relation(fields: [personId], references: [id])
   evaluations evaluation[] @relation("Evaluations")
   evaluators evaluation[] @relation("Evaluators")
@@ -180,7 +181,7 @@ model movement {
   id                  String               @id @default(uuid())
   personId            String
   documentId          String
-  elaborateId         String?
+  elaborateId         String
   amount              Decimal              @db.Decimal(10, 2)
   status              String
   isActive            Boolean              @default(true)
@@ -192,6 +193,7 @@ model movement {
   inventories         inventory[]
   document            document             @relation(fields: [documentId], references: [id])
   person              person               @relation(fields: [personId], references: [id])
+  employees           employee            @relation(fields: [elaborateId], references: [id])
   movement            movement?            @relation("ReferenceMovements", fields: [referenceId], references: [id])
   movements           movement[]           @relation("ReferenceMovements")
   movementDetail      movementDetail[]

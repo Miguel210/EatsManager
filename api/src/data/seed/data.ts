@@ -94,6 +94,7 @@ export const seedData = {
     ],
     person: [
         { id: 'bf9c6739-8612-4149-a552-5f280720cfe6', genderId: 'f83dac87-cae3-433e-909f-89b7cb865ff1', fullname: 'Miguel Angel',    username: 'migueloz',   password: '12345',  profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', typePersonId: '6cb4ec14-8564-4d6f-80c8-eeaacbfe88a4', isActive: true  },
+        { id: 'bf9c6739-8612-4149-a552-098df7g6h6s3', genderId: 'f83dac87-cae3-433e-909f-89b7cb865ff1', fullname: 'Venta Online',    username: 'online',   password: '12345',  profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', typePersonId: '6cb4ec14-8564-4d6f-80c8-eeaacbfe88a4', isActive: true  },
         { id: '6541e329-809c-48f6-8f9d-234b5d17cfbf', genderId: '2ffbc2df-7f6f-4c7a-bf4c-88eee010644f', fullname: 'Daniela Rocha',   username: '',           password: '',       profileId: '17dc3357-85b3-403d-840d-fed63b1c5171', typePersonId: '35c890e4-d191-4f93-97de-d3ea6984423f', isActive: true  },
         { id: '013d069d-744d-4eca-b041-890aaec92c3d', genderId: 'a674eeeb-cd0f-4794-a35b-e321b33344a0', fullname: 'Juan Perez',      username: 'juanp01',    password: '12345',  profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', typePersonId: '6cb4ec14-8564-4d6f-80c8-eeaacbfe88a4', isActive: true  },
         { id: 'b805d571-14ed-4c3e-a92b-b896ca35daeb', genderId: 'f83dac87-cae3-433e-909f-89b7cb865ff1', fullname: 'Edgar Martinez',  username: 'edgnez',     password: '12345',  profileId: '14588c57-ee54-4c01-bc7f-8c445e643ee5', typePersonId: '6cb4ec14-8564-4d6f-80c8-eeaacbfe88a4', isActive: true  },
@@ -107,6 +108,7 @@ export const seedData = {
         { id: 'ecb6c6e2-2ea4-4722-a1fd-87ad162ab024', personId: '013d069d-744d-4eca-b041-890aaec92c3d', hireDate: new Date(), input: new Date(), output: new Date(), salary: 1200, isActive: true },
         { id: '9d260add-9eb9-4d5a-9b0c-7b6b0fbbee24', personId: 'b805d571-14ed-4c3e-a92b-b896ca35daeb', hireDate: new Date(), input: new Date(), output: new Date(), salary: 1500, isActive: true },
         { id: '6c01cdf0-4c2b-4c9a-9d22-b3e28dd863f1', personId: 'c8fb89c7-e8a7-463a-9167-872de0cc6575', hireDate: new Date(), input: new Date(), output: new Date(), salary: 1500, isActive: true },
+        { id: '6c01cdf0-4c2b-4c9a-9d22-b3e28ddf85f5', personId: 'bf9c6739-8612-4149-a552-098df7g6h6s3', hireDate: new Date(), input: new Date(), output: new Date(), salary: 0, isActive: true },
 
     ],
     documentAttendance: [
@@ -188,15 +190,15 @@ export const seedData = {
         {id: '64362875-3469-4b59-9077-3f28bd7049a6', description: 'Orden de Produccion', isActive: true, folio: 1},
     ],
     moviment: [
-        {id: '65d35e71-af8b-4151-b079-3dc03f0e2814', date: new Date(' 2024-11-20'), personId: 'bf9c6739-8612-4149-a552-5f280720cfe6', documentId: '314bc909-4e7d-423c-8c61-6fb712ab48f4', elaborateId: '', amount: 1380, status: 'terminado', referenceId: null},
-        {id: '65d35e71-af8b-4151-b079-3dc03f0e8765', date: new Date(' 2024-11-21'), personId: 'bf9c6739-8612-4149-a552-5f280720cfe6', documentId: '314bc909-4e7d-423c-8c61-6fb712ab48f4', elaborateId: '', amount: 1380, status: 'terminado', referenceId: null},
-        {id: '65d35e71-af8b-4151-b079-3dc03f0e8766', date: new Date(' 2024-11-21'), personId: 'bf9c6739-8612-4149-a552-5f280720cfe6', documentId: '314bc909-4e7d-423c-8c61-6fb712ab48f4', elaborateId: '', amount: 1380, status: 'terminado', referenceId: null},
-        {id: '65d35e71-af8b-4151-b079-3dc03f0e8763', date: new Date(' 2024-11-21'), personId: 'bf9c6739-8612-4149-a552-5f280720cfe6', documentId: '314bc909-4e7d-423c-8c61-6fb712ab48f4', elaborateId: '', amount: 1380, status: 'terminado', referenceId: null},
-        {id: '65d35e71-af8b-4151-b079-3dc03f0e2000', date: new Date(' 2024-11-22'), personId: 'bf9c6739-8612-4149-a552-5f280720cfe6', documentId: '314bc909-4e7d-423c-8c61-6fb712ab48f4', elaborateId: '', amount: 1380, status: 'terminado', referenceId: null},
-        {id: '145c8a51-0e93-4f02-a770-4ee9647f85cd', date: new Date(), personId: '6541e329-809c-48f6-8f9d-234b5d17cfbf', documentId: '4a00ff37-2f05-4042-abcd-62270aaa31bb', elaborateId: 'b805d571-14ed-4c3e-a92b-b896ca35daeb', amount: 368,      status: 'En proceso', referenceId: null},        
-        {id: '68151027-2119-4496-ae44-c6fbbe838b85', date: new Date(), personId: '6541e329-809c-48f6-8f9d-234b5d17cfbf', documentId: '4a00ff37-2f05-4042-abcd-62270aaa31bb', elaborateId: 'b805d571-14ed-4c3e-a92b-b896ca35daeb', amount: 236.4,    status: 'activo', referenceId: null},
-        {id: '2e2197ab-36bb-4f07-a104-8879507b1557', date: new Date(), personId: 'bf9c6739-8612-4149-a552-5f280720cfe6', documentId: '4f825fa9-16e3-4132-ab11-51421d5d5b09', elaborateId: '', amount: 174, status: 'activo', referenceId: null},
-        {id: '4e98b9ab-5d3f-4931-a3f4-719cdc7db509', date: new Date(), personId: '013d069d-744d-4eca-b041-890aaec92c3d', documentId: '9d33b426-589a-4608-a0cc-ae94fefffe47', elaborateId: '', amount: 555, status: 'activo', referenceId: null},
+        {id: '65d35e71-af8b-4151-b079-3dc03f0e2814', date: new Date(' 2024-11-20'), personId: 'bf9c6739-8612-4149-a552-5f280720cfe6', documentId: '314bc909-4e7d-423c-8c61-6fb712ab48f4', elaborateId: '6c01cdf0-4c2b-4c9a-9d22-b3e28ddf85f5', amount: 1380, status: 'terminado', referenceId: null},
+        {id: '65d35e71-af8b-4151-b079-3dc03f0e8765', date: new Date(' 2024-11-21'), personId: 'bf9c6739-8612-4149-a552-5f280720cfe6', documentId: '314bc909-4e7d-423c-8c61-6fb712ab48f4', elaborateId: '6c01cdf0-4c2b-4c9a-9d22-b3e28ddf85f5', amount: 1380, status: 'terminado', referenceId: null},
+        {id: '65d35e71-af8b-4151-b079-3dc03f0e8766', date: new Date(' 2024-11-21'), personId: 'bf9c6739-8612-4149-a552-5f280720cfe6', documentId: '314bc909-4e7d-423c-8c61-6fb712ab48f4', elaborateId: '6c01cdf0-4c2b-4c9a-9d22-b3e28ddf85f5', amount: 1380, status: 'terminado', referenceId: null},
+        {id: '65d35e71-af8b-4151-b079-3dc03f0e8763', date: new Date(' 2024-11-21'), personId: 'bf9c6739-8612-4149-a552-5f280720cfe6', documentId: '314bc909-4e7d-423c-8c61-6fb712ab48f4', elaborateId: '6c01cdf0-4c2b-4c9a-9d22-b3e28ddf85f5', amount: 1380, status: 'terminado', referenceId: null},
+        {id: '65d35e71-af8b-4151-b079-3dc03f0e2000', date: new Date(' 2024-11-22'), personId: 'bf9c6739-8612-4149-a552-5f280720cfe6', documentId: '314bc909-4e7d-423c-8c61-6fb712ab48f4', elaborateId: '6c01cdf0-4c2b-4c9a-9d22-b3e28ddf85f5', amount: 1380, status: 'terminado', referenceId: null},
+        {id: '145c8a51-0e93-4f02-a770-4ee9647f85cd', date: new Date(), personId: '6541e329-809c-48f6-8f9d-234b5d17cfbf', documentId: '4a00ff37-2f05-4042-abcd-62270aaa31bb', elaborateId: '9d260add-9eb9-4d5a-9b0c-7b6b0fbbee24', amount: 368,      status: 'En proceso', referenceId: null},        
+        {id: '68151027-2119-4496-ae44-c6fbbe838b85', date: new Date(), personId: '6541e329-809c-48f6-8f9d-234b5d17cfbf', documentId: '4a00ff37-2f05-4042-abcd-62270aaa31bb', elaborateId: '9d260add-9eb9-4d5a-9b0c-7b6b0fbbee24', amount: 236.4,    status: 'activo', referenceId: null},
+        {id: '2e2197ab-36bb-4f07-a104-8879507b1557', date: new Date(), personId: 'bf9c6739-8612-4149-a552-5f280720cfe6', documentId: '4f825fa9-16e3-4132-ab11-51421d5d5b09', elaborateId: '6c01cdf0-4c2b-4c9a-9d22-b3e28ddf85f5', amount: 174, status: 'activo', referenceId: null},
+        {id: '4e98b9ab-5d3f-4931-a3f4-719cdc7db509', date: new Date(), personId: '013d069d-744d-4eca-b041-890aaec92c3d', documentId: '9d33b426-589a-4608-a0cc-ae94fefffe47', elaborateId: '6c01cdf0-4c2b-4c9a-9d22-b3e28ddf85f5', amount: 555, status: 'activo', referenceId: null},
 
     ],
     movementDetail: [

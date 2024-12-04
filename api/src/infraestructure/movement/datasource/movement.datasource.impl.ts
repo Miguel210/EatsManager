@@ -17,7 +17,7 @@ export class MovementDatasourceImpl implements MovementDatasource {
                 id: Uuid.uuid(),
                 personId: dto.personId,
                 documentId: dto.documentId,
-                elaborateId: dto.elaborateid || undefined,
+                elaborateId: dto.elaborateid,
                 amount: dto.amout,
                 status: dto.status,
                 isActive: true,
@@ -83,6 +83,25 @@ export class MovementDatasourceImpl implements MovementDatasource {
                 },
                 isActive: form.isActive,
                 date: form.date
+            },
+            select: {
+                id: true,
+                person: {
+                    select: {
+                        fullname: true
+                    }
+                },
+                document: {
+                    select: {
+                        description: true
+                    }
+                },
+                amount: true,
+                status: true,
+                isActive: true,
+                date: true,
+                elaborateId: true
+
             }
         })
 
