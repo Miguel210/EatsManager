@@ -13,12 +13,12 @@ export const movementRoutes: RouteRecordRaw = {
       component: () => import('@/modules/movement/views/movementView.vue'),
     },
 //todo Document
-    // {
-    //   path: 'documentos/:documentoId',
-    //   name: 'documentoForm',
-    //   props: true,
-    //   component: () => import('@/modules/supplier/views/modalSupplier.vue')
-    // },
+    {
+      path: 'documentos/:documentoId',
+      name: 'documentoForm',
+      props: true,
+      component: () => import('@/modules/movement/views/document/formDocView.vue')
+    },
 
   ]
 }

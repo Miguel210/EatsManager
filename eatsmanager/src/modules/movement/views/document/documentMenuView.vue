@@ -11,8 +11,9 @@
       <template v-else>
         <DataTable
         :is-add="true"
-        router-link="movimiento/documentos/"
+        router-link="/movimiento/documentos/"
         :is-delete="true"
+        :functionDelete="deleteDocumentById"
         :is-update="true"
         :columns="column"
         :data="dataTableInfo"
@@ -33,7 +34,7 @@
   import { computed, ref } from 'vue';
 import { getDocumentsAction } from '../../actions';
 import type { Obj } from '../../interfaces/document.interface';
-  
+import { deleteDocumentById } from '../../actions/document/';
   const {
     data: document,
     isLoading,
