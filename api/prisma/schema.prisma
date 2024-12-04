@@ -206,6 +206,8 @@ model document {
   isActive    Boolean    @default(true)
   description String
   folio       Int        @db.Integer
+  isDelete    Boolean   @default(false)
+  deleteAt    DateTime?
   movements   movement[]
 }
 

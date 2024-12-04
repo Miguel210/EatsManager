@@ -29,6 +29,7 @@ export class DocuemntDatasourceImpl  implements DocumentDatasource {
         const document = await prisma.document.findFirst({
             where: {
                 id: id,
+                isDelete: false
             }
         });
         
@@ -40,7 +41,8 @@ export class DocuemntDatasourceImpl  implements DocumentDatasource {
 
         const document = await prisma.document.findMany({
             where: {
-                isActive: form.isActive
+                isActive: form.isActive,
+                isDelete: false
             }
         })
         if( !document ) throw `Document with form ${form} not found`;
@@ -52,7 +54,8 @@ export class DocuemntDatasourceImpl  implements DocumentDatasource {
         
         const document = await prisma.document.update({
             where: {
-                id: dto.id
+                id: dto.id,
+                isDelete: false
             },
             data: {
                 description: dto.description,
@@ -75,10 +78,8 @@ export class DocuemntDatasourceImpl  implements DocumentDatasource {
                 id: id
             },
             data: {
-                /*
                 isDelete: true,
                 deleteAt: new Date()
-            */
             }
         })
 
