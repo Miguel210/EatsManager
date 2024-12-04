@@ -22,9 +22,9 @@ export class DocumentService {
         .catch(error => console.log({error}))
 
         return {
-            data: {
+            data: 
                 document
-            }
+            
         }
     }
 
@@ -35,9 +35,9 @@ export class DocumentService {
         .catch(error => console.log({error}))
 
         return {
-            data: {
+            data: 
                 document
-            }
+            
         }
     }
 
@@ -48,9 +48,9 @@ export class DocumentService {
         .catch(error => console.log({error}))
 
         return {
-            data: {
+            data: 
                 document
-            }
+            
         }
     }
 
@@ -61,9 +61,9 @@ export class DocumentService {
         .catch(error => console.log({error}))
 
         return {
-            data: {
+            data: 
                 document
-            }
+            
         }
     }
 
@@ -74,9 +74,9 @@ export class DocumentService {
         .catch(error => console.log({error}))
 
         return {
-            data: {
+            data: 
                 document
-            }
+            
         }
     }
 }
