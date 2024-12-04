@@ -1,6 +1,7 @@
 import { authRoutes } from '@/modules/auth/routes'
 import { dashboardRoutes } from '@/modules/dashboard/routes'
 import { employeeRoutes } from '@/modules/employee/routes'
+import { movementRoutes } from '@/modules/movement/routes'
 import { supplierRoutes } from '@/modules/supplier/routes'
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -14,7 +15,8 @@ const router = createRouter({
       children: [
         dashboardRoutes,
         supplierRoutes,
-        employeeRoutes
+        employeeRoutes,
+        movementRoutes
       ]
     },
     /*{
