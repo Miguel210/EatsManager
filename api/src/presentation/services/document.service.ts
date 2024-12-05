@@ -6,6 +6,7 @@ import { GetDocument } from "../../domain/use-cases/document/get-document";
 import { GetAllDocument } from "../../domain/use-cases/document/getAll-document";
 import { UpdateDocument } from "../../domain/use-cases/document/update-document";
 import { DeleteDocument } from "../../domain/use-cases/document/delete-document";
+import { CustomError } from "../../domain";
 
 
 
@@ -21,6 +22,10 @@ export class DocumentService {
         .then(doc => doc)
         .catch(error => console.log({error}))
 
+
+        if(!document) throw CustomError.badRequest('Error data');
+
+
         return {
             data: 
                 document
@@ -33,6 +38,8 @@ export class DocumentService {
         const document = await new GetDocument( this.repository ).execute(id)
         .then(doc => doc)
         .catch(error => console.log({error}))
+
+        if(!document) throw CustomError.badRequest('Error data');
 
         return {
             data: 
@@ -47,6 +54,8 @@ export class DocumentService {
         .then(doc => doc)
         .catch(error => console.log({error}))
 
+        if(!document) throw CustomError.badRequest('Error data');
+
         return {
             data: 
                 document
@@ -60,6 +69,8 @@ export class DocumentService {
         .then(doc => doc)
         .catch(error => console.log({error}))
 
+        if(!document) throw CustomError.badRequest('Error data');
+
         return {
             data: 
                 document
@@ -72,6 +83,8 @@ export class DocumentService {
         const document = await new DeleteDocument( this.repository ).execute(id)
         .then(doc => doc)
         .catch(error => console.log({error}))
+
+        if(!document) throw CustomError.badRequest('Error data');
 
         return {
             data: 
