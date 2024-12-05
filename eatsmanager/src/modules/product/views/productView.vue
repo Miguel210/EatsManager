@@ -13,7 +13,7 @@
                 <ProductMenuView />
             </TabPanel>
             <TabPanel value="1">
-                <h1>Categorias</h1>
+                <CategoryMenuVIew />
             </TabPanel>
             <TabPanel value="2">
                 <h1>Tipos de productos</h1>
@@ -35,6 +35,7 @@
     import TabPanels from 'primevue/tabpanels';
     import TabPanel from 'primevue/tabpanel';
 import ProductMenuView from './product/productMenuView.vue';
+import CategoryMenuVIew from './category/categoryMenuVIew.vue';
     
     </script>
     
