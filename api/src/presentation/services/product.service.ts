@@ -1,3 +1,4 @@
+import { CustomError } from "../../domain";
 import { CreateProductDto } from "../../domain/dtos/product/create-product.dto";
 import { UpdateProductDto } from "../../domain/dtos/product/update-product.dto";
 import { CreateProduct } from "../../domain/use-cases/product/create-product";
@@ -22,11 +23,12 @@ export class ProductService {
         .then(product => product)
         .catch(error => console.log({error}));
 
+        if(!product) throw CustomError.badRequest('Error data');
+
 
         return {
-            data: {
-                product
-            }
+            data: product
+            
         }
     }
 
@@ -38,10 +40,11 @@ export class ProductService {
             .then(product => product)
             .catch(error => console.log({error}));
         
+            if(!products) throw CustomError.badRequest('Error data');
+
             return {
-                data: {
-                    products
-                }
+                data: products
+                
             }
     }
 
@@ -53,10 +56,10 @@ export class ProductService {
         .then(product => product)
         .catch( error => console.log({error}))
 
+        if(!product) throw CustomError.badRequest('Error data');
+
         return {
-            data: {
-                product
-            }
+            data: product
         }
     }
 
@@ -68,11 +71,10 @@ export class ProductService {
         .then(product => product)
         .catch(error => console.log({error}))
 
+        if(!product) throw CustomError.badRequest('Error data');
 
         return {
-            data: {
-                product
-            }
+            data: product
         }
     }
 
@@ -82,11 +84,10 @@ export class ProductService {
         .then( product => product)
         .catch( error =>  console.log({error}));
 
+        if(!product) throw CustomError.badRequest('Error data');
 
         return {
-            data: {
-                product
-            }
+            data: product
         }
     }
 }
