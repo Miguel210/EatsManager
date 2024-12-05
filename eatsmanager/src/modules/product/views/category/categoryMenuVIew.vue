@@ -9,36 +9,6 @@
       </template>
       
       <template v-else>
-        <div class="flex flex-row-reverse">
-
-            <ButtonCustom 
-            type-button="success"
-            label-data="Compra"
-            icon-button="pi pi-truck"
-            :is-toast="false"
-            />
-            <ButtonCustom 
-            type-button="success"
-            label-data="Venta"
-            icon-button="pi pi-shopping-cart"
-            :is-toast="false"
-            />
-    
-            <ButtonCustom 
-            type-button="warn"
-            label-data="Devolucion de Compra"
-            icon-button="pi pi-arrow-left"
-            :is-toast="false"
-            />
-    
-            <ButtonCustom 
-            type-button="danger"
-            label-data="Devolucion de Venta"
-            icon-button="pi pi-refresh"
-            :is-toast="false"
-            />
-        </div>
-
 
         <DataTable
         :is-add="false"
@@ -61,7 +31,6 @@
   import DataTable from '@/modules/common/components/DataTableBsic.vue';
   import { useQuery } from '@tanstack/vue-query';
   import { computed, ref } from 'vue';
-import ButtonCustom from '@/modules/common/components/ButtonCustom.vue';
 import { getCategoriesAction } from '../../actions/category';
 import type { Obj } from '../../interfaces/category.interface';
   
