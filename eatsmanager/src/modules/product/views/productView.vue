@@ -19,7 +19,7 @@
                 <ProductTypeMenuView />
             </TabPanel>
             <TabPanel value="3">
-                <h1>Inventario</h1>
+                <InventoryMenuView />
             </TabPanel>
             <TabPanel value="4">
                 <h1>Guarniciones</h1>
@@ -37,6 +37,7 @@
 import ProductMenuView from './product/productMenuView.vue';
 import CategoryMenuVIew from './category/categoryMenuVIew.vue';
 import ProductTypeMenuView from './produtType/productTypeMenuView.vue';
+import InventoryMenuView from './inventory/inventoryMenuView.vue';
     
     </script>
     

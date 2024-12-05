@@ -31,37 +31,40 @@
   import DataTable from '@/modules/common/components/DataTableBsic.vue';
   import { useQuery } from '@tanstack/vue-query';
   import { computed, ref } from 'vue';
-import { getProductTypesAction } from '../../actions/productType';
-import type { Obj } from '../../interfaces/productType.interface';
+import type { Obj } from '../../interfaces/inventory.interface';
+import { getInvenotoriesAction } from '../../actions/inventory';
+
   
   const {
-    data: productType,
+    data: inventory,
     isLoading,
     isError,
   } = useQuery<Obj>({
-    queryKey: ['productType'],
-    queryFn: () => getProductTypesAction(),
+    queryKey: ['inventory'],
+    queryFn: () => getInvenotoriesAction(),
   });
   const dataTableInfo = ref<
     {
-        id:          string;
-        description: string;
-        isActive:    boolean;
-        useStock:    boolean;
+        id:       string;
+        movement: string;
+        product:  string;
+        quantity: number;
     }[]
     | undefined
   >([]);
   
   const datapaint = computed(() => {
-    if (productType.value?.data && productType.value.data.length > 0) {
+    if (inventory.value?.data && inventory.value.data.length > 0) {
       
       // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-      dataTableInfo.value = productType.value.data.map((e) => {
+      dataTableInfo.value = inventory.value.data.map((e) => {
+        console.log(e);
+        
         return {
-        id: e.id,
-        description: e.description,
-        isActive: e.isActive,
-        useStock: e.useStock,
+        id:       e.id,
+        movement: e.movement,
+        product:  e.product,
+        quantity: e.quantity,
         };
       });
     }
@@ -69,9 +72,10 @@ import type { Obj } from '../../interfaces/productType.interface';
   });
   
   const column = [
-    { data: 'description', title: 'Nombre' },
-    { data: 'useStock', title: 'usa Stock?' },
-    { data: 'isActive', title: 'Estatus' },
+    { data: 'movement', title: 'Movimiento' },
+    { data: 'product', title: 'Producto' },
+    { data: 'quantity', title: 'Cantidad' },
+
   ];
   </script>
   
