@@ -10,7 +10,7 @@ export const categoryRoutes: RouteRecordRaw = {
     {
       path: '',
       name: 'productoMenu',
-      component: () => import('@/modules/product/views/productMenuView.vue'),
+      component: () => import('@/modules/product/views/productView.vue'),
     },
 //todo product
     // {
