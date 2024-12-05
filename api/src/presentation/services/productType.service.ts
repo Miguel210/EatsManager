@@ -1,3 +1,4 @@
+import { CustomError } from "../../domain";
 import { CreateproductTypeDto } from "../../domain/dtos/productType/create-productType.dto";
 import { UpdateproductTypeDto } from "../../domain/dtos/productType/update-productType.dto";
 import { CreateProductType } from "../../domain/use-cases/productType/create-productType";
@@ -21,24 +22,24 @@ export class ProductTypeService {
         .then(type => type)
         .catch(error => console.log({error}));
 
+        if(!type) throw CustomError.badRequest('Product already exist');
+
         return {
-            data: {
-                type
-            }
+            data: type
         }        
     }
 
     public async getAll(form: any) {
 
 
-        const types = await new GetAllProductType(this.repository).execute(form)
+        const tipes = await new GetAllProductType(this.repository).execute(form)
         .then(tipes => tipes)
         .catch(error => console.log({error}));
 
+        if(!tipes) throw CustomError.badRequest('Product already exist');
+
         return {
-            data: {
-                types
-            }
+            data: tipes
         }
     }
 
@@ -49,10 +50,10 @@ export class ProductTypeService {
         .then(type => type)
         .catch(error => console.log({error}));
 
+        if(!type) throw CustomError.badRequest('Product already exist');
+
         return {
-            data: {
-                type
-            }
+            data: type
         }
     }
 
@@ -62,10 +63,10 @@ export class ProductTypeService {
         .then(type => type)
         .catch(error => console.log({error}));
 
+        if(!type) throw CustomError.badRequest('Product already exist');
+
         return {
-            data: {
-                type
-            }
+            data: type
         }
     }
     
@@ -75,10 +76,10 @@ export class ProductTypeService {
         .then(type => type)
         .catch(error => console.log({error}));
 
+        if(!type) throw CustomError.badRequest('Product already exist');
+
         return {
-            data: {
-                type
-            }
+            data: type
         }
     }
 }
