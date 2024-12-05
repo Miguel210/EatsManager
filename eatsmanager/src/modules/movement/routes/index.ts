@@ -14,7 +14,7 @@ export const movementRoutes: RouteRecordRaw = {
     },
 //todo Document
     {
-      path: 'documentos/:documentoId',
+      path: 'documentos/:documentId',
       name: 'documentoForm',
       props: true,
       component: () => import('@/modules/movement/views/document/formDocView.vue')

@@ -22,7 +22,7 @@ export class DocumentController {
 
     create = (req: Request, res: Response) => {
 
-        const [error, dto] = CreateDocumentDto.create(req.body)
+        const [error, dto] = CreateDocumentDto.create(req.body.document)
         if( error ) throw res.status(400).json({error});
 
         this.service.create(dto!)
@@ -53,7 +53,7 @@ export class DocumentController {
 
     update = (req: Request, res: Response) => {
         
-        const [error, dto ] = UpdateDocumentDto.create(req.body)
+        const [error, dto ] = UpdateDocumentDto.create({id: req.body.id,...req.body.document})
         if( error ) throw res.status(400).json({error});
         
         this.service.update(dto!)
