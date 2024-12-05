@@ -1,3 +1,4 @@
+import { CustomError } from "../../domain";
 import { CreateCategoryDto } from "../../domain/dtos/category/create-category.dto";
 import { UpdateCategoryDto } from "../../domain/dtos/category/update-category.dto";
 import { CreateCategory } from "../../domain/use-cases/category/create-category";
@@ -25,10 +26,10 @@ export class CategoryService {
         .catch(error => console.log({error})
         );
 
+        if(!category) throw CustomError.badRequest('Error data');
+
         return {
-            data: {
-                category
-            }
+            data: category
         }
 
     }
@@ -39,11 +40,10 @@ export class CategoryService {
             .catch(error => console.log({error})
         );
 
+        if(!categories) throw CustomError.badRequest('Error data');
+
         return {
-            data: {
-                categories
-            }
-            
+            data: categories
         }
     }
 
@@ -55,10 +55,10 @@ export class CategoryService {
             .catch(error => console.log({error})
         );
 
+        if(!category) throw CustomError.badRequest('Error data');
+
         return {
-            data: {
-                category
-            }
+            data: category
         }
     }
 
@@ -71,10 +71,10 @@ export class CategoryService {
             .catch(error => console.log({error})
         );
 
+        if(!category) throw CustomError.badRequest('Error data');
+
         return {
-            data: {
-                category
-            }
+            data: category
         }
     
     }
@@ -86,12 +86,10 @@ export class CategoryService {
             .catch(error => console.log({error})
         );
 
+        if(!category) throw CustomError.badRequest('Error data');
+
         return {
-            data: {
-                category
-            }
+            data: category
         }
-
-
     }
 }
