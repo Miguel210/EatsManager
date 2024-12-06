@@ -30,6 +30,6 @@ export class UpdateProductDto {
         if( isActive === undefined ) return ['isActive is requerid',undefined];
 
 
-        return [undefined, new UpdateProductDto( id, code, description, existence, price, productTypeId, categoryId, viewMenu, isActive, image)]
+        return [undefined, new UpdateProductDto( id, code, description,parseInt( existence),parseInt( price), productTypeId, categoryId, viewMenu, isActive, image)]
     }
 }

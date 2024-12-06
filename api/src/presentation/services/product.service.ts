@@ -55,8 +55,8 @@ export class ProductService {
         const product = await new GetProduct(this.repository).execute(id)
         .then(product => product)
         .catch( error => console.log({error}))
-
-        if(!product) throw CustomError.badRequest('Error data');
+        
+        if( !product ) throw CustomError.badRequest('Error data');
 
         return {
             data: product

@@ -5,7 +5,9 @@ export interface Main {
 export interface Obj {
     data: Data[];
 }
-
+export interface Obj2 {
+    data: Data[];
+}
 export interface Data {
     id:          string;
     description: string;

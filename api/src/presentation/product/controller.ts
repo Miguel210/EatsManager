@@ -23,7 +23,7 @@ export class ProductController {
 
     createp = (req: Request, res: Response) => {
 
-        const [error, createProductDto] = CreateProductDto.create(req.body)
+        const [error, createProductDto] = CreateProductDto.create({...req.body.product})
         if( error )return res.status(400).json({error})
 
         this.productService.create(createProductDto!)
@@ -52,12 +52,9 @@ export class ProductController {
 
         const { id } = req.body
 
-        console.log(id);
-        
+        if( !id && id === undefined ) return res.status(400).json( { error: 'id nesesary'} )
 
-        if( !id ) this.handleError('No Id',res);
-
-        this.productService.get(id)
+        this.productService.get(id!)
         .then( product => res.json(product))
         .catch(error => this.handleError(error, res))
 
@@ -68,7 +65,9 @@ export class ProductController {
     update = (req: Request, res: Response) => {
         const id = req.body.id;
 
-        const [error, updateProductDto] =  UpdateProductDto.create({...req.body,id})
+        if( !id ) return res.status(400).json( { error: 'id nesesary'} )
+
+        const [error, updateProductDto] =  UpdateProductDto.create({...req.body.product,id})
         if( error )return res.status(400).json({error})
         
         this.productService.update(updateProductDto!)

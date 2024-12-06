@@ -98,12 +98,26 @@ export class ProductDatasourceImpl implements ProductDatasource {
 
         await this.findById(updateProductDto.id)
 
-
         const product = await prisma.product.update({
             where: {
                 id: updateProductDto.id
             },
-            data: updateProductDto 
+            data: {
+                code: updateProductDto.code,
+                description: updateProductDto.description,
+                existence: updateProductDto.existence,
+                price: updateProductDto.price,
+                productTypeId: {
+                    set: updateProductDto.productTypeId
+                },
+                
+                categoryId: {
+                    set: updateProductDto.categoryId
+                },
+                viewMenu: updateProductDto.viewMenu,
+                isActive: updateProductDto.isActive,
+                image: updateProductDto.image
+            }
         })
 
         console.log(product);

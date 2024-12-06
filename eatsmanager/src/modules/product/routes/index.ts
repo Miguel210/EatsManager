@@ -13,12 +13,12 @@ export const categoryRoutes: RouteRecordRaw = {
       component: () => import('@/modules/product/views/productView.vue'),
     },
 //todo product
-    // {
-    //   path: 'productos/:productId',
-    //   name: 'productForm',
-    //   props: true,
-    //   component: () => import('@/modules/product/views/product/formProdView.vue')
-    // },
+    {
+      path: 'productos/:productId',
+      name: 'productForm',
+      props: true,
+      component: () => import('@/modules/product/views/product/FormProdView.vue')
+    },
 
 //todo category
     {

@@ -20,10 +20,12 @@ export interface Data {
 }
 
 export interface CategoryID {
+    id: string;
     categoryName: string;
 }
 
 export interface ProductTypeID {
+    id: string;
     description: string;
 }
 

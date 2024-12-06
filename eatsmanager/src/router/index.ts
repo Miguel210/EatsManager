@@ -18,7 +18,7 @@ const router = createRouter({
         supplierRoutes,
         employeeRoutes,
         movementRoutes,
-        categoryRoutes
+        categoryRoutes,
       ]
     },
     /*{
