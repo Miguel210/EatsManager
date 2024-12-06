@@ -22,7 +22,7 @@ export class ProductTypeController {
 
     create = (req: Request, res: Response) => {
 
-        const [error, productTypeDto] = CreateproductTypeDto.create(req.body)
+        const [error, productTypeDto] = CreateproductTypeDto.create(req.body.productType)
         if( error ) return res.status(400).json({error});
 
         this.service.create(productTypeDto!)
@@ -52,7 +52,7 @@ export class ProductTypeController {
 
     update = (req: Request, res: Response) => {
 
-        const [error, updateProductTypeDto] = UpdateproductTypeDto.create(req.body)
+        const [error, updateProductTypeDto] = UpdateproductTypeDto.create({...req.body.productType, id: req.body.id})
         if( error ) return res.status(400).json({error});
 
         this.service.update(updateProductTypeDto!)

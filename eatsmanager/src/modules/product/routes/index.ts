@@ -28,12 +28,12 @@ export const categoryRoutes: RouteRecordRaw = {
       component: () => import('@/modules/product/views/category/fromCatView.vue')
     },
 //todo product type
-    // {
-    //   path: 'tipos/:producttypeId',
-    //   name: 'productTypeForm',
-    //   props: true,
-    //   component: () => import('@/modules/product/views/type/formTypeView.vue')
-    // },
+    {
+      path: 'tipos/:productTypeId',
+      name: 'productTypeForm',
+      props: true,
+      component: () => import('@/modules/product/views/produtType/FormProductTyprView.vue')
+    },
 //todo inventory
     // {
     //   path: 'inventarios/:inventoryId',

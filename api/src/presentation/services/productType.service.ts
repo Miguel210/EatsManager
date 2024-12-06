@@ -18,68 +18,68 @@ export class ProductTypeService {
 
     public async create(dto: CreateproductTypeDto){
     
-    const type = await new CreateProductType(this.repository).execute(dto)
+    const data = await new CreateProductType(this.repository).execute(dto)
         .then(type => type)
         .catch(error => console.log({error}));
 
-        if(!type) throw CustomError.badRequest('Product already exist');
+        if(!data) throw CustomError.badRequest('Product already exist');
 
         return {
-            data: type
+            data
         }        
     }
 
     public async getAll(form: any) {
 
 
-        const tipes = await new GetAllProductType(this.repository).execute(form)
+        const data = await new GetAllProductType(this.repository).execute(form)
         .then(tipes => tipes)
         .catch(error => console.log({error}));
 
-        if(!tipes) throw CustomError.badRequest('Product already exist');
+        if(!data) throw CustomError.badRequest('Product already exist');
 
         return {
-            data: tipes
+            data
         }
     }
 
     public async get(id: string) {
 
         
-        const type = await new GetProductType(this.repository).execute(id)
+        const data = await new GetProductType(this.repository).execute(id)
         .then(type => type)
         .catch(error => console.log({error}));
 
-        if(!type) throw CustomError.badRequest('Product already exist');
+        if(!data) throw CustomError.badRequest('Product already exist');
 
         return {
-            data: type
+            data
         }
     }
 
     public async update(dto: UpdateproductTypeDto) {
 
-        const type = await new UpdateProductType(this.repository).execute(dto)
+        const data = await new UpdateProductType(this.repository).execute(dto)
         .then(type => type)
         .catch(error => console.log({error}));
 
-        if(!type) throw CustomError.badRequest('Product already exist');
+        if(!data) throw CustomError.badRequest('Product already exist');
 
         return {
-            data: type
+            data
         }
     }
     
     public async delete(id: string) {
 
-        const type = await new DeleteProductType(this.repository).execute(id)
+        const data = await new DeleteProductType(this.repository).execute(id)
         .then(type => type)
         .catch(error => console.log({error}));
 
-        if(!type) throw CustomError.badRequest('Product already exist');
+        if(!data) throw CustomError.badRequest('Product already exist');
 
         return {
-            data: type
+            data
         }
     }
 }

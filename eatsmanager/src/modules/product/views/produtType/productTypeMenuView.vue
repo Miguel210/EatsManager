@@ -11,9 +11,11 @@
       <template v-else>
 
         <DataTable
-        :is-add="false"
-        :is-delete="false"
-        :is-update="false"
+        :is-add="true"
+        router-link="/producto/tipos/"
+        :is-delete="true"
+        :function-delete="deleteProductTypeById"
+        :is-update="true"
         :columns="column"
         :data="dataTableInfo"
         table-width="full"
@@ -31,7 +33,7 @@
   import DataTable from '@/modules/common/components/DataTableBsic.vue';
   import { useQuery } from '@tanstack/vue-query';
   import { computed, ref } from 'vue';
-import { getProductTypesAction } from '../../actions/productType';
+import { deleteProductTypeById, getProductTypesAction } from '../../actions/productType';
 import type { Obj } from '../../interfaces/productType.interface';
   
   const {

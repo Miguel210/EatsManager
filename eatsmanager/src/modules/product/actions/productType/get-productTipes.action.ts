@@ -9,7 +9,7 @@ export const getProductTypesAction = async() => {
     try {
 
         const { data } = await eatsmanagerApi.get<Obj>(
-            `/productType/`
+            `/producttype/`
         );
 
 
