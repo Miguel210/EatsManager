@@ -3,12 +3,12 @@ import type { RouteRecordRaw } from "vue-router";
 
 
 export const dashboardRoutes: RouteRecordRaw = {
-  path: '/dashboard',
+  path: '/',
   name: 'dashboard',
   component: () => import('@/modules/dashboard/layouts/DashboardLayout.vue'),
   children: [
     {
-      path: '',
+      path: 'dashboardAdm',
       name: 'admin',
       component: () => import('@/modules/dashboard/views/AdminView.vue'),
     },

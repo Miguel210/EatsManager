@@ -1,6 +1,7 @@
 import { ModuleDatasource } from '../../../domain/datasource/module/module.datasource';
 import { ModuleEntity } from '../../../domain/entities/module.enity';
 import { prisma } from "../../../data";
+import { seedData } from '../../../data/seed/data';
 
 
 
@@ -9,7 +10,7 @@ export class ModuleDatasourceImpl implements ModuleDatasource {
     async findById(id: string): Promise<ModuleEntity[]> {
         const ids = id
 
-        const module = await prisma.module.groupBy({
+        const module = await prisma.module.findMany({
             // include: {
             //     operations: {
             //         where: {
@@ -21,7 +22,6 @@ export class ModuleDatasourceImpl implements ModuleDatasource {
             //         },
             //     },
             // }
-            by:['id','name'],
             where: {
                 operations: {
                     some: {
@@ -32,6 +32,10 @@ export class ModuleDatasourceImpl implements ModuleDatasource {
                         }
                     }
                 }
+            },
+            select: {
+                id: true,
+                name: true
             }
 
 

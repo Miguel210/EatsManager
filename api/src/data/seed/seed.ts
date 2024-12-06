@@ -38,6 +38,7 @@ async function main() {
     await prisma.product.deleteMany(),
     await prisma.devolutionSupplier.deleteMany(),
     await prisma.movement.deleteMany(),
+    await prisma.evaluation.deleteMany(),
     await prisma.employee.deleteMany(),
     await prisma.person.deleteMany(),
     await prisma.document.deleteMany(),

@@ -41,6 +41,7 @@ export class AuthMiddlewares {
             req.body._meta= {
                 module,
                 operation,
+                id: userEntity.profileId
             }
             next()
             

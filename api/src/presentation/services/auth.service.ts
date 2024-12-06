@@ -54,7 +54,11 @@ export class AuthService {
         .catch( error => error)
     }*/
 
-    public async operationsModule(){
+    public async operationsModule(data: string){
+
+        return {
+            data
+        }
 
     }
 }

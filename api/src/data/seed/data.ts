@@ -28,6 +28,8 @@ export const seedData = {
         { id: '5a363600-97e2-42f9-b3c2-1e9b0387e51d', name: 'Ordenes',              moduleId: '2e0f70d3-2e01-4fe6-bfac-bc9ba14268e9', isActive: true },
         { id: '4a222609-b953-4dab-b8a4-2e22b082a131', name: 'Ordenes Pendientes',   moduleId: '2e0f70d3-2e01-4fe6-bfac-bc9ba14268e9', isActive: true },
         { id: '8b54718e-b270-419c-a248-d2986e35c64c', name: 'Ventas Empleado',      moduleId: '2e0f70d3-2e01-4fe6-bfac-bc9ba14268e9', isActive: true },
+        { id: 'cd3d3fad-a3d0-402f-a976-2e800aac43df', name: 'create',               moduleId: 'a7d6025c-780b-47c2-81f2-a922554baabd', isActive: true },//proveedor
+
         /*{ id: 'cd3d3fad-a3d0-402f-a976-2e800aac43df', name: 'create',   moduleId: 'a7d6025c-780b-47c2-81f2-a922554baabd', isActive: true },//proveedor
         { id: '80a52512-0415-4d01-8e09-53e94c9e2ccc', name: 'read',     moduleId: 'a7d6025c-780b-47c2-81f2-a922554baabd', isActive: true },
         { id: '518508fc-c3a5-4bff-b11e-9843c809c735', name: 'update',   moduleId: 'a7d6025c-780b-47c2-81f2-a922554baabd', isActive: true },
@@ -51,6 +53,7 @@ export const seedData = {
         {id: '24c781af-fe27-4f31-8dc1-1ea326512ede', operationId: '4a222609-b953-4dab-b8a4-2e22b082a131', name: 'Ordenes_Pendientes',   sentence: `select cast(count(*) as numeric)  from movement m where date_trunc('day', m."date") = date_trunc('day', current_date) and m."documentId" = '4a00ff37-2f05-4042-abcd-62270aaa31bb' and m.status = 'Pendiente'`, isActive: true},
         {id: 'ad0f8f23-3735-41a7-905b-7d5e95dba8ce', operationId: '8b54718e-b270-419c-a248-d2986e35c64c', name: 'Ventas_Empleados',     sentence: `select cast(count(*) as numeric)  from movement m where date_trunc('day', m."date") = date_trunc('day', current_date) and m."documentId" = '4a00ff37-2f05-4042-abcd-62270aaa31bb' and m.status = 'Pendiente'`, isActive: true},
 //        {id: '', operationId: '', name: '', sentence: '', isActive: true},
+
     ],
 
     profileoperation: [
@@ -60,7 +63,7 @@ export const seedData = {
         { id: '01a96b8e-22dc-4bc8-8516-3db36a2977fe', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '87fea175-12c4-47ce-aa88-545aac981f6b', createAt: new Date(), isActive: true },
         { id: '31af2073-8499-4152-9ebc-b78d4f281109', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'a0c61028-c9a8-45dd-be50-bf38edf0faf5', createAt: new Date(), isActive: true },
         { id: 'b5b04752-069e-4eb7-86d5-138901f91f57', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '310e91b7-d7ad-4fa4-9d02-67a6da055079', createAt: new Date(), isActive: true },
-        //{ id: 'b3bb1190-dd33-4584-b207-bbea2b99c083', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '80a52512-0415-4d01-8e09-53e94c9e2ccc', createAt: new Date(), isActive: true },
+        { id: 'b3bb1190-dd33-4584-b207-bbea2b99c083', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'cd3d3fad-a3d0-402f-a976-2e800aac43df', createAt: new Date(), isActive: true },//proveedor
         { id: '1f06fe5b-d97d-4210-b899-259ddde92b01', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: 'b4868909-5189-4711-b6cc-6b373e28a269', createAt: new Date(), isActive: true },
         { id: 'af47dde7-dfa3-4784-9a08-a996f2621b8d', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: '2c6692b3-55a6-4c89-b001-f1760249ad4d', createAt: new Date(), isActive: true },
         { id: 'c3259e15-24da-43bb-bf81-9eb3cabb60a8', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: '55440f27-9dd3-4c80-8825-96e4c921312b', createAt: new Date(), isActive: true },

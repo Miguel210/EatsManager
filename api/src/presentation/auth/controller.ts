@@ -31,4 +31,14 @@ export class AuthController {
         .catch(error => this.handleEror(error,res))
     }
 
+
+    getModules = (req: Request, res: Response ) => {
+
+        const modules = req.body._meta.module
+
+        this.authservice.operationsModule(modules)
+        .then(user => res.json(user))
+        .catch(error => this.handleEror(error,res))
+    }
+
 }

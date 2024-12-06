@@ -23,6 +23,7 @@ export class AuthRoutes {
         const controller = new AuthController(authservice)
 
         router.post('/login', controller.loginUser )
+        router.get('/modules', [AuthMiddlewares.validateJWT], controller.getModules)
 
 
 
