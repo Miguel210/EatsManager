@@ -11,9 +11,12 @@
       <template v-else>
 
         <DataTable
-        :is-add="false"
-        :is-delete="false"
-        :is-update="false"
+        :is-add="true"
+        router-link="/producto/categorias/"
+        :is-delete="true"
+        :functionDelete="deleteCategoryById"
+        :is-update="true"
+        
         :columns="column"
         :data="dataTableInfo"
         table-width="full"
@@ -33,6 +36,7 @@
   import { computed, ref } from 'vue';
 import { getCategoriesAction } from '../../actions/category';
 import type { Obj } from '../../interfaces/category.interface';
+import { deleteCategoryById } from '../../actions/category/delete-category-by-id';
   
   const {
     data: category,

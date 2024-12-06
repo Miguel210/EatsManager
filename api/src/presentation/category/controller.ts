@@ -23,7 +23,7 @@ export class CategoryController {
 
     create = (req: Request, res: Response) => {
 
-        const [error, createCategoryDto] = CreateCategoryDto.create(req.body);
+        const [error, createCategoryDto] = CreateCategoryDto.create(req.body.category);
         if( error ) return res.status(400).json({error});
 
         this.service.create(createCategoryDto!)
@@ -59,7 +59,7 @@ export class CategoryController {
 
     update = (req: Request, res: Response) => {
 
-        const [error, updateCategoryDto] = UpdateCategoryDto.create(req.body)
+        const [error, updateCategoryDto] = UpdateCategoryDto.create({...req.body.category, id: req.body.id})
         if( error ) return res.status(400).json({error});
         
         this.service.update(updateCategoryDto!)
