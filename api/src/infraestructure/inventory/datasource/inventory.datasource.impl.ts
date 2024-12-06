@@ -66,7 +66,12 @@ export class InventoryDatasourceImpl implements InventoryDatasource {
                 },
                 movement: {
                     select: {
-                        date: true,
+                        document: {
+                            select: {
+                                description: true,
+                                folio: true
+                            }
+                        }
                     }
                 }
             }

@@ -46,7 +46,8 @@ import { getInvenotoriesAction } from '../../actions/inventory';
   const dataTableInfo = ref<
     {
         id:       string;
-        movement: string;
+        document: string;
+        movement: number;
         product:  string;
         quantity: number;
     }[]
@@ -62,8 +63,9 @@ import { getInvenotoriesAction } from '../../actions/inventory';
         
         return {
         id:       e.id,
-        movement: e.movement,
-        product:  e.product,
+        document: e.movement.document.description,
+        movement: e.movement.document.folio,
+        product:  e.product.description,
         quantity: e.quantity,
         };
       });
@@ -72,6 +74,7 @@ import { getInvenotoriesAction } from '../../actions/inventory';
   });
   
   const column = [
+    { data: 'document', title: 'Documento' },
     { data: 'movement', title: 'Movimiento' },
     { data: 'product', title: 'Producto' },
     { data: 'quantity', title: 'Cantidad' },
