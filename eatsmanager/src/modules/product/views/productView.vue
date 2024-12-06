@@ -5,7 +5,6 @@
             <Tab value="1">Categorias</Tab>
             <Tab value="2">Tipos de productos</Tab>
             <Tab value="3">Inventario</Tab>
-            <Tab value="4">Guarniciones</Tab>
 
         </TabList>
         <TabPanels>
@@ -20,9 +19,6 @@
             </TabPanel>
             <TabPanel value="3">
                 <InventoryMenuView />
-            </TabPanel>
-            <TabPanel value="4">
-                <h1>Guarniciones</h1>
             </TabPanel>
         </TabPanels>
     </Tabs>
