@@ -36,6 +36,7 @@
 import { useToast } from 'vue-toastification';
 import { useAuthStore } from '../store/auth.store';
 import { reactive, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 
 
@@ -45,6 +46,7 @@ const autStore = useAuthStore();
 const usernameInputRef = ref<HTMLInputElement | null>(null);
 const passwordInputRef = ref<HTMLInputElement | null>(null);
 
+const router = useRouter();
 const myForm = reactive({
   username: '',
   password: ''
@@ -52,7 +54,6 @@ const myForm = reactive({
 
 
 const onLogin = async() => {
-
   if( myForm.username === '' ) {
     return usernameInputRef.value?.focus();
   }
@@ -63,8 +64,10 @@ const onLogin = async() => {
 
   const ok = await autStore.login(myForm.username, myForm.password );
 
-  if( ok ) return;
-  console.log(ok);
+  if( ok ) {
+    router.replace('/');
+  }
+
 
   toast.error(`Usuario / Contraseña incorrectas`)
 
