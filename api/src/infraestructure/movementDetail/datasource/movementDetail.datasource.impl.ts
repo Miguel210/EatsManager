@@ -47,7 +47,33 @@ export class MovementDetailDatasourceImpl implements MovemenetDetailDatasource {
                 isActive: form.isActive,
                 productId: {
                     in: form.productId || undefined
-                }
+                },
+            },
+            select: {
+                id: true,
+                movement: {
+                    select: {
+                        document: {
+                            select: {
+                                description: true,
+                                folio: true
+                            }
+                        }
+                    }
+                },
+                quantity: true,
+                product: {
+                    select: {
+                        description : true
+                    }
+                },
+                priceUnit: true,
+                subTotal: true,
+                tax: true,
+                total: true,
+                costUnit: true,
+                promotionId: true,
+                isActive: true                
             }
         })
         

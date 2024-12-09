@@ -3,6 +3,7 @@
         <TabList>
             <Tab value="0">Movimientos</Tab>
             <Tab value="1">Documentos</Tab>
+            <Tab value="2">Detalles</Tab>
         </TabList>
         <TabPanels>
             <TabPanel value="0">
@@ -10,6 +11,9 @@
             </TabPanel>
             <TabPanel value="1">
                 <DocumentMenuView />
+            </TabPanel>
+            <TabPanel value="2">
+                <MovementDetailMenuView />
             </TabPanel>
         </TabPanels>
     </Tabs>
@@ -22,6 +26,8 @@
     import TabPanels from 'primevue/tabpanels';
     import TabPanel from 'primevue/tabpanel';
 import MovementMenuView from './movement/movementMenuView.vue';
+import MovementDetailMenuView from './movementDetail/movementDetailMenuView.vue';
+
 import DocumentMenuView from './document/documentMenuView.vue';
     
     </script>

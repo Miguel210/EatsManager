@@ -23,9 +23,7 @@ export class MovementsDetailService {
         .catch(error => console.log({error}))
 
         return {
-            data: {
-                movementDet
-            }
+            data: movementDet
         }
     }
 
@@ -36,9 +34,7 @@ export class MovementsDetailService {
         .catch(error => console.log({error}))
 
         return {
-            data: {
-                movementDet
-            }
+            data: movementDet
         }
     }
 
@@ -49,9 +45,7 @@ export class MovementsDetailService {
         .catch(error => console.log({error}))
 
         return {
-            data: {
-                movementDet
-            }
+            data: movementDet
         }
     }
 
@@ -62,9 +56,7 @@ export class MovementsDetailService {
         .catch(error => console.log({error}))
 
         return {
-            data: {
-                movementDet
-            }
+            data: movementDet
         }
     }
 
@@ -75,9 +67,7 @@ export class MovementsDetailService {
         .catch(error => console.log({error}))
 
         return {
-            data: {
-                movementDet
-            }
+            data: movementDet
         }
     }
 }
