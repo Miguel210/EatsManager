@@ -78,6 +78,7 @@ import ButtonCustom from '@/modules/common/components/ButtonCustom.vue';
     {
         id: string;
         document: string;
+        folio: number;
         date: string,
         elaborate: string | undefined;
         person: string | undefined; 
@@ -96,8 +97,9 @@ import ButtonCustom from '@/modules/common/components/ButtonCustom.vue';
         return {
         id: e.id,
         document: e.documentId.description,
+        folio: e.documentId.folio,
         date: e.date,
-        elaborate: e.elaborateId,
+        elaborate: e.elaborateId?.person.fullname,
         person: e.personId.fullname ,
         amount: e.amount,
         status: e.status,
@@ -110,6 +112,7 @@ import ButtonCustom from '@/modules/common/components/ButtonCustom.vue';
   
   const column = [
     { data: 'document', title: 'Documento' },
+    { data: 'folio', title: 'folio' },
     { data: 'date', title: 'Fecha' },
     { data: 'elaborate', title: 'Elaborado' },
     { data: 'person', title: 'Cliente' },
@@ -118,5 +121,5 @@ import ButtonCustom from '@/modules/common/components/ButtonCustom.vue';
   ];
   </script>
   
-  <style scoped></style>
+<style scoped></style>
   

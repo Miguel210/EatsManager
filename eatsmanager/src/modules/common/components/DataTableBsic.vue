@@ -31,7 +31,7 @@
       :options="optionsDt"
       ref="table"
       id="basic"
-    >
+      >
       <thead>
         <tr>
           <th v-for="data in columns" :key="data.data">{{ data.data }}</th>
@@ -113,4 +113,8 @@ function update() {
 
 </script>
 
-<style scoped></style>
+<style>
+  input[type='search'] {
+    border: 1px solid black
+  }
+</style>

@@ -93,14 +93,23 @@ export class MovementDatasourceImpl implements MovementDatasource {
                 },
                 document: {
                     select: {
-                        description: true
+                        description: true,
+                        folio: true
                     }
                 },
                 amount: true,
                 status: true,
                 isActive: true,
                 date: true,
-                elaborateId: true
+                employees: {
+                    select: {
+                        person: {
+                            select: {
+                                fullname: true
+                            }
+                        }
+                    }
+                }
 
             }
         })
