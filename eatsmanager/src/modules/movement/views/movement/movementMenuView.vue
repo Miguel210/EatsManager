@@ -72,7 +72,7 @@ import ButtonCustom from '@/modules/common/components/ButtonCustom.vue';
     isError,
   } = useQuery<Obj>({
     queryKey: ['movement'],
-    queryFn: () => getMovementAction(),
+    queryFn: () => getMovementAction(false),
   });
   const dataTableInfo = ref<
     {

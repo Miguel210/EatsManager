@@ -40,16 +40,17 @@ export class MovementController {
         .catch(error => this.HandleError(error, res))
     }
     getAll = (req: Request, res: Response) => {
-
+        console.log(req.query);
+        
         let date: Date | any;
         date = new Date(req.body.date)
         if( !req.body.date) {
             date = undefined;
         }
-
+        const documentId = req.query.documentId ? [req.query.documentId] : '';
         const form = {
             personId: req.body.personId,
-            documentId: req.body.documentId,
+            documentId:  documentId ,
             elaborateId: req.body.elaborateId,
             status: req.body.status,
             isActive: req.body.isActive,
