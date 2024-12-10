@@ -44,6 +44,7 @@ import { Description } from '../../../product/interfaces/product.interface';
                     <tr v-for="(item, index) in quantity" :key="index" class="hover:bg-gray-50">
                         <td class="border border-gray-200 px-4 py-2">
                             <input type="text" v-model="productId[index]['id']" id="" >
+                            <AutoComplete v-model="productId[index]['id']" :suggestions="items" @complete="search" />
                         </td>
                         <td class="border border-gray-200 px-4 py-2">{{ item.quantity }}</td>
                         <td class="border border-gray-200 px-4 py-2">{{ item.priceUnit }}</td>

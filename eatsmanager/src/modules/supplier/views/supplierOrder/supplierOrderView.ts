@@ -8,6 +8,7 @@ import * as yup from 'yup';
 import InputText from 'primevue/inputtext';
 import { getSupplierOrderById } from '../../actions/supplierOrder';
 import { createUpdateSUpplierOrderAction } from '../../actions/supplierOrder/create-update-supplierOrder.action';
+import AutoComplete from 'primevue/autocomplete';
 
 // import type { Data } from "../interfaces/supplier.interface";
 const validationSchema = yup.object({
@@ -28,6 +29,7 @@ const validationSchema = yup.object({
 export default defineComponent({
   components: {
     InputText,
+    AutoComplete,
   },
   props: {
     suppierOrderId: {
@@ -75,6 +77,7 @@ export default defineComponent({
     const [total, totalAttrs] = defineField('data.movementDetail.total');
     const [costUnit, costUnitAttrs] = defineField('data.movementDetail.costUnit');
   
+    //! Added query autocomplete
 
     const onSubmit = handleSubmit(async (values) => {
         mutate(values)
