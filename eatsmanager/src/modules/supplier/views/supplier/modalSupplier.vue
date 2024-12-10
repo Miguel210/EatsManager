@@ -59,7 +59,7 @@
     </div>
 </template>
 
-<script src="../views/SupplierView.ts" lang="ts">
+<script src="./SupplierView.ts" lang="ts">
 
 
 </script>

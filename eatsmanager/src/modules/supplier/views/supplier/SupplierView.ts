@@ -4,10 +4,10 @@ import { useMutation, useQuery } from '@tanstack/vue-query';
 import { useForm } from 'vee-validate';
 import * as yup from 'yup';
 
-import { getSupplierById } from '../actions/get-supplier-by-id.action';
+import { getSupplierById } from '../../actions/get-supplier-by-id.action';
 
 import InputText from 'primevue/inputtext';
-import { createUpdateSUpplierAction } from '../actions/create-update-supplier.action';
+import { createUpdateSUpplierAction } from '../../actions/create-update-supplier.action';
 
 // import type { Data } from "../interfaces/supplier.interface";
 const validationSchema = yup.object({

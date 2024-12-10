@@ -10,19 +10,19 @@ export const supplierRoutes: RouteRecordRaw = {
     {
       path: '',
       name: 'supplierMenu',
-      component: () => import('@/modules/supplier/views/suppliersView.vue'),
+      component: () => import('@/modules/supplier/views/suppliersMenuView.vue'),
     },
     {
       path: 'proveedores/:supplierId',
       name: 'admin-proveedor',
       props: true,
-      component: () => import('@/modules/supplier/views/modalSupplier.vue')
-    }
-    // {
-    //   path: 'empleado',
-    //   name: 'empleado',
-    //   component: () => import('@/modules/dashboard/views/EmployeeView.vue'),
-    // },
+      component: () => import('@/modules/supplier/views/supplier/modalSupplier.vue')
+    },
+    {
+      path: '/orden/:ordenId',
+      name: 'supplierOrder',
+      component: () => import('@/modules/dashboard/views/EmployeeView.vue'),
+    },
     // {
     //   path: 'supervisor',
     //   name: 'supervisor',
