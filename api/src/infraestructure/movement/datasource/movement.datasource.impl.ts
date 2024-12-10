@@ -22,7 +22,12 @@ export class MovementDatasourceImpl implements MovementDatasource {
                 status: dto.status,
                 isActive: true,
                 referenceId: dto.referenceId || undefined,
-                date: new Date()
+                date: new Date(),
+                movementDetail: {
+                    create: [
+
+                    ]
+                }
             }
         });
         
@@ -57,10 +62,27 @@ export class MovementDatasourceImpl implements MovementDatasource {
                 status: true,
                 isActive: true,
                 referenceId: true,
-                date: true
+                date: true,
+                movementDetail: {
+                    select: {
+                        id: true,
+                        product: {
+                            select: {
+                                description: true
+                            }
+                        },
+                        quantity: true,
+                        priceUnit: true,
+                        subTotal: true,
+                        tax: true,
+                        total: true,
+                        costUnit: true,
+                    }
+                }
             }
         })
-
+        console.log(movement);
+        
         if( !movement ) throw `Movement with id ${id} not created`;
         return MovementEntity.fromObject(movement);
 
@@ -109,7 +131,7 @@ export class MovementDatasourceImpl implements MovementDatasource {
                             }
                         }
                     }
-                }
+                },
 
             }
         })

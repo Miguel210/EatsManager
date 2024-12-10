@@ -2,6 +2,7 @@
     <div>
         <DataTable
             :is-add="true"
+            routerLink="/Proveedor/orden/"
             :is-delete="false"
             :is-update="true"
             :columns="column"

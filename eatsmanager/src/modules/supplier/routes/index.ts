@@ -19,9 +19,9 @@ export const supplierRoutes: RouteRecordRaw = {
       component: () => import('@/modules/supplier/views/supplier/modalSupplier.vue')
     },
     {
-      path: '/orden/:ordenId',
+      path: 'orden/:ordenId',
       name: 'supplierOrder',
-      component: () => import('@/modules/dashboard/views/EmployeeView.vue'),
+      component: () => import('@/modules/supplier/views/supplierOrder/FormSupOrderView.vue'),
     },
     // {
     //   path: 'supervisor',
