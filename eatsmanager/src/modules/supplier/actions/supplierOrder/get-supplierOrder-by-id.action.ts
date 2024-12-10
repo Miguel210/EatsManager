@@ -15,10 +15,12 @@ export const getSupplierOrderById = async(movementId: string) => {
     
     
     try{
+        console.log(movementId);
         
         const { data }  = await eatsmanagerApi.post<Main>(`/movement/get/`, {
             id: movementId
         });
+        console.log(data);
         
         return {
             ...data

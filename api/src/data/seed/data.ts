@@ -256,10 +256,10 @@ export const seedData = {
         {id: 'e4b06416-f38c-4e03-a415-a9a9a87365d4', productId: '2a4eb471-d1b7-4c06-a89d-1e7fc51c47ec', price: 5, from: new Date(), until: new Date(), isActive: true},
     ],
     supplierOrder: [
-        {id: '5c87d0ca-f310-4a37-bd6b-22942b54b487', movementId: '', folio: 'F-215', datePay: new Date(), status: 'pagado'},
-        {id: 'f8aeee41-7147-408a-991e-f450f5d564a2', movementId: '', folio: 'F-216', datePay: new Date(), status: 'pendiente'},
-        {id: 'ecb025b6-e966-4a1c-b312-c3261b9530bc', movementId: '', folio: 'F-217', datePay: new Date(), status: 'pagado'},
-        {id: '6a782760-cf4d-4c69-abdb-ac803723c0f8', movementId: '', folio: 'F-218', datePay: new Date(), status: 'proceso'},
+        {id: '5c87d0ca-f310-4a37-bd6b-22942b54b487', movementId: '65d35e71-af8b-4151-b079-3dc03f0e8765', invoiceFolio: 'F-215', paymentDate: new Date(), status: 'pagado'},
+        {id: 'f8aeee41-7147-408a-991e-f450f5d564a2', movementId: '65d35e71-af8b-4151-b079-3dc03f0e2814', invoiceFolio: 'F-216', paymentDate: new Date(), status: 'pendiente'},
+        {id: 'ecb025b6-e966-4a1c-b312-c3261b9530bc', movementId: '65d35e71-af8b-4151-b079-3dc03f0e8766', invoiceFolio: 'F-217', paymentDate: new Date(), status: 'pagado'},
+        {id: '6a782760-cf4d-4c69-abdb-ac803723c0f8', movementId: '65d35e71-af8b-4151-b079-3dc03f0e8763', invoiceFolio: 'F-218', paymentDate: new Date(), status: 'proceso'},
 
     ],
     clientOrder: [

@@ -12,6 +12,7 @@ export interface Data {
     isActive:       boolean;
     date:           Date;
     movementDetail: MovementDetail[];
+    supplierOrders: SupplierOrder[];
 }
 
 export interface DocumentID {
@@ -37,4 +38,10 @@ export interface Product {
 export interface PersonID {
     id:       string;
     fullname: string;
+}
+
+export interface SupplierOrder {
+    id:           string;
+    invoiceFolio: string;
+    paymentDate:  Date;
 }

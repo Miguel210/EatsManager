@@ -57,6 +57,14 @@ export class MovementDatasourceImpl implements MovementDatasource {
                         description: true
                     }
                 },
+                supplierOrders: {
+                    select: {
+                        id: true,
+                        invoiceFolio: true,
+                        paymentDate: true
+
+                    }
+                },
                 elaborateId: true,
                 amount: true,
                 status: true,
@@ -135,7 +143,8 @@ export class MovementDatasourceImpl implements MovementDatasource {
 
             }
         })
-
+        console.log(movement);
+        
         if( !movement ) throw `Movements with form ${form} not found`;
         return movement.map(movement => MovementEntity.fromObject(movement));
 

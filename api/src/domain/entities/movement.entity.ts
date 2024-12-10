@@ -14,13 +14,14 @@ export class MovementEntity {
         public isActive: boolean,
         public referenceId: string,
         public date: Date,
-        public movementDetail: string[]
+        public movementDetail: string[],
+        public supplierOrders: string
     ) {}
 
 
     static fromObject(object: {[key: string]: any}) {
 
-        const {id, personId, person, documentId, document, elaborateId, employees, elaborate, amount, status, isActive, referenceId, reference, date, movementDetail} = object
+        const {id, personId, person, documentId, document, elaborateId, employees, elaborate, amount, status, isActive, referenceId, reference, date, movementDetail, supplierOrders} = object
         
         if( !id ) throw CustomError.badRequest('Missing id');
         if( !personId && !person ) throw CustomError.badRequest('Missing personId');
@@ -32,6 +33,6 @@ export class MovementEntity {
         if( !referenceId && !reference && undefined) throw CustomError.badRequest('Missing referenceId');
         if( date === undefined ) throw CustomError.badRequest('Missing date');
 
-        return new MovementEntity(id, personId || person, documentId || document, elaborateId || employees, amount, status, isActive, referenceId || reference, date, movementDetail);
+        return new MovementEntity(id, personId || person, documentId || document, elaborateId || employees, amount, status, isActive, referenceId || reference, date, movementDetail, supplierOrders);
     }
 }

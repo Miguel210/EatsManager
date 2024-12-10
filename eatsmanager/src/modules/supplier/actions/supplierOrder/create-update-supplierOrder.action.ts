@@ -8,18 +8,19 @@ export const createUpdateSUpplierOrderAction = async(supplier: Partial<Main>) =>
 
     const supplierId = supplier.data?.id
 
+
     if( supplier.data?.id  && supplier.data?.id !== '' ) {
-        return await updateSupplier(supplierId!, supplier);
+        return await updateSupplierOrder(supplierId!, supplier);
     }
     
-    return await createSupplier(supplier);
+    return await createSupplierOrder(supplier);
 }
 
 
-const updateSupplier = async(supplierId: string, supplier: Partial<Main>) => {
+const updateSupplierOrder = async(supplierId: string, supplier: Partial<Main>) => {
 
     try {
-        const {data} = await eatsmanagerApi.post<Main>(`/movement//update/`,{
+        const {data} = await eatsmanagerApi.post<Main>(`/movement/update/`,{
 
             id: supplierId,
             supplier
@@ -33,7 +34,7 @@ const updateSupplier = async(supplierId: string, supplier: Partial<Main>) => {
     }
 }
 
-const createSupplier = async( supplier: Partial<Main>) => {
+const createSupplierOrder = async( supplier: Partial<Main>) => {
     try {
         const {data} = await eatsmanagerApi.post<Main>(`/movement/create/`, supplier)
         return data;

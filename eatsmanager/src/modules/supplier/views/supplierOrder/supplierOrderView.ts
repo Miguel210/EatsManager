@@ -11,11 +11,18 @@ import { createUpdateSUpplierOrderAction } from '../../actions/supplierOrder/cre
 
 // import type { Data } from "../interfaces/supplier.interface";
 const validationSchema = yup.object({
-  fullname: yup.string(),
-  genderId: yup.string(),
-  profileId: yup.string(),
-  typePersonId: yup.string(),
-  isActive: yup.string(),
+  personId: yup.string(),
+  folio: yup.string(),
+  paymentDate: yup.string(),
+  
+  productId: yup.string(),
+  quantity: yup.string(),
+  priceUnit: yup.string(),
+  subTotal: yup.string(),
+  tax: yup.string(),
+  total: yup.string(),
+  costUnit: yup.string(),
+
 });
 
 export default defineComponent({
@@ -23,7 +30,7 @@ export default defineComponent({
     InputText,
   },
   props: {
-    supplierId: {
+    suppierOrderId: {
       type: String,
       required: true,
     },
@@ -38,8 +45,8 @@ export default defineComponent({
       isError,
       isLoading,
     } = useQuery({
-      queryKey: ['supplier', props.supplierId],
-      queryFn: () => getSupplierOrderById(props.supplierId),
+      queryKey: ['supplierOrderById', props.suppierOrderId],
+      queryFn: () => getSupplierOrderById(props.suppierOrderId),
       retry: false,
     });
 
@@ -56,12 +63,17 @@ export default defineComponent({
       // initialValues: supplier.value
     });
 
-    const [fullname, fullnameAttrs] = defineField('person.fullname');
-    const [gender, genderAttrs] = defineField('person.genderId');
-    const [profile, profileAttrs] = defineField('person.profileId');
-    const [typePerson, typePersonAttrs] = defineField('person.typePersonId');
-    const [isActive, isActiveAttrs] = defineField('isActive');
+    const [personId, personIdAttrs] = defineField('data.personId.id');
+    const [folio, folioAttrs] = defineField('data.supplierOrders[0].invoiceFolio');
+    const [paymentDate, paymentDateAttrs] = defineField('data.supplierOrders[0].paymentDate');
 
+    const [productId, productIdAttrs] = defineField('data.movementDetail');
+    const [quantity, quantityAttrs] = defineField('data.movementDetail');
+    const [priceUnit, priceUnitAttrs] = defineField('data.movementDetail.priceUnit');
+    const [subTotal, subTotalAttrs] = defineField('data.movementDetail.subTotal');
+    const [tax, taxAttrs] = defineField('data.movementDetail.tax');
+    const [total, totalAttrs] = defineField('data.movementDetail.total');
+    const [costUnit, costUnitAttrs] = defineField('data.movementDetail.costUnit');
   
 
     const onSubmit = handleSubmit(async (values) => {
@@ -106,17 +118,36 @@ export default defineComponent({
       meta,
       isPending,
 
-
-      isActive,
-      isActiveAttrs,
-      gender,
-      genderAttrs,
-      profile,
-      profileAttrs,
-      typePerson,
-      typePersonAttrs,
-      fullname,
-      fullnameAttrs,
+      personId,
+      personIdAttrs,
+      folio,
+      folioAttrs,
+      paymentDate,
+      paymentDateAttrs,
+      productId,
+      productIdAttrs,
+      quantity,
+      quantityAttrs,
+      priceUnit,
+      priceUnitAttrs,
+      subTotal,
+      subTotalAttrs,
+      tax,
+      taxAttrs,
+      total,
+      totalAttrs,
+      costUnit, 
+      costUnitAttrs,
+      
+      column: [
+        { data: 'product', title: 'Documento' },
+        { data: 'quantity', title: 'folio' },
+        { data: 'priceUnit', title: 'Fecha' },
+        { data: 'subTotal', title: 'Elaborado' },
+        { data: 'tax', title: 'Cliente' },
+        { data: 'total', title: 'Cantidad' },
+        { data: 'costUnit', title: 'Estatus' },
+      ],
 
       onSubmit,
     };

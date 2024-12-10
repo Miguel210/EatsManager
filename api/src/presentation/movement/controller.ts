@@ -31,6 +31,11 @@ export class MovementController {
         .catch(error => this.HandleError(error, res))
     }
     getById = (req: Request, res: Response) => {
+
+        console.log(req.body
+
+        );
+        
         
         const id = req.body.id;
         if( !id ) throw res.json(400).json({error: 'id is requerid'});

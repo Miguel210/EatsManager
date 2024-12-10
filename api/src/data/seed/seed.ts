@@ -139,6 +139,10 @@ async function main() {
     await prisma.table.createMany({
         data: seedData.table
     })
+
+    await prisma.supplierOrder.createMany({
+        data: seedData.supplierOrder
+    })
 }
 
 const randomBetween0andX = (x: number) => {
