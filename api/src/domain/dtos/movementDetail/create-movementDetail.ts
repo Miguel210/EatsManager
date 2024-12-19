@@ -16,18 +16,18 @@ export class CreateMovementDetailDto {
 
     static create(props: {[key: string]: any}): [string?, CreateMovementDetailDto?] {
 
-        const {movementId, quantity, productId, priceUnit, subtotal, tax, total, costUnit, promotionId} = props;
-    
+        const {movementId, quantity, productId, product, priceUnit, subTotal, tax, total, costUnit, promotionId} = props;
+        
         if( !movementId) return ['movementId is Requerid'];
-        if( !quantity) return ['quantity is Requerid'];
-        if( !productId) return ['productId is Requerid'];
-        if( !priceUnit) return ['priceUnit is Requerid'];
-        if( !subtotal) return ['subtotal is Requerid'];
-        if( !tax) return ['tax is Requerid'];
-        if( !total) return ['total is Requerid'];
-        if( !costUnit) return ['costUnit is Requerid'];
+        if( quantity === undefined) return ['quantity is Requerid'];
+        if( !productId && product) return ['productId is Requerid'];
+        if( priceUnit === undefined) return ['priceUnit is Requerid'];
+        if( subTotal === undefined) return ['subtotal is Requerid'];
+        if( tax === undefined) return ['tax is Requerid'];
+        if( total === undefined) return ['total is Requerid'];
+        if( costUnit === undefined) return ['costUnit is Requerid'];
         //if( !promotionId) return ['promotionId is Requerid'];
-
-        return[undefined, new CreateMovementDetailDto(movementId, quantity, productId, priceUnit, subtotal, tax, total, costUnit, promotionId)]
+        
+        return[undefined, new CreateMovementDetailDto(movementId, quantity, productId, priceUnit, subTotal, tax, total, costUnit, promotionId)]
     }
 }

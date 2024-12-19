@@ -44,7 +44,7 @@ export class SupplierOrderDatasourceImpl implements SupplierOrderDatasource {
     }
     async update(dto: UpdateSupplierOrderDto): Promise<SupplierOrderEntity> {
          await this.get(dto.id);
-
+        
          const order = await prisma.supplierOrder.update({
             where: {
                 id: dto.id

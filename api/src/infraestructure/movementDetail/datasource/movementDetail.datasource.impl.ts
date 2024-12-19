@@ -1,3 +1,4 @@
+import { log } from "console";
 import { Uuid } from "../../../config";
 import { prisma } from "../../../data";
 import { MovemenetDetailDatasource } from "../../../domain/datasource/movementDetail/movementDetail.datasource";
@@ -91,9 +92,10 @@ export class MovementDetailDatasourceImpl implements MovemenetDetailDatasource {
                 id: dto.id
             },
             data: {
+                productId: dto.product.id,
                 quantity: dto.quantity,
                 priceUnit: dto.priceUnit,
-                subTotal: dto.subtotal,
+                subTotal: dto.subTotal,
                 tax: dto.tax,
                 total: dto.total,
                 costUnit: dto.costUnit,

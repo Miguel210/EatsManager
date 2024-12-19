@@ -83,6 +83,7 @@ const optionsDt = {
   buttons: true,
   searching: props.search,
   paging: props.pagination,
+  // scrollX: true
 };
 
 watch(props.data, (newData) => {

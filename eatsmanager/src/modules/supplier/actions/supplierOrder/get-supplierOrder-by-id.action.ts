@@ -9,7 +9,25 @@ export const getSupplierOrderById = async(movementId: string) => {
     if( movementId === 'create' ) {
         
         return {
-            
+            data: {
+
+                movementDetail: [
+                    {
+                        id: "",
+                        product: {
+                          id: "",
+                          description: ""
+                        },
+                        quantity: 0,
+                        priceUnit: "0",
+                        subTotal: "0",
+                        tax: "0",
+                        total: "0",
+                        costUnit: "0"
+                    }
+                ]
+            }
+
         }
     }
     

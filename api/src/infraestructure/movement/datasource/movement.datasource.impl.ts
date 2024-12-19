@@ -4,6 +4,12 @@ import { MovementDatasource } from "../../../domain/datasource/movement/movement
 import { CreateMovementDto } from "../../../domain/dtos/movement/create-movement.dto";
 import { UpdateMovementDto } from "../../../domain/dtos/movement/update-movement.dto";
 import { MovementEntity } from "../../../domain/entities/movement.entity";
+import { MovementDetailDatasourceImpl } from "../../movementDetail/datasource/movementDetail.datasource.impl";
+import { CreateMovementDetailDto } from '../../../domain/dtos/movementDetail/create-movementDetail';
+import { SupplierOrderDatasourceImpl } from "../../supplierOrder/datasource/supplierOrder.datasource.impl";
+import { error, log } from 'console';
+import { UpdateSupplierOrderDto } from "../../../domain/dtos/supplierOrder/update-supplierOrder.dto";
+import { UpdateMovementDetailDto } from "../../../domain/dtos/movementDetail/update-movementDetail";
 
 
 
@@ -11,7 +17,7 @@ import { MovementEntity } from "../../../domain/entities/movement.entity";
 export class MovementDatasourceImpl implements MovementDatasource {
 
     async create(dto: CreateMovementDto): Promise<MovementEntity> {
-        
+
         const movement = await prisma.movement.create({
             data: {
                 id: Uuid.uuid(),
@@ -30,10 +36,10 @@ export class MovementDatasourceImpl implements MovementDatasource {
                 }
             }
         });
-        
-        if( !movement ) throw `Movement with data ${dto} not created`;
+
+        if (!movement) throw `Movement with data ${dto} not created`;
         console.log(movement);
-        
+
         return MovementEntity.fromObject(movement);
 
     }
@@ -46,7 +52,7 @@ export class MovementDatasourceImpl implements MovementDatasource {
             select: {
                 id: true,
                 person: {
-                    select:{
+                    select: {
                         id: true,
                         fullname: true
                     }
@@ -61,7 +67,9 @@ export class MovementDatasourceImpl implements MovementDatasource {
                     select: {
                         id: true,
                         invoiceFolio: true,
-                        paymentDate: true
+                        paymentDate: true,
+                        isActive: true,
+                        status: true
 
                     }
                 },
@@ -76,6 +84,8 @@ export class MovementDatasourceImpl implements MovementDatasource {
                         id: true,
                         product: {
                             select: {
+
+                                id: true,
                                 description: true
                             }
                         },
@@ -89,9 +99,8 @@ export class MovementDatasourceImpl implements MovementDatasource {
                 }
             }
         })
-        console.log(movement);
         
-        if( !movement ) throw `Movement with id ${id} not created`;
+        if (!movement) throw `Movement with id ${id} not created`;
         return MovementEntity.fromObject(movement);
 
     }
@@ -99,8 +108,8 @@ export class MovementDatasourceImpl implements MovementDatasource {
 
         const movement = await prisma.movement.findMany({
             where: {
-                personId: {
-                    in: form.personId || undefined
+                person: {
+                    profileId: '0402cc9c-0992-4ad8-ab70-142522d2815f'
                 },
                 documentId: {
                     in: form.documentId || undefined
@@ -119,7 +128,9 @@ export class MovementDatasourceImpl implements MovementDatasource {
                 person: {
                     select: {
                         fullname: true
-                    }
+
+                    },
+                
                 },
                 document: {
                     select: {
@@ -140,31 +151,50 @@ export class MovementDatasourceImpl implements MovementDatasource {
                         }
                     }
                 },
-
             }
         })
-        console.log(movement);
-        
-        if( !movement ) throw `Movements with form ${form} not found`;
+
+        if (!movement) throw `Movements with form ${form} not found`;
         return movement.map(movement => MovementEntity.fromObject(movement));
 
     }
     async update(dto: UpdateMovementDto): Promise<MovementEntity> {
         await this.getById(dto.id);
-
+        // console.log(dto);
+        
         const movement = await prisma.movement.update({
             where: {
                 id: dto.id
             },
             data: {
-                documentId: dto.documentId,
                 amount: dto.amout,
                 status: dto.status,
-                isActive: dto.isActive
-            }
+                isActive: dto.isActive,
+                }
+            });
+            
+                
+        if (!movement) throw `Movements with id ${dto.id} not found`;
+        
+        const detail = new MovementDetailDatasourceImpl();
+        const order = new SupplierOrderDatasourceImpl();
+
+        order.update(dto.supplierOrders[0])
+        
+        dto.movementDetailDto.filter( e => !e.id).map( e =>{
+            
+            const [error, detailDto] = CreateMovementDetailDto.create({...e, productId: e.product.id,  movementId: dto.id})
+            if( error ) throw `Error createMovementDetailDto`;
+            detail.create(detailDto!)
+
+        })
+        dto.movementDetailDto.filter( e => e.id).map( e =>{
+            console.log('por aqui pase');
+            
+            detail.update({...e, productId: e.product.id})
+
         })
 
-        if( !movement ) throw `Movements with id ${dto.id} not found`;
         return MovementEntity.fromObject(movement);
 
     }

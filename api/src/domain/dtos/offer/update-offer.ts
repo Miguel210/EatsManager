@@ -14,7 +14,7 @@ export class UpdateOfferDto{
         const {id, productId, price, from, until, isActive} = props
     
         if( !id ) return ['Id is requerid'];
-        if( !productId ) return ['ProductId is requerid'];
+        if( !productId ) return [''];
         if( !price ) return ['Price is requerid'];
         if( !from ) return ['From (date) is requerid'];
         if( !until ) return ['Until (date) is requerid'];

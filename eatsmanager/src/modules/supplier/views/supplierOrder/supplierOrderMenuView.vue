@@ -75,7 +75,7 @@ import type { Obj } from '@/modules/movement/interfaces/movement.interface';
     { data: 'folio', title: 'folio' },
     { data: 'date', title: 'Fecha' },
     { data: 'elaborate', title: 'Elaborado' },
-    { data: 'person', title: 'Cliente' },
+    { data: 'person', title: 'Proveedor' },
     { data: 'amount', title: 'Cantidad' },
     { data: 'isActive', title: 'Estatus' },
   ];

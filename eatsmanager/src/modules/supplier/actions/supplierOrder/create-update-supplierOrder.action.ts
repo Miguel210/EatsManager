@@ -8,6 +8,9 @@ export const createUpdateSUpplierOrderAction = async(supplier: Partial<Main>) =>
 
     const supplierId = supplier.data?.id
 
+    console.log('pase por aqui compaaaaaa');
+    
+
 
     if( supplier.data?.id  && supplier.data?.id !== '' ) {
         return await updateSupplierOrder(supplierId!, supplier);

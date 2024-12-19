@@ -10,7 +10,7 @@ export const getSuppliersAction = ( async(module: string) => {
     const { data } = await eatsmanagerApi.get<Obj>(
       `/supplier/${module}`,
     );
-
+    
     return{ ...data }
 
   } catch(error) {

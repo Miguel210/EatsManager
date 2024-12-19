@@ -32,6 +32,7 @@ export interface MovementDetail {
 }
 
 export interface Product {
+    id: string;
     description: string;
 }
 
@@ -44,4 +45,6 @@ export interface SupplierOrder {
     id:           string;
     invoiceFolio: string;
     paymentDate:  Date;
+    isActive:     boolean;
+    status:       string;
 }

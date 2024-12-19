@@ -25,13 +25,13 @@ export class MovementDetailEntity {
         
         if( !id ) throw CustomError.badRequest('Missing id');
         if( !movementId && !movement ) throw CustomError.badRequest('Missing movementId');
-        if( !quantity ) throw CustomError.badRequest('Missing quantity');
+        if( quantity === undefined ) throw CustomError.badRequest('Missing quantity');
         if( !productId && !product ) throw CustomError.badRequest('Missing productId');
-        if( !priceUnit ) throw CustomError.badRequest('Missing priceUnit');
-        if( !subTotal ) throw CustomError.badRequest('Missing subTotal');
-        if( !tax ) throw CustomError.badRequest('Missing tax');
-        if( !total ) throw CustomError.badRequest('Missing total');
-        if( !costUnit ) throw CustomError.badRequest('Missing costUnit');
+        if( priceUnit === undefined ) throw CustomError.badRequest('Missing priceUnit');
+        if( subTotal === undefined) throw CustomError.badRequest('Missing subTotal');
+        if( tax === undefined) throw CustomError.badRequest('Missing tax');
+        if( total === undefined) throw CustomError.badRequest('Missing total');
+        if( costUnit === undefined) throw CustomError.badRequest('Missing costUnit');
        // if( !promotionId && promotion ) throw CustomError.badRequest('Missing promotionId');
         if( isActive === undefined ) throw CustomError.badRequest('Missing isActive');
 

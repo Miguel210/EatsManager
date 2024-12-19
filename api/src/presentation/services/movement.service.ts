@@ -49,7 +49,7 @@ export class MovementService {
     }
 
     public async update(dto: UpdateMovementDto) {
-        
+
         
         const movement = await new UpdateMovement( this.repository ).execute(dto)
         .then( mov => mov)

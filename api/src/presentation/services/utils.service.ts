@@ -13,12 +13,12 @@ export class UtilService {
         .catch(error => console.log(error))
     
     
-        let dictionary: {[key: string]: string} = {};
+        let dictionary = [];
 
         for (let index: number = 0; index < data.length; index++) {
             let id: string = data[index].id ;
 
-            dictionary[id] = data[index][field]
+            dictionary.push( data[index][field])
 
         }
         

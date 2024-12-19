@@ -3,6 +3,8 @@ import { CustomError } from "../../domain";
 import { MovementService } from "../services/movement.service";
 import { CreateMovementDto } from '../../domain/dtos/movement/create-movement.dto';
 import { UpdateMovementDto } from '../../domain/dtos/movement/update-movement.dto';
+import { UpdateMovementDetailDto } from '../../domain/dtos/movementDetail/update-movementDetail';
+import { UpdateSupplierOrderDto } from '../../domain/dtos/supplierOrder/update-supplierOrder.dto';
 
 
 
@@ -31,10 +33,6 @@ export class MovementController {
         .catch(error => this.HandleError(error, res))
     }
     getById = (req: Request, res: Response) => {
-
-        console.log(req.body
-
-        );
         
         
         const id = req.body.id;
@@ -67,11 +65,19 @@ export class MovementController {
         .catch(error => this.HandleError(error, res))
     }
     update = (req: Request, res: Response) => {
+       const id = req.body.id;
+       const data = req.body.supplier.data;
        
-        const [error, dto ] = UpdateMovementDto.create(req.body)
+        const [error, dto ] = UpdateMovementDto.create({id,...data})
         if( error ) throw res.json(400).json({error});
+        console.log(dto);
+        
+        
+        const dto2 = data.movementDetail.map( (m: { [key: string]: any }) => UpdateMovementDetailDto.create({...m, productId: m.product.id}))
+       
+        const orderDto = UpdateSupplierOrderDto.create(data.supplierOrders[0])
 
-        this.service.update(dto!)
+        this.service.update({...dto!, ...dto2,...orderDto})
         .then(movement => res.json(movement))
         .catch(error => this.HandleError(error, res))
 
