@@ -17,14 +17,11 @@
       </div>
       <div class="flex items-center gap-4 mb-4">
         <label for="documentId" class="font-semibold w-24">Documento</label>
-        <select name="documentId" id="documentId" v-model="documentId" required>
-      <option
-        :value="documentId"
-        :selected="documentId === documentId.id"
-      >
-        {{ documentId.description }}
-      </option>
-    </select>
+        <select name="documentId" id="documentId" v-model="documentId.id" required>
+          <option value="314bc909-4e7d-423c-8c61-6fb712ab48f4">
+            Compra
+          </option>
+        </select>
       </div>
       <div class="flex items-center gap-4 mb-4">
         <label for="folio" class="font-semibold w-24">Folio</label>
