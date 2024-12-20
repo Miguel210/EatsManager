@@ -35,7 +35,6 @@ const validationSchema = yup.object({
   amount: yup.number(),
   status: yup.string(),
   documentId: yup.string(),
-  isActive: yup.boolean(),
 });
 
 export default defineComponent({
@@ -89,7 +88,6 @@ export default defineComponent({
     const [amount, amountAttrs] = defineField('data.amount');
     const [status, statusAttrs] = defineField('data.status');
     const [documentId, documentIdAttrs] = defineField('data.documentId');
-    const [isActive, isActiveAttrs] = defineField('data.isActive');
 
     //! Added query autocomplete
 
@@ -184,8 +182,6 @@ export default defineComponent({
       statusAttrs,
       documentId,
       documentIdAttrs,
-      isActive,
-      isActiveAttrs,
       
 
       supplierAutocomplete,

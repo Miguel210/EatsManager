@@ -10,20 +10,19 @@ export class CreateMovementDto {
     constructor(
         public readonly personId: string,
         public readonly documentId: string,
-        public readonly elaborateid: string,
+        public readonly elaborateId: string,
         public readonly amout: number,
         public readonly status: string,
         public readonly isActive: boolean,
         public readonly referenceId: string,
 
-        public readonly movementDetailDto: CreateMovementDetailDto[],
-        public readonly supplierOrders: CreateSupplierOrderDto[],       
+        public readonly CreateMovementDetailDto: CreateMovementDetailDto[],
+        public readonly CreateSupplierOrderDto: CreateSupplierOrderDto[],       
     ){}
 
     static create(props: {[key: string]: any }): [string?, CreateMovementDto?] {
 
-        const {personId, documentId, elaborateId, amount, status, isActive, referenceId,  movementDetail, supplierOrders} = props;
-       console.log(props);
+        const {personId, documentId, elaborateId, amount, status, isActive = true, referenceId,  movementDetail, supplierOrders} = props;
 
         if( !personId ) return ['personId requerid'];
         if( !documentId ) return ['personId requerid'];

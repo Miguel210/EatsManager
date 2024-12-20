@@ -15,7 +15,7 @@ export class MovementService {
     ) {}
 
     public async create(dto: CreateMovementDto) {
-
+        
         const movement = await new CreateMovement( this.repository ).execute(dto)
         .then(mov => mov)
         .catch(error => console.log({error}))
@@ -30,7 +30,7 @@ export class MovementService {
         const movement = await new GetMovement( this.repository ).execute(id)
         .then( mov => mov)
         .catch(error => console.log({error}))
-
+        
         return {
             data: movement
         }

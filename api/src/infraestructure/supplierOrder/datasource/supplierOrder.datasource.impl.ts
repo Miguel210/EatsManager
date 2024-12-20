@@ -16,7 +16,7 @@ export class SupplierOrderDatasourceImpl implements SupplierOrderDatasource {
             data: {
                 id: Uuid.uuid(),
                 movementId: dto.movementId,
-                invoiceFolio: dto.inoiceFolio,
+                invoiceFolio: dto.invoiceFolio,
                 paymentDate: new Date(dto.paymentDate),
                 status: dto.status,
                 isActive: true

@@ -17,7 +17,7 @@
       </div>
       <div class="flex items-center gap-4 mb-4">
         <label for="documentId" class="font-semibold w-24">Documento</label>
-        <select name="documentId" id="documentId" v-model="documentId.id" required>
+        <select name="documentId" id="documentId" v-model="documentId" required>
           <option value="314bc909-4e7d-423c-8c61-6fb712ab48f4">
             Compra
           </option>
@@ -110,7 +110,6 @@
           Guardar
         </button>
       </div>
-      {{ amount }}
     </form>
     <div class="grid grid-cols-2">
       <pre class="bg-blue-200">

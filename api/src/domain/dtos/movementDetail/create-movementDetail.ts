@@ -12,6 +12,8 @@ export class CreateMovementDetailDto {
         public total: number,
         public costUnit: number,
         public promotionId: string,
+
+        public product: {id: string, description: string},
     ) {}
 
     static create(props: {[key: string]: any}): [string?, CreateMovementDetailDto?] {
@@ -20,7 +22,7 @@ export class CreateMovementDetailDto {
         
         if( !movementId) return ['movementId is Requerid'];
         if( quantity === undefined) return ['quantity is Requerid'];
-        if( !productId && product) return ['productId is Requerid'];
+        if( !productId && !product) return ['productId is Requerid'];
         if( priceUnit === undefined) return ['priceUnit is Requerid'];
         if( subTotal === undefined) return ['subtotal is Requerid'];
         if( tax === undefined) return ['tax is Requerid'];
@@ -28,6 +30,6 @@ export class CreateMovementDetailDto {
         if( costUnit === undefined) return ['costUnit is Requerid'];
         //if( !promotionId) return ['promotionId is Requerid'];
         
-        return[undefined, new CreateMovementDetailDto(movementId, quantity, productId, priceUnit, subTotal, tax, total, costUnit, promotionId)]
+        return[undefined, new CreateMovementDetailDto(movementId, quantity, productId, priceUnit, subTotal, tax, total, costUnit, promotionId, product)]
     }
 }

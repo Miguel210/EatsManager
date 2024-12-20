@@ -26,23 +26,22 @@ export class MovementController {
     }
 
     creatre = (req: Request, res: Response) => {
-        console.log('crear movimiento');
-        console.log(req.body);
-        console.log('************************');
-        console.log('************************');
-        console.log('************************');
+        const personId = req.body.data.personId.id; 
+        const ElaborateId = req.body._meta.userId;
 
-        const [error, dto] = CreateMovementDto.create(req.body.data)
+        const [error, dto] = CreateMovementDto.create({...req.body.data, personId: personId, elaborateId: ElaborateId});
         if( error ) throw res.status(400).json({error});
-        console.log('************************');
-
-        console.log(dto);
         
-        // const dto2 = dto?.movementDetailDto.map( (m: { [key: string]: any }) => CreateMovementDetailDto.create({...m, productId: m.product.id}))
-       
-        // const orderDto = CreateSupplierOrderDto.create(dto?.supplierOrders[0])
-    
-        this.service.create(dto!)
+        const dto2 = dto!.CreateMovementDetailDto.map( (m: { [key: string]: any }) => CreateMovementDetailDto.create({productId: m.product.id, movementId: '0', ...m}))
+        console.log('****************************');
+        
+        console.log(dto2);
+        console.log('****************************');
+
+        
+        const orderDto = CreateSupplierOrderDto.create({...dto?.CreateSupplierOrderDto[0],  movementId: '000', status: req.body.data.status})
+
+        this.service.create({...dto!, ...dto2, ...orderDto})
         .then(movement => res.json(movement))
         .catch(error => this.HandleError(error, res))
     }
@@ -87,7 +86,7 @@ export class MovementController {
         console.log(dto);
         
         
-        const dto2 = data.movementDetail.map( (m: { [key: string]: any }) => UpdateMovementDetailDto.create({...m, productId: m.product.id}))
+        const dto2 = data.movementDetail.map( (m: { [key: string]: any }) => UpdateMovementDetailDto.create({...m   , productId: m.product.id}))
        
         const orderDto = UpdateSupplierOrderDto.create(data.supplierOrders[0])
 

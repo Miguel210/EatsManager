@@ -7,9 +7,7 @@ import { MovementEntity } from "../../../domain/entities/movement.entity";
 import { MovementDetailDatasourceImpl } from "../../movementDetail/datasource/movementDetail.datasource.impl";
 import { CreateMovementDetailDto } from '../../../domain/dtos/movementDetail/create-movementDetail';
 import { SupplierOrderDatasourceImpl } from "../../supplierOrder/datasource/supplierOrder.datasource.impl";
-import { error, log } from 'console';
-import { UpdateSupplierOrderDto } from "../../../domain/dtos/supplierOrder/update-supplierOrder.dto";
-import { UpdateMovementDetailDto } from "../../../domain/dtos/movementDetail/update-movementDetail";
+import { EmployeeDatasourceImpl } from "../../employee/datasource/employee.datasource.impl";
 
 
 
@@ -18,27 +16,52 @@ export class MovementDatasourceImpl implements MovementDatasource {
 
     async create(dto: CreateMovementDto): Promise<MovementEntity> {
 
+        console.log('+++++++++++++');
+        //! Eliminate elaborateId and evaluation with employee then add elaborateId
+
+        const employeeImpl = new EmployeeDatasourceImpl();
+        const movementDetailImpl = new MovementDetailDatasourceImpl();
+        const form = {
+            personId: [dto.elaborateId],
+        }
+        const elaborate = await employeeImpl.gets(form);
+
+        console.log(dto);
+        console.log('+++++++++++++');
+        
+
         const movement = await prisma.movement.create({
             data: {
                 id: Uuid.uuid(),
                 personId: dto.personId,
                 documentId: dto.documentId,
-                elaborateId: dto.elaborateid,
+                elaborateId: elaborate[0].id,
                 amount: dto.amout,
                 status: dto.status,
                 isActive: true,
                 referenceId: dto.referenceId || undefined,
                 date: new Date(),
-                movementDetail: {
-                    create: [
-
-                    ]
-                }
             }
         });
 
+        
+
         if (!movement) throw `Movement with data ${dto} not created`;
-        console.log(movement);
+        
+        dto.CreateMovementDetailDto.map(e => {
+            console.log(e);
+            
+            const [error, detailDto] = CreateMovementDetailDto.create({...e,  movementId: movement.id})
+            if( error ) throw `Error createMovementDetailDto`;
+            movementDetailImpl.create({...detailDto!, productId: e.product.id})
+        })
+
+
+        // dto.CreateSupplierOrderDto.map( e => {
+        //     const order = new SupplierOrderDatasourceImpl();
+        //     order.create({...e, movementId: movement.id})
+        // })
+        // console.log(movement);
 
         return MovementEntity.fromObject(movement);
 
@@ -160,7 +183,7 @@ export class MovementDatasourceImpl implements MovementDatasource {
     }
     async update(dto: UpdateMovementDto): Promise<MovementEntity> {
         await this.getById(dto.id);
-        // console.log(dto);
+        console.log(dto);
         
         const movement = await prisma.movement.update({
             where: {
@@ -179,7 +202,7 @@ export class MovementDatasourceImpl implements MovementDatasource {
         const detail = new MovementDetailDatasourceImpl();
         const order = new SupplierOrderDatasourceImpl();
 
-        order.update(dto.supplierOrders[0])
+        order.update({...dto.supplierOrders[0], status: dto.status})
         
         dto.movementDetailDto.filter( e => !e.id).map( e =>{
             
