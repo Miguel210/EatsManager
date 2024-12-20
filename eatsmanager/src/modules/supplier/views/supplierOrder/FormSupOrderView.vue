@@ -24,6 +24,22 @@
         </select>
       </div>
       <div class="flex items-center gap-4 mb-4">
+        <label for="status" class="font-semibold w-24">Estatus</label>
+        <select name="status" id="status" v-model="status" required>
+          <option value="Pendiente"> Pendiente </option>
+          <option value="Aprobado"> Aprobado </option>
+          <option value="En Proceso"> En Proceso </option>
+          <option value="Enviado"> Enviado </option>
+          <option value="Recibido"> Recibido </option>
+          <option value="Completada"> Completada </option>
+          <option value="Cancelada"> Cancelada </option>
+          <option value="Devolución"> Devolución </option>
+          <option value="Pagado"> Pagado </option>
+          <option value="Parcialmente Pagado"> Parcialmente Pagado: </option>
+          <option value="Facturada"> Facturada </option>
+        </select>
+      </div>
+      <div class="flex items-center gap-4 mb-4">
         <label for="folio" class="font-semibold w-24">Folio</label>
         <input v-model="folio" v-bind="folioAttrs" required />
       </div>
