@@ -5,6 +5,8 @@ import { CreateMovementDto } from '../../domain/dtos/movement/create-movement.dt
 import { UpdateMovementDto } from '../../domain/dtos/movement/update-movement.dto';
 import { UpdateMovementDetailDto } from '../../domain/dtos/movementDetail/update-movementDetail';
 import { UpdateSupplierOrderDto } from '../../domain/dtos/supplierOrder/update-supplierOrder.dto';
+import { CreateSupplierOrderDto } from '../../domain/dtos/supplierOrder/create-supplierOrder.dto';
+import { CreateMovementDetailDto } from '../../domain/dtos/movementDetail/create-movementDetail';
 
 
 
@@ -24,9 +26,21 @@ export class MovementController {
     }
 
     creatre = (req: Request, res: Response) => {
+        console.log('crear movimiento');
+        console.log(req.body);
+        console.log('************************');
+        console.log('************************');
+        console.log('************************');
 
-        const [error, dto] = CreateMovementDto.create(req.body)
+        const [error, dto] = CreateMovementDto.create(req.body.data)
         if( error ) throw res.status(400).json({error});
+        console.log('************************');
+
+        console.log(dto);
+        
+        // const dto2 = dto?.movementDetailDto.map( (m: { [key: string]: any }) => CreateMovementDetailDto.create({...m, productId: m.product.id}))
+       
+        // const orderDto = CreateSupplierOrderDto.create(dto?.supplierOrders[0])
     
         this.service.create(dto!)
         .then(movement => res.json(movement))

@@ -10,7 +10,6 @@ export const getSupplierOrderById = async(movementId: string) => {
         
         return {
             data: {
-
                 movementDetail: [
                     {
                         id: "",
@@ -19,13 +18,13 @@ export const getSupplierOrderById = async(movementId: string) => {
                           description: ""
                         },
                         quantity: 0,
-                        priceUnit: "0",
-                        subTotal: "0",
-                        tax: "0",
-                        total: "0",
-                        costUnit: "0"
+                        priceUnit: 0,
+                        subTotal: 0,
+                        tax: 0,
+                        total: 0,
+                        costUnit: 0,
                     }
-                ]
+                ],
             }
 
         }

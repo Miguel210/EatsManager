@@ -7,7 +7,7 @@ export interface Data {
     personId:       PersonID;
     documentId:     DocumentID;
     elaborateId:    string;
-    amount:         string;
+    amount:         number;
     status:         string;
     isActive:       boolean;
     date:           Date;
@@ -24,11 +24,11 @@ export interface MovementDetail {
     id:        string;
     product:   Product;
     quantity:  number;
-    priceUnit: string;
-    subTotal:  string;
-    tax:       string;
-    total:     string;
-    costUnit:  string;
+    priceUnit: number;
+    subTotal:  number;
+    tax:       number;
+    total:     number;
+    costUnit:  number;
 }
 
 export interface Product {

@@ -16,21 +16,26 @@ import { getSuppliersAction } from '../../actions/get-suppliers.action';
 
 // import type { Data } from "../interfaces/supplier.interface";
 const validationSchema = yup.object({
-  personId: yup.string(),
+  //OrderSupllier
   folio: yup.string(),
   paymentDate: yup.string(),
   supplierId: yup.string(),
   supplierOrder: yup.string(),
-
-
+  
+  //movementDetail
   productId: yup.string(),
-  quantity: yup.string(),
-  priceUnit: yup.string(),
-  subTotal: yup.string(),
-  tax: yup.string(),
-  total: yup.string(),
-  costUnit: yup.string(),
-
+  quantity: yup.number(),
+  priceUnit: yup.number(),
+  subTotal: yup.number(),
+  tax: yup.number(),
+  total: yup.number(),
+  costUnit: yup.number(),
+  //movement
+  personId: yup.string(),
+  amount: yup.number(),
+  status: yup.string(),
+  documentId: yup.string(),
+  isActive: yup.boolean(),
 });
 
 export default defineComponent({
@@ -78,12 +83,13 @@ export default defineComponent({
 
 
     const [productId, productIdAttrs] = defineField('data.movementDetail');
-    const [suppierOrder, suppierOrderAttrs] = defineField('data.movementDetail');
+    const [movementDetail, movementDetailAttrs] = defineField('data.movementDetail');
     const [supplierId, supplierIdAttrs] = defineField('supplierId');
-    // const [subTotal, subTotalAttrs] = defineField('data.movementDetail.subTotal');
-    // const [tax, taxAttrs] = defineField('data.movementDetail.tax');
-    // const [total, totalAttrs] = defineField('data.movementDetail.total');
-    // const [costUnit, costUnitAttrs] = defineField('data.movementDetail.costUnit');
+
+    const [amount, amountAttrs] = defineField('data.amount');
+    const [status, statusAttrs] = defineField('data.status');
+    const [documentId, documentIdAttrs] = defineField('data.documentId');
+    const [isActive, isActiveAttrs] = defineField('data.isActive');
 
     //! Added query autocomplete
 
@@ -112,6 +118,21 @@ export default defineComponent({
         return;
       }
     });
+
+    watchEffect(() => {
+
+      if( movementDetail.value){
+        let totalAux: number = 0;
+        amount.value = movementDetail.value.map((item: { total: number; }) => {
+          
+          totalAux = Number(item.total) + Number(totalAux);
+        })
+        amount.value = totalAux
+        
+      } 
+    
+    });
+
     watch(
       supplier,
       () => {
@@ -152,24 +173,25 @@ export default defineComponent({
       paymentDateAttrs,
       productId,
       productIdAttrs,
-      suppierOrder,
-      suppierOrderAttrs,
+      movementDetail,
+      movementDetailAttrs,
       supplierId,
       supplierIdAttrs,
 
+      amount,
+      amountAttrs,
+      status,
+      statusAttrs,
+      documentId,
+      documentIdAttrs,
+      isActive,
+      isActiveAttrs,
+      
+
       supplierAutocomplete,
       ProductAutoComplete,
-      addNewRecord: () => { suppierOrder.value.push({ product: { id: '' }, quantity: 0, priceUnit: 0, subTotal: 0, tax: 0, total: 0, costUnit: 0 }); },
+      addNewRecord: () => { movementDetail.value.push({ product: { id: '' }, quantity: 0, priceUnit: 0, subTotal: 0, tax: 0, total: 0, costUnit: 0 }); },
 
-      // column: [
-      //   { data: 'product', title: 'Producto' },
-      //   { data: 'quantity', title: 'folio' },
-      //   { data: 'priceUnit', title: 'Fecha' },
-      //   { data: 'subTotal', title: 'Elaborado' },
-      //   { data: 'tax', title: 'Cliente' },
-      //   { data: 'total', title: 'Cantidad' },
-      //   { data: 'costUnit', title: 'Estatus' },
-      // ],
       updateSubtotal : (item: { quantity: number; priceUnit: number; subTotal: number, tax: number; total: number; }) => {
         item.subTotal = item.quantity * item.priceUnit;
         item.total = item.subTotal + (item.tax * item.subTotal);

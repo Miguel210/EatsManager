@@ -17,7 +17,7 @@
       </div>
       <div class="flex items-center gap-4 mb-4">
         <label for="folio" class="font-semibold w-24">Folio</label>
-        <input v-model="folio" v-bind="folioAttrs" required disabled/>
+        <input v-model="folio" v-bind="folioAttrs" required />
       </div>
       <div class="flex items-center gap-4 mb-4">
         <label for="folio" class="font-semibold w-24">Fecha de pago</label>
@@ -38,7 +38,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(item, index) in suppierOrder " :key="index" class="hover:bg-gray-50">
+      <tr v-for="(item, index) in movementDetail " :key="index" class="hover:bg-gray-50">
         <td class="border border-gray-200 px-4 py-2">
           <select name="productId" id="productId" v-model="productId[index].product.id" required>
             <option
@@ -74,6 +74,8 @@
     </tbody>
   </table>
 </div>
+<label for="Total Final">Total Final</label>
+<input type="number" name="amount" id="amount" v-model="amount" disabled >
       <div class="flex justify-end gap-2">
         <button
           type="submit"
@@ -84,7 +86,7 @@
           Guardar
         </button>
       </div>
-      {{ suppierOrder }}
+      {{ amount }}
     </form>
     <div class="grid grid-cols-2">
       <pre class="bg-blue-200">
