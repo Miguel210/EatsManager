@@ -38,7 +38,7 @@ import type { Obj } from '@/modules/movement/interfaces/movement.interface';
     {
         id: string;
         document: string;
-        folio: number;
+        invoiceFolio: string ;
         date: string,
         elaborate: string | undefined;
         person: string | undefined; 
@@ -54,10 +54,12 @@ import type { Obj } from '@/modules/movement/interfaces/movement.interface';
       
       // eslint-disable-next-line vue/no-side-effects-in-computed-properties
       dataTableInfo.value = movement.value.data.map((e) => {
+
+        
         return {
         id: e.id,
         document: e.documentId.description,
-        folio: e.documentId.folio,
+        invoiceFolio: e.supplierOrders?.[0]?.invoiceFolio || 'S/N',
         date: e.date,
         elaborate: e.elaborateId?.person.fullname,
         person: e.personId.fullname ,
@@ -72,7 +74,7 @@ import type { Obj } from '@/modules/movement/interfaces/movement.interface';
   
   const column = [
     { data: 'document', title: 'Documento' },
-    { data: 'folio', title: 'folio' },
+    { data: 'invoiceFolio', title: 'folio' },
     { data: 'date', title: 'Fecha' },
     { data: 'elaborate', title: 'Elaborado' },
     { data: 'person', title: 'Proveedor' },

@@ -15,6 +15,7 @@ export interface Data {
     isActive:     boolean;
     date:         string;
     elaborateId?: ElaborateID;
+    supplierOrders: supplierOrders[];
 }
 
 export interface Document {
@@ -28,4 +29,11 @@ export interface ElaborateID {
 
 export interface Person {
     fullname: string;
+}
+export interface supplierOrders {
+    id:           string;
+    invoiceFolio: string;
+    paymentDate:  Date;
+    isActive:     boolean;
+    status:       string;
 }

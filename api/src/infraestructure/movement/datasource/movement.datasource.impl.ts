@@ -167,6 +167,16 @@ export class MovementDatasourceImpl implements MovementDatasource {
                         folio: true
                     }
                 },
+                supplierOrders: {
+                    select: {
+                        id: true,
+                        invoiceFolio: true,
+                        paymentDate: true,
+                        isActive: true,
+                        status: true
+
+                    }
+                },
                 amount: true,
                 status: true,
                 isActive: true,
