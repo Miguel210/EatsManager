@@ -9,6 +9,7 @@ import { CreateMovementDetailDto } from '../../../domain/dtos/movementDetail/cre
 import { SupplierOrderDatasourceImpl } from "../../supplierOrder/datasource/supplierOrder.datasource.impl";
 import { EmployeeDatasourceImpl } from "../../employee/datasource/employee.datasource.impl";
 import { DocuemntDatasourceImpl } from '../../document/datasource/document.datasource.impl';
+import { InventoryDatasourceImpl } from '../../inventory/datasource/inventory.datasource.impl';
 
 
 
@@ -21,6 +22,7 @@ export class MovementDatasourceImpl implements MovementDatasource {
         const employeeImpl = new EmployeeDatasourceImpl();
         const movementDetailImpl = new MovementDetailDatasourceImpl();
         const docuemntDatasourceImpl = new DocuemntDatasourceImpl();
+        const inventoryDatasourceImpl = new InventoryDatasourceImpl();
 
         const form = {
             personId: [dto.elaborateId],
@@ -59,6 +61,9 @@ export class MovementDatasourceImpl implements MovementDatasource {
             if( error ) throw `Error CreateMovementDetailDto: ${error}`;
             
             movementDetailImpl.create({...detailDto!})
+
+            inventoryDatasourceImpl.create({movementId: movement.id, product: e.product.id, quantity: e.quantity})
+
         })
 
 

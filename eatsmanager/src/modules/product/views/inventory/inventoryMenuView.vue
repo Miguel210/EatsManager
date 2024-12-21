@@ -20,7 +20,7 @@
         :search="true"
         :pagination="true"
         />
-        {{ datapaint }}
+        <!-- {{ datapaint }} -->
           
         
       </template>
@@ -30,7 +30,7 @@
   <script setup lang="ts">
   import DataTable from '@/modules/common/components/DataTableBsic.vue';
   import { useQuery } from '@tanstack/vue-query';
-  import { computed, ref } from 'vue';
+  import {  ref, watchEffect } from 'vue';
 import type { Obj } from '../../interfaces/inventory.interface';
 import { getInvenotoriesAction } from '../../actions/inventory';
 
@@ -47,35 +47,35 @@ import { getInvenotoriesAction } from '../../actions/inventory';
     {
         id:       string;
         document: string;
-        movement: number;
+        folio: string;
         product:  string;
         quantity: number;
     }[]
     | undefined
   >([]);
-  
-  const datapaint = computed(() => {
-    if (inventory.value?.data && inventory.value.data.length > 0) {
-      
-      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-      dataTableInfo.value = inventory.value.data.map((e) => {
-        console.log(e);
+  watchEffect(() => {
+    
+      if (inventory.value?.data && inventory.value.data.length > 0) {
         
-        return {
-        id:       e.id,
-        document: e.movement.document.description,
-        movement: e.movement.document.folio,
-        product:  e.product.description,
-        quantity: e.quantity,
-        };
-      });
-    }
-    return [];
+        dataTableInfo.value = inventory.value.data.map((e) => {
+          console.log(e);
+          
+          return {
+          id:       e.id,
+          document: e.movement.document.description,
+          folio:    e.movement.supplierOrders?.[0]?.invoiceFolio || 'S/N',
+          product:  e.product.description,
+          quantity: e.quantity,
+          };
+        });
+      }
+      return [];
+    
   });
   
   const column = [
     { data: 'document', title: 'Documento' },
-    { data: 'movement', title: 'Movimiento' },
+    { data: 'folio', title: 'Folio' },
     { data: 'product', title: 'Producto' },
     { data: 'quantity', title: 'Cantidad' },
 

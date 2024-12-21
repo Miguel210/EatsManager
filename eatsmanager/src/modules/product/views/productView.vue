@@ -4,7 +4,7 @@
             <Tab value="0">Productos</Tab>
             <Tab value="1">Categorias</Tab>
             <Tab value="2">Tipos de productos</Tab>
-            <Tab value="3">Inventario</Tab>
+            <Tab value="3">Movimientos de Inventario</Tab>
 
         </TabList>
         <TabPanels>

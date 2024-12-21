@@ -17,6 +17,7 @@ export interface Data {
 
 export interface Movement {
     document: Document;
+    supplierOrders: SupplierOrder[];
 }
 
 export interface Document {
@@ -41,4 +42,11 @@ export interface Category {
 
 export interface ProductType {
     description: string;
+}
+export interface SupplierOrder {
+    id:           string;
+    invoiceFolio: string;
+    paymentDate:  Date;
+    isActive:     boolean;
+    status:       string;
 }

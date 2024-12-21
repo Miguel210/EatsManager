@@ -71,7 +71,17 @@ export class InventoryDatasourceImpl implements InventoryDatasource {
                                 description: true,
                                 folio: true
                             }
-                        }
+                        },
+                        supplierOrders: {
+                            select: {
+                                id: true,
+                                invoiceFolio: true,
+                                paymentDate: true,
+                                isActive: true,
+                                status: true
+        
+                            }
+                        },
                     }
                 }
             }
