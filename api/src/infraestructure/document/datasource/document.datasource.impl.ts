@@ -60,7 +60,9 @@ export class DocuemntDatasourceImpl  implements DocumentDatasource {
             data: {
                 description: dto.description,
                 isActive: dto.isActive,
-                folio: dto.folio
+                folio: {
+                    increment: 1
+                }
             }
         })
 

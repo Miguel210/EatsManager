@@ -16,14 +16,14 @@ export class CreateMovementDto {
         public readonly isActive: boolean,
         public readonly referenceId: string,
 
-        public readonly CreateMovementDetailDto: CreateMovementDetailDto[],
-        public readonly CreateSupplierOrderDto: CreateSupplierOrderDto[],       
+        public readonly MovementDetailDto: CreateMovementDetailDto[],
+        public readonly SupplierOrderDto: CreateSupplierOrderDto,       
     ){}
 
     static create(props: {[key: string]: any }): [string?, CreateMovementDto?] {
 
-        const {personId, documentId, elaborateId, amount, status, isActive = true, referenceId,  movementDetail, supplierOrders} = props;
-
+        const {personId, documentId, elaborateId, amount, status, isActive = true, referenceId,  MovementDetailDto, SupplierOrderDto} = props;
+        
         if( !personId ) return ['personId requerid'];
         if( !documentId ) return ['personId requerid'];
         //if( !elaborateId ) return ['personId requerid'];
@@ -32,6 +32,6 @@ export class CreateMovementDto {
         if( isActive === undefined ) return ['personId requerid'];
         //if( !referenceId ) return ['personId requerid'];
 
-        return [undefined, new CreateMovementDto(personId, documentId, elaborateId, amount, status, isActive, referenceId, movementDetail, supplierOrders)]
+        return [undefined, new CreateMovementDto(personId, documentId, elaborateId, amount, status, isActive, referenceId, MovementDetailDto, SupplierOrderDto)]
     }
 }

@@ -26,22 +26,32 @@ export class MovementController {
     }
 
     creatre = (req: Request, res: Response) => {
-        const personId = req.body.data.personId.id; 
         const ElaborateId = req.body._meta.userId;
 
-        const [error, dto] = CreateMovementDto.create({...req.body.data, personId: personId, elaborateId: ElaborateId});
+        console.log('1****************************');
+        console.log(req.body.data);
+        console.log('1****************************');     
+        const [error, dto] = CreateMovementDto.create({...req.body.data, personId: req.body.data.personId.id, elaborateId: ElaborateId});
+                
         if( error ) throw res.status(400).json({error});
-        
-        const dto2 = dto!.CreateMovementDetailDto.map( (m: { [key: string]: any }) => CreateMovementDetailDto.create({productId: m.product.id, movementId: '0', ...m}))
-        console.log('****************************');
-        
-        console.log(dto2);
-        console.log('****************************');
+
 
         
-        const orderDto = CreateSupplierOrderDto.create({...dto?.CreateSupplierOrderDto[0],  movementId: '000', status: req.body.data.status})
+        
+        const   movementDetailDto = req.body.data.movementDetail.map( (m: { [key: string]: any }) => {
+            const [error, dto] =CreateMovementDetailDto.create({productId: m.product.id, ...m})
+            return dto    
+        })
+        
+        
+        
+        const [error2, supplierOrderDto] = CreateSupplierOrderDto.create({...req.body.data.supplierOrders[0], status: req.body.data.status})
+        console.log('2****************************');
+        console.log(supplierOrderDto);
+        console.log('2****************************');     
 
-        this.service.create({...dto!, ...dto2, ...orderDto})
+    
+        this.service.create({...dto!, MovementDetailDto: movementDetailDto, SupplierOrderDto: supplierOrderDto!})
         .then(movement => res.json(movement))
         .catch(error => this.HandleError(error, res))
     }
@@ -83,13 +93,14 @@ export class MovementController {
        
         const [error, dto ] = UpdateMovementDto.create({id,...data})
         if( error ) throw res.json(400).json({error});
-        console.log(dto);
+        // console.log(dto);
         
         
         const dto2 = data.movementDetail.map( (m: { [key: string]: any }) => UpdateMovementDetailDto.create({...m   , productId: m.product.id}))
        
         const orderDto = UpdateSupplierOrderDto.create(data.supplierOrders[0])
-
+        console.log(dto2);
+        
         this.service.update({...dto!, ...dto2,...orderDto})
         .then(movement => res.json(movement))
         .catch(error => this.HandleError(error, res))

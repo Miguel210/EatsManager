@@ -8,6 +8,7 @@ import { MovementDetailDatasourceImpl } from "../../movementDetail/datasource/mo
 import { CreateMovementDetailDto } from '../../../domain/dtos/movementDetail/create-movementDetail';
 import { SupplierOrderDatasourceImpl } from "../../supplierOrder/datasource/supplierOrder.datasource.impl";
 import { EmployeeDatasourceImpl } from "../../employee/datasource/employee.datasource.impl";
+import { DocuemntDatasourceImpl } from '../../document/datasource/document.datasource.impl';
 
 
 
@@ -16,18 +17,15 @@ export class MovementDatasourceImpl implements MovementDatasource {
 
     async create(dto: CreateMovementDto): Promise<MovementEntity> {
 
-        console.log('+++++++++++++');
-        //! Eliminate elaborateId and evaluation with employee then add elaborateId
-
+        
         const employeeImpl = new EmployeeDatasourceImpl();
         const movementDetailImpl = new MovementDetailDatasourceImpl();
+        const docuemntDatasourceImpl = new DocuemntDatasourceImpl();
+
         const form = {
             personId: [dto.elaborateId],
         }
         const elaborate = await employeeImpl.gets(form);
-
-        console.log(dto);
-        console.log('+++++++++++++');
         
 
         const movement = await prisma.movement.create({
@@ -45,23 +43,31 @@ export class MovementDatasourceImpl implements MovementDatasource {
         });
 
         
-
-        if (!movement) throw `Movement with data ${dto} not created`;
         
-        dto.CreateMovementDetailDto.map(e => {
-            console.log(e);
+        if (!movement) throw `Movement with data ${dto} not created`;
+    
+        if (!Array.isArray(dto.MovementDetailDto)) { 
+            throw new Error('MovementDetailDto debe ser un arreglo'); 
+        }
+
+        dto.MovementDetailDto
+        .map(e => {
             
-            const [error, detailDto] = CreateMovementDetailDto.create({...e,  movementId: movement.id})
-            if( error ) throw `Error createMovementDetailDto`;
-            movementDetailImpl.create({...detailDto!, productId: e.product.id})
+            
+            const [error, detailDto] = CreateMovementDetailDto.create({...e, movementId: movement.id })
+            
+            if( error ) throw `Error CreateMovementDetailDto: ${error}`;
+            
+            movementDetailImpl.create({...detailDto!})
         })
 
 
-        // dto.CreateSupplierOrderDto.map( e => {
-        //     const order = new SupplierOrderDatasourceImpl();
-        //     order.create({...e, movementId: movement.id})
-        // })
-        // console.log(movement);
+        const order = new SupplierOrderDatasourceImpl();
+        order.create({...dto.SupplierOrderDto, movementId: movement.id})
+    
+        
+        docuemntDatasourceImpl.update({id: dto.documentId, folio: 1, isActive: true, description: 'Compra'})
+
 
         return MovementEntity.fromObject(movement);
 

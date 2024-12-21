@@ -11,7 +11,8 @@ import { MovementDetailEntity } from "../../../domain/entities/movementDetail.en
 export class MovementDetailDatasourceImpl implements MovemenetDetailDatasource {
     
     async create(dto: CreateMovementDetailDto): Promise<MovementDetailEntity> {
-
+        console.log(dto);
+        
         const movement = await prisma.movementDetail.create({
             data: {
                 id: Uuid.uuid(),
@@ -19,7 +20,7 @@ export class MovementDetailDatasourceImpl implements MovemenetDetailDatasource {
                 quantity: dto.quantity,
                 productId: dto.productId,
                 priceUnit: dto.priceUnit,
-                subTotal: dto.subtotal,
+                subTotal: dto.subTotal,
                 tax: dto.tax,
                 total: dto.total,
                 costUnit: dto.costUnit,

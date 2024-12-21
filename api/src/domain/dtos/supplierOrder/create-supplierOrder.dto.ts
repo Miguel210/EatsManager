@@ -13,8 +13,8 @@ export class CreateSupplierOrderDto {
     static create(props: {[key: string]: any}): [string?, CreateSupplierOrderDto?] {
 
         const {movementId, invoiceFolio, paymentDate, status} = props;
-
-        if( !movementId ) return ['id is requerid'];
+        
+        // if( !movementId ) return ['id is requerid'];
         if( !invoiceFolio ) return ['invoiceFolio is requerid'];
         if( !paymentDate ) return ['paymentDate is requerid'];
         if( !status ) return ['status is requerid'];
