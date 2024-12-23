@@ -16,7 +16,7 @@ export const clientRoutes: RouteRecordRaw = {
       path: 'mesas/:tableId',
       name: 'admin-mesas',
       props: true,
-      component: () => import('@/modules/client/views/clientOrder/formTableView.vue')
+      component: () => import('@/modules/client/views/tables/formTableView.vue')
     },
     // {
     //   path: 'orden/:suppierOrderId',
