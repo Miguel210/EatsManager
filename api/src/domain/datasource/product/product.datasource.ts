@@ -13,6 +13,6 @@ export abstract class ProductDatasource {
     abstract findById(id: string): Promise <ProductEntity>;
     abstract updateById(updateProductDto: UpdateProductDto): Promise <ProductEntity>;
     abstract deleteById(id: string): Promise <ProductEntity>;
-
+    abstract updateQuantity(form: any): Promise <ProductEntity>;
 
 }

@@ -10,6 +10,7 @@ import { SupplierOrderDatasourceImpl } from "../../supplierOrder/datasource/supp
 import { EmployeeDatasourceImpl } from "../../employee/datasource/employee.datasource.impl";
 import { DocuemntDatasourceImpl } from '../../document/datasource/document.datasource.impl';
 import { InventoryDatasourceImpl } from '../../inventory/datasource/inventory.datasource.impl';
+import { ProductDatasourceImpl } from '../../product/datasource/product.datasource.impl';
 
 
 
@@ -23,6 +24,7 @@ export class MovementDatasourceImpl implements MovementDatasource {
         const movementDetailImpl = new MovementDetailDatasourceImpl();
         const docuemntDatasourceImpl = new DocuemntDatasourceImpl();
         const inventoryDatasourceImpl = new InventoryDatasourceImpl();
+        const productDatasourceImpl = new ProductDatasourceImpl();
 
         const form = {
             personId: [dto.elaborateId],
@@ -53,7 +55,7 @@ export class MovementDatasourceImpl implements MovementDatasource {
         }
 
         dto.MovementDetailDto
-        .map(e => {
+        .map(async e => {
             
             
             const [error, detailDto] = CreateMovementDetailDto.create({...e, movementId: movement.id })
@@ -64,6 +66,23 @@ export class MovementDatasourceImpl implements MovementDatasource {
 
             inventoryDatasourceImpl.create({movementId: movement.id, product: e.product.id, quantity: e.quantity})
 
+
+            if (typeof e.quantity !== 'number') { 
+                throw new Error('El valor de decrementAmount debe ser un número'); 
+            }
+            const product = await productDatasourceImpl.findById(e.product.id);
+
+            const objProduct = JSON.parse(JSON.stringify(product));
+            console.log(',,,,,,,,,,,,,,,,,,,,,,');
+            
+            const useStock = objProduct.productTypeId.useStock;
+            console.log(',,,,,,,,,,,,,,,,,,,,,,');
+            
+            if(useStock) {
+
+                productDatasourceImpl.updateQuantity({id: e.product.id, quantity: e.quantity})
+            };
+    
         })
 
 
@@ -72,6 +91,7 @@ export class MovementDatasourceImpl implements MovementDatasource {
     
         
         docuemntDatasourceImpl.update({id: dto.documentId, folio: 1, isActive: true, description: 'Compra'})
+
 
 
         return MovementEntity.fromObject(movement);
@@ -233,7 +253,6 @@ export class MovementDatasourceImpl implements MovementDatasource {
 
         })
         dto.movementDetailDto.filter( e => e.id).map( e =>{
-            console.log('por aqui pase');
             
             detail.update({...e, productId: e.product.id})
 

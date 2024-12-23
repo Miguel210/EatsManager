@@ -45,7 +45,7 @@
       </div>
       <div class="flex items-center gap-4 mb-4">
         <label for="folio" class="font-semibold w-24">Fecha de pago</label>
-        <input  v-model="paymentDate" v-bind="paymentDateAttrs" required />
+        <input type="date" v-model="paymentDate" v-bind="paymentDateAttrs" required />
       </div>
       <button @click.prevent="addNewRecord" class="mb-4 p-2 bg-blue-500 text-white rounded">Agregar Nuevo Registro</button>
 <div class="max-h-72 overflow-scroll "> 
@@ -76,23 +76,23 @@
           </select>
         </td>
         <td class="border border-gray-200 px-4 py-2">
-          <input type="number" name="quantity" id="" v-model="item.costUnit" >
+          <input type="number" name="costUnit" id="" v-model="item.costUnit" min="0">
 
         </td>
         <td class="border border-gray-200 px-4 py-2">
-          <input type="number" name="quantity" id="" v-model="item.quantity"  >
+          <input type="number" name="quantity" id="" v-model="item.quantity" min="0"  max="99" >
         </td>
         <td class="border border-gray-200 px-4 py-2">
-          <input type="number" name="quantity" id="" v-model="item.priceUnit" >
+          <input type="number" name="priceUnit" id="" v-model="item.priceUnit" min="0">
         </td>
         <td class="border border-gray-200 px-4 py-2">
-          <input type="number" name="quantity" id="" v-model="item.subTotal" @select="updateSubtotal(item)">
+          <input type="number" name="subTotal" id="" v-model="item.subTotal" @select="updateSubtotal(item)" min="0">
         </td>
         <td class="border border-gray-200 px-4 py-2">
-          <input type="number" name="quantity" id="" v-model="item.tax" >
+          <input type="number" name="tax" id="" v-model="item.tax" min="0">
         </td>
         <td class="border border-gray-200 px-4 py-2">
-          <input type="number" name="quantity" id="" v-model="item.total" @select="updateTotal(item)">
+          <input type="number" name="total" id="" v-model="item.total" @select="updateTotal(item)" min="0">
         </td>
       </tr>
     </tbody>

@@ -5,11 +5,8 @@ import { CreateProductDto } from "../../../domain/dtos/product/create-product.dt
 import { UpdateProductDto } from "../../../domain/dtos/product/update-product.dto";
 import { ProductEntity } from "../../../domain/entities/product.entity";
 
-
-
 export class ProductDatasourceImpl implements ProductDatasource {
     async create(createProductDto: CreateProductDto): Promise<ProductEntity> {
-        
         const product = await prisma.product.create({
             data: {
                 id: Uuid.uuid(),
@@ -21,86 +18,84 @@ export class ProductDatasourceImpl implements ProductDatasource {
                 categoryId: createProductDto.categoryId,
                 viewMenu: createProductDto.viewMenu,
                 isActive: createProductDto.isActive,
-                image: createProductDto.image
-            }
+                image: createProductDto.image,
+            },
         });
 
-        if( !product ) throw `Product with the datas: ${product} not create`;
-        return ProductEntity.fromObject(product)
+        if (!product) throw `Product with the datas: ${product} not create`;
+        return ProductEntity.fromObject(product);
     }
     async getAll(form: any): Promise<ProductEntity[]> {
-        
         console.log(form);
-        
+
         const products = await prisma.product.findMany({
             where: {
                 isDelete: false,
-                
+
                 categoryId: {
-                    in: form.category || undefined
+                    in: form.category || undefined,
                 },
                 code: {
-                    in: form.code || undefined
+                    in: form.code || undefined,
                 },
-                productTypeId: { 
-                    in: form.productType || undefined
+                productTypeId: {
+                    in: form.productType || undefined,
                 },
                 description: {
-                    in: form.description || undefined
+                    in: form.description || undefined,
                 },
                 isActive: form.isActive,
-                viewMenu: form.viewMenu
+                viewMenu: form.viewMenu,
             },
             include: {
-                productType:{
+                productType: {
                     select: {
-                        description: true
-                    }
+                        description: true,
+                    },
                 },
                 category: {
                     select: {
-                        categoryName: true
-                    }
-                }
-            }
+                        categoryName: true,
+                    },
+                },
+            },
         });
         //console.log(products);
-        
-        return products.map(product => ProductEntity.fromObject(product));
+
+        return products.map((product) => ProductEntity.fromObject(product));
     }
     async findById(id: string): Promise<ProductEntity> {
-        
         const product = await prisma.product.findFirst({
             where: {
                 id: id,
-                isDelete: false  
+                isDelete: false,
             },
             include: {
-                productType:{
+                productType: {
                     select: {
                         id: true,
-                        description: true
-                    }
+                        description: true,
+                        useStock: true,
+                    },
                 },
                 category: {
                     select: {
                         id: true,
-                        categoryName: true
-                    }
-                }
-            }
+                        categoryName: true,
+                    },
+                },
+            },
         });
-        if( !product ) throw `Product with id ${id} not found`;
+        if (!product) throw `Product with id ${id} not found`;
 
         return ProductEntity.fromObject(product);
     }
     async updateById(updateProductDto: UpdateProductDto): Promise<ProductEntity> {
-
-        await this.findById(updateProductDto.id)
+        await this.findById(updateProductDto.id);
 
         const product = await prisma.product.update({
             where: {
-                id: updateProductDto.id
+                id: updateProductDto.id,
             },
             data: {
                 code: updateProductDto.code,
@@ -108,37 +103,70 @@ export class ProductDatasourceImpl implements ProductDatasource {
                 existence: updateProductDto.existence,
                 price: updateProductDto.price,
                 productTypeId: {
-                    set: updateProductDto.productTypeId
+                    set: updateProductDto.productTypeId,
                 },
-                
+
                 categoryId: {
-                    set: updateProductDto.categoryId
+                    set: updateProductDto.categoryId,
                 },
                 viewMenu: updateProductDto.viewMenu,
                 isActive: updateProductDto.isActive,
-                image: updateProductDto.image
-            }
-        })
+                image: updateProductDto.image,
+            },
+        });
 
         console.log(product);
-        
-        return ProductEntity.fromObject(product)
+
+        return ProductEntity.fromObject(product);
     }
+
+    async updateQuantity(form: any): Promise<ProductEntity> {
+        const { quantity, id } = form;
+
+        let data;
+        
+        if (quantity >= 0) {
+            data = { increment: quantity };
+        } else {
+            const negative = quantity * -1;
+
+            data = { decrement: negative };
+        }
+
+        const productUpd = await prisma.product.update({
+            where: {
+                id: id,
+            },
+            data: {
+                existence: data,
+            },
+        });
+        console.log('8888888888888');
+        
+        console.log(productUpd);
+        console.log('8888888888888');
+
+        
+        
+        if (!productUpd) throw `Product with id ${id} not found`;
+
+
+        return ProductEntity.fromObject(productUpd);
+    }
+
     async deleteById(id: string): Promise<ProductEntity> {
-        
-        await this.findById(id)
-        
+        await this.findById(id);
+
         const product = await prisma.product.update({
             where: {
-                id: id
+                id: id,
             },
             data: {
                 isDelete: true,
-                deleteAt: new Date()
-            }
-        })
+                deleteAt: new Date(),
+            },
+        });
 
-        return ProductEntity.fromObject(product)
+        return ProductEntity.fromObject(product);
     }
-
 }

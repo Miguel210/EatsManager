@@ -12,6 +12,9 @@ export class ProductRepositoryImpl implements ProductRepository {
     constructor(
         private readonly datasource: ProductDatasource
     ) {}
+    updateQuantity(form: any): Promise<ProductEntity> {
+        return this.datasource.updateQuantity(form);
+    }
     create(createProductDto: CreateProductDto): Promise<ProductEntity> {
         return this.datasource.create(createProductDto)
     }
