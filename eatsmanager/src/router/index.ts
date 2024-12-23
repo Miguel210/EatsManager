@@ -1,4 +1,5 @@
 import { authRoutes } from '@/modules/auth/routes'
+import { clientRoutes } from '@/modules/client/routers'
 import { dashboardRoutes } from '@/modules/dashboard/routes'
 import { employeeRoutes } from '@/modules/employee/routes'
 import { movementRoutes } from '@/modules/movement/routes'
@@ -19,6 +20,7 @@ const router = createRouter({
         employeeRoutes,
         movementRoutes,
         categoryRoutes,
+        clientRoutes
       ]
     },
     /*{

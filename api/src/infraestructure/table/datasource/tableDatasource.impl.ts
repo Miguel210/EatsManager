@@ -25,7 +25,8 @@ export class TableDatasourceImpl implements TableDatasoruce {
 
         const table = await prisma.table.findFirst({
             where: {
-                id: id
+                id: id,
+                isDelete: false
             }
         })
         if( !table ) throw `Table not found`;
@@ -35,7 +36,7 @@ export class TableDatasourceImpl implements TableDatasoruce {
 
         const table = await prisma.table.findMany({
             where: {
-
+                isDelete: false
             }
         })
         console.log('table');
@@ -46,6 +47,8 @@ export class TableDatasourceImpl implements TableDatasoruce {
     }
     async update(dto: UpdateTableDto): Promise<TableEntity> {
         await this.get(dto.id);
+        console.log(dto);
+        
 
         const table = await prisma.table.update({
             where: {
@@ -54,7 +57,8 @@ export class TableDatasourceImpl implements TableDatasoruce {
             data: {
                 description: dto.description,
                 status: dto.status,
-                mainTableId: dto.mainTable
+                mainTableId: dto.mainTable,
+                isActive: dto.isActive
             }
         })
         if( !table ) throw `Table no created`;

@@ -20,8 +20,9 @@ export class TableController {
     }
 
     create = (req: Request, res: Response) => {
-
-        const [error, createTableDto] = CreateTableDto.create(req.body)
+        console.log(req.body);
+        
+        const [error, createTableDto] = CreateTableDto.create(req.body.table)
         if( error )return res.status(400).json({error})
 
         this.TableService.create(createTableDto!)
@@ -57,7 +58,10 @@ export class TableController {
     update = (req: Request, res: Response) => {
         const id = req.body.id;
 
-        const [error, updateTableDto] =  UpdateTableDto.create({...req.body,id})
+        console.log(req.body);
+        
+
+        const [error, updateTableDto] =  UpdateTableDto.create({...req.body.table,id})
         if( error )return res.status(400).json({error})
         
         this.TableService.update(updateTableDto!)
