@@ -113,15 +113,9 @@ export default defineComponent({
             },
           );
 //todo Total movement
-          // watchEffect(() => {
-          //   if(clientOrder.value) {
-          //     let totalAux: number = 0;
-          //     amount.value = clientOrder.value.map((item: { total: number }) => {
-          //       totalAux = Number(item.total) + Number(totalAux);
-          //     })
-          //     amount.value = totalAux
-          //   }
-          // })
+          watchEffect(() => {
+
+          })
       
           watch( isUpdateSuccess, (value) => {
             console.log('isUpdateSuccess');
@@ -133,7 +127,42 @@ export default defineComponent({
             })
             
           })
-      
+
+
+
+          //todo MODIFICAR ESTAS FUNCIONES
+          const payForGuest = (index: number) => {
+            clientOrder.value[index].isPaid = true;
+          };
+        
+          const calculateTotal = (index: number) => {
+            if (!clientOrder.value[index]) return 0;
+        
+            const guest = clientOrder.value[index].movement;
+            return guest.movementDetail.reduce((total: number, product: { subTotal: number }) => Number(total) + Number(product.subTotal), '');
+          };
+        
+          const calculateTotalAll = () => {
+            console.log(clientOrder.value);
+            
+            return clientOrder.value.reduce((total: number, index: number) => Number(total) + Number(calculateTotal(index)), 0);
+          };
+        
+          const payTogether = () => {
+            clientOrder.value.forEach((guest: { isPaid: boolean; }) => {
+              guest.isPaid = true;
+            });
+          };
+        
+          const allPaid = computed(() => {
+            return clientOrder.value.every((guest: { isPaid: boolean; }) => guest.isPaid);
+          });
+        
+          const finalizeOrder = () => {
+            // Lógica para finalizar la venta
+            console.log('Venta finalizada');
+          };
+        
 
         return {
             values,
@@ -224,36 +253,41 @@ export default defineComponent({
               newProduct.quantity = 1;
             },
             
-            payForGuest: (index: number) => {
-              clientOrder.value[index].isPaid = true;
-            },
-            calculateTotal: (index: number) => {
+            // payForGuest: (index: number) => {
+            //   clientOrder.value[index].isPaid = true;
+            // },
+            // calculateTotal: (index: number) => {
 
-              if( !clientOrder.value[index] ) return 0;
+            //   if( !clientOrder.value[index] ) return 0;
                 
-              const guest = clientOrder.value[index].movement;
-              return guest.movementDetail.reduce((total: number, product: {subTotal: number}) => total + product.subTotal, 0);
-            },
+            //   const guest = clientOrder.value[index].movement;
+            //   return guest.movementDetail.reduce((total: number, product: {subTotal: number}) => total + product.subTotal, 0);
+            // },
         
-            calculateTotalAll: () => {
-              return clientOrder.value.reduce((total, guest) => total + calculateTotal(guest), 0);
-            },
+            // calculateTotalAll: () => {
+            //   return clientOrder.value.reduce((total: number, index: any) => total + calculateTotal(index), 0);
+            // },
         
-            payTogether: () => {
-              clientOrder.value.forEach((guest) => {
-                guest.isPaid = true;
-              });
-            },
+            // payTogether: () => {
+            //   clientOrder.value.forEach((guest) => {
+            //     guest.isPaid = true;
+            //   });
+            // },
         
-            allPaid: computed(() => {
-              return clientOrder.value.every((guest) => guest.isPaid);
-            }),
+            // allPaid: computed(() => {
+            //   return clientOrder.value.every((guest) => guest.isPaid);
+            // }),
         
-            finalizeOrder: () => {
-              // Lógica para finalizar la venta
-              console.log('Venta finalizada');
-            },  
-            
+            // finalizeOrder: () => {
+            //   // Lógica para finalizar la venta
+            //   console.log('Venta finalizada');
+            // },  
+            payForGuest,
+            calculateTotal,
+            calculateTotalAll,
+            payTogether,
+            allPaid,
+            finalizeOrder,
             newProduct,
             onSubmit,
         }
