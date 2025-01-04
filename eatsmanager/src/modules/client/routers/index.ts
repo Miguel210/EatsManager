@@ -18,11 +18,11 @@ export const clientRoutes: RouteRecordRaw = {
       props: true,
       component: () => import('@/modules/client/views/tables/formTableView.vue')
     },
-    // {
-    //   path: 'orden/:suppierOrderId',
-    //   name: 'supplierOrder',
-    //   props: true,
-    //   component: () => import('@/modules/supplier/views/supplierOrder/FormSupOrderView.vue'),
-    // }
+    {
+      path: 'orden/:tableId',
+      name: 'clientOrder',
+      props: true,
+      component: () => import('@/modules/client/views/clientOrder/FormClientOrderMenu.vue'),
+    }
   ]
 }

@@ -6,6 +6,8 @@ import { GetTable } from "../../domain/use-cases/table/get-table";
 import { UpdateTable } from "../../domain/use-cases/table/update-table";
 import { DeleteTable } from "../../domain/use-cases/table/delete-table";
 import { GetAllTable } from "../../domain/use-cases/table/getAll-table";
+import { GetTableData } from "../../domain/use-cases/table/getTableData-table";
+import { UpdateTableCLientOrder } from "../../domain/use-cases/table/update-table-client-order";
 
 
 
@@ -45,6 +47,28 @@ export class TableService {
 
         return {
             data: Tables
+        }
+    }
+
+    public async getDataTable(id: string) {
+        
+        const Table = await new GetTableData(this.repository).execute(id)
+        .then( table => table)
+        .catch( error => console.log({error}))
+
+        return {
+            data: Table
+        }
+    }
+
+    public async clientOrderDataTable(dto: UpdateTableDto){
+
+        const table = await new UpdateTableCLientOrder(this.repository).execute(dto)
+        .then( table => table)
+        .catch( error => console.log({error}))
+
+        return {
+            data: table
         }
     }
 

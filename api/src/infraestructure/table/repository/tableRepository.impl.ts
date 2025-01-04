@@ -11,6 +11,9 @@ export class TableRepositoryImpl implements TableRepository {
     constructor(
         private readonly datasource: TableDatasoruce
     ) {}
+    clientOrderDataTable(dto: UpdateTableDto): Promise<TableEntity> {
+        return this.datasource.clientOrderDataTable(dto)
+    }
 
     create(dto: CreateTableDto): Promise<TableEntity> {
         return this.datasource.create(dto)
@@ -28,4 +31,9 @@ export class TableRepositoryImpl implements TableRepository {
         return this.datasource.delete(id)
     }
 
+    getDataTable(id: string): Promise<TableEntity> {
+        return this.datasource.getDataTable(id)
+    }
+
+    
 }

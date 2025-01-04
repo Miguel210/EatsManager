@@ -21,7 +21,7 @@ const validationSchema = yup.object({
   paymentDate: yup.string(),
   supplierId: yup.string(),
   supplierOrder: yup.string(),
-  
+
   //movementDetail
   productId: yup.string(),
   quantity: yup.number(),
@@ -119,16 +119,16 @@ export default defineComponent({
 
     watchEffect(() => {
 
-      if( movementDetail.value){
+      if (movementDetail.value) {
         let totalAux: number = 0;
         amount.value = movementDetail.value.map((item: { total: number; }) => {
-          
+
           totalAux = Number(item.total) + Number(totalAux);
         })
         amount.value = totalAux
-        
-      } 
-    
+
+      }
+
     });
 
     watch(
@@ -182,17 +182,17 @@ export default defineComponent({
       statusAttrs,
       documentId,
       documentIdAttrs,
-      
+
 
       supplierAutocomplete,
       ProductAutoComplete,
       addNewRecord: () => { movementDetail.value.push({ product: { id: '' }, quantity: 0, priceUnit: 0, subTotal: 0, tax: 0, total: 0, costUnit: 0 }); },
 
-      updateSubtotal : (item: { quantity: number; priceUnit: number; subTotal: number, tax: number; total: number; }) => {
+      updateSubtotal: (item: { quantity: number; priceUnit: number; subTotal: number, tax: number; total: number; }) => {
         item.subTotal = item.quantity * item.priceUnit;
         item.total = item.subTotal + (item.tax * item.subTotal);
       },
-      updateTotal : (item: { tax: number; total: number; subTotal: number }) => {
+      updateTotal: (item: { tax: number; total: number; subTotal: number }) => {
         return item.total = item.subTotal + (item.tax * item.subTotal);
       },
       onSubmit,

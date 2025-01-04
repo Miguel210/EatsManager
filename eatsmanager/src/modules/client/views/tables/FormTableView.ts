@@ -112,6 +112,14 @@ export default defineComponent({
             isActive,
             isActiveAttrs,
 
+            statusModiefied: (): boolean => {
+                if( status.value === 'Ocupada') return true;
+                if( status.value === 'Esperando Orden') return true;
+                if( status.value === 'Orden Tomada') return true;
+                if( status.value === 'Combinada') return true;
+
+                return false;
+            },
             onSubmit,
         }
     }

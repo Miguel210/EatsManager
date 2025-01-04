@@ -16,7 +16,6 @@ export class InventoryEntity {
 
 
     static fromObject(object: {[key: string]: any}) {
-        console.log(object);
 
         const {id, movementId, productId, product, movement, quantity} = object
 

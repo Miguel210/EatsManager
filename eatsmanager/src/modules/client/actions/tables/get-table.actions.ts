@@ -6,11 +6,11 @@ import type { Main } from "../../interfaces/tables.interface"
 
 export const getTableAction = async(tableId: string) => {
 
-    if( tableId === 'create' ) {
-        return {
+    // if( tableId === 'create' ) {
+    //     return {
 
-        }
-    }
+    //     }
+    // }
 
     try {
         const { data } = await eatsmanagerApi.post<Main>(

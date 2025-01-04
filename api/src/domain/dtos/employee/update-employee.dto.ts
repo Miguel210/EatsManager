@@ -23,7 +23,7 @@ export class UpdateEmployeeDto {
         if( !salary ) return ['Requerid salary'];
         if( isActive === undefined ) return ['Requerid isActive'];
 
-        const [error, person] = UpdatePersonDto.create({genderId, profileId, typePersonId, fullname, username, password});
+        const [error, person] = UpdatePersonDto.create({id: '',genderId, profileId, typePersonId, fullname, username, password});
         if( error ) throw [error,undefined]
         
 

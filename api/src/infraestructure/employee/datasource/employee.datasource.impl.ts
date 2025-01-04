@@ -76,7 +76,7 @@ export class EmployeeDatasourceImpl implements EmployeeDatasource {
         
         const employees = await prisma.employee.findMany({
             where: {
-                isActive: form.isActive ,
+                isActive: true ,
                 isDelete: false,
                 personId: {
                     in: form.personId || undefined
@@ -136,6 +136,9 @@ export class EmployeeDatasourceImpl implements EmployeeDatasource {
                 }
             }
         })
+
+        console.log(employee);
+        
         if( ! employee ) throw `Employee with id ${dto.id} not found`;
 
         return EmployeeEntity.fromObject(employee)

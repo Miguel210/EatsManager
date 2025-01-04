@@ -16,6 +16,8 @@ export class UtilRouter {
         const controller = new UtilController(service)
 
         router.get('/autocomplete/:table/:field', controller.autocomplete)
+        router.get('/productOrder', controller.productOrder)
+
 
         return router;
     }

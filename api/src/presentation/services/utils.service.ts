@@ -26,4 +26,14 @@ export class UtilService {
             data: data
         }
     }
+
+    public async productOrder() {
+
+        const data = await prisma.$queryRawUnsafe(`select id, description, price from product`).then(data => data).catch(error => console.log(error))
+
+
+        return {
+            data: data
+        }
+    }
 }

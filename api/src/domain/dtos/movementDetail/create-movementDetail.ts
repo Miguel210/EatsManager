@@ -14,10 +14,12 @@ export class CreateMovementDetailDto {
         public readonly promotionId: string,
 
         public readonly product: { id: string, description: string },
+        public readonly isCreatemov: boolean
     ) { }
 
     static create(props: { [key: string]: any }): [string?, CreateMovementDetailDto?] {
-        const { movementId, quantity, productId, product, priceUnit, subTotal, tax, total, costUnit, promotionId } = props; 
+        const { movementId, quantity, productId, product, priceUnit, subTotal, tax, total, costUnit, promotionId, isCreatemov = false} = props; 
+
         if (quantity === undefined) return ['quantity is required', undefined]; 
         if (!productId && !product) return ['productId is required', undefined]; 
         if (priceUnit === undefined) return ['priceUnit is required', undefined]; 
@@ -26,6 +28,6 @@ export class CreateMovementDetailDto {
         if (total === undefined) return ['total is required', undefined]; 
         if (costUnit === undefined) return ['costUnit is required', undefined]; 
         
-        return [undefined, new CreateMovementDetailDto(movementId, quantity, productId, priceUnit, subTotal, tax, total, costUnit, promotionId, product)];
+        return [undefined, new CreateMovementDetailDto(movementId, quantity, productId, priceUnit, subTotal, tax, total, costUnit, promotionId, product, isCreatemov)];
     }
 }

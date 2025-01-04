@@ -11,6 +11,7 @@ import { EmployeeDatasourceImpl } from "../../employee/datasource/employee.datas
 import { DocuemntDatasourceImpl } from '../../document/datasource/document.datasource.impl';
 import { InventoryDatasourceImpl } from '../../inventory/datasource/inventory.datasource.impl';
 import { ProductDatasourceImpl } from '../../product/datasource/product.datasource.impl';
+import { ClientOrderDatasourceImpl } from "../../clientOrder/datasource/clientOrder.datasource.impl";
 
 
 
@@ -18,45 +19,60 @@ import { ProductDatasourceImpl } from '../../product/datasource/product.datasour
 export class MovementDatasourceImpl implements MovementDatasource {
 
     async create(dto: CreateMovementDto): Promise<MovementEntity> {
-
+        
         
         const employeeImpl = new EmployeeDatasourceImpl();
         const movementDetailImpl = new MovementDetailDatasourceImpl();
         const docuemntDatasourceImpl = new DocuemntDatasourceImpl();
         const inventoryDatasourceImpl = new InventoryDatasourceImpl();
         const productDatasourceImpl = new ProductDatasourceImpl();
-
+        
         const form = {
             personId: [dto.elaborateId],
         }
         const elaborate = await employeeImpl.gets(form);
-        
+        let movement;
 
-        const movement = await prisma.movement.create({
-            data: {
-                id: Uuid.uuid(),
-                personId: dto.personId,
-                documentId: dto.documentId,
-                elaborateId: elaborate[0].id,
-                amount: dto.amout,
-                status: dto.status,
-                isActive: true,
-                referenceId: dto.referenceId || undefined,
-                date: new Date(),
-            }
-        });
 
-        
-        
+        if( dto.isCreate === true) {
+
+            console.log('zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz');
+
+            console.log(dto);
+            console.log('zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz');
+            
+            movement = await prisma.movement.create({
+                data: {
+                    id: Uuid.uuid(),
+                    personId: dto.personId,
+                    documentId: dto.documentId,
+                    elaborateId: elaborate[0].id,
+                    amount: dto.amount,
+                    status: dto.status,
+                    isActive: true,
+                    referenceId: dto.referenceId || undefined,
+                    date: new Date(),
+                    
+                }
+            });
+        } else {
+            movement = {...dto, id: dto.MovementDetailDto[0].movementId, date: new Date()}
+        }
+            
         if (!movement) throw `Movement with data ${dto} not created`;
     
         if (!Array.isArray(dto.MovementDetailDto)) { 
             throw new Error('MovementDetailDto debe ser un arreglo'); 
         }
 
-        dto.MovementDetailDto
-        .map(async e => {
+        // console.log(',,,,,,,,,,,,,,,,,,,,,,');
+        
+        // console.log(dto.MovementDetailDto);
+        // console.log(',,,,,,,,,,,,,,,,,,,,,,');
             
+        dto.MovementDetailDto
+        .filter(e => e.isCreatemov === true)
+        .map(async e => {
             
             const [error, detailDto] = CreateMovementDetailDto.create({...e, movementId: movement.id })
             
@@ -73,10 +89,10 @@ export class MovementDatasourceImpl implements MovementDatasource {
             const product = await productDatasourceImpl.findById(e.product.id);
 
             const objProduct = JSON.parse(JSON.stringify(product));
-            console.log(',,,,,,,,,,,,,,,,,,,,,,');
+            // console.log(',,,,,,,,,,,,,,,,,,,,,,');
             
             const useStock = objProduct.productTypeId.useStock;
-            console.log(',,,,,,,,,,,,,,,,,,,,,,');
+            // console.log(',,,,,,,,,,,,,,,,,,,,,,');
             
             if(useStock) {
 
@@ -85,12 +101,25 @@ export class MovementDatasourceImpl implements MovementDatasource {
     
         })
 
+        if( dto.extra === 'supplierOrder') {
 
-        const order = new SupplierOrderDatasourceImpl();
-        order.create({...dto.SupplierOrderDto, movementId: movement.id})
-    
+            const order = new SupplierOrderDatasourceImpl();
+            order.create({...dto.SupplierOrderDto, movementId: movement.id})
         
-        docuemntDatasourceImpl.update({id: dto.documentId, folio: 1, isActive: true, description: 'Compra'})
+            
+            docuemntDatasourceImpl.update({id: dto.documentId, folio: 1, isActive: true, description: 'Compra'})
+        }
+        if( dto.extra === 'clientOrder' && !dto.ClientOrderDto.id ) {
+            //! MODIICAR EL CLIENT ORDER
+            const orderClient = new ClientOrderDatasourceImpl();
+
+            console.log('llllllllllllllllllllllllll');
+            
+            console.log(dto.ClientOrderDto);
+            console.log('llllllllllllllllllllllllll');
+            
+            orderClient.create({...dto.ClientOrderDto, movementId: movement.id})
+        }
 
 
 
@@ -250,7 +279,6 @@ export class MovementDatasourceImpl implements MovementDatasource {
             const [error, detailDto] = CreateMovementDetailDto.create({...e, productId: e.product.id,  movementId: dto.id})
             if( error ) throw `Error createMovementDetailDto`;
             detail.create(detailDto!)
-
         })
         dto.movementDetailDto.filter( e => e.id).map( e =>{
             

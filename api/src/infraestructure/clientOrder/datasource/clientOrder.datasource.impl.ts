@@ -14,7 +14,7 @@ export class ClientOrderDatasourceImpl implements ClientOrderDatasource {
             data: {
                 id: Uuid.uuid(),
                 movementId: dto.movementId,
-                invoiceFolio: dto.inoiceFolio,
+                invoiceFolio: new Date().toDateString(),
                 paymentDate: new Date(dto.paymentDate),
                 status: dto.status,
                 tableId: dto.tableId

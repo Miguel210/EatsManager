@@ -32,4 +32,15 @@ export class UtilController {
 
 
     }
+
+    productOrder = (req: Request, res: Response) => {
+
+        
+        
+        this.utilService.productOrder()
+        .then(util => res.json(util))
+        .catch(error => this.HandleError(error, res))
+
+
+    }
 }

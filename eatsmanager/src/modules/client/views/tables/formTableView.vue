@@ -9,21 +9,24 @@
             </div>
             <div class="flex items-center gap-4 mb-4">
                 <label for="status" class="font-semibold w-24">Estatus</label>
-                <select name="status" id="status" v-model="status" requerid>
+                <!-- !COLOCAR :DESABLE PARA BLOQUEAR A LOS DE COLOR ROJO CUANDO ESTEN GUARDADOS EN LA BD-->
+                <select name="status" id="status" v-model="status" requerid :disabled="statusModiefied()">
+                    <!--? VERDE -->
                     <option value="Disponible/Vacia">Disponible/Vacía</option>
-                    <option value="Reservada">Reservada</option>
-                    <option value="Ocupada">Ocupada</option>
-                    <option value="Esperando Orden">Esperando Orden</option>
-                    <option value="Orden Tomada">Orden Tomada</option>
-                    <option value="Sirviendo/En Servicio">Sirviendo/En Servicio</option>
+                    <!--? AMARILLO -->
                     <option value="Esperando Cuenta">Esperando Cuenta</option>
                     <option value="Cuenta Pagada">Cuenta Pagada</option>
                     <option value="En Limpieza">En Limpieza</option>
 
+                    <!--? ROJO -->
+                    <option value="Ocupada" disabled>Ocupada</option>
+                    <option value="Esperando Orden" disabled>Esperando Orden</option>
+                    <option value="Orden Tomada" disabled>Orden Tomada</option>
+                    <option value="Combinada" disabled>Combinada</option>
                     <option value="En Mantenimiento">En Mantenimiento</option>
-                    <option value="Combinada">Combinada</option>
-                    <option value="Deshabilitada">Deshabilitada</option>
-                    <option value="No Disponible por Tiempo">No Disponible por Tiempo:</option>
+                    <option value="No Disponible">No Disponible</option>
+
+
                 </select>
             </div>
             <div class="flex items-center gap-4 mb-4">

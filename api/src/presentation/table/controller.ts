@@ -54,6 +54,38 @@ export class TableController {
 
     }
 
+    getDataTable = (req: Request, res: Response) => {
+        const { id } = req.body
+        if( !id ) this.handleError('No Id',res);
+
+        this.TableService.getDataTable(id)
+        .then( table => res.json(table))
+        .catch(error => this.handleError(error, res))
+    }
+    //todo ADD AND UPDATE CLIENOTRDER
+    clientOrderDataTable = (req: Request, res: Response) => {
+
+        const { id } = req.body.clientOrder.data;
+
+        if( !id ) this.handleError('No Id',res);
+        const ElaborateId = req.body._meta.userId;
+            
+        
+
+
+        const [error, clientOrderDataTable] =  UpdateTableDto.create({...req.body.clientOrder.data,id, elaborateId: ElaborateId})
+        if( error )return res.status(400).json({error});
+
+        // console.log('ppppppppppppppppppppppp');
+        // console.log(clientOrderDataTable);
+        
+        // console.log('ppppppppppppppppppppppp');
+        
+        this.TableService.clientOrderDataTable(clientOrderDataTable!)
+        .then( table => res.json(table))
+        .catch(error => this.handleError(error, res))
+    }
+    
 
     update = (req: Request, res: Response) => {
         const id = req.body.id;

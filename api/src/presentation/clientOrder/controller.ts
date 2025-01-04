@@ -52,10 +52,9 @@ export class ClientOrderController {
     }
 
     update = (req: Request, res: Response) => {
-        
-        const [error, dto ] = UpdateClientOrderDto.create(req.body);
+        const [error, dto ] = UpdateClientOrderDto.create(req.body.clientOrder.data);
         if( error ) throw res.status(400).json({error});
-
+        
         this.service.update(dto!)
         .then( order => res.json(order))
         .catch(error => this.HandleError(error, res))

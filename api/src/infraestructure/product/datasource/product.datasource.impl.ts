@@ -141,10 +141,10 @@ export class ProductDatasourceImpl implements ProductDatasource {
                 existence: data,
             },
         });
-        console.log('8888888888888');
+        // console.log('8888888888888');
         
-        console.log(productUpd);
-        console.log('8888888888888');
+        // console.log(productUpd);
+        // console.log('8888888888888');
 
         
         

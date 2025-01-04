@@ -11,7 +11,6 @@ import { MovementDetailEntity } from "../../../domain/entities/movementDetail.en
 export class MovementDetailDatasourceImpl implements MovemenetDetailDatasource {
     
     async create(dto: CreateMovementDetailDto): Promise<MovementDetailEntity> {
-        console.log(dto);
         
         const movement = await prisma.movementDetail.create({
             data: {
