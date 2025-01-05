@@ -23,9 +23,9 @@ export class AttendanceService {
         );
 
         return {
-            data: {
+            data: 
                 attendance
-            }
+            
         }
     }
 
@@ -37,9 +37,9 @@ export class AttendanceService {
         );
 
         return {
-            data: {
+            data: 
                 attendance
-            }
+            
         }
     }
 
@@ -51,9 +51,9 @@ export class AttendanceService {
         );
 
         return {
-            data: {
+            data: 
                 attendance
-            }
+            
         }
     }
 
@@ -65,9 +65,9 @@ export class AttendanceService {
         );
 
         return {
-            data: {
+            data: 
                 attendance
-            }
+            
         }
     }
 }

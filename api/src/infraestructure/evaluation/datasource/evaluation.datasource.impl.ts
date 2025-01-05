@@ -4,18 +4,30 @@ import { EvaluationDatasource } from "../../../domain/datasource/evaluation/eval
 import { CreateEvaluationDto } from "../../../domain/dtos/evaluation/create-evaluation.dto";
 import { UpdateEvaluationDto } from "../../../domain/dtos/evaluation/update-evaluation.dto";
 import { EvaluationEntity } from "../../../domain/entities/evaluation.entity";
+import { EmployeeDatasourceImpl } from "../../employee/datasource/employee.datasource.impl";
 
 
 
 export class EvaluationDatasourceImpl implements EvaluationDatasource {
     
     async create(dto: CreateEvaluationDto): Promise<EvaluationEntity> {
+
+
+        console.log('[[[[[[[[[[[[[[[');
+        const employeeImpl = new EmployeeDatasourceImpl();
+
+        const form = {
+            personId: [dto.evaluatorId]
+        }
+        const evaluatorCheck = await employeeImpl.gets(form);
+        const evaluator = evaluatorCheck[0].id
+        console.log(dto);
         
         const evaluation = await prisma.evaluation.create({
             data: {
                 id: Uuid.uuid(),
                 employeeId: dto.employeeId,
-                evaluatorId: dto.evaluatorId,
+                evaluatorId: evaluator,
                 date:  new Date(),
                 punctuality: dto.punctuality,
                 attitude: dto.attitude,
@@ -94,8 +106,25 @@ export class EvaluationDatasourceImpl implements EvaluationDatasource {
             select: {
                 id: true,
                 employeeId: true,
+                empoyee:{
+                    select: {
+                        person: {
+                            select: {
+                                fullname: true
+                            }
+                        }
+                    }
+                },
                 date: true,
-                evaluatorId: true,
+                evaluator: {
+                    select: {
+                        person: {
+                            select: {
+                                fullname: true
+                            }
+                        }
+                    }
+                },
                 punctuality: true,
                 attitude: true,
                 quality: true,
@@ -118,7 +147,7 @@ export class EvaluationDatasourceImpl implements EvaluationDatasource {
     async update(dto: UpdateEvaluationDto): Promise<EvaluationEntity> {
 
         await this.getById(dto.id);
-        
+
         const evaluation = await prisma.evaluation.update({
             where: {
                 id: dto.id

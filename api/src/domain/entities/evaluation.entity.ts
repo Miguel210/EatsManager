@@ -15,6 +15,10 @@ export class EvaluationEntity {
         public initiative:  number,
         public hygiene:     number,
         public isActive:    boolean,
+
+        public empoyee: {person: {fullname: string}},
+        public evaluator: {person: {fullname: string}}
+
     ) {}
 
     static fromObject(object: {[key: string]: any}) {
@@ -27,14 +31,14 @@ export class EvaluationEntity {
         if( !employeeId && !empoyee ) throw CustomError.badRequest('Missing employee');
         if( !evaluatorId && !evaluator ) throw CustomError.badRequest('Missing evaluatorId');
         if( date === undefined ) throw CustomError.badRequest('Missing date');
-        if( !punctuality ) throw CustomError.badRequest('Missing punctuality');
-        if( !attitude ) throw CustomError.badRequest('Missing attitude');
-        if( !quality ) throw CustomError.badRequest('Missing quality');
-        if( !efficiency ) throw CustomError.badRequest('Missing efficiency');
-        if( !initiative ) throw CustomError.badRequest('Missing initiative');
-        if( !hygiene ) throw CustomError.badRequest('Missing hygiene');
-        if( !isActive ) throw CustomError.badRequest('Missing isActive');
+        if( punctuality === undefined ) throw CustomError.badRequest('Missing punctuality');
+        if( attitude === undefined ) throw CustomError.badRequest('Missing attitude');
+        if( quality === undefined ) throw CustomError.badRequest('Missing quality');
+        if( efficiency === undefined ) throw CustomError.badRequest('Missing efficiency');
+        if( initiative === undefined ) throw CustomError.badRequest('Missing initiative');
+        if( hygiene === undefined ) throw CustomError.badRequest('Missing hygiene');
+        if( isActive === undefined ) throw CustomError.badRequest('Missing isActive');
 
-        return new EvaluationEntity(id, employeeId || empoyee, evaluatorId || evaluator, date, punctuality,attitude,quality,efficiency, initiative, hygiene, isActive);
+        return new EvaluationEntity(id, employeeId || empoyee, evaluatorId || evaluator, date, punctuality,attitude,quality,efficiency, initiative, hygiene, isActive, empoyee,evaluator);
     }   
 }

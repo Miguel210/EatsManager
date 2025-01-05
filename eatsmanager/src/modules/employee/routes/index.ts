@@ -18,12 +18,12 @@ export const employeeRoutes: RouteRecordRaw = {
             component: () => import('@/modules/employee/views/employee/formEmplView.vue'),
         },
 //todo attendance (/view/attendance/attendanceView | /view/attendance/formView)
-        // {
-        //     path: 'empleado/asistencias/:empleadoId',
-        //     name: '',
-        //     props: true,
-        //     component: () => import(''),
-        // },
+        {
+            path: 'asistencias/:empleadoId',
+            name: 'attendanceEmployee',
+            props: true,
+            component: () => import('@/modules/employee/views/attendance/FormAttendanceView.vue'),
+        },
 //todo evaluation (/view/evaluation/evaluationView | /view/evaluation/formView)
         {
             path: 'evaluaciones/:evaluationId',

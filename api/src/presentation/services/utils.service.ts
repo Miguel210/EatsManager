@@ -7,6 +7,7 @@ export class UtilService {
 
     public async autocomplete(table: string, field: string) {
 
+        console.log(table);
 
         const data: any = await prisma.$queryRawUnsafe(`select id, \"${field}\" from ${table}`)
         .then(data => data)

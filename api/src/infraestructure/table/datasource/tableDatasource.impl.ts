@@ -22,7 +22,7 @@ export class TableDatasourceImpl implements TableDatasoruce {
         
         // console.log(dto.clientOrder);
         // dto.clientOrder.map(order => console.log(order.movement));
-
+``
         
         // console.log('---------------------------------------------') ;
         // console.log(dto.clientOrder);

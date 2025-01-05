@@ -45,22 +45,29 @@ const {
 const dataTableInfo = ref<
   | {
       id: string;
-      employeeId: string;
+      empoyee: string;
+      evaluator: string;
       date: string;
     }[]
   | undefined
 >([]);
 
 const datapaint = computed(() => {
-  console.log(employee);
+  // console.log(employee);
   if (employee.value?.data && employee.value.data.length > 0) {
+    
     
     // eslint-disable-next-line vue/no-side-effects-in-computed-properties
     dataTableInfo.value = employee.value.data.map((e) => {
+
+      const datetime = String(e.date);
+        const [date, time] = datetime.split("T");
+        const formattedTime = time.split(".")[0]; // Elimina los milisegundos
       return {
         id: e.id,
-        employeeId: e.employeeId,
-        date: e.date,
+        empoyee: e.empoyee.person.fullname,
+        evaluator: e.evaluator.person.fullname,
+        date: String(date +' | '+ formattedTime),
       };
     });
   }
@@ -68,8 +75,8 @@ const datapaint = computed(() => {
 });
 
 const column = [
-    { data: 'id', title: 'Nombre' },
-    {data: 'employeeId', title: 'Empleado'},
+  {data: 'evaluator', title: 'Evaluador'},
+    { data: 'empoyee', title: 'Empleado' },
     {data: 'date', title: 'Fecha'},
 
 ];

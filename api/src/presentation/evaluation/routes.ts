@@ -3,6 +3,7 @@ import { EvaluationDatasourceImpl } from "../../infraestructure/evaluation/datas
 import { EvaluationRepositoryImpl } from "../../infraestructure/evaluation/repository/evaluation.repository.impl";
 import { EvaluationService } from "../services/evaluation.service";
 import { EvaluationController } from "./controller";
+import { AuthMiddlewares } from "../middlewares/authMiddlewares";
 
 
 
@@ -18,10 +19,10 @@ export class EvaluationRouter {
         const service = new EvaluationService(repository);
         const controller = new EvaluationController(service )
 
-        routes.post("/create/", controller.create)
-        routes.get("/", controller.getAll)
-        routes.post("/get/", controller.getById)
-        routes.post("/update/", controller.update)
+        routes.post("/create/",[AuthMiddlewares.validateJWT], controller.create)
+        routes.get("/",[AuthMiddlewares.validateJWT], controller.getAll)
+        routes.post("/get/",[AuthMiddlewares.validateJWT], controller.getById)
+        routes.post("/update/", [AuthMiddlewares.validateJWT], controller.update)
 
         return routes;
     }

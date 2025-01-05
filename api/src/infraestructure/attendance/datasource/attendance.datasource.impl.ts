@@ -17,8 +17,8 @@ export class AttendanceDatasouceImpl implements AttendanceDatasouce {
             data: {
                 id: Uuid.uuid(),
                 employeeId: dto.employeeId,
-                date: new Date(dto.date),
-                hour: new Date(dto.hour),
+                date: dto.date,
+                hour: dto.hour,
                 documentId: dto.documentId,
             }
         });

@@ -22,7 +22,7 @@ export class AttendanceController {
 
     create = (req: Request, res: Response) => {
         
-        const [error, dto] = CreateAttendanceDto.create(req.body);
+        const [error, dto] = CreateAttendanceDto.create(req.body.data);
         if( error ) throw res.status(400).json({error});
         
         this.service.create(dto!)

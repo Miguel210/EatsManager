@@ -9,6 +9,15 @@ export const getEvaluationById = async(evaluationId: string) => {
     if( evaluationId === 'create' ) {
         
         return {
+            evaluatorId: 'AddEvaluator',
+            evaluationId: 'AddEvaluation',
+            employeeId: '',
+            punctuality: 0,
+            attitude: 0,
+            quality: 0,
+            efficiency: 0,
+            initiative: 0,
+            hygiene: 0,
             
         }
     }

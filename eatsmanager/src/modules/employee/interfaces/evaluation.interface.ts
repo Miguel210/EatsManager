@@ -4,18 +4,26 @@ export interface Main {
 }
 
 export interface DataTableDt {
-    data: Data[],
+    data: DataForm[],
 }
 
 export interface Data {
     id: string,
-    employeeId: string,
+    empoyee: Person,
+    evaluator: Person,
     date: string,
 }
 
+export interface Employee {
+    person: Person
+}
+export interface Person {
+    fullname: string
+}
 export interface DataForm {
     id: string,
     employeeId: string,
+    empoyee: {person: {fullname: string}}
     date: string,
     attitude: number,
     efficiency: number,
@@ -23,5 +31,6 @@ export interface DataForm {
     initiative: number,
     puntuality: number,
     quality: number,
-    evaluationId: string
+    evaluationId: string,
+    evaluator: {person: {fullname: string}}
 }

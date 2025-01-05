@@ -22,9 +22,17 @@ export class EvaluationController {
     }
 
     create = (req: Request, res: Response) => {
+        
+        req.body.evaluatorId =  req.body._meta.userId;   
+        req.body.employeeId = req.body.employeeId.id   
 
+        console.log(req.body);
+        
         const [ error, dto ] = CreateEvaluationDto.create(req.body);
+        // console.log(error);
+        // console.log('dto!.employeeId');
         if( error ) throw res.status(400).json({error});
+
         
         this.service.create( dto! )
         .then( evaluation => res.json(evaluation) )
@@ -56,8 +64,8 @@ export class EvaluationController {
     }
 
     update = (req: Request, res: Response) => {
-        
-        const [error, dto] = UpdateEvaluationDto.create(req.body);
+
+        const [error, dto] = UpdateEvaluationDto.create({...req.body, ...req.body.evaluation});
         if( error ) throw res.status(400).json({error});
 
         this.service.update(dto!)

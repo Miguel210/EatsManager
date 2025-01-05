@@ -11,30 +11,24 @@
 
                 </select>
             </div>
+
             <div class="flex items-center gap-4 mb-4">
-                <label for="puntual" class="font-semibold w-24">Puntualidad</label>
-                <input type="number" min="0" max="10" name="punctuality" id="punctuality" v-model="punctuality">
+                <label for="Empleados" class="font-semibold w-24">Estatus</label>
+                <select name="employees" id="employees" required v-model="documentId" >
+                    <option value="7f27a133-2391-4896-946f-07d0545256e6">Entrada</option>
+                    <option value="5605ff8d-b6b2-4822-9937-254de77b3045">Salida</option>
+                    <option value="7d86a30a-4986-4aeb-9acc-b389c760cc3b">Falta</option>
+                    <option value="c95c3801-ab84-44a0-842f-3aab888aaf3f">Retardo</option>
+                    <option value="9f32dea6-8a1d-4093-a873-73365a9b5b91">Horas extra</option>
+                    <option value="b8bf6180-ea9d-4233-8a6e-0fa59b9b0275">Salida antes (permiso)</option>
+                    <option value="de7ca9a4-8387-4cd0-b2e6-b57c002a9cdc">Entrada tardoa (permiso)</option>
+                </select>
             </div>
             <div class="flex items-center gap-4 mb-4">
-                <label for="calidad" class="font-semibold w-24">Calidad</label>
-                <input type="number" min="0" max="10" name="attitude" id="attitude" v-model="attitude">
+                <label for="puntual" class="font-semibold w-24">Hora y fecha</label>
+                <input type="datetime-local" name="timeAttendace" id="timeAttendace" disabled v-model="timeAttendace">
             </div>
-            <div class="flex items-center gap-4 mb-4">
-                <label for="calidad" class="font-semibold w-24">Calidad</label>
-                <input type="number" min="0" max="10" name="puntual" id="quality" v-model="quality">
-            </div>
-            <div class="flex items-center gap-4 mb-4">
-                <label for="Eficiencia" class="font-semibold w-24">Eficiencia</label>
-                <input type="number" min="0" max="10" name="efficiency" id="efficiency" v-model="efficiency">
-            </div>
-            <div class="flex items-center gap-4 mb-4">
-                <label for="Iniciativa" class="font-semibold w-24">Iniciativa</label>
-                <input type="number" min="0" max="10" name="initiative" id="initiative" v-model="initiative">
-            </div>
-            <div class="flex items-center gap-4 mb-4">
-                <label for="Higiene" class="font-semibold w-24">Higiene</label>
-                <input type="number" min="0" max="10" name="hygiene" id="hygiene" v-model="hygiene">
-            </div>
+            
             <div class="flex justify-end gap-2">
                 <button type="submit"  
                     :disabled="isPending"
@@ -57,7 +51,7 @@
     </div>
 </template>
 
-<script src="./evaluationForm.ts" lang="ts">
+<script src="./attendanceForm" lang="ts">
 
 </script>
 

@@ -8,6 +8,9 @@ export const createUpdateEvaluationAction = async(evaluation: Partial<DataForm>)
     
     const evaluationId = evaluation.id;
 
+    console.log(evaluation);
+    
+
     if( evaluation.id  && evaluation.id !== '' ) {
         return await updateEvaluation(evaluationId!, evaluation);
     }

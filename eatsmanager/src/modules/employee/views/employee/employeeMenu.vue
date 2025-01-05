@@ -62,13 +62,21 @@ const datapaint = computed(() => {
     
     // eslint-disable-next-line vue/no-side-effects-in-computed-properties
     dataTableInfo.value = employee.value.data.map((e) => {
+      const input = String(e.input);
+      const output = String(e.output);
+      const [ timeInput] = input.split("T");
+      const formattedTimeInput = timeInput.split(".")[0]; // Elimina los milisegundos
+
+      const [ timeOutput] = output.split("T");
+      const formattedTimeOutput = timeOutput.split(".")[0]; // Elimina los milisegundos
+
       return {
         id: e.id,
         fullname: e.person.fullname,
         profile: e.person.profile.name,
         salary: e.salary,
-        input: e.input.toString(),
-        hireDate: e.hireDate.toString(),
+        input: formattedTimeInput.toString(),
+        hireDate: formattedTimeOutput.toString(),
         isActive: e.isActive,
       };
     });

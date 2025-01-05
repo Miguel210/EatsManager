@@ -24,6 +24,8 @@ export class UtilController {
     autocomplete = (req: Request, res: Response) => {
 
         const {table, field} = req.params;
+
+        
         
         
         this.utilService.autocomplete(table, field)

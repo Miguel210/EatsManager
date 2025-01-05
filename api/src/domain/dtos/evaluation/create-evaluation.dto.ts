@@ -20,14 +20,14 @@ export class CreateEvaluationDto {
 
         const {employeeId, evaluatorId, punctuality, attitude, quality, efficiency, initiative, hygiene} = props;
 
-        if( !employeeId ) return ['employeeid is requerid'];
-        if( !evaluatorId ) return ['evaluatorid is requerid'];
-        if( !punctuality ) return ['punctuality is requerid'];
-        if( !attitude ) return ['attitude is requerid'];
-        if( !quality ) return ['quality is requerid'];
-        if( !efficiency ) return ['efficiency is requerid'];
-        if( !initiative ) return ['initiative is requerid'];
-        if( !hygiene ) return ['hygiene is requerid'];
+        if( employeeId === undefined) return ['employeeid is requerid'];
+        if( evaluatorId === undefined) return ['evaluatorid is requerid'];
+        if( punctuality === undefined) return ['punctuality is requerid'];
+        if( attitude === undefined) return ['attitude is requerid'];
+        if( quality === undefined) return ['quality is requerid'];
+        if( efficiency === undefined) return ['efficiency is requerid'];
+        if( initiative === undefined) return ['initiative is requerid'];
+        if( hygiene === undefined) return ['hygiene is requerid'];
 
         return [undefined, new CreateEvaluationDto(employeeId, evaluatorId, punctuality, attitude, quality, efficiency, initiative, hygiene)];
     }

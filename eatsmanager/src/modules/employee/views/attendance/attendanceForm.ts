@@ -6,18 +6,14 @@ import * as yup from 'yup';
 import type { Obj } from '../../interfaces/employee.interface';
 
 import InputText from 'primevue/inputtext';
-import { createUpdateEvaluationAction, getEvaluationById } from '../../actions/evaluation';
 import { getEmployeesAction } from '../../actions/employee';
+import { createUpdateAttendanceAction, getAttendanceById } from '../../actions/attendance';
 
 const validationSchema = yup.object({
   employeeId: yup.string(),
-  punctuality: yup.string(),
-  attitude: yup.string(),
-  quality: yup.string(),
-  efficiency: yup.date(),
-  initiative: yup.date(),
-  hygiene: yup.date(),
-  evaluationId: yup.string(),
+  documentId: yup.string(),
+  date: yup.date(),
+  hour: yup.date(),
 
 });
 
@@ -26,7 +22,7 @@ export default defineComponent({
     InputText,
   },
   props: {
-    evaluationId: {
+      empleadoId: {
       type: String,
       required: true,
     },
@@ -34,15 +30,15 @@ export default defineComponent({
   setup(props) {
     // initializations
     const router = useRouter();
-
+    let timeAttendace;
     // ConsultData
     const {
       data: evaluation,
       isError,
       isLoading,
     } = useQuery({
-      queryKey: ['evaluations', props.evaluationId],
-      queryFn: () => getEvaluationById(props.evaluationId),
+      queryKey: ['attencanceById', props.empleadoId],
+      queryFn: () => getAttendanceById(props.empleadoId),
       retry: false,
     });
 
@@ -52,22 +48,20 @@ export default defineComponent({
       data: updateEvaluation,
       mutate,
     } = useMutation({
-      mutationFn: createUpdateEvaluationAction,
+      mutationFn: createUpdateAttendanceAction,
     });
     const { values, defineField, errors, resetForm, handleSubmit, meta } = useForm({
       validationSchema,
     });
-    const [employeeId, employeeIdAttrs] = defineField('data.evaluation.employeeId.id');
-    const [punctuality, punctualityAttrs] = defineField('data.evaluation.punctuality');
-    const [attitude, attitudeAttrs] = defineField('data.evaluation.attitude');
-    const [quality, qualityAttrs] = defineField('data.evaluation.quality');
-    const [efficiency, efficiencyAttrs] = defineField('data.evaluation.efficiency'); 
-    const [initiative, initiativeAttrs] = defineField('data.evaluation.initiative');
-    const [hygiene, hygieneAttrs] = defineField('data.evaluation.hygiene');
-    const [evaluations, evaluationAttrs] = defineField('evaluatorId');
+    const [employeeId, employeeIdAttrs] = defineField('data.employeeId');
+
+    const [documentId, documentIdAttrs] = defineField('data.documentId');
+    const [date, dateAttrs] = defineField('data.date');
+    const [hour, hourAttrs] = defineField('data.hour');
+
 
     const onSubmit = handleSubmit(async (values) => {
-        mutate(values.data.evaluation)
+        mutate(values)
     });
 
     //todo EMPLEADOS
@@ -78,6 +72,7 @@ export default defineComponent({
       queryFn: () => getEmployeesAction(),
     });
 
+    
     const employeeCheckList = () => {
 
       
@@ -96,6 +91,25 @@ export default defineComponent({
         return;
       }
     });
+
+    watchEffect(() => {
+
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      timeAttendace = `${year}-${month}-${day}T${hours}:${minutes}`;
+      
+      const offset = -6;
+
+      date.value = new Date(now.getTime() + offset * 60 * 60 * 1000);
+      hour.value = new Date(now.getTime() + offset * 60 * 60 * 1000);; 
+      console.log(date.value);
+    })
+
     watch(
       evaluation,
       () => {
@@ -128,25 +142,20 @@ export default defineComponent({
       meta,
       isPending,
 
+      timeAttendace,
       employeeList: employeeCheckList(),
       employee,
+
+
       
       employeeId,
       employeeIdAttrs,
-      punctuality,
-      punctualityAttrs,
-      attitude,
-      attitudeAttrs,
-      quality,
-      qualityAttrs,
-      efficiency,
-      efficiencyAttrs,
-      initiative,
-      initiativeAttrs,
-      hygiene,
-      hygieneAttrs,
-      evaluations,
-      evaluationAttrs,
+      documentId,
+      documentIdAttrs,
+      date,
+      dateAttrs,
+      hour,
+      hourAttrs,
 
       onSubmit,
     };
