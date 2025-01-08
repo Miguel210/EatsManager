@@ -12,6 +12,7 @@ import { getProductAutoCompleteAction } from '@/modules/product/actions/product/
 import type { main } from '@/modules/product/actions/product/ProductAutoComplete.action';
 import type { Obj } from '../../interfaces/supplier.interface';
 import { getSuppliersAction } from '../../actions/get-suppliers.action';
+import { generateFullPagePDF, generatePDF } from '@/modules/common/jspdf/jsPdf.config';
 
 
 // import type { Data } from "../interfaces/supplier.interface";
@@ -183,9 +184,10 @@ export default defineComponent({
       documentId,
       documentIdAttrs,
 
-
       supplierAutocomplete,
       ProductAutoComplete,
+      generateFullPagePDF,
+      generatePDF,
       addNewRecord: () => { movementDetail.value.push({ product: { id: '' }, quantity: 0, priceUnit: 0, subTotal: 0, tax: 0, total: 0, costUnit: 0 }); },
 
       updateSubtotal: (item: { quantity: number; priceUnit: number; subTotal: number, tax: number; total: number; }) => {

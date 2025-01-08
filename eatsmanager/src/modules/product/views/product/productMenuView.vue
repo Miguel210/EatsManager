@@ -9,6 +9,7 @@
       </template>
       
       <template v-else>
+        <Button severity="danger" rounded label="Reporte" icon="pi pi-file-pdf" @click="generatePDF(dataTableInfo!,`Reporte-Productos-${ new Date() }`,'landscape')" />
 
         <DataTable
         :is-add="true"
@@ -35,7 +36,8 @@
   import { computed, ref } from 'vue';
   import type { Obj } from '../../interfaces/product.interface';
   import { deleteProductById, getProductsAction } from '../../actions/product';
-
+  import { generatePDF } from '@/modules/common/jspdf/jsPdf.config';
+  import { Button } from 'primevue';
   
   const {
     data: product,

@@ -9,6 +9,7 @@
       </template>
       
       <template v-else>
+        <Button severity="danger" rounded label="Reporte" icon="pi pi-file-pdf" @click="generatePDF(dataTableInfo!,`Reporte-Movimientos-Inventario-${ new Date() }`,'landscape')" />
 
         <DataTable
         :is-add="false"
@@ -33,7 +34,8 @@
   import {  ref, watchEffect } from 'vue';
 import type { Obj } from '../../interfaces/inventory.interface';
 import { getInvenotoriesAction } from '../../actions/inventory';
-
+import { generatePDF } from '@/modules/common/jspdf/jsPdf.config';
+import { Button } from 'primevue';
   
   const {
     data: inventory,
@@ -45,7 +47,6 @@ import { getInvenotoriesAction } from '../../actions/inventory';
   });
   const dataTableInfo = ref<
     {
-        id:       string;
         document: string;
         folio: string;
         product:  string;
@@ -61,7 +62,6 @@ import { getInvenotoriesAction } from '../../actions/inventory';
           console.log(e);
           
           return {
-          id:       e.id,
           document: e.movement.document.description,
           folio:    e.movement.supplierOrders?.[0]?.invoiceFolio || 'S/N',
           product:  e.product.description,

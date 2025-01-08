@@ -8,6 +8,7 @@
         <p>Error al cargar los datos</p>
       </template>
       <template v-else>
+        <Button severity="danger" rounded label="Reporte" icon="pi pi-file-pdf" @click="generatePDF(dataTableInfo!,`Reporte-Movimientos-${ new Date() }`,'landscape')" />
       
         <DataTable
         :is-add="true"
@@ -33,7 +34,9 @@
   import { computed, ref } from 'vue';
   import type { Data } from '../../interfaces/attendance.interface';
 import { getAttendancesAction } from '../../actions/attendance';
-  
+import { generatePDF } from '@/modules/common/jspdf/jsPdf.config';
+import { Button } from 'primevue';
+
   const {
     data: employee,
     isLoading,
@@ -44,7 +47,6 @@ import { getAttendancesAction } from '../../actions/attendance';
   });
   const dataTableInfo = ref<
     | {
-        id: string;
         empoyee: string;
         date: string;
         hour: string;
@@ -66,7 +68,6 @@ import { getAttendancesAction } from '../../actions/attendance';
         
         console.log(e);
         return {
-          id: e.id,
           empoyee: String(e.employeeId.person.fullname),
           date: date,
           hour: formattedTime,

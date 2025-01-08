@@ -1,5 +1,6 @@
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable'
+import html2canvas from 'html2canvas';
 
     export function generatePDF( rows:  Record<string, any>[], docName: string, orientation: 'portrait' | 'landscape' = 'portrait') {
       const doc = new jsPDF({
@@ -22,3 +23,48 @@ import autoTable from 'jspdf-autotable'
       // Guardar el PDF
       doc.save(docName);
     }
+
+    function normalizeTailwindColors(element: any) {
+        const computedStyle = window.getComputedStyle(element);
+        
+        // Asegurarte de que el color y el fondo son valores fijos
+        const colorProperties = ['color', 'background-color', 'border-color'];
+      
+        colorProperties.forEach(property => {
+          const value = computedStyle[property];
+          if (value.includes('color')) {
+            element.style[property] = 'black';  // Establece un color de reserva simple (puedes elegir otro)
+          }
+        });
+      
+        // Recorre todos los hijos si es necesario (en caso de que tengan colores internos)
+        element.querySelectorAll('*').forEach(child => normalizeTailwindColors(child));
+      }
+      
+      export async function generateFullPagePDF(elementId: string, filename: string) {
+        const element = document.getElementById(elementId);
+        
+        if (!element) {
+          console.error(`No se encontró el elemento con ID: ${elementId}`);
+          return;
+        }
+      
+        // Normaliza los colores antes de capturar el canvas
+        normalizeTailwindColors(element);
+      
+        const canvas = await html2canvas(element, {
+          useCORS: true,
+          scale: 2,  // Mejora la resolución
+        });
+      
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF();
+        
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const imgWidth = canvas.width / 10; // Ajuste de escala
+        const imgHeight = (imgWidth * canvas.height) / canvas.width;
+        
+        pdf.addImage(imgData, 'PNG', 0, 0, pageWidth, imgHeight);
+        pdf.save(filename);
+      }
+      
