@@ -1,5 +1,7 @@
 <template>
     <div>
+      <Button severity="danger" rounded label="Reporte" icon="pi pi-file-pdf" @click="generatePDF(dataTableInfo!,`Reporte-Movimientos-${ new Date() }`,'landscape')" />
+
         <DataTable
             :is-add="true"
             routerLink="/Proveedor/orden/"
@@ -24,6 +26,8 @@ import { getMovementAction } from '@/modules/movement/actions';
 import type { Obj } from '@/modules/movement/interfaces/movement.interface';
   import { useQuery } from '@tanstack/vue-query';
   import { computed, ref } from 'vue';
+import { generatePDF } from '@/modules/common/jspdf/jsPdf.config';
+import { Button } from 'primevue';
 
   
   const {
@@ -55,12 +59,15 @@ import type { Obj } from '@/modules/movement/interfaces/movement.interface';
       // eslint-disable-next-line vue/no-side-effects-in-computed-properties
       dataTableInfo.value = movement.value.data.map((e) => {
 
-        
+        const input = String(e.date);
+      const [ timeInput] = input.split("T");
+      const formattedTimeInput = timeInput.split(".")[0]; // Elimina los milisegundos
+
         return {
         id: e.id,
         document: e.documentId.description,
         invoiceFolio: e.supplierOrders?.[0]?.invoiceFolio || 'S/N',
-        date: e.date,
+        date: formattedTimeInput.toString(),
         elaborate: e.elaborateId?.person.fullname,
         person: e.personId.fullname ,
         amount: e.amount,

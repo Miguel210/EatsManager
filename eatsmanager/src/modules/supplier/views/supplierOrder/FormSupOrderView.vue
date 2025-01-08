@@ -101,6 +101,7 @@
 <label for="Total Final">Total Final</label>
 <input type="number" name="amount" id="amount" v-model="amount" disabled >
       <div class="flex justify-end gap-2">
+        <button>Reporte</button>
         <button
           type="submit"
           :disabled="isPending"

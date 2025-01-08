@@ -1,23 +1,18 @@
-import { defineComponent } from 'vue';
 import { jsPDF } from 'jspdf';
+import autoTable from 'jspdf-autotable'
 
-export default defineComponent({
-  name: 'PdfTable',
-  methods: {
-    generatePDF() {
-      const doc = new jsPDF();
+    export function generatePDF( rows:  Record<string, any>[], docName: string, orientation: 'portrait' | 'landscape' = 'portrait') {
+      const doc = new jsPDF({
+        orientation: orientation,  // Establecer la orientación
+      });
 
       // Datos de ejemplo para la tabla
-      const headers = ['ID', 'Nombre', 'Edad'];
-      const data = [
-        [1, 'Juan Pérez', 28],
-        [2, 'Ana García', 34],
-        [3, 'Pedro López', 25],
-        [4, 'Laura Martínez', 41],
-      ];
+      const headers = Object.keys(rows[0]);
+      ;
+      const data = rows.map(item => headers.map(header => item[header] ?? ''));
 
       // Añadir tabla al documento PDF
-      doc.autoTable({
+      autoTable(doc,{
         head: [headers],  // Encabezados de la tabla
         body: data,      // Datos de la tabla
         startY: 20,      // Posición Y inicial
@@ -25,7 +20,5 @@ export default defineComponent({
       });
 
       // Guardar el PDF
-      doc.save('tabla.pdf');
+      doc.save(docName);
     }
-  }
-});

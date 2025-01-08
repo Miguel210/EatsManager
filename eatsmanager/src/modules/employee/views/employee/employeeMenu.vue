@@ -62,8 +62,8 @@ const datapaint = computed(() => {
     
     // eslint-disable-next-line vue/no-side-effects-in-computed-properties
     dataTableInfo.value = employee.value.data.map((e) => {
-      const input = String(e.input);
       const output = String(e.output);
+      const input = String(e.input);
       const [ timeInput] = input.split("T");
       const formattedTimeInput = timeInput.split(".")[0]; // Elimina los milisegundos
 

@@ -23,8 +23,9 @@
             icon-button="pi pi-shopping-cart"
             :is-toast="false"
             />
-    
-            <ButtonCustom 
+            <Button severity="danger" rounded label="Reporte" icon="pi pi-file-pdf" @click="generatePDF(dataTableInfo!,`Reporte-Movimientos-${ new Date() }`,'landscape')" />
+
+            <!-- <ButtonCustom 
             type-button="warn"
             label-data="Devolucion de Compra"
             icon-button="pi pi-arrow-left"
@@ -36,7 +37,7 @@
             label-data="Devolucion de Venta"
             icon-button="pi pi-refresh"
             :is-toast="false"
-            />
+            /> -->
         </div>
 
 
@@ -64,6 +65,8 @@
 import { getMovementAction } from '../../actions';
 import type { Obj } from '../../interfaces/movement.interface';
 import ButtonCustom from '@/modules/common/components/ButtonCustom.vue';
+import { generatePDF } from '@/modules/common/jspdf/jsPdf.config';
+import { Button } from 'primevue';
 
   
   const {
@@ -94,11 +97,16 @@ import ButtonCustom from '@/modules/common/components/ButtonCustom.vue';
       
       // eslint-disable-next-line vue/no-side-effects-in-computed-properties
       dataTableInfo.value = movement.value.data.map((e) => {
+        
+        const output = String(e.date);
+        const [ timeInput] = output.split("T");
+        const formattedTimeInput = timeInput.split(".")[0]; // Elimina los milisegundos
+
         return {
         id: e.id,
         document: e.documentId.description,
         folio: e.documentId.folio,
-        date: e.date,
+        date: formattedTimeInput.toString(),
         elaborate: e.elaborateId?.person.fullname,
         person: e.personId.fullname ,
         amount: e.amount,

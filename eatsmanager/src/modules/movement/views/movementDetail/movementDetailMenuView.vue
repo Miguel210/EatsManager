@@ -1,16 +1,20 @@
 <template>
-    <!-- :functionDelete="deleteemployeeById" -->
-    <div>
-      <template v-if="isLoading">
-        <p>Cargando datos...</p>
-      </template>
-      <template v-else-if="isError">
-        <p>Error al cargar los datos</p>
-      </template>
-      
-      <template v-else>
-z
-        <DataTable
+  <!-- :functionDelete="deleteemployeeById" -->
+  <div>
+    <template v-if="isLoading">
+      <p>Cargando datos...</p>
+    </template>
+    <template v-else-if="isError">
+      <p>Error al cargar los datos</p>
+    </template>
+
+    <template v-else>
+      <div>
+    <Button severity="danger" rounded label="Reporte" icon="pi pi-file-pdf" @click="generatePDF(dataTableInfo!,`Reporte-Movimientos-Detalle-${ new Date() }`)" />
+
+      </div>
+
+      <DataTable
         :is-add="false"
         :is-delete="false"
         :is-update="false"
@@ -19,53 +23,51 @@ z
         table-width="full"
         :search="true"
         :pagination="true"
-        />
-        {{ datapaint }}
-          
-        
-      </template>
-    </div>
-  </template>
-  
-  <script setup lang="ts">
-  import DataTable from '@/modules/common/components/DataTableBsic.vue';
-  import { useQuery } from '@tanstack/vue-query';
-  import { computed, ref } from 'vue';
+      />
+      {{ datapaint }}
+    </template>
+  </div>
+</template>
+
+<script setup lang="ts">
+import DataTable from '@/modules/common/components/DataTableBsic.vue';
+import { useQuery } from '@tanstack/vue-query';
+import { computed, ref } from 'vue';
 import type { Obj } from '../../interfaces/movementDetail.interface';
 import { getMovementDetailsAction } from '../../actions/movementDetail/get-movementDetails.action';
-  
-  const {
-    data: movement,
-    isLoading,
-    isError,
-  } = useQuery<Obj>({
-    queryKey: ['movementDt'],
-    queryFn: () => getMovementDetailsAction(),
-  });
-  const dataTableInfo = ref<
-    {
-        id: string,
-        document: string,
-        folio: string,
-        quantity: number,
-        productId: string,
-        priceUnit: string,
-        subTotal: string,
-        tax: string,
-        total: string,
-        costUnit: string,
-        isActive: boolean
-    }[]
-    | undefined
-  >([]);
-  
-  const datapaint = computed(() => {
-    if (movement.value?.data && movement.value.data.length > 0) {
-      
-      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-      dataTableInfo.value = movement.value.data.map((e) => {
-        return {
-        id: e.id,
+import { generatePDF } from '@/modules/common/jspdf/jsPdf.config';
+import { Button } from 'primevue';
+
+
+
+const {
+  data: movement,
+  isLoading,
+  isError,
+} = useQuery<Obj>({
+  queryKey: ['movementDt'],
+  queryFn: () => getMovementDetailsAction(),
+});
+
+export interface headerPdf {
+  document: string;
+  folio: string;
+  quantity: number;
+  productId: string;
+  priceUnit: string;
+  subTotal: string;
+  tax: string;
+  total: string;
+  costUnit: string;
+  isActive: boolean;
+}
+const dataTableInfo = ref<headerPdf[] | undefined>([]);
+
+const datapaint = computed(() => {
+  if (movement.value?.data && movement.value.data.length > 0) {
+    // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+    dataTableInfo.value = movement.value.data.map((e) => {
+      return {
         document: e.movementId.document.description,
         folio: e.movementId.document.folio,
         quantity: e.quantity,
@@ -75,27 +77,25 @@ import { getMovementDetailsAction } from '../../actions/movementDetail/get-movem
         tax: e.tax,
         total: e.total,
         costUnit: e.costUnit,
-        isActive: e.isActive
-        };
-      });
-    }
-    return [];
-  });
-  
-  const column = [
-    { data: 'document', title: 'Documento' },
-    { data: 'folio', title: 'Folio' },
-    { data: 'quantity', title: 'cantidad' },
-    { data: 'productId', title: 'preoducto' },
-    { data: 'priceUnit', title: 'precio unitario' },
-    { data: 'subTotal', title: 'SubTotal' },
-    { data: 'tax', title: 'Taxas' },
-    { data: 'total', title: 'total' },
-    { data: 'costUnit', title: 'consto unitario' },
-    { data: 'isActive', title: 'Estatus' },
-  
+        isActive: e.isActive,
+      };
+    });
+  }
+  return [];
+});
+
+const column = [
+  { data: 'document', title: 'Documento' },
+  { data: 'folio', title: 'Folio' },
+  { data: 'quantity', title: 'cantidad' },
+  { data: 'productId', title: 'preoducto' },
+  { data: 'priceUnit', title: 'precio unitario' },
+  { data: 'subTotal', title: 'SubTotal' },
+  { data: 'tax', title: 'Taxas' },
+  { data: 'total', title: 'total' },
+  { data: 'costUnit', title: 'consto unitario' },
+  { data: 'isActive', title: 'Estatus' },
 ];
-  </script>
-  
+</script>
+
 <style scoped></style>
-  
