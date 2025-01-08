@@ -13,6 +13,11 @@ export interface Data {
     date:           Date;
     movementDetail: MovementDetail[];
     supplierOrders: SupplierOrder[];
+
+    extra: string,
+    isCreate: boolean
+
+
 }
 
 export interface DocumentID {

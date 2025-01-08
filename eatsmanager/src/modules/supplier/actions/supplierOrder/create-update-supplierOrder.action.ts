@@ -38,6 +38,8 @@ const updateSupplierOrder = async(supplierId: string, supplier: Partial<Main>) =
 }
 
 const createSupplierOrder = async( supplier: Partial<Main>) => {
+    
+    
     try {
         const {data} = await eatsmanagerApi.post<Main>(`/movement/create/`, supplier)
         return data;

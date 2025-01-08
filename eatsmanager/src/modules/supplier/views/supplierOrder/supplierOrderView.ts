@@ -14,7 +14,6 @@ import type { Obj } from '../../interfaces/supplier.interface';
 import { getSuppliersAction } from '../../actions/get-suppliers.action';
 import { generateFullPagePDF, generatePDF } from '@/modules/common/jspdf/jsPdf.config';
 
-
 // import type { Data } from "../interfaces/supplier.interface";
 const validationSchema = yup.object({
   //OrderSupllier
@@ -81,7 +80,6 @@ export default defineComponent({
     const [folio, folioAttrs] = defineField('data.supplierOrders[0].invoiceFolio');
     const [paymentDate, paymentDateAttrs] = defineField('data.supplierOrders[0].paymentDate');
 
-
     const [productId, productIdAttrs] = defineField('data.movementDetail');
     const [movementDetail, movementDetailAttrs] = defineField('data.movementDetail');
     const [supplierId, supplierIdAttrs] = defineField('supplierId');
@@ -92,9 +90,7 @@ export default defineComponent({
 
     //! Added query autocomplete
 
-    const {
-      data: ProductAutoComplete,
-    } = useQuery<main>({
+    const { data: ProductAutoComplete } = useQuery<main>({
       queryKey: ['ProductAutoComplete'],
       queryFn: () => getProductAutoCompleteAction(),
       retry: false,
@@ -106,9 +102,8 @@ export default defineComponent({
       queryFn: () => getSuppliersAction(module),
     });
 
-
     const onSubmit = handleSubmit(async (values) => {
-      mutate(values)
+      mutate(values);
     });
 
     watchEffect(() => {
@@ -119,17 +114,13 @@ export default defineComponent({
     });
 
     watchEffect(() => {
-
       if (movementDetail.value) {
         let totalAux: number = 0;
-        amount.value = movementDetail.value.map((item: { total: number; }) => {
-
+        amount.value = movementDetail.value.map((item: { total: number }) => {
           totalAux = Number(item.total) + Number(totalAux);
-        })
-        amount.value = totalAux
-
+        });
+        amount.value = totalAux;
       }
-
     });
 
     watch(
@@ -154,9 +145,8 @@ export default defineComponent({
 
       resetForm({
         values: updateSupplier.value,
-      })
-
-    })
+      });
+    });
 
     return {
       values,
@@ -188,14 +178,32 @@ export default defineComponent({
       ProductAutoComplete,
       generateFullPagePDF,
       generatePDF,
-      addNewRecord: () => { movementDetail.value.push({ product: { id: '' }, quantity: 0, priceUnit: 0, subTotal: 0, tax: 0, total: 0, costUnit: 0 }); },
+      addNewRecord: () => {
+        movementDetail.value.push({
+          isCreatemov: true,
+          product: { id: '' },
+          quantity: 0,
+          priceUnit: 0,
+          subTotal: 0,
+          tax: 0,
+          total: 0,
+          costUnit: 0,
+        });
 
-      updateSubtotal: (item: { quantity: number; priceUnit: number; subTotal: number, tax: number; total: number; }) => {
+      },
+
+      updateSubtotal: (item: {
+        quantity: number;
+        priceUnit: number;
+        subTotal: number;
+        tax: number;
+        total: number;
+      }) => {
         item.subTotal = item.quantity * item.priceUnit;
-        item.total = item.subTotal + (item.tax * item.subTotal);
+        item.total = item.subTotal + item.tax * item.subTotal;
       },
       updateTotal: (item: { tax: number; total: number; subTotal: number }) => {
-        return item.total = item.subTotal + (item.tax * item.subTotal);
+        return (item.total = item.subTotal + item.tax * item.subTotal);
       },
       onSubmit,
     };

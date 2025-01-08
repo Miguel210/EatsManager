@@ -10,8 +10,11 @@ export const getSupplierOrderById = async(movementId: string) => {
         
         return {
             data: {
+                extra: 'supplierOrder',
+                isCreate: true,
                 movementDetail: [
                     {
+                        isCreatemov: true,
                         id: "",
                         product: {
                           id: "",
