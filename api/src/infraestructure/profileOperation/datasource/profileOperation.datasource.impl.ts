@@ -39,6 +39,10 @@ export class ProfileOperationDatasourceImpl implements ProfileOperationDatasourc
         //console.log(JSON.stringify(profileoperation));
         //console.log(profileoperation);
         
+        console.log("id");
+        console.log(profileoperation);
+        console.log("id");
+
         return profileoperation.map(profileoperation => ProfileOperationEntity.fromObject(profileoperation))
         //return ProfileOperationEntity.fromObject(profileoperation)
     

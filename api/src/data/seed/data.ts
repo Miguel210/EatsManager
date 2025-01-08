@@ -4,37 +4,108 @@ import { Uuid } from "../../config"
 export const seedData = {
 
     module: [
-        { id: '1b913cd1-488b-435e-9cb9-a71bb3d18a5c', name: 'movimientos',      identifier: 10, isActive: true },
         { id: '1721b204-24e9-47eb-b076-9e96bc691a98', name: 'dashboardAdm',     identifier: 1,  isActive: true },
         { id: '11a17067-c5a8-4086-a949-55600c25ae32', name: 'dashboardSup',     identifier: 2,  isActive: true },
         { id: '2e0f70d3-2e01-4fe6-bfac-bc9ba14268e9', name: 'dashboardEmp',     identifier: 3,  isActive: true },
-        { id: '76ba91f0-9140-4c70-85e9-59d7520ee145', name: 'inventario',       identifier: 20, isActive: true },
+        
         { id: 'a7d6025c-780b-47c2-81f2-a922554baabd', name: 'Proveedor',        identifier: 30, isActive: true },
+        
+        { id: '1b913cd1-488b-435e-9cb9-a71bb3d18a5c', name: 'movimiento',     identifier: 10, isActive: true },
+        //productos
+        { id: '81c48b2a-7d3c-46cf-b3fa-1de5c899d912', name: 'producto',         identifier: 33, isActive: true },
+        //empleados
+        { id: 'c60f488d-f512-41db-a22e-6625459ca159', name: 'empleado',         identifier: 31, isActive: true },
+        //clientes
+        { id: '290d4c4f-452b-48a3-b743-8ec17a70ff28', name: 'ventas',           identifier: 32, isActive: true },
 
     ],
 
 
     operation: [
-        { id: '74b60331-4ade-4177-96a0-6f536c6fb5b1', name: 'Venta Total',          moduleId: '1721b204-24e9-47eb-b076-9e96bc691a98', isActive: true },
-        { id: '7ec22367-9e62-4f25-b774-5ec2cd2cecfc', name: 'Inentario',            moduleId: '1721b204-24e9-47eb-b076-9e96bc691a98', isActive: true },
-        { id: 'b71aade3-6038-413d-b3dd-5bd845febba5', name: 'Ordenes del Dia',      moduleId: '1721b204-24e9-47eb-b076-9e96bc691a98', isActive: true },
-        { id: '87fea175-12c4-47ce-aa88-545aac981f6b', name: 'Mas Vendido',          moduleId: '1721b204-24e9-47eb-b076-9e96bc691a98', isActive: true },
-        { id: 'a0c61028-c9a8-45dd-be50-bf38edf0faf5', name: 'Compra',               moduleId: '1721b204-24e9-47eb-b076-9e96bc691a98', isActive: true },
-        { id: '310e91b7-d7ad-4fa4-9d02-67a6da055079', name: 'Venta',                moduleId: '1721b204-24e9-47eb-b076-9e96bc691a98', isActive: true },
-        { id: 'b4868909-5189-4711-b6cc-6b373e28a269', name: 'Ordenes del Dia',      moduleId: '11a17067-c5a8-4086-a949-55600c25ae32', isActive: true },
-        { id: '2c6692b3-55a6-4c89-b001-f1760249ad4d', name: 'Ordenes Pendientes',   moduleId: '11a17067-c5a8-4086-a949-55600c25ae32', isActive: true },
-        { id: '55440f27-9dd3-4c80-8825-96e4c921312b', name: 'Empleados Asistidos',  moduleId: '11a17067-c5a8-4086-a949-55600c25ae32', isActive: true },
+        //* DASHBOARD'S
+        { id: '74b60331-4ade-4177-96a0-6f536c6fb5b1', name: 'Venta Total',          moduleId: '1721b204-24e9-47eb-b076-9e96bc691a98', isActive: true },//
+        { id: '7ec22367-9e62-4f25-b774-5ec2cd2cecfc', name: 'Inentario',            moduleId: '1721b204-24e9-47eb-b076-9e96bc691a98', isActive: true },//
+        { id: 'b71aade3-6038-413d-b3dd-5bd845febba5', name: 'Ordenes del Dia',      moduleId: '1721b204-24e9-47eb-b076-9e96bc691a98', isActive: true },//
+        { id: '87fea175-12c4-47ce-aa88-545aac981f6b', name: 'Mas Vendido',          moduleId: '1721b204-24e9-47eb-b076-9e96bc691a98', isActive: true },//
+        { id: 'a0c61028-c9a8-45dd-be50-bf38edf0faf5', name: 'Compra',               moduleId: '1721b204-24e9-47eb-b076-9e96bc691a98', isActive: true },//
+        { id: '310e91b7-d7ad-4fa4-9d02-67a6da055079', name: 'Venta',                moduleId: '1721b204-24e9-47eb-b076-9e96bc691a98', isActive: true },//
+        { id: 'b4868909-5189-4711-b6cc-6b373e28a269', name: 'Ordenes del Dia',      moduleId: '11a17067-c5a8-4086-a949-55600c25ae32', isActive: true },//
+        { id: '2c6692b3-55a6-4c89-b001-f1760249ad4d', name: 'Ordenes Pendientes',   moduleId: '11a17067-c5a8-4086-a949-55600c25ae32', isActive: true },//
+        { id: '55440f27-9dd3-4c80-8825-96e4c921312b', name: 'Empleados Asistidos',  moduleId: '11a17067-c5a8-4086-a949-55600c25ae32', isActive: true },//
         { id: 'c129fa82-b940-4422-acf6-696f54ffb5f4', name: 'Ordenes',              moduleId: '11a17067-c5a8-4086-a949-55600c25ae32', isActive: true }, 
         { id: '5a363600-97e2-42f9-b3c2-1e9b0387e51d', name: 'Ordenes',              moduleId: '2e0f70d3-2e01-4fe6-bfac-bc9ba14268e9', isActive: true },
         { id: '4a222609-b953-4dab-b8a4-2e22b082a131', name: 'Ordenes Pendientes',   moduleId: '2e0f70d3-2e01-4fe6-bfac-bc9ba14268e9', isActive: true },
         { id: '8b54718e-b270-419c-a248-d2986e35c64c', name: 'Ventas Empleado',      moduleId: '2e0f70d3-2e01-4fe6-bfac-bc9ba14268e9', isActive: true },
-        { id: 'cd3d3fad-a3d0-402f-a976-2e800aac43df', name: 'create',               moduleId: 'a7d6025c-780b-47c2-81f2-a922554baabd', isActive: true },//proveedor
+        //* PROVEEDOR
+        { id: '5e0b7e02-f836-4933-8907-048e04003869', name: 'create',               moduleId: 'a7d6025c-780b-47c2-81f2-a922554baabd', isActive: true },//proveedor
+        { id: '5e0b7e02-f836-4933-8907-048e0400386a', name: 'read',                 moduleId: 'a7d6025c-780b-47c2-81f2-a922554baabd', isActive: true },//proveedor
+        { id: '5e0b7e02-f836-4933-8907-048e0400386c', name: 'update',               moduleId: 'a7d6025c-780b-47c2-81f2-a922554baabd', isActive: true },//proveedor
+        { id: '5e0b7e02-f836-4933-8907-048e0400386f', name: 'delete',               moduleId: 'a7d6025c-780b-47c2-81f2-a922554baabd', isActive: true },//proveedor
+        { id: '5e0b7e02-f836-4933-8907-048e04003873', name: 'report',               moduleId: 'a7d6025c-780b-47c2-81f2-a922554baabd', isActive: true },//proveedor
+                    //*ORDEN
+        { id: '5e0b7e02-f836-4933-8907-048e04003878', name: 'create',               moduleId: 'a7d6025c-780b-47c2-81f2-a922554baabd', isActive: true },//proveedor-order
+        { id: '5e0b7e02-f836-4933-8907-048e0400387e', name: 'read',                 moduleId: 'a7d6025c-780b-47c2-81f2-a922554baabd', isActive: true },//proveedor-order
+        { id: '5e0b7e02-f836-4933-8907-048e04003885', name: 'update',               moduleId: 'a7d6025c-780b-47c2-81f2-a922554baabd', isActive: true },//proveedor-order
+        { id: '5e0b7e02-f836-4933-8907-048e0400388d', name: 'delete',               moduleId: 'a7d6025c-780b-47c2-81f2-a922554baabd', isActive: true },//proveedor-order
+        { id: '5e0b7e02-f836-4933-8907-048e04003896', name: 'report',               moduleId: 'a7d6025c-780b-47c2-81f2-a922554baabd', isActive: true },//proveedor-order
+        //*MOVIMIENTOS
+        { id: 'f2d567c5-5663-4027-9689-a16543e1f445', name: 'btnCompra',            moduleId: '1b913cd1-488b-435e-9cb9-a71bb3d18a5c', isActive: true },//movimiento
+        { id: 'f2d567c5-5663-4027-9689-a16543e1f446', name: 'btnVenta',             moduleId: '1b913cd1-488b-435e-9cb9-a71bb3d18a5c', isActive: true },//movimiento
+        { id: 'f2d567c5-5663-4027-9689-a16543e1f448', name: 'read',                 moduleId: '1b913cd1-488b-435e-9cb9-a71bb3d18a5c', isActive: true },//movimiento
+        { id: 'f2d567c5-5663-4027-9689-a16543e1f44b', name: 'report',               moduleId: '1b913cd1-488b-435e-9cb9-a71bb3d18a5c', isActive: true },//movimiento
+                    //*documentos
+        { id: 'f2d567c5-5663-4027-9689-a16543e1f44f', name: 'create',               moduleId: '1b913cd1-488b-435e-9cb9-a71bb3d18a5c', isActive: true },//movimiento
+        { id: 'f2d567c5-5663-4027-9689-a16543e1f454', name: 'read',                 moduleId: '1b913cd1-488b-435e-9cb9-a71bb3d18a5c', isActive: true },//movimiento
+        { id: 'f2d567c5-5663-4027-9689-a16543e1f45a', name: 'update',               moduleId: '1b913cd1-488b-435e-9cb9-a71bb3d18a5c', isActive: true },//movimiento
+        { id: 'f2d567c5-5663-4027-9689-a16543e1f461', name: 'delete',               moduleId: '1b913cd1-488b-435e-9cb9-a71bb3d18a5c', isActive: true },//movimiento
+        { id: 'f2d567c5-5663-4027-9689-a16543e1f469', name: 'report',               moduleId: '1b913cd1-488b-435e-9cb9-a71bb3d18a5c', isActive: true },//movimiento
+                    //*detalles
+        { id: 'f2d567c5-5663-4027-9689-a16543e1f4ae', name: 'read',                 moduleId: '1b913cd1-488b-435e-9cb9-a71bb3d18a5c', isActive: true },//movimiento
+        { id: 'f2d567c5-5663-4027-9689-a16543e1f4bd', name: 'report',               moduleId: '1b913cd1-488b-435e-9cb9-a71bb3d18a5c', isActive: true },//movimiento
+        //*PRODUCTO
+        { id: 'a90227fb-3cd9-40b3-97f2-3c5d777f93c9', name: 'create',               moduleId: '81c48b2a-7d3c-46cf-b3fa-1de5c899d912', isActive: true },//producto
+        { id: 'a90227fb-3cd9-40b3-97f2-3c5d777f93ca', name: 'read',                 moduleId: '81c48b2a-7d3c-46cf-b3fa-1de5c899d912', isActive: true },//producto
+        { id: 'a90227fb-3cd9-40b3-97f2-3c5d777f93cc', name: 'update',               moduleId: '81c48b2a-7d3c-46cf-b3fa-1de5c899d912', isActive: true },//producto
+        { id: 'a90227fb-3cd9-40b3-97f2-3c5d777f93cf', name: 'delete',               moduleId: '81c48b2a-7d3c-46cf-b3fa-1de5c899d912', isActive: true },//producto
+        { id: 'a90227fb-3cd9-40b3-97f2-3c5d777f93d3', name: 'report',               moduleId: '81c48b2a-7d3c-46cf-b3fa-1de5c899d912', isActive: true },//producto
+                    //*Categoria
+        { id: 'a90227fb-3cd9-40b3-97f2-3c5d777f93d8', name: 'create',               moduleId: '81c48b2a-7d3c-46cf-b3fa-1de5c899d912', isActive: true },//producto
+        { id: 'a90227fb-3cd9-40b3-97f2-3c5d777f93de', name: 'read',                 moduleId: '81c48b2a-7d3c-46cf-b3fa-1de5c899d912', isActive: true },//producto
+        { id: 'a90227fb-3cd9-40b3-97f2-3c5d777f93e5', name: 'update',               moduleId: '81c48b2a-7d3c-46cf-b3fa-1de5c899d912', isActive: true },//producto
+        { id: 'a90227fb-3cd9-40b3-97f2-3c5d777f93ed', name: 'delete',               moduleId: '81c48b2a-7d3c-46cf-b3fa-1de5c899d912', isActive: true },//producto
+        { id: 'a90227fb-3cd9-40b3-97f2-3c5d777f93f6', name: 'report',               moduleId: '81c48b2a-7d3c-46cf-b3fa-1de5c899d912', isActive: true },//producto
+                    //*Tipo producto
+        { id: 'a90227fb-3cd9-40b3-97f2-3c5d777f9400', name: 'create',               moduleId: '81c48b2a-7d3c-46cf-b3fa-1de5c899d912', isActive: true },//producto
+        { id: 'a90227fb-3cd9-40b3-97f2-3c5d777f940b', name: 'read',                 moduleId: '81c48b2a-7d3c-46cf-b3fa-1de5c899d912', isActive: true },//producto
+        { id: 'a90227fb-3cd9-40b3-97f2-3c5d777f9417', name: 'update',               moduleId: '81c48b2a-7d3c-46cf-b3fa-1de5c899d912', isActive: true },//producto
+        { id: 'a90227fb-3cd9-40b3-97f2-3c5d777f9424', name: 'delete',               moduleId: '81c48b2a-7d3c-46cf-b3fa-1de5c899d912', isActive: true },//producto
+        { id: 'a90227fb-3cd9-40b3-97f2-3c5d777f9432', name: 'report',               moduleId: '81c48b2a-7d3c-46cf-b3fa-1de5c899d912', isActive: true },//producto        
+                    //*movimientos inventario
+        { id: 'a90227fb-3cd9-40b3-97f2-3c5d777f9441', name: 'read',                 moduleId: '81c48b2a-7d3c-46cf-b3fa-1de5c899d912', isActive: true },//producto
+        { id: 'a90227fb-3cd9-40b3-97f2-3c5d777f9451', name: 'report',               moduleId: '81c48b2a-7d3c-46cf-b3fa-1de5c899d912', isActive: true },//producto
 
-        /*{ id: 'cd3d3fad-a3d0-402f-a976-2e800aac43df', name: 'create',   moduleId: 'a7d6025c-780b-47c2-81f2-a922554baabd', isActive: true },//proveedor
-        { id: '80a52512-0415-4d01-8e09-53e94c9e2ccc', name: 'read',     moduleId: 'a7d6025c-780b-47c2-81f2-a922554baabd', isActive: true },
-        { id: '518508fc-c3a5-4bff-b11e-9843c809c735', name: 'update',   moduleId: 'a7d6025c-780b-47c2-81f2-a922554baabd', isActive: true },
-        { id: '1874d8b8-7afd-4d3f-84af-e0feab740e18', name: 'delete',   moduleId: 'a7d6025c-780b-47c2-81f2-a922554baabd', isActive: true },
-        { id: '2235fa7c-3e9b-4739-820b-5ff2afa11c87', name: 'read',     moduleId: '76ba91f0-9140-4c70-85e9-59d7520ee145', isActive: true },//inventario*/
+        //*Empleado
+        { id: '23d02bd3-523c-4c1e-aaf1-f1249a1f83bc', name: 'create',               moduleId: 'c60f488d-f512-41db-a22e-6625459ca159', isActive: true },//Empleado
+        { id: '23d02bd3-523c-4c1e-aaf1-f1249a1f83bd', name: 'read',                 moduleId: 'c60f488d-f512-41db-a22e-6625459ca159', isActive: true },//Empleado
+        { id: '23d02bd3-523c-4c1e-aaf1-f1249a1f83bf', name: 'update',               moduleId: 'c60f488d-f512-41db-a22e-6625459ca159', isActive: true },//Empleado
+        { id: '23d02bd3-523c-4c1e-aaf1-f1249a1f83c2', name: 'delete',               moduleId: 'c60f488d-f512-41db-a22e-6625459ca159', isActive: true },//Empleado
+        { id: '23d02bd3-523c-4c1e-aaf1-f1249a1f83c6', name: 'report',               moduleId: 'c60f488d-f512-41db-a22e-6625459ca159', isActive: true },//Empleado
+                    //*asistencias
+        { id: '23d02bd3-523c-4c1e-aaf1-f1249a1f83cb', name: 'create',               moduleId: 'c60f488d-f512-41db-a22e-6625459ca159', isActive: true },//Empleado
+        { id: '23d02bd3-523c-4c1e-aaf1-f1249a1f83d1', name: 'read',                 moduleId: 'c60f488d-f512-41db-a22e-6625459ca159', isActive: true },//Empleado
+        { id: '23d02bd3-523c-4c1e-aaf1-f1249a1f83d8', name: 'report',               moduleId: 'c60f488d-f512-41db-a22e-6625459ca159', isActive: true },//Empleado  
+                    //*evaluacion
+        { id: '23d02bd3-523c-4c1e-aaf1-f1249a1f83e0', name: 'create',               moduleId: 'c60f488d-f512-41db-a22e-6625459ca159', isActive: true },//Empleado
+        { id: '23d02bd3-523c-4c1e-aaf1-f1249a1f83e9', name: 'read',                 moduleId: 'c60f488d-f512-41db-a22e-6625459ca159', isActive: true },//Empleado
+        { id: '23d02bd3-523c-4c1e-aaf1-f1249a1f83f3', name: 'update',               moduleId: 'c60f488d-f512-41db-a22e-6625459ca159', isActive: true },//Empleado
+        { id: '23d02bd3-523c-4c1e-aaf1-f1249a1f83fe', name: 'report',               moduleId: 'c60f488d-f512-41db-a22e-6625459ca159', isActive: true },//Empleado
+
+        //*ventas
+        { id: '6fbc4b80-5c9d-419a-b541-51bec105fd01', name: 'read',                 moduleId: '290d4c4f-452b-48a3-b743-8ec17a70ff28', isActive: true },//ventas
+                    //*mesas
+        { id: '6fbc4b80-5c9d-419a-b541-51bec105fd02', name: 'create',               moduleId: '290d4c4f-452b-48a3-b743-8ec17a70ff28', isActive: true },//ventas
+        { id: '6fbc4b80-5c9d-419a-b541-51bec105fd04', name: 'read',                 moduleId: '290d4c4f-452b-48a3-b743-8ec17a70ff28', isActive: true },//ventas
+        { id: '6fbc4b80-5c9d-419a-b541-51bec105fd07', name: 'update',               moduleId: '290d4c4f-452b-48a3-b743-8ec17a70ff28', isActive: true },//ventas
 
     ],
 
@@ -63,7 +134,6 @@ export const seedData = {
         { id: '01a96b8e-22dc-4bc8-8516-3db36a2977fe', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '87fea175-12c4-47ce-aa88-545aac981f6b', createAt: new Date(), isActive: true },
         { id: '31af2073-8499-4152-9ebc-b78d4f281109', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'a0c61028-c9a8-45dd-be50-bf38edf0faf5', createAt: new Date(), isActive: true },
         { id: 'b5b04752-069e-4eb7-86d5-138901f91f57', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '310e91b7-d7ad-4fa4-9d02-67a6da055079', createAt: new Date(), isActive: true },
-        { id: 'b3bb1190-dd33-4584-b207-bbea2b99c083', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'cd3d3fad-a3d0-402f-a976-2e800aac43df', createAt: new Date(), isActive: true },//proveedor
         { id: '1f06fe5b-d97d-4210-b899-259ddde92b01', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: 'b4868909-5189-4711-b6cc-6b373e28a269', createAt: new Date(), isActive: true },
         { id: 'af47dde7-dfa3-4784-9a08-a996f2621b8d', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: '2c6692b3-55a6-4c89-b001-f1760249ad4d', createAt: new Date(), isActive: true },
         { id: 'c3259e15-24da-43bb-bf81-9eb3cabb60a8', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: '55440f27-9dd3-4c80-8825-96e4c921312b', createAt: new Date(), isActive: true },
@@ -71,8 +141,82 @@ export const seedData = {
         { id: 'ddbcd767-fe9d-4614-ac33-e8914b1ea53b', profileId: '14588c57-ee54-4c01-bc7f-8c445e643ee5', operationId: '5a363600-97e2-42f9-b3c2-1e9b0387e51d', createAt: new Date(), isActive: true },
         { id: '234b364d-4e94-49b2-93fb-eb47f14952f0', profileId: '14588c57-ee54-4c01-bc7f-8c445e643ee5', operationId: '4a222609-b953-4dab-b8a4-2e22b082a131', createAt: new Date(), isActive: true },
         { id: '190a8736-414a-4744-b8c9-f2a7b153e630', profileId: '14588c57-ee54-4c01-bc7f-8c445e643ee5', operationId: '8b54718e-b270-419c-a248-d2986e35c64c', createAt: new Date(), isActive: true },
-
-//        { id: '', profileId: '', operationId: '', createAt: new Date(), isActive: true },
+        //*ADMINISTRADOR
+        { id: 'b3bb1190-dd33-4584-b207-bbea2b99c083', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '5e0b7e02-f836-4933-8907-048e04003869', createAt: new Date(), isActive: true },
+        { id: '3c9ba10e-bb9a-4e18-8c0c-c2be473d3d61', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '5e0b7e02-f836-4933-8907-048e0400386a', createAt: new Date(), isActive: true },
+        { id: 'e365d5af-d012-496c-8b2f-6e81815e38d3', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '5e0b7e02-f836-4933-8907-048e0400386c', createAt: new Date(), isActive: true },
+        { id: 'b18c6471-bc55-4af1-9463-24f308ae82fc', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '5e0b7e02-f836-4933-8907-048e0400386f', createAt: new Date(), isActive: true },
+        { id: '1ef2f55f-3c5d-4507-a3c1-b2c7990173a1', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '5e0b7e02-f836-4933-8907-048e04003873', createAt: new Date(), isActive: true },
+        { id: '24a58a7f-d6cf-4881-b52a-d511a4b19c6a', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '5e0b7e02-f836-4933-8907-048e04003878', createAt: new Date(), isActive: true },
+        { id: 'ad00e45b-6012-42fc-9405-68b19de9512a', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '5e0b7e02-f836-4933-8907-048e0400387e', createAt: new Date(), isActive: true },
+        { id: 'aae35868-5d4b-48ad-b27e-64c3250c42a1', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '5e0b7e02-f836-4933-8907-048e04003885', createAt: new Date(), isActive: true },
+        { id: 'b28b83ff-1b6a-4c88-91b6-40d04d8b55f0', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '5e0b7e02-f836-4933-8907-048e0400388d', createAt: new Date(), isActive: true },
+        { id: 'b3832915-fbc1-44aa-a5ea-8a05aa4013cc', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '5e0b7e02-f836-4933-8907-048e04003896', createAt: new Date(), isActive: true },
+        { id: '47ff9d7e-2915-4fdd-bfb1-32511c71eb43', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'f2d567c5-5663-4027-9689-a16543e1f445', createAt: new Date(), isActive: true },
+        { id: '17a2ec6a-11d3-48f7-b4f7-0b8c42c6db09', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'f2d567c5-5663-4027-9689-a16543e1f446', createAt: new Date(), isActive: true },
+        { id: 'c3b7ce2d-26c6-4723-8f19-96ad5b82a465', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'f2d567c5-5663-4027-9689-a16543e1f448', createAt: new Date(), isActive: true },
+        { id: '4fe9c7e1-9e05-4b6b-8d26-e28d0fa6c4f5', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'f2d567c5-5663-4027-9689-a16543e1f44b', createAt: new Date(), isActive: true },
+        { id: '3724c6c0-1f69-464f-8cf4-bd256d314d05', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'f2d567c5-5663-4027-9689-a16543e1f44f', createAt: new Date(), isActive: true },
+        { id: 'f9f16a53-9b22-40f7-b7b1-73f4916d8c3c', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'f2d567c5-5663-4027-9689-a16543e1f454', createAt: new Date(), isActive: true },
+        { id: '4d9aa0f1-527f-4ad5-83a6-ff40cdbb464a', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'f2d567c5-5663-4027-9689-a16543e1f45a', createAt: new Date(), isActive: true },
+        { id: '11096c70-d9f2-4bb1-a5dc-0405d5c68527', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'f2d567c5-5663-4027-9689-a16543e1f461', createAt: new Date(), isActive: true },
+        { id: '07cf8ac3-4248-47c8-bfac-0040b52035f4', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'f2d567c5-5663-4027-9689-a16543e1f469', createAt: new Date(), isActive: true },
+        { id: 'ffb37306-8121-42a0-9f88-66c553cd5f22', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'f2d567c5-5663-4027-9689-a16543e1f4ae', createAt: new Date(), isActive: true },
+        { id: '7c3185f3-8127-4f62-b55d-0cc6f6c97b89', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'f2d567c5-5663-4027-9689-a16543e1f4bd', createAt: new Date(), isActive: true },
+        { id: 'd1569a4c-53f6-4376-b1c7-65969c4988fc', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'a90227fb-3cd9-40b3-97f2-3c5d777f93c9', createAt: new Date(), isActive: true },
+        { id: '9e081ac2-8362-43db-931d-3c2d7b0df2e5', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'a90227fb-3cd9-40b3-97f2-3c5d777f93ca', createAt: new Date(), isActive: true },
+        { id: 'e84358cf-1e5a-4d02-953d-25b0b5ec179e', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'a90227fb-3cd9-40b3-97f2-3c5d777f93cc', createAt: new Date(), isActive: true },
+        { id: '2ec9b1c5-e816-4d3e-81c7-28b3c5ac23eb', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'a90227fb-3cd9-40b3-97f2-3c5d777f93cf', createAt: new Date(), isActive: true },
+        { id: 'b66dc995-1ef1-4405-8614-08b1d0c03885', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'a90227fb-3cd9-40b3-97f2-3c5d777f93d3', createAt: new Date(), isActive: true },
+        { id: 'f55a18a3-d7b8-4d71-abb7-788c03b615bb', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'a90227fb-3cd9-40b3-97f2-3c5d777f93d8', createAt: new Date(), isActive: true },
+        { id: 'e70bb4a4-45fe-4904-a7e2-374015a3996f', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'a90227fb-3cd9-40b3-97f2-3c5d777f93de', createAt: new Date(), isActive: true },
+        { id: 'dcb9e416-56a3-48fd-a7c5-29d5c6f07ac8', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'a90227fb-3cd9-40b3-97f2-3c5d777f93e5', createAt: new Date(), isActive: true },
+        { id: 'bbf8f53e-b2a1-49a7-b9a8-74d16b0aa379', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'a90227fb-3cd9-40b3-97f2-3c5d777f93ed', createAt: new Date(), isActive: true },
+        { id: '5e26441b-5d26-4388-b191-1ea83ab75c73', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'a90227fb-3cd9-40b3-97f2-3c5d777f93f6', createAt: new Date(), isActive: true },
+        { id: '5d2c8b95-7348-4e71-8880-9175c4fc9b79', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'a90227fb-3cd9-40b3-97f2-3c5d777f9400', createAt: new Date(), isActive: true },
+        { id: '2fdc0320-1cb7-46f0-b95a-62c7818a5b27', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'a90227fb-3cd9-40b3-97f2-3c5d777f940b', createAt: new Date(), isActive: true },
+        { id: 'f8fd273f-6eb9-4d8b-8322-d5202ed3b3b5', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'a90227fb-3cd9-40b3-97f2-3c5d777f9417', createAt: new Date(), isActive: true },
+        { id: 'ca4ae087-9967-4d3c-9cb2-f0b8106c9d5b', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'a90227fb-3cd9-40b3-97f2-3c5d777f9424', createAt: new Date(), isActive: true },
+        { id: '25be01e0-6300-450f-ae58-f1269f60a3f7', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'a90227fb-3cd9-40b3-97f2-3c5d777f9432', createAt: new Date(), isActive: true },
+        { id: '5cc4e4f8-dbb1-4111-b14b-c8cf58cf0204', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'a90227fb-3cd9-40b3-97f2-3c5d777f9441', createAt: new Date(), isActive: true },
+        { id: '3855b7f3-d13f-4570-9ffb-5585aa8d6f41', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: 'a90227fb-3cd9-40b3-97f2-3c5d777f9451', createAt: new Date(), isActive: true },
+        { id: '7b439390-8a45-4f5f-816d-f2adbe210baf', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '23d02bd3-523c-4c1e-aaf1-f1249a1f83bc', createAt: new Date(), isActive: true },
+        { id: '7b439390-8a45-4f5f-816d-f2adbe210b98', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '23d02bd3-523c-4c1e-aaf1-f1249a1f83bd', createAt: new Date(), isActive: true },
+        { id: '7b439390-8a45-4f5f-816d-f2adbe210b99', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '23d02bd3-523c-4c1e-aaf1-f1249a1f83bf', createAt: new Date(), isActive: true },
+        { id: '6f01a738-e94e-48f1-b208-d0f36dc5e997', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '23d02bd3-523c-4c1e-aaf1-f1249a1f83c2', createAt: new Date(), isActive: true },
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c8f0', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '23d02bd3-523c-4c1e-aaf1-f1249a1f83c6', createAt: new Date(), isActive: true },
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c100', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '23d02bd3-523c-4c1e-aaf1-f1249a1f83cb', createAt: new Date(), isActive: true },
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c101', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '23d02bd3-523c-4c1e-aaf1-f1249a1f83d1', createAt: new Date(), isActive: true },
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c102', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '23d02bd3-523c-4c1e-aaf1-f1249a1f83d8', createAt: new Date(), isActive: true },
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c103', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '23d02bd3-523c-4c1e-aaf1-f1249a1f83e0', createAt: new Date(), isActive: true },
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c104', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '23d02bd3-523c-4c1e-aaf1-f1249a1f83e9', createAt: new Date(), isActive: true },
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c105', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '23d02bd3-523c-4c1e-aaf1-f1249a1f83f3', createAt: new Date(), isActive: true },
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c106', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '23d02bd3-523c-4c1e-aaf1-f1249a1f83fe', createAt: new Date(), isActive: true },
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c107', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '6fbc4b80-5c9d-419a-b541-51bec105fd01', createAt: new Date(), isActive: true },
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c108', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '6fbc4b80-5c9d-419a-b541-51bec105fd02', createAt: new Date(), isActive: true },
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c109', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '6fbc4b80-5c9d-419a-b541-51bec105fd04', createAt: new Date(), isActive: true },
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c110', profileId: '8b06bf9e-4b4d-4ca6-8669-e1b744cef569', operationId: '6fbc4b80-5c9d-419a-b541-51bec105fd07', createAt: new Date(), isActive: true },
+        //*Supervisor
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c111', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: '5e0b7e02-f836-4933-8907-048e0400386a', createAt: new Date(), isActive: true },//ordenes proveedor
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c112', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: '5e0b7e02-f836-4933-8907-048e0400387e', createAt: new Date(), isActive: true },//ordenes proveedor
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c113', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: '5e0b7e02-f836-4933-8907-048e04003885', createAt: new Date(), isActive: true },//ordenes proveedor
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c114', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: '5e0b7e02-f836-4933-8907-048e04003896', createAt: new Date(), isActive: true },//ordenes proveedor
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c115', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: 'f2d567c5-5663-4027-9689-a16543e1f4ae', createAt: new Date(), isActive: true },//movement-detail
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c116', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: 'f2d567c5-5663-4027-9689-a16543e1f4bd', createAt: new Date(), isActive: true },//movement-detail
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c117', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: '6fbc4b80-5c9d-419a-b541-51bec105fd01', createAt: new Date(), isActive: true },//ventas
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c118', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: '6fbc4b80-5c9d-419a-b541-51bec105fd02', createAt: new Date(), isActive: true },
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c119', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: '6fbc4b80-5c9d-419a-b541-51bec105fd04', createAt: new Date(), isActive: true },
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c120', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: '6fbc4b80-5c9d-419a-b541-51bec105fd07', createAt: new Date(), isActive: true },
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c121', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: '23d02bd3-523c-4c1e-aaf1-f1249a1f83bd', createAt: new Date(), isActive: true },//empleado
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c122', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: '23d02bd3-523c-4c1e-aaf1-f1249a1f83cb', createAt: new Date(), isActive: true },
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c123', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: '23d02bd3-523c-4c1e-aaf1-f1249a1f83d1', createAt: new Date(), isActive: true },
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c124', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: '23d02bd3-523c-4c1e-aaf1-f1249a1f83e0', createAt: new Date(), isActive: true },
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c125', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: '23d02bd3-523c-4c1e-aaf1-f1249a1f83e9', createAt: new Date(), isActive: true },
+        //*empelado
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c126', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: '6fbc4b80-5c9d-419a-b541-51bec105fd01', createAt: new Date(), isActive: true },
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c127', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: '6fbc4b80-5c9d-419a-b541-51bec105fd04', createAt: new Date(), isActive: true },
+        { id: '4de9d12b-c8f6-4ab4-a430-5b63f0b2c128', profileId: 'e67f19e8-95af-4289-8ab9-c70ce195bcfd', operationId: '6fbc4b80-5c9d-419a-b541-51bec105fd07', createAt: new Date(), isActive: true },
+        // { id: '', profileId: '', operationId: '', createAt: new Date(), isActive: true },
     ],
 
     profile: [

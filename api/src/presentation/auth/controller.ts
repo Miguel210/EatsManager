@@ -33,7 +33,8 @@ export class AuthController {
 
 
     getModules = (req: Request, res: Response ) => {
-
+        // console.log(req.body._meta);
+        
         const modules = req.body._meta.module
 
         this.authservice.operationsModule(modules)
