@@ -8,6 +8,5 @@ export class Uuid {
         return uuid4()
     }
 
-
 }
 

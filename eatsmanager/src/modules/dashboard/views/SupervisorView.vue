@@ -16,9 +16,9 @@
 
     <div class=" justify-between w-full">
       <DataTable
-      :is-add="true"
-      :is-delete="true"
-      :is-update="true"
+      :is-add="false"
+      :is-delete="false"
+      :is-update="false"
       :columns="column"
       :data=" dashboard?.data.Ordenes "
       table-width="fit"

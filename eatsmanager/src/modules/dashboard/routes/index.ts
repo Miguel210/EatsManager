@@ -13,13 +13,13 @@ export const dashboardRoutes: RouteRecordRaw = {
       component: () => import('@/modules/dashboard/views/AdminView.vue'),
     },
     {
-      path: 'Dashempleado',
-      name: 'Dashempleado',
+      path: 'dashboardEmp',
+      name: 'dashboardEmp',
       component: () => import('@/modules/dashboard/views/EmployeeView.vue'),
     },
     {
-      path: 'supervisor',
-      name: 'supervisor',
+      path: 'dashboardSup',
+      name: 'dashboardSup',
       component: () => import('@/modules/dashboard/views//SupervisorView.vue'),
     }
   ]
