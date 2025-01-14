@@ -38,12 +38,12 @@
               :disabled="guest.isPaid"
             />
             <button
-              v-if="paymentType === 'individual'"
+              type="button"
               @click="payForGuest(index)"
-              :disabled="guest.isPaid"
+              :disabled="guest.status === 'Pagado'"
               class="ml-4 bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
             >
-              {{ guest.isPaid ? "Pagado" : "Pagar" }}
+              {{ guest.status ? "Pagado" : "Pagar" }}
             </button>
           </div>
 
@@ -68,7 +68,7 @@
               <select
                 v-model="guest.movement.newProduct"
                 class="border rounded p-2 mr-2"
-                :disabled="guest.movement.person.fullname === '' || guest.isPaid"
+                :disabled="guest.movement.person.fullname === '' || guest.status === 'Pagado'"
               >
                 <option
                   v-for="productType in ProductOrder?.data"
@@ -83,13 +83,13 @@
                 type="number"
                 class="border rounded p-2 w-16 mr-2"
                 placeholder="Cantidad"
-                :disabled="guest.movement.person.fullname === '' || guest.isPaid"
+                :disabled="guest.movement.person.fullname === '' || guest.status === 'Pagado'"
               />
               <button
                 @click="addProduct(index)"
                 type="button"
                 class="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600"
-                :disabled="guest.movement.person.fullname === '' || guest.isPaid"
+                :disabled="guest.movement.person.fullname === '' || guest.status === 'Pagado'"
               >
                 Agregar Producto
               </button>
@@ -129,13 +129,25 @@
         </button>
         <button
           v-if="allPaid"
-          @click="finalizeOrder"
+          @click="fianlizateSubmit"
           class="ml-4 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
         >
           Finalizar Venta
         </button>
       </div>
     </div>
+    
+    <div class="grid grid-cols-2">
+            <pre class="bg-blue-200">
+                {{ JSON.stringify(values, null, 2) }}
+            </pre>
+            <pre class="bg-red-200">
+                {{ JSON.stringify(errors, null, 2) }}
+            </pre>
+            <pre class="bg-green-200 col-span-2">
+                {{ JSON.stringify(meta, null, 2) }}
+            </pre>
+        </div>
   </form>
 </template>
 

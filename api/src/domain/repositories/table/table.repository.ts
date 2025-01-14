@@ -13,5 +13,7 @@ export abstract class TableRepository {
     abstract delete(id: string): Promise <TableEntity>;
     abstract getDataTable(id: string): Promise <TableEntity>;
     abstract clientOrderDataTable(dto: UpdateTableDto): Promise <TableEntity>;
+    abstract PayclientOrderDataTable(dto: UpdateTableDto): Promise <TableEntity>;
+    abstract finalizateclientOrderDataTable(dto: UpdateTableDto): Promise <TableEntity>;
 
 }

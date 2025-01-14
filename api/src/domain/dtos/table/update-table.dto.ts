@@ -17,7 +17,7 @@ export class UpdateTableDto {
 
     static create(props: {[key: string]: any}): [string?, UpdateTableDto?] {
 
-        const {id, description, status, mainTable, isActive, clientOrder, elaborateId} = props;
+        const {id, description, status = 'ocupado', mainTable, isActive, clientOrder, elaborateId} = props;
         let clientOrderDto = undefined; 
         if( !id ) return ['id is requerid'];
         if( !description ) return ['description is requerid'];

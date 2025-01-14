@@ -8,6 +8,8 @@ import { DeleteTable } from "../../domain/use-cases/table/delete-table";
 import { GetAllTable } from "../../domain/use-cases/table/getAll-table";
 import { GetTableData } from "../../domain/use-cases/table/getTableData-table";
 import { UpdateTableCLientOrder } from "../../domain/use-cases/table/update-table-client-order";
+import { PayTableCLientOrder } from "../../domain/use-cases/table/pay-table-clientOrder";
+import { FinalizateTableCLientOrder } from "../../domain/use-cases/table/finalizate-table-clientOrder";
 
 
 
@@ -72,6 +74,32 @@ export class TableService {
         }
     }
 
+    //Pagada cuenta 1 client
+    public async PayCLientOrderDataTable(dto: UpdateTableDto) {
+        
+        console.log('POR PAGAAAAAAAR');
+        
+        const Table = await new PayTableCLientOrder(this.repository).execute(dto)
+        .then( table => table)
+        .catch( error => console.log({error}))
+
+        return {
+            data: Table
+        }        
+    }
+    
+    public async FinalizateClientOrderDataTable(dto: UpdateTableDto) {
+        
+        console.log('POR PAGAAAAAAAR');
+        
+        const Table = await new FinalizateTableCLientOrder(this.repository).execute(dto)
+        .then( table => table)
+        .catch( error => console.log({error}))
+
+        return {
+            data: Table
+        }        
+    }
     public async update(dto: UpdateTableDto) {
 
         const Table = await new UpdateTable(this.repository).execute(dto)

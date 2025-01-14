@@ -22,6 +22,9 @@ export class TableRoutes {
         router.post('/get/', controller.getTable )
         router.post('/getorders/', controller.getDataTable )
         router.post('/clientOrder/', [AuthMiddlewares.validateJWT],controller.clientOrderDataTable)
+        router.post('/PayClientOrder/', [AuthMiddlewares.validateJWT],controller.PayClientOrder)
+        router.post('/finalizateClientOrder/', [AuthMiddlewares.validateJWT],controller.finalizateClientOrder)
+
 
         router.post('/update/', controller.update)
         router.post('/delete/', controller.delete)

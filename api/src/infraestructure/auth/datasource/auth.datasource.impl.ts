@@ -6,6 +6,10 @@ import { prisma } from "../../../data";
 export class AuthDatasourceImpl implements AuthDatasource {
 
     async findByUsername(username: string): Promise<UserEntity> {
+        console.log(
+            username
+        );
+        
         const user = await prisma.person.findFirst({
             where: {
                 username: username

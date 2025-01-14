@@ -42,7 +42,11 @@ export class ClientOrderDatasourceImpl implements ClientOrderDatasource {
         return order.map(order => ClientOrderEntity.fromObject(order));
     }
     async update(dto: UpdateClientOrderDto): Promise<ClientOrderEntity> {
-
+        console.log('ddddddddddddddddd');
+        
+        console.log(dto);
+        console.log('ddddddddddddddddd');
+        
         const order = await prisma.clientOrder.update({
             where: {
                 id: dto.id
