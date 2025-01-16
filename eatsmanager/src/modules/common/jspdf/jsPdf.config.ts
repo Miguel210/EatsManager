@@ -2,6 +2,7 @@ import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable'
 import html2canvas from 'html2canvas';
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     export function generatePDF( rows:  Record<string, any>[], docName: string, orientation: 'portrait' | 'landscape' = 'portrait') {
       const doc = new jsPDF({
         orientation: orientation,  // Establecer la orientación
@@ -24,6 +25,7 @@ import html2canvas from 'html2canvas';
       doc.save(docName);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function normalizeTailwindColors(element: any) {
         const computedStyle = window.getComputedStyle(element);
         
@@ -31,6 +33,8 @@ import html2canvas from 'html2canvas';
         const colorProperties = ['color', 'background-color', 'border-color'];
       
         colorProperties.forEach(property => {
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
           const value = computedStyle[property];
           if (value.includes('color')) {
             element.style[property] = 'black';  // Establece un color de reserva simple (puedes elegir otro)
@@ -38,6 +42,9 @@ import html2canvas from 'html2canvas';
         });
       
         // Recorre todos los hijos si es necesario (en caso de que tengan colores internos)
+
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
         element.querySelectorAll('*').forEach(child => normalizeTailwindColors(child));
       }
       

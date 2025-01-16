@@ -85,7 +85,8 @@ const optionsDt = {
   paging: props.pagination,
   // scrollX: true
 };
-
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
 watch(props.data, (newData) => {
   if (dt.value) {
     dt.value.clear().rows.add(newData).draw();
@@ -93,12 +94,19 @@ watch(props.data, (newData) => {
 });
 function remove() {
   dt.value.rows({ selected: true }).every(function () {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     const rowIndex = this.index();
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+
     const rowData = this.data();
     
     if( props.functionDelete ){
       props.functionDelete(rowData['id'])
-
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+      // eslint-disable-next-line vue/no-mutating-props
       props.data.splice(rowIndex, 1);
       dt.value.row(rowIndex).remove().draw(false);
     }
@@ -107,6 +115,8 @@ function remove() {
 
 function update() {
   dt.value.rows({ selected: true }).every(function () {
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     const rowData = this.data();
     idData.value = rowData['id']
   });

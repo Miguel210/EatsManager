@@ -12,15 +12,15 @@ export const useDashboardStore = defineStore('dashboards', () => {
     dataDashboard: computed(() => {
       return dashboards.value.map((datas) => {
         return {
-          "Venta Total":     datas.data["Venta Total"],
+          "Venta Total":     datas.data["Venta_Total"],
           Inventario:        datas.data.Inventario,
-          "Ordenes del Dia": datas.data["Ordenes del Dia"],
-          "Mas Vendido":     datas.data["Mas Vendido"],
+          "Ordenes del Dia": datas.data["Ordenes_del_Dia"],
+          "Mas Vendido":     datas.data["Mas_Vendido"],
           Compra:            datas.data.Compra,
           Venta:             datas.data.Venta,
           Ordenes:          datas.data.Ordenes,
-          "Ordenes Pendientes": datas.data["Ordenes Pendientes"],
-          "Ventas Empleados": datas.data["Ventas Empleados"],
+          "Ordenes Pendientes": datas.data["Ordenes_Pendientes"],
+          "Ventas Empleados": datas.data["Ventas_Empleados"],
         }
       })
     })
