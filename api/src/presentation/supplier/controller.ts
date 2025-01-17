@@ -27,6 +27,9 @@ export class SupplierController {
 
     create = (req: Request, res: Response) => {
 
+        console.log(req.body.person);
+        
+
         const [error, supplierDto] = CreateSupplierDto.create({...req.body.person, isActive: req.body.isActive})
         if(error) throw res.status(400).json({error});
         

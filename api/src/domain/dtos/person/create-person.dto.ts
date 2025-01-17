@@ -17,8 +17,13 @@ export class CreatePersonDto {
     static create(props: {[key: string]: any}): [string?, CreatePersonDto?] {
 
         const { genderId, profileId, typePersonId, username = '', password = ''} = props
-        const {id, fullname} = props.person
         
+        console.log('1');
+        console.log(props);
+        console.log('1');
+        
+            const {id, fullname} = props.person
+            
         if( id )    return ['id exist', undefined]
         if( !genderId) return ['genderId is requerid', undefined]
         if( !profileId) return ['genderId is requerid', undefined]
