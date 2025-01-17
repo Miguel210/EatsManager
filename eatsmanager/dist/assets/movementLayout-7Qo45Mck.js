@@ -1,0 +1,1 @@
+import{d as e,c as t,b as o,e as a,o as s,R as n}from"./index-CozHna6C.js";const c={class:"mx-20 mt-5 w-8/12"},u=e({__name:"movementLayout",setup(r){return(m,_)=>(s(),t("div",c,[o(a(n))]))}});export{u as default};

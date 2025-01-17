@@ -1,0 +1,1 @@
+import{e as t}from"./index-HRYNUPNB.js";const a=async()=>{try{const{data:r}=await t.get("/category/");return{...r}}catch(r){throw console.log(r),new Error("Error getter data")}},e=async()=>{try{const{data:r}=await t.get("/producttype/");return{...r}}catch(r){throw console.log(r),new Error("Error getter data")}};export{e as a,a as g};

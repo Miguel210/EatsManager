@@ -1,0 +1,1 @@
+import{e}from"./index-HRYNUPNB.js";const t=async()=>{try{const{data:o}=await e.get("/employee/");return console.log(o),{...o}}catch(o){throw console.log(o),new Error("Error getting data")}};export{t as g};

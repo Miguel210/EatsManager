@@ -1,0 +1,1 @@
+import{_ as o}from"./_plugin-vue_export-helper-DlAUqK2U.js";import{c as t,b as c,r,o as n}from"./index-CozHna6C.js";const s={},a={class:"mx-20 mt-5 w-8/12"};function _(m,i){const e=r("RouterView");return n(),t("div",a,[c(e)])}const p=o(s,[["render",_]]);export{p as default};
